@@ -5,9 +5,10 @@ from django.contrib.auth import mixins as auth_mixins
 
 from charityapp.accounts.models import UserType
 from charityapp.user_profiles.forms import VolunteerForm, SponsorForm, MemberForm
-
+from charityapp.user_profiles.models import VolunteerProfile, SponsorProfile, MemberProfile
 
 UserModel = get_user_model()
+
 
 # class ProfileEditView(views.UpdateView):
 #     template_name = 'user_profiles/profile-edit-page.html'
@@ -50,6 +51,19 @@ def profile_edit_view(request):
     }
 
     return render(request, 'user_profiles/profile-edit-page.html', context)
+
+
+class ProfileDetailsView(views.DetailView):
+    template_name = 'user_profiles/profile-details-page.html'
+
+    def get_object(self, queryset=None):
+        user_type = self.request.user.user_type
+        if user_type == 'VOLUNTEER':
+            return VolunteerProfile.objects.get(user=self.request.user)
+        elif user_type == 'SPONSOR':
+            return SponsorProfile.objects.get(user=self.request.user)
+        elif user_type == 'MEMBER':
+            return MemberProfile.objects.get(user=self.request.user)
 
 
 class ProfileDeleteView(views.DeleteView):

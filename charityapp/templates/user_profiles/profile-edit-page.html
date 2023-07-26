@@ -40,7 +40,13 @@
                                             </div>
                                             <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                                                 <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ user.volunteer_profile.full_name }}</h4>
+                                                    {% if user_type == 'VOLUNTEER' %}
+                                                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ user.volunteer_profile.full_name }}</h4>
+                                                    {% elif user_type == 'SPONSOR' %}
+                                                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ user.sponsor_profile.company_name }}</h4>
+                                                    {% elif user_type == 'MEMBER' %}
+                                                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ user.member_profile.full_name }}</h4>
+                                                    {% endif %}
                                                     <p class="mb-0">{{ user.email }}</p>
                                                     <div class="text-muted"><small>Last seen
                                                         on {{ user.last_login }}</small></div>
@@ -59,7 +65,7 @@
                                                     {% else %}
                                                         <span class="badge badge-secondary">{{ user_type }}</span>
                                                     {% endif %}
-                                                    <div class="text-muted"><small>Joined 09 Dec 2017</small></div>
+                                                    {#                                                    <div class="text-muted"><small>Joined 09 Dec 2017</small></div>#}
                                                 </div>
                                             </div>
                                         </div>
@@ -74,7 +80,14 @@
                                                             <div class="row">
                                                                 <div class="col">
                                                                     <div class="form-group">
-                                                                        <label>Full Name</label>
+                                                                        <label>Full name</label>
+                                                                        {% if user_type == 'VOLUNTEER' %}
+                                                                            <p>{{ user.volunteer_profile.full_name }}</p>
+                                                                        {% elif user_type == 'SPONSOR' %}
+                                                                            <p>{{ user.sponsor_profile.company_name }}</p>
+                                                                        {% elif user_type == 'MEMBER' %}
+                                                                            <p>{{ user.member_profile.full_name }}</p>
+                                                                        {% endif %}
                                                                         <input class="form-control" type="text"
                                                                                name="name"
                                                                                placeholder="John Smith"

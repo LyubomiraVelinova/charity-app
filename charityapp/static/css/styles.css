@@ -205,6 +205,10 @@ p.lead {
     color: rgba(var(--green),var(--bs-text-opacity));!important;
 }
 
+/*PROFILE PAGE*/
+.badge-secondary{
+    background-color: #6c757d;
+}
 
 
 

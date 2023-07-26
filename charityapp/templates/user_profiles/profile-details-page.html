@@ -1,101 +1,216 @@
 {% extends 'base/base.html' %}
 
 {% block main_content %}
-    <div class="container rounded bg-white mt-5 mb-5">
-        <div class="row">
-            <div class="col-md-3 border-right">
-                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                    <img class="rounded-circle mt-5"
-                         width="150px"
-                         src="{{ profile_image }}">
-                    <span class="font-weight-bold">{{ object.username }}</span>
-                    <span class="text-black-50">{{ object.email }}</span>
-                </div>
-            </div>
-            <div class="col-md-5 border-right">
-                <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="text-right">Profile Settings</h4>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control"
-                                                                                       placeholder="first name"
-                                                                                       value="">
+    <section class="first-section">
+        <div class="container">
+            <div class="row flex-lg-nowrap">
+                <div class="col-12 col-lg-auto mb-3" style="width: 200px;">
+                    <div class="card p-3">
+                        <div class="e-navlist e-navlist--active-bg">
+                            <ul class="nav">
+                                <li class="nav-item"><a class="nav-link px-2 active" href="#"><i
+                                        class="fa fa-fw fa-bar-chart mr-1"></i><span>Overview</span></a></li>
+                                <li class="nav-item"><a class="nav-link px-2"
+                                                        href="https://www.bootdey.com/snippets/view/bs4-crud-users"
+                                                        target="__blank"><i
+                                        class="fa fa-fw fa-th mr-1"></i><span>CRUD</span></a></li>
+                                <li class="nav-item"><a class="nav-link px-2"
+                                                        href="https://www.bootdey.com/snippets/view/bs4-edit-profile-page"
+                                                        target="__blank"><i
+                                        class="fa fa-fw fa-cog mr-1"></i><span>Settings</span></a></li>
+                            </ul>
                         </div>
-                        <div class="col-md-6"><label class="labels">Surname</label><input type="text"
-                                                                                          class="form-control"
-                                                                                          value=""
-                                                                                          placeholder="surname">
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text"
-                                                                                                 class="form-control"
-                                                                                                 placeholder="enter phone number"
-                                                                                                 value=""></div>
-                        <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text"
-                                                                                                  class="form-control"
-                                                                                                  placeholder="enter address line 1"
-                                                                                                  value=""></div>
-                        <div class="col-md-12"><label class="labels">Address Line 2</label><input type="text"
-                                                                                                  class="form-control"
-                                                                                                  placeholder="enter address line 2"
-                                                                                                  value=""></div>
-                        <div class="col-md-12"><label class="labels">Postcode</label><input type="text"
-                                                                                            class="form-control"
-                                                                                            placeholder="enter address line 2"
-                                                                                            value=""></div>
-                        <div class="col-md-12"><label class="labels">State</label><input type="text"
-                                                                                         class="form-control"
-                                                                                         placeholder="enter address line 2"
-                                                                                         value=""></div>
-                        <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control"
-                                                                                        placeholder="enter address line 2"
-                                                                                        value=""></div>
-                        <div class="col-md-12"><label class="labels">Email ID</label><input type="text"
-                                                                                            class="form-control"
-                                                                                            placeholder="enter email id"
-                                                                                            value=""></div>
-                        <div class="col-md-12"><label class="labels">Education</label><input type="text"
-                                                                                             class="form-control"
-                                                                                             placeholder="education"
-                                                                                             value=""></div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6"><label class="labels">Country</label><input type="text"
-                                                                                          class="form-control"
-                                                                                          placeholder="country"
-                                                                                          value="">
-                        </div>
-                        <div class="col-md-6"><label class="labels">State/Region</label><input type="text"
-                                                                                               class="form-control"
-                                                                                               value=""
-                                                                                               placeholder="state">
-                        </div>
-                    </div>
-                    <div class="mt-5 text-center">
-                        <button class="btn btn-primary profile-button" type="button">Save Profile</button>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center experience">
-                        <span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i
-                            class="fa fa-plus"></i>&nbsp;Experience</span>
+
+                <div class="col">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="e-profile">
+                                        <div class="row">
+                                            <div class="col-12 col-sm-auto mb-3">
+                                                <div class="mx-auto" style="width: 140px;">
+                                                    <div class="d-flex justify-content-center align-items-center rounded"
+                                                         style="height: 140px; background-color: rgb(233, 236, 239);">
+                                                        <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                                <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                                    {% if object.user.user_type == 'SPONSOR' %}
+                                                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ object.company_name }}</h4>
+                                                    {% else %}
+                                                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ object.full_name }}</h4>
+                                                    {% endif %}
+                                                    <p class="mb-0">{{ object.user }}</p>
+                                                    <div class="text-muted"><small>Last seen
+                                                        on {{ object.user.last_login }}</small></div>
+                                                    <div class="mt-2">
+                                                        <button class="btn btn-primary" type="button">
+                                                            <i class="fa fa-fw fa-camera"></i>
+                                                            <span>Change Photo</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="text-center text-sm-right">
+                                                    {% if object.user.user_type == 'MEMBER' and object.user.is_staff %}
+                                                        <span class="badge badge-secondary">Administrator</span>
+                                                    {% elif object.user.user_type == 'MEMBER' and object.user.is_superuser %}
+                                                        <span class="badge badge-secondary">Superuser</span>
+                                                    {% else %}
+                                                        <span class="badge badge-secondary">{{ object.user.user_type }}</span>
+                                                    {% endif %}
+{#                                                    <div class="text-muted"><small>Joined 09 Dec 2017</small></div>#}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-content pt-3">
+                                            <div class="tab-pane active">
+                                                <form class="form" novalidate="">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label>Username</label>
+                                                                        <input class="form-control" type="text"
+                                                                               name="username" placeholder="johnny.s"
+                                                                               value="johnny.s">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label>Email</label>
+                                                                        <input class="form-control" type="text"
+                                                                               placeholder="user@example.com">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col mb-3">
+                                                                    <div class="form-group">
+                                                                        <label>About</label>
+                                                                        <textarea class="form-control" rows="5"
+                                                                                  placeholder="My Bio"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12 col-sm-6 mb-3">
+                                                            <div class="mb-2"><b>Change Password</b></div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label>Current Password</label>
+                                                                        <input class="form-control" type="password"
+                                                                               placeholder="••••••">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label>New Password</label>
+                                                                        <input class="form-control" type="password"
+                                                                               placeholder="••••••">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
+                                                                        <input class="form-control" type="password"
+                                                                               placeholder="••••••"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-sm-5 offset-sm-1 mb-3">
+                                                            <div class="mb-2"><b>Keeping in Touch</b></div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <label>Email Notifications</label>
+                                                                    <div class="custom-controls-stacked px-2">
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox"
+                                                                                   class="custom-control-input"
+                                                                                   id="notifications-blog" checked="">
+                                                                            <label class="custom-control-label"
+                                                                                   for="notifications-blog">Blog
+                                                                                posts</label>
+                                                                        </div>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox"
+                                                                                   class="custom-control-input"
+                                                                                   id="notifications-news" checked="">
+                                                                            <label class="custom-control-label"
+                                                                                   for="notifications-news">Newsletter</label>
+                                                                        </div>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox"
+                                                                                   class="custom-control-input"
+                                                                                   id="notifications-offers" checked="">
+                                                                            <label class="custom-control-label"
+                                                                                   for="notifications-offers">Personal
+                                                                                Offers</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col d-flex justify-content-end">
+                                                            <button class="btn btn-primary" type="submit">Save Changes
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-3 mb-3">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="px-xl-3">
+                                        <button class="btn btn-block btn-secondary">
+                                            <i class="fa fa-sign-out"></i>
+                                            <span>Logout</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="card-title font-weight-bold">Support</h6>
+                                    <p class="card-text">Get fast, free help from our friendly assistants.</p>
+                                    <button type="button" class="btn btn-primary">Contact Us</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <br>
-                    <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text"
-                                                                                                       class="form-control"
-                                                                                                       placeholder="experience"
-                                                                                                       value=""></div>
-                    <br>
-                    <div class="col-md-12"><label class="labels">Additional Details</label><input type="text"
-                                                                                                  class="form-control"
-                                                                                                  placeholder="additional details"
-                                                                                                  value=""></div>
+
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+
+    <h1>Hello, {{ object.gender }}</h1>
+    <h2>Your user type is: {{ object.user.user_type }}</h2>
+    <h2>Your user type is: {{ object.interests }}</h2>
+
 {% endblock %}
+
