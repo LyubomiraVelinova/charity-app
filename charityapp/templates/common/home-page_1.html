@@ -1,0 +1,610 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block hero_content %}
+    <!-- Begin Hero Bg -->
+    <div id="parallax">
+    </div>
+{% endblock %}
+
+{% block main_content %}
+
+    <!-- Intro
+        ================================================== -->
+    {#    <section id="hero" class="section">#}
+    {#        <div class="container">#}
+    {#            <div class="row">#}
+    {#                <div class="col-md-5 custom-col-md-5">#}
+    {#                    <div class="herotext">#}
+    {#                        <h1 class="wow bounceInDown" data-wow-duration="1s" data-wow-delay="0.1s"><span#}
+    {#                                class="lighter">CLUB FOR</span> FUTURE</h1>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#                FOR WHAT IS THIS DIV???#}F
+    {#                <div class="col-md-7">#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </section>#}
+    <!-- About
+        ================================================== -->
+    {#    ADDED BY ME #}
+    <section id="hero" class="section custom-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <h2 class="wow bounceInDown"><span
+                            class="lighter">TOGETHER WE CAN DO</span> MORE</h2>
+                    <p class="lead text-justify">We gather active,
+                        proactive and constructive people to improve the environment in which we live.
+                        We work so that tomorrow we can live better than today!</p>
+                    <p>
+                        {#                            ADD IN HREF - path to causes #}
+                        <a href="#" class="btn btn-default btn-lg wow fadeInLeft"
+                           role="button"> Find a
+                            Cause </a>
+                        {#                            SOME SHIT?????#}
+                        <a href="{% url 'donation-campaigns-page' %}" methods="post"
+                           class="btn btn-default btn-lg wow fadeInRight" role="button"> Make Donation </a>
+                    </p>
+                </div>
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a href={% url 'our-people-page' %} target="_self">Who We Are</a>
+                            <p class="lead wow zoomIn text-justify" data-wow-duration="2s" data-wow-delay="0.5s">
+                                We are dedicated staff, scientists and members advancing effective, lasting conservation
+                                in more than 70 countries and territories.
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <a href="/en-us/what-we-do/our-priorities/" target="_self">What We Do</a>
+                            <p class="lead wow zoomIn text-justify" data-wow-duration="2s" data-wow-delay="0.5s">
+                                To make the highest possible impact on the climate and biodiversity crises between now
+                                and 2030, we’re developing breakthrough ideas, amplifying local leaders and influencing
+                                policy.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a href="/en-us/get-involved/how-to-help/" target="_self">How To Help</a>
+                            <p class="lead wow zoomIn text-justify" data-wow-duration="2s" data-wow-delay="0.5s">
+                                There are so many ways to make positive change for our planet. Volunteer with us. Learn
+                                how to reduce your carbon footprint. Donate to conservation work.
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <a href="/en-us/about-us/where-we-work/" target="_self">Where We Work</a>
+                            <p class="lead wow zoomIn text-justify" data-wow-duration="2s" data-wow-delay="0.5s">
+                                Dense rainforests, remote coral reefs and the hearts of major cities. Our strategies are
+                                as diverse as the habitats and geographies in which we work.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {#    ADDED BY ME #}
+
+
+    <section id="about" class="parallax section"
+             style="background-image: url(http://themepush.com/demo/runcharity/assets/img/1.jpg);">
+        <div class="wrapsection">
+            <div class="parallax-overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Title -->
+                        <div class="maintitle">
+                            <h3 class="section-title"><strong><span class="lighter">AND WE ARE</span> PROVING
+                                THIS</strong>
+                            </h3>
+                            <p class="lead">
+                                Our main goal is to improve the living environment around us, we do it voluntarily and
+                                are guided by the motivation "Let tomorrow be better than today". Club for the Future is
+                                created as a natural continuation of Caps for the Future, but concentrated locally.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="service-box wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.1s">
+                            <img src="http://themepush.com/demo/runcharity/assets/img/dummy.jpg" alt="">
+                            <h3>August 7, 2015 <br/>Square Garden</h3>
+                            <div class="text-left">
+                                <p>
+                                    I will place all the necessary content for this event here, including where they can
+                                    register, join, attend &amp; so on.
+                                </p>
+                                <p>
+                                    If not enough room, I will link to learn more, a new event page dedicated.
+                                </p>
+                                <p>
+                                    Upcoming events here!
+                                </p>
+                                <p class="text-center">
+                                    <button type="button" class="btn btn-info btn-md">
+                                        {#                                            ADD STH IN HREF#}
+                                        <a href="#">Learn More</a></button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="service-box wow flipInY" data-wow-duration="1.5s" data-wow-delay="0.1s">
+                            <span class="glyphicon glyphicon-stats"></span>
+                            {#                            SHOULD BE DYNAMIC NUMBER FROM ALL THE REGISTERED PEOPLE IN THE PAGE#}
+                            <h3>{1.386} Participants/Supporting us/</h3>
+                            <p>
+                                Participation is everything! We are happy that the club is growing and we are meeting
+                                more and more like-minded people!
+                            </p>
+                            <button type="button" class="btn btn-info btn-md"><a href="#">Learn More</a></button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="service-box wow flipInY" data-wow-duration="1.5s" data-wow-delay="0.2s">
+                            <span class="glyphicon glyphicon-tree-deciduous"></span>
+                            {#                            SHOULD BE DYNAMIC NUMBER FROM ...#}
+                            <h3>{5} Successful Campaigns</h3>
+                            <p>
+                                Оur campaigns are gaining more and more popularity and succeed in uniting so many
+                                people!
+                            </p>
+                            <button type="button" class="btn btn-info btn-md"><a href="#">Learn More</a></button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                        <div class="service-box wow flipInY" data-wow-duration="1.5s" data-wow-delay="0.3s">
+                            <span class="glyphicon glyphicon-heart"></span>
+                            {#                            SHOULD BE DYNAMIC NUMBER FROM ... #}
+                            <h3>{195} Donations</h3>
+                            <p>
+                                We have made hundreds of donations so far.
+                            </p>
+                            <button type="button" class="btn btn-info btn-md"><a href="#">Learn More</a></button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="service-box wow flipInY" data-wow-duration="1.5s" data-wow-delay="0.4s">
+                            <span class="glyphicon glyphicon-usd"></span>
+                            <h3>$5.768 Donated</h3>
+                            <p>
+                                Your money saves lives and improves the environment in which we live
+                            </p>
+                            <button type="button" class="btn btn-info btn-md"><a href="#">Learn More</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Random
+        ================================================== -->
+    <section class="parallax section"
+             style="background-image: url(http://themepush.com/demo/runcharity/assets/img/3.jpg);">
+        <div class="wrapsection">
+            <div class="parallax-overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 sol-sm-12">
+                        <div class="maintitle">
+                            <h3 class="section-title justtitle">OUR MISSION</h3>
+                            <p class="lead bottom0 wow bounceInUp">
+                                IMPROVING THE ENVIRONMENT ON WHICH OUR EXISTENCE DEPENDS!
+                                Every cap raised and every campaign we fight for starts with you. Your support helps us
+                                provide the essentials for a more peaceful life!
+                            </p>
+                            <p>
+                                {#                            ADD IN HREF - path to causes #}
+                                <a href="#" class="btn btn-default btn-lg wow fadeInLeft"
+                                   role="button"> Find a
+                                    Cause </a>
+                                {#                            SOME SHIT?????#}
+                                <a href="{% url 'donation-campaigns-page' %}" methods="post"
+                                   class="btn btn-default btn-lg wow fadeInRight" role="button"> Make Donation </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Gallery
+        ================================================== -->
+    <section id="gallery" class="parallax section"
+             style="background-image: url(http://themepush.com/demo/runcharity/assets/img/2.jpg);">
+        <div class="wrapsection">
+            <div class="parallax-overlay" style="background-color:#00c1c1;opacity:0.9;"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 sol-sm-12">
+                        <div class="maintitle">
+                            <h3 class="section-title"><strong>FIND <span class="lighter">CAUSE</span></strong> to
+                                support </h3>
+                            <p class="lead wow flipInX">
+                                Have a look at your past events gallery, see how much fun we have while helping people
+                                all
+                                over the world. Join our community today!
+                            </p>
+                        </div>
+                    </div>
+
+                    {% for campaign in campaigns %}
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-4 h-100">
+                                    <div class="custom-card">
+                                        <div class="card">
+                                            <img class="card-img-top custom-card-img-top" src="{{ campaign.image }}"
+                                                 alt="{{ campaign.name }}">
+                                            <div class="card-body">
+                                                <h5 class="card-title ">{{ campaign.name }}</h5>
+                                                <p class="card-text">{{ campaign.resume }}</p>
+                                                <p class="card-text">
+                                                    <a href="{% url 'campaign-details-page' campaign.pk %}">
+                                                        <small class="text-muted">Learn more</small>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    {#                    {% for campaign in campaigns %}#}
+                    {#                        <div class="col-md-4">#}
+                    {#                            <a href="https://unsplash.imgix.net/uploads/14115408840644deb16b0/2dc933e3?fit=crop&amp;fm=jpg&amp;h=700&amp;q=75&amp;w=1050"#}
+                    {#                               title="This is the description">#}
+                    {#                                <img src="{{ campaign.image }}" alt="" class="image-responsive">#}
+                    {#                                <div class="description">#}
+                    {#                                    <span class="caption">{{ campaign.name }}</span>#}
+                    {#                                    <span class="camera"><i class="fa fa-link"></i></span>#}
+                    {#                                    <div class="clearfix"></div>#}
+                    {#                                </div>#}
+                    {#                            </a>#}
+                    {#                        </div>#}
+                    {#                    {% endfor %}#}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Text Carousel
+        ================================================== -->
+    <section id="slider" class="parallax section"
+             style="background-image: url(http://themepush.com/demo/runcharity/assets/img/4.jpg);">
+        <div class="wrapsection">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="Carousel" class="carousel slide">
+                            <ol class="carousel-indicators">
+                                <li data-target="#Carousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#Carousel" data-slide-to="1"></li>
+                                <li data-target="#Carousel" data-slide-to="2"></li>
+                            </ol>
+
+                            <div class="carousel-inner">
+
+                                <div class="item active">
+                                    <blockquote>
+                                        <p class="lead">
+                                            A meaningful future is built by meaningful people who unite. And
+                                            look hard.
+                                            It's being built by us ❤
+                                        </p>
+                                        <small>Lazar Radkov, Founder</small>
+                                    </blockquote>
+                                </div>
+
+                                <div class="item">
+                                    <blockquote>
+                                        <p class="lead">
+                                            An active and adequate civil society is built by the efforts of many, many
+                                            people over many, many years.
+                                        </p>
+                                        <small>Lazar Radkov, Founder</small>
+                                    </blockquote>
+                                </div>
+                                <div class="item">
+                                    <blockquote>
+                                        <p class="lead">
+                                            There is no exercise better for the heart than reaching down and lifting
+                                            people
+                                            up.
+                                        </p>
+                                        <small>John Holmes, Organizer</small>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#Carousel" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#Carousel" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FAQ
+        ================================================== -->
+    <section id="faq" class="section">
+        <div class="wrapsection">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 sol-sm-12">
+                        <div class="maintitle">
+                            <h3 class="section-title">Latest news <span class="wow bounceInRight">from us</span>
+                            </h3>
+                            <p class="lead">
+                                Today is {current day} and we are excited to share with you that
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <div class="faq-block wow bounceInDown" data-wow-duration="1.5s" data-wow-delay="0s">
+                            <div class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                The Fifth Children's Neonatal Ambulance
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            The fifth children's neonatal ambulance is 95% ready. It will be donated
+                                            soon!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                                The second mountain off-road #ambulance
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            The second mountain off-road #ambulance of "Caps for the Future" is 99%
+                                            ready! Expect very soon!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                                Recent days many transported babies </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseThree" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            In recent days, the #CapsForFuture ambulance in Plovdiv has been
+                                            transporting babies in need to Plovdiv or Sofia literally every day! Thank
+                                            you!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="faq-block wow bounceInDown" data-wow-duration="1.5s" data-wow-delay="0.1s">
+                            <div class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                                Transported baby from Parvomai </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseFour" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            A baby was born on 28.07.2023 in Parvomai, but it turned out to have
+                                            respiratory problems. He had to be urgently transported to Plovdiv! From
+                                            there, they immediately sent the #CapsForFuture ambulance! It was necessary
+                                            to act very quickly!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                                                Donated transport incubator in Kyustendil </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseFive" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            With an oxygen module, with an air humidifier, with a heating system,
+                                            sensors for the temperature of the air and the baby's skin, a battery for
+                                            when there is no electricity nearby, a comfortable stroller ... Donated to
+                                            the hospital in Kyustendil by all the people who they help
+                                            #CapsForTheFuture.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+                                                Baby from Velingrad </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseSix" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            On 03.07.2023, a SEVENTH (7) MONTH (!!!) woman in labor arrived at the
+                                            hospital in Velingrad with a detached placenta!! After an emergency
+                                            C-section, a little one appears in the world, however, in a critical
+                                            condition. The doctors had to drain nearly 200ml of blood from the baby's
+                                            stomach, after which the little hero was intubated and with the help of the
+                                            incubator donated by #CapsForFuture and the local Lion's Club, he was
+                                            successfully transported to the hospital in Pazardzhik! Mother and baby are
+                                            fine!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="faq-block wow bounceInDown" data-wow-duration="1.5s" data-wow-delay="0.2s">
+                            <div class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
+                                                Baby from Karlovo </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseSeven" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            A baby was born on 26.05.2023 in Karlovo with respiratory failure. The
+                                            #CapsForFuture ambulance from Plovdiv is leaving immediately! In it are Dr.
+                                            Koichev, senior nurse Ikimova and paramedic Ivan Lesov, who is one of the
+                                            people who most often travel with the ambulance. The medics took the baby,
+                                            breathed him all the way and successfully transported him to the neonatology
+                                            unit at St. George in Plovdiv. Another successful mission for the ambulance
+                                            and its team. Another life saved!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseEight">
+                                                Donated monitors in Burgas </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseEight" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            On 19.05.2023 we helped to the invasive cardiology department in Burgas to
+                                            monitor the condition of those treated there by new and advanced vital signs
+                                            monitors.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseNine">
+                                                Transported twins from Velingrad </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseNine" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            On 15.05.2023 the transport incubator that #CapsForFuture donated to the
+                                            hospital in Velingrad, together with the local Lion's Club, carried out
+                                            another successful mission by transporting two newborn twins - each weighing
+                                            less than 2 kg - to the hospital in Pazardzhik ❤ So far, the incubator has
+                                            helped close to 60 children to safely pass the bends between Velingrad and
+                                            Pazardzhik.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Random
+        ================================================== -->
+    <section class="whitecolor parallax section"
+             style="background-image: url(http://themepush.com/demo/runcharity/assets/img/5.jpg);">
+        <div class="wrapsection">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 sol-sm-12">
+                        <div class="maintitle">
+                            <h3 class="section-title justtitle">Charity <span class="wow flipInX">&amp; love</span> are
+                                the
+                                same</h3>
+                            <p class="lead bottom0">
+                                Fusce fermentum lectus id turpis suscipit, ut egestas magna volutpat. Donec a purus
+                                tellus.
+                                Nunc ut dolor eu est gravida auctor quis vitae.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact
+        ================================================== -->
+    <section id="contactarea" class="parallax section"
+             style="background-image: url(http://themepush.com/demo/runcharity/assets/img/map.png);">
+        <div class="wrapsection">
+            <div class="parallax-overlay" style="background-color: #1cbb9b;opacity:0.95;"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="maintitle">
+                            <h3 class="section-title">Get in Touch</h3>
+                            <p class="lead">
+                                If you have questions about our events, don't hesitate to send us your message. This is
+                                a
+                                real working contact form, test it!
+                            </p>
+                        </div>
+                        <form id="contact" name="contact" method="post" class="text-left">
+                            <fieldset>
+                                <div class="row">
+                                    <div class="col-md-4 wow fadeIn animated animated" data-wow-delay="0.1s"
+                                         data-wow-duration="2s">
+                                        <label for="name">Name<span class="required">*</span></label>
+                                        <input type="text" name="name" id="name" size="30" value="" required/>
+                                    </div>
+                                    <div class="col-md-4 wow fadeIn animated" data-wow-delay="0.3s"
+                                         data-wow-duration="2s">
+                                        <label for="email">Email<span class="required">*</span></label>
+                                        <input type="text" name="email" id="email" size="30" value="" required/>
+                                    </div>
+                                    <div class="col-md-4 wow fadeIn animated" data-wow-delay="0.3s"
+                                         data-wow-duration="2s">
+                                        <label for="phone">Phone</label>
+                                        <input type="text" name="phone" id="phone" size="30" value=""/>
+                                    </div>
+                                </div>
+                                <div class="wow fadeIn animated" data-wow-delay="0.3s" data-wow-duration="1.5"
+                                     style="margin-top:15px;">
+                                    <label for="message">Message<span class="required">*</span></label>
+                                    <textarea name="message" id="message" required></textarea>
+                                </div>
+                                <div class="wow fadeIn animated" data-wow-delay="0.3" data-wow-duration="1.5s">
+                                    <input id="submit" type="submit" name="submit" value="Send"/>
+                                </div>
+                            </fieldset>
+                        </form>
+                        <div id="success">
+                            <p class="contactalert">
+                                Your message was sent succssfully! I will be in touch as soon as I can.
+                            </p>
+                        </div>
+                        <div id="error">
+                            <p class="contactalert">
+                                Something went wrong, try refreshing and submitting the form again.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

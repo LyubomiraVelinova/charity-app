@@ -1,0 +1,131 @@
+--- Have to think about pages which can be seen only if user is registered
+- самото view наследява от auth_mixins.LoginRequiredMixin (пример с VolunteerListView в user_profiles)
+- може страница с правата и правилата за доброволци
+
+--- Change login panel
+
+--- Да се регистрирам с две -три полета(най-важните) и при успешна регистрация да ме редиректва към profile-edit-pa, където да ме задължава да попълня някои полета, спрямо избрания тип
+
+--- Ако потребител е аутентикиран да не може да достъпва login и register - dispatch метод- LoginRequiredMixin да се направи
+
+--- при направено дарение и при регистрация да изпраща имейл ---> workshop 2 и това
+
+
+```
+Този пример с известието на потребителя, че неговото дарение е успешно, много ми хареса, може ли да ми обясниш стъпка по стъпка как да го направя?
+ChatGPT
+Разбирам, че искате да изпратите имейл на потребителя след като той успешно изпрати дарението си. За тази цел, ще трябва да използвате модула smtplib в Python, който позволява изпращането на имейли чрез Simple Mail Transfer Protocol (SMTP).
+
+Ето стъпките, които трябва да следвате:
+
+Импортирайте необходимите модули във вашата views.py:
+python
+Copy code
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+Дефинирайте функция, която ще бъде отговорна за изпращането на имейла. Нека я наречем send_notification_email:
+python
+Copy code
+def send_notification_email(email_address):
+    # Вашата логика за създаване на съобщението за имейла
+    subject = 'Дарение успешно изпратено'
+    body = 'Благодарим ви за вашето дарение!'
+
+    # Вашите SMTP настройки (трябва да се променят според вашия доставчик на имейли)
+    smtp_server = 'smtp.example.com'
+    port = 587
+    sender_email = 'your_email@example.com'
+    sender_password = 'your_email_password'
+
+    # Създайте обект на SMTP и осъществете свързване със сървъра
+    server = smtplib.SMTP(smtp_server, port)
+    server.starttls()
+
+    # Логин на SMTP сървъра с вашите имейл данни
+    server.login(sender_email, sender_password)
+
+    # Създайте обект на MIMEText със съдържанието на имейла
+    msg = MIMEMultipart()
+    msg['From'] = sender_email
+    msg['To'] = email_address
+    msg['Subject'] = subject
+    msg.attach(MIMEText(body, 'plain'))
+
+    # Изпратете имейла
+    server.send_message(msg)
+
+    # Изключете връзката със SMTP сървъра
+    server.quit()
+Сега можете да използвате send_notification_email във вашата CBV DonationCreateView след успешното изпращане на формата:
+python
+Copy code
+from django.shortcuts import redirect
+from django.views import generic
+from .forms import DonationForm
+
+class DonationCreateView(generic.CreateView):
+    template_name = 'donation_page.html'
+    form_class = DonationForm
+    success_url = '/success-page/'  # Заменете това с реалния URL за страницата с успех
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+
+        # Изпратете имейла на потребителя
+        send_notification_email(self.request.user.email)
+
+        return response
+Това ще изпрати имейл до потребителя, съобщавайки му че дарението му е успешно изпратено. Не забравяйте да промените SMTP настройките според вашия доставчик на имейли и да осигурите, че имате правилните имейл данни (адрес и парола) за SMTP сървъра, който ще използвате за изпращане на имейли.
+```
+--- При choices, ако има other, да излиза текстово поле за дописване --->
+```
+За да направите динамично показване на полето за текст, когато се избере опцията "other" от изборите на полето с choices, можете да използвате JavaScript. Конкретно, ще трябва да се добави JavaScript код, който да следи събитието на промяна на стойността на полето с choices и да показва или скрива полето за текст в зависимост от избраната стойност.
+
+Ето примерен JavaScript код, който извършва това:
+
+html
+Copy code
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div class="form-group">
+        <label for="{{ form.other_field.id_for_label }}">Other:</label>
+        <input type="text" class="form-control" id="{{ form.other_field.auto_id }}"
+               name="{{ form.other_field.html_name }}" {% if form.other_field.value %}value="{{ form.other_field.value }}"{% endif %}
+               {% if form.other_field.field.required %}required{% endif %}
+               {% if form.other_field.field.widget.is_hidden %}style="display: none;"{% endif %}>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const otherField = document.getElementById("{{ form.other_field.auto_id }}");
+        const choicesField = document.getElementById("{{ form.choices_field.auto_id }}");
+
+        function toggleOtherField() {
+            if (choicesField.value === "other") {
+                otherField.style.display = "block";
+                otherField.setAttribute("required", "required");
+            } else {
+                otherField.style.display = "none";
+                otherField.removeAttribute("required");
+            }
+        }
+
+        choicesField.addEventListener("change", toggleOtherField);
+        toggleOtherField();  // Call the function initially to set the initial state
+    });
+</script>
+В този пример се предполага, че имате две полета във формата: choices_field, което е полето с choices, и other_field, което е полето за текст, което ще се показва, когато е избрана опцията "other" от choices_field. Най-вероятно ще трябва да замените choices_field и other_field с реалните имена на полетата от вашия формуляр.
+
+JavaScript кодът следи за събитието на промяна на стойността на choices_field и в зависимост от избраната стойност показва или скрива полето за текст (other_field). Полето за текст се показва, ако стойността на choices_field е "other", и се скрива, ако е друга стойност.
+
+Важно е да се има предвид, че този подход изисква JavaScript и няма да работи, ако потребителят има изключен JavaScript в браузъра си. Затова е добре да се добави също и съответна валидация на страната на сървъра, за да се уверите, че потребителите не могат да представят невалидни данни чрез изключване на JavaScript.
+```
+
+---Register view-то не работи добре
+---Profile page - To display the user's profile page with information specific to their role (volunteer, sponsor, member).

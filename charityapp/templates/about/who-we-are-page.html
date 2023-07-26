@@ -1,0 +1,48 @@
+{% extends 'base/base.html' %}
+
+{% block main_content %}
+    <section id="people" class="section custom-section first-section">
+        <div class="container">
+            <div class="row">
+                <h2 class="wow bounceInDown"><span
+                        class="lighter">OUR</span> PEOPLE</h2>
+                <p class="lead text-justify">
+                    At this stage, the Club has 15 members. Each of us tries to be useful and
+                    contribute something to develop and ennoble the environment surrounding us. We believe that in order
+                    to be truly strong, it is important to know each other's strengths, which is why we want to share
+                    them
+                    with you.
+                </p>
+                <p><a href="#" class="btn btn-default btn-lg wow fadeInLeft" role="button"> JOIN US </a></p>
+            </div>
+
+
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for person in people_list %}
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="{{ person.profile_picture }}" class="card-img-top"
+                                 alt="{{ person.full_name }} profile picture">
+                            <div class="card-body">
+                                <h3 class="card-title">{{ person.full_name }}</h3>
+                                <h5 class="card-subtitle">{{ person.member_role }}</h5>
+                                {#                            NOT WORKING CORRECT - CANT HAVE EAQUALS IDS - CHANGE IT#}
+                                <p class="card-text">
+                                    {{ person.get_first_three_sentences }}
+                                    {% if person.description|length > person.get_first_three_sentences|length %}
+                                        <span id="additionalText"
+                                              class="additional-text hidden">{{ person.description }}</span>
+                                        <a href="#" onclick="toggleAdditionalText()" id="moreLink">...
+                                            <span id="moreLabel">More</span>
+                                        </a>
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

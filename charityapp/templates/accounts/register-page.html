@@ -1,0 +1,67 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block main_content %}
+    <section class="h-100 gradient-form" style="background-color: #eee;">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-xl-10">
+                    <div class="card rounded-3 text-black">
+                        <div class="row g-0">
+
+                            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                                <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                                    <h4 class="mb-4 text-uppercase">Be part of the change...</h4>
+                                    <p class="small mb-0">"You never change your life until you change something you do
+                                        daily. The secret to your success is in your daily routine."
+                                        <i>John C. Maxwell</i></p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="card-body p-md-5 mx-md-4">
+
+                                    <div class="text-center">
+                                        <h4 class="text-uppercase mt-1 mb-5 pb-1">Club for Future & Caps for Future</h4>
+                                    </div>
+
+                                    <form action="{% url 'register-page' %}" method="post">
+                                        <p>Please fill in your info</p>
+                                        <div class="form-outline mb-4">
+                                            {% for field in register_form %}
+                                                {% if field.field.widget.input_type != 'select' %}
+                                                    <input type="{{ field.field.widget.input_type }}"
+                                                           name="{{ field.html_name }}"
+                                                           id="id_{{ field.name }}"
+                                                           class="form-control {% if field.errors %}is-invalid{% endif %}"
+                                                           {% if field.value %}value="{{ field.value }}"{% endif %}
+                                                           {% if field.field.required %}required{% endif %}>
+                                                {% else %}
+                                                    {{ field }}
+                                                {% endif %}
+                                                <label class="form-label" for="form2Example11">{{ field.label }}</label>
+                                            {% endfor %}
+                                            <div class="text-center pt-1 mb-5 pb-1">
+                                                <input type="submit" value="Submit" name="submit">
+                                            </div>
+                                        </div>
+                                        {% csrf_token %}
+                                        <input type="hidden" value="{{ next }}" name="next">
+                                    </form>
+
+                                    <div class="d-flex align-items-center justify-content-center pb-4">
+                                        <p class="mb-0 me-2">Already have an account?</p>
+                                        <a href="{% url 'login-page' %}">
+                                            <button type="button" class="btn btn-outline-danger">Login</button>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

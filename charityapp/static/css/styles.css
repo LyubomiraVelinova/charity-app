@@ -1,0 +1,212 @@
+/*LOGIN-FORM-STYLE*/
+@import url('https://fonts.googleapis.com/css?family=Mukta');
+
+/*COMMON*/
+.custom-container {
+    padding: 80px 0px 80px 0px;
+}
+
+.custom-section:nth-child(odd) {
+    background-color: #68ccc0;
+    opacity: 0.9;
+}
+
+/*PARALLAX*/
+
+#parallax {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    position: fixed;
+    background-image: url(http://unsplash.it/1600/600?random=1);
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    z-index: -100;
+}
+
+/*NAVBAR*/
+
+.first-section {
+    padding-top: 50px;
+}
+
+#navbarNavDropdown > ul > li > a {
+    text-transform: uppercase;
+}
+
+/*CAUSES*/
+.col-sm-4 {
+    padding: 15px;
+}
+
+.custom-card .card {
+    flex: 1;
+}
+
+#gallery .custom-card-img-top {
+    object-fit: cover;
+    height: 200px;
+}
+
+.card-body {
+    margin: 5px;
+}
+
+#gallery img:hover {
+    transform: scale(1.3);
+}
+
+#donate {
+    width: auto;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 0;
+    color: #fff;
+    padding: 7px 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1rem;
+}
+
+
+/* VOLUNTEERS PAGE */
+body {
+    padding-top: 50px;
+}
+
+.right-column img {
+    max-width: 100%; /* Ensure the image resizes proportionally */
+}
+
+
+/* FORM */
+
+.white {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: hidden;
+    z-index: 1;
+    color: #fff;
+}
+
+#contactarea form {
+    max-width: 800px;
+    margin: 0px auto;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.maintitle {
+    text-align: center;
+}
+
+.section-title {
+    text-transform: uppercase;
+    font-size: 30px;
+    letter-spacing: 3px;
+}
+
+.maintitle .lead {
+    max-width: 840px;
+    margin: 0px auto;
+    margin-bottom: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+p.lead {
+    font-size: 24px;
+    font-weight: 300;
+}
+
+#contact label {
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 2px;
+    font-size: 13px;
+    margin-top: 15px;
+}
+
+#contact input,
+#contact select,
+#contact textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    width: 100%;
+    border: 0;
+    color: rgb(37, 35, 35);
+    background-color: #fff;
+    height: 40px;
+}
+
+#contact textarea {
+    height: 180px;
+}
+
+#contact input#submit {
+    width: auto;
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 0;
+    color: #fff;
+    padding: 0px 20px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    #name {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+}
+
+#success, #error {
+    display: none;
+}
+
+
+/*ACHIEVEMENTS SECTION*/
+
+.col-md-4 {
+    padding: 0.5rem;
+}
+
+.card {
+    padding: 1rem;
+}
+
+.custom-btn {
+    width: auto;
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 0;
+    color: #fff;
+    padding: 0px 20px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 14px;
+}
+
+/*LOGIN FORM STYLE*/
+.custom-text {
+    --bs-text-opacity: 1;
+    color: rgba(var(--green),var(--bs-text-opacity));!important;
+}
+
+
+
+
+
+
