@@ -19,7 +19,7 @@
                             About us
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'mission_and_values-page' %}">Mission and
+                            <li><a class="dropdown-item" href="{% url 'mission-and-values-page' %}">Mission and
                                 values</a></li>
                             <li><a class="dropdown-item" href="{% url 'who-we-are-page' %}">Who we are</a></li>
                             <li><a class="dropdown-item" href="{% url 'history-page' %}">History</a></li>
@@ -71,22 +71,37 @@
         <div class="container-fluid">
             <ul class="navbar-nav mr-auto">
                 {% if request.user.is_authenticated %}
-                    <!-- Link to Profile Page -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'profile-edit-page' %}">{{ request.user }}Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout-page' %}">Logout</a>
-                    </li>
-
+                    {% if request.path != '/profile/' %}
+                        <!-- Link to Profile Page -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ request.user }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'profile-details-page' %}">Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'security-settings-page' %}">Settings</a></li>
+                                <li><a class="dropdown-item" href="{% url 'logout-page' %}">Logout</a></li>
+                            </ul>
+                        </li>
+                        {#                        <li class="nav-item">#}
+                        {#                            <a class="nav-link" href="{% url 'profile-details-page' %}">{{ request.user }}Profile</a>#}
+                        {#                        </li>#}
+                        {#                        <li class="nav-item">#}
+                        {#                            <a class="nav-link" href="{% url 'logout-page' %}">Logout</a>#}
+                        {#                        </li>#}
+                    {% endif %}
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login-page' %}"><i class="fa-solid fa-arrow-right-to-bracket"></i>
+                        <a class="nav-link" href="{% url 'login-page' %}"><i
+                                class="fa-solid fa-arrow-right-to-bracket"></i>
                             Login</a>
                     </li>
                 {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'donation-page' %}"><button id="donate">Donate</button></a>
+                    <a class="nav-link" href="{% url 'donation-page' %}">
+                        <button class="btn btn-block btn-secondary text-uppercase">Donate</button>
+                    </a>
                 </li>
             </ul>
         </div>

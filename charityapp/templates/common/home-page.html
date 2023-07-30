@@ -58,7 +58,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="maintitle">
-                        <h3 class="section-title">AND WE ARE PROVING THIS</h3>
+                        <h3 class="section-title text-uppercase">Our impact</h3>
                         <p class="lead">
                             Our main goal is to improve the living environment around us, we do it voluntarily and
                             are guided by the motivation "Let tomorrow be better than today". Club for the Future is
@@ -69,8 +69,9 @@
 
                 <div class="col-md-4 col-sm-6">
                     <div class="card h-100">
-                        <h3>{1.386} Participants/Supporting us/</h3>
+                        <h3><strong>{1.386+} Participants/Supporting us/</strong></h3>
                         <p>
+                            People have taken part in our campaigns.
                             Participation is everything! We are happy that the club is growing, and we are meeting
                             more and more like-minded people!
                         </p>
@@ -80,7 +81,7 @@
 
                 <div class="col-md-4 col-sm-6">
                     <div class="card h-100">
-                        <h3>{1.386} Sponsors</h3>
+                        <h3>{1.386} Sponsors+</h3>
                         <p>
                             Our sponsors are an integral part of our achievements. We owe you so much!
                         </p>
@@ -179,6 +180,7 @@
                                  alt="{{ campaign.name }}">
                             <div class="card-body">
                                 <h5 class="card-title ">{{ campaign.name }}</h5>
+                                <h5 class="card-title ">{{ campaign.duration }}</h5>
                                 <p class="card-text">{{ campaign.resume }}</p>
                                 <p class="card-text">
                                     <a href="{% url 'campaign-details-page' campaign.pk %}">
@@ -392,6 +394,7 @@
                                 </div>
                                 <div id="collapseEight" class="panel-collapse collapse">
                                     <div class="panel-body">
+                                    <div class="panel-body">
                                         On 19.05.2023 we helped to the invasive cardiology department in Burgas to
                                         monitor the condition of those treated there by new and advanced vital signs
                                         monitors.
@@ -430,13 +433,10 @@
             <div class="row">
                 <div class="col-md-12 sol-sm-12">
                     <div class="text-center">
-                        <h3 class="section-title justtitle">Charity <span class="wow flipInX">&amp; love</span> are
-                            the
-                            same</h3>
+                        <h3 class="section-title justtitle">Inspiring real <span class="wow flipInX">Charity</span>
+                            stories</h3>
                         <p class="lead bottom0">
-                            Fusce fermentum lectus id turpis suscipit, ut egestas magna volutpat. Donec a purus
-                            tellus.
-                            Nunc ut dolor eu est gravida auctor quis vitae.
+                            There’s never been a more important time to invest in our future, than now.
                         </p>
                     </div>
                 </div>
@@ -455,76 +455,76 @@
                             us, don't hesitate!
                         </p>
                         <p class="lead">
-                            <a href="{% url 'contact-us-page' %}" >Contact form</a>
+                            <a href="{% url 'contact-us-page' %}">Contact form</a>
                         </p>
                     </div>
 
                     <div class="row">
-                <div class="col-sm-12 col-md-6 col-lg-3 my-5">
-                    <div class="card border-0">
-                        <div class="card-body text-center">
-                            <i class="fa fa-phone fa-5x mb-3" aria-hidden="true"></i>
-                            <h4 class="text-uppercase mb-5">call us</h4>
-                            <p>+8801683615582,+8801750603409</p>
+                        <div class="col-sm-12 col-md-6 col-lg-3 my-5">
+                            <div class="card border-0">
+                                <div class="card-body text-center">
+                                    <i class="fa fa-phone fa-5x mb-3" aria-hidden="true"></i>
+                                    <h4 class="text-uppercase mb-5">call us</h4>
+                                    <p>+8801683615582,+8801750603409</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-3 my-5">
+                            <div class="card border-0">
+                                <div class="card-body text-center">
+                                    <i class="fa fa-map-marker fa-5x mb-3" aria-hidden="true"></i>
+                                    <h4 class="text-uppercase mb-5">office loaction</h4>
+                                    <address>Suite 02, Level 12, Sahera Tropical Center</address>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-3 my-5">
+                            <div class="card border-0">
+                                <div class="card-body text-center">
+                                    <i class="fa fa-map-marker fa-5x mb-3" aria-hidden="true"></i>
+                                    <h4 class="text-uppercase mb-5">office loaction</h4>
+                                    <address>Suite 02, Level 12, Sahera Tropical Center</address>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-3 my-5">
+                            <div class="card border-0">
+                                <div class="card-body text-center">
+                                    <i class="fa fa-globe fa-5x mb-3" aria-hidden="true"></i>
+                                    <h4 class="text-uppercase mb-5">email</h4>
+                                    <p>http://al.a.noman1416@gmail.com</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-3 my-5">
-                    <div class="card border-0">
-                        <div class="card-body text-center">
-                            <i class="fa fa-map-marker fa-5x mb-3" aria-hidden="true"></i>
-                            <h4 class="text-uppercase mb-5">office loaction</h4>
-                            <address>Suite 02, Level 12, Sahera Tropical Center</address>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-3 my-5">
-                    <div class="card border-0">
-                        <div class="card-body text-center">
-                            <i class="fa fa-map-marker fa-5x mb-3" aria-hidden="true"></i>
-                            <h4 class="text-uppercase mb-5">office loaction</h4>
-                            <address>Suite 02, Level 12, Sahera Tropical Center</address>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-3 my-5">
-                    <div class="card border-0">
-                        <div class="card-body text-center">
-                            <i class="fa fa-globe fa-5x mb-3" aria-hidden="true"></i>
-                            <h4 class="text-uppercase mb-5">email</h4>
-                            <p>http://al.a.noman1416@gmail.com</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
 
-{#                    <form id="contact" name="contact" method="post" class="text-left">#}
-{#                        <fieldset>#}
-{#                            <div class="row">#}
-{#                                <div class="col-md-12 wow fadeIn animated animated" data-wow-delay="0.1s"#}
-{#                                     data-wow-duration="2s" id="name">#}
-{#                                    <label for="name">Name<span class="required">*</span></label>#}
-{#                                    <input type="text" name="name" id="name" size="30" value="" required/>#}
-{#                                </div>#}
-{#                                <div class="col-md-6 wow fadeIn animated" data-wow-delay="0.3s" data-wow-duration="2s">#}
-{#                                    <label for="email">Email<span class="required">*</span></label>#}
-{#                                    <input type="text" name="email" id="email" size="30" value="" required/>#}
-{#                                </div>#}
-{#                                <div class="col-md-6 wow fadeIn animated" data-wow-delay="0.3s" data-wow-duration="2s">#}
-{#                                    <label for="phone">Phone</label>#}
-{#                                    <input type="text" name="phone" id="phone" size="30" value=""/>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                            <div class="wow fadeIn animated" data-wow-delay="0.3s" data-wow-duration="1.5">#}
-{#                                <label for="message">Message<span class="required">*</span></label>#}
-{#                                <textarea name="message" id="message" required></textarea>#}
-{#                            </div>#}
-{#                            <div class="wow fadeIn animated" data-wow-delay="0.3" data-wow-duration="1.5s">#}
-{#                                <input id="submit" type="submit" name="submit" value="Send"/>#}
-{#                            </div>#}
-{#                        </fieldset>#}
-{#                    </form>#}
+                    {#                    <form id="contact" name="contact" method="post" class="text-left">#}
+                    {#                        <fieldset>#}
+                    {#                            <div class="row">#}
+                    {#                                <div class="col-md-12 wow fadeIn animated animated" data-wow-delay="0.1s"#}
+                    {#                                     data-wow-duration="2s" id="name">#}
+                    {#                                    <label for="name">Name<span class="required">*</span></label>#}
+                    {#                                    <input type="text" name="name" id="name" size="30" value="" required/>#}
+                    {#                                </div>#}
+                    {#                                <div class="col-md-6 wow fadeIn animated" data-wow-delay="0.3s" data-wow-duration="2s">#}
+                    {#                                    <label for="email">Email<span class="required">*</span></label>#}
+                    {#                                    <input type="text" name="email" id="email" size="30" value="" required/>#}
+                    {#                                </div>#}
+                    {#                                <div class="col-md-6 wow fadeIn animated" data-wow-delay="0.3s" data-wow-duration="2s">#}
+                    {#                                    <label for="phone">Phone</label>#}
+                    {#                                    <input type="text" name="phone" id="phone" size="30" value=""/>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                            <div class="wow fadeIn animated" data-wow-delay="0.3s" data-wow-duration="1.5">#}
+                    {#                                <label for="message">Message<span class="required">*</span></label>#}
+                    {#                                <textarea name="message" id="message" required></textarea>#}
+                    {#                            </div>#}
+                    {#                            <div class="wow fadeIn animated" data-wow-delay="0.3" data-wow-duration="1.5s">#}
+                    {#                                <input id="submit" type="submit" name="submit" value="Send"/>#}
+                    {#                            </div>#}
+                    {#                        </fieldset>#}
+                    {#                    </form>#}
                     <div id="success">
                         <p class="contactalert">
                             Your message was sent successfully! I will be in touch as soon as I can.

@@ -1,27 +1,11 @@
 {% extends 'base/base.html' %}
+{% load user_profile %}
+{% load verbose_name %}
 
 {% block main_content %}
     <section class="first-section">
         <div class="container">
             <div class="row flex-lg-nowrap">
-                <div class="col-12 col-lg-auto mb-3" style="width: 200px;">
-                    <div class="card p-3">
-                        <div class="e-navlist e-navlist--active-bg">
-                            <ul class="nav">
-                                <li class="nav-item"><a class="nav-link px-2 active" href="#"><i
-                                        class="fa fa-fw fa-bar-chart mr-1"></i><span>Overview</span></a></li>
-                                <li class="nav-item"><a class="nav-link px-2"
-                                                        href="https://www.bootdey.com/snippets/view/bs4-crud-users"
-                                                        target="__blank"><i
-                                        class="fa fa-fw fa-th mr-1"></i><span>CRUD</span></a></li>
-                                <li class="nav-item"><a class="nav-link px-2"
-                                                        href="https://www.bootdey.com/snippets/view/bs4-edit-profile-page"
-                                                        target="__blank"><i
-                                        class="fa fa-fw fa-cog mr-1"></i><span>Settings</span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="col">
                     <div class="row">
@@ -30,31 +14,29 @@
                                 <div class="card-body">
                                     <div class="e-profile">
                                         <div class="row">
-                                            <div class="col-12 col-sm-auto mb-3">
-                                                <div class="mx-auto" style="width: 140px;">
-                                                    <div class="d-flex justify-content-center align-items-center rounded"
-                                                         style="height: 140px; background-color: rgb(233, 236, 239);">
-                                                        <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                                <div>
+                                                    {% if object.user.user_type == 'SPONSOR' %}
+                                                        <img width="150px" height="150px" src="{{ object.logo }}"
+                                                             alt="">
+                                                    {% else %}
+                                                        <img width="150px" height="150px"
+                                                             src="{{ object.profile_picture }}"
+                                                             alt="">
+                                                    {% endif %}
+                                                </div>
+
                                                 <div class="text-center text-sm-left mb-2 mb-sm-0">
                                                     {% if object.user.user_type == 'SPONSOR' %}
-                                                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ object.company_name }}</h4>
+                                                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap text-center">{{ object.company_name }}</h4>
                                                     {% else %}
-                                                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ object.full_name }}</h4>
+                                                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap text-center">{{ object.full_name }}</h4>
                                                     {% endif %}
                                                     <p class="mb-0">{{ object.user }}</p>
-                                                    <div class="text-muted"><small>Last seen
-                                                        on {{ object.user.last_login }}</small></div>
-                                                    <div class="mt-2">
-                                                        <button class="btn btn-primary" type="button">
-                                                            <i class="fa fa-fw fa-camera"></i>
-                                                            <span>Change Photo</span>
-                                                        </button>
-                                                    </div>
+                                                    <p class="text-muted"><small>Last seen
+                                                        on {{ object.user.last_login }}</small></p>
                                                 </div>
+
                                                 <div class="text-center text-sm-right">
                                                     {% if object.user.user_type == 'MEMBER' and object.user.is_staff %}
                                                         <span class="badge badge-secondary">Administrator</span>
@@ -63,8 +45,10 @@
                                                     {% else %}
                                                         <span class="badge badge-secondary">{{ object.user.user_type }}</span>
                                                     {% endif %}
-{#                                                    <div class="text-muted"><small>Joined 09 Dec 2017</small></div>#}
+                                                    <div class="text-muted">
+                                                        <small>Joined {{ object.user.created_at }}</small></div>
                                                 </div>
+
                                             </div>
                                         </div>
                                         <div class="tab-content pt-3">
@@ -72,108 +56,52 @@
                                                 <form class="form" novalidate="">
                                                     <div class="row">
                                                         <div class="col">
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <div class="form-group">
-                                                                        <label>Username</label>
-                                                                        <input class="form-control" type="text"
-                                                                               name="username" placeholder="johnny.s"
-                                                                               value="johnny.s">
-                                                                    </div>
+                                                            {% for field in fields %}
+                                                                <div class="form-group">
+                                                                    <label><strong>{{ object|verbose_name_from_object:field }}:</strong></label>
+                                                                    <p>{{ object|get_attribute:field }}</p>
                                                                 </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <div class="form-group">
-                                                                        <label>Email</label>
-                                                                        <input class="form-control" type="text"
-                                                                               placeholder="user@example.com">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col mb-3">
-                                                                    <div class="form-group">
-                                                                        <label>About</label>
-                                                                        <textarea class="form-control" rows="5"
-                                                                                  placeholder="My Bio"></textarea>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                            {% endfor %}
+
+                                                            {#                                                    NEED TO CORRECT THIS#}
+                                                            {% if object.charity_history.all %}
+                                                                <label><strong class="text-uppercase">My charity
+                                                                    history:</strong></label>
+                                                                <ul>
+                                                                    {% for camapign in object.charity_history.all %}
+                                                                        <li>{{ campaign }}</li>
+                                                                    {% endfor %}
+                                                                </ul>
+                                                            {% elif object.donation_history.all %}
+                                                                <label><strong class="text-uppercase">Our donation
+                                                                    history:</strong></label>
+                                                                <ul>
+                                                                    {% for camapign in object.donation_history.all %}
+                                                                        <li>{{ campaign }}</li>
+                                                                    {% endfor %}
+                                                                </ul>
+                                                            {% else %}
+                                                                <label><strong class="text-uppercase">My participation
+                                                                    history:</strong></label>
+                                                                <p>No history available.</p>
+                                                            {% endif %}
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-12 col-sm-6 mb-3">
-                                                            <div class="mb-2"><b>Change Password</b></div>
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <div class="form-group">
-                                                                        <label>Current Password</label>
-                                                                        <input class="form-control" type="password"
-                                                                               placeholder="••••••">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <div class="form-group">
-                                                                        <label>New Password</label>
-                                                                        <input class="form-control" type="password"
-                                                                               placeholder="••••••">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <div class="form-group">
-                                                                        <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
-                                                                        <input class="form-control" type="password"
-                                                                               placeholder="••••••"></div>
-                                                                </div>
-                                                            </div>
+                                                        <div class="col d-flex justify-content-end ">
+                                                            <a href="{% url 'profile-edit-page' %}"
+                                                               class="btn btn-block btn-secondary">
+                                                                <i class="fa-solid fa-pencil"></i>
+                                                                <span> Edit</span>
+                                                            </a>
                                                         </div>
-                                                        <div class="col-12 col-sm-5 offset-sm-1 mb-3">
-                                                            <div class="mb-2"><b>Keeping in Touch</b></div>
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <label>Email Notifications</label>
-                                                                    <div class="custom-controls-stacked px-2">
-                                                                        <div class="custom-control custom-checkbox">
-                                                                            <input type="checkbox"
-                                                                                   class="custom-control-input"
-                                                                                   id="notifications-blog" checked="">
-                                                                            <label class="custom-control-label"
-                                                                                   for="notifications-blog">Blog
-                                                                                posts</label>
-                                                                        </div>
-                                                                        <div class="custom-control custom-checkbox">
-                                                                            <input type="checkbox"
-                                                                                   class="custom-control-input"
-                                                                                   id="notifications-news" checked="">
-                                                                            <label class="custom-control-label"
-                                                                                   for="notifications-news">Newsletter</label>
-                                                                        </div>
-                                                                        <div class="custom-control custom-checkbox">
-                                                                            <input type="checkbox"
-                                                                                   class="custom-control-input"
-                                                                                   id="notifications-offers" checked="">
-                                                                            <label class="custom-control-label"
-                                                                                   for="notifications-offers">Personal
-                                                                                Offers</label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col d-flex justify-content-end">
-                                                            <button class="btn btn-primary" type="submit">Save Changes
+                                                        <div class="col justify-content-end ">
+                                                            <button id="delete-profile-btn" class="btn btn-danger">
+                                                                Delete
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </form>
-
                                             </div>
                                         </div>
                                     </div>
@@ -183,34 +111,58 @@
 
                         <div class="col-12 col-md-3 mb-3">
                             <div class="card mb-3">
-                                <div class="card-body">
-                                    <div class="px-xl-3">
-                                        <button class="btn btn-block btn-secondary">
-                                            <i class="fa fa-sign-out"></i>
-                                            <span>Logout</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <h6 class="card-title font-weight-bold">Support</h6>
-                                    <p class="card-text">Get fast, free help from our friendly assistants.</p>
-                                    <button type="button" class="btn btn-primary">Contact Us</button>
+                                <div class="card-body text-center">
+                                    <a href="{% url 'logout-page' %}" class="btn btn-block btn-secondary">
+                                        <i class="fa fa-sign-out"></i>
+                                        <span>Logout</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-
-    <h1>Hello, {{ object.gender }}</h1>
-    <h2>Your user type is: {{ object.user.user_type }}</h2>
-    <h2>Your user type is: {{ object.interests }}</h2>
-
+    <script>
+        document.getElementById('delete-profile-btn').addEventListener('click', function () {
+            if (confirm('Are you sure you want to delete your profile?')) {
+                // If the user confirms, make an AJAX request to delete the profile
+                fetch('{% url "profile-delete-page" %}', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}', // Add CSRF token for security
+                    },
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            // Profile deleted successfully, redirect to home page
+                            alert('Profile deleted successfully.');
+                            window.location.href = '{% url "home-page" %}';
+                        } else if (response.status === 403) {
+                            // User is not authorized to delete profile (error message from server)
+                            return response.json().then(data => {
+                                alert(data.message);
+                            });
+                        } else {
+                            // Handle other errors, show a message, etc.
+                            alert('Error deleting profile.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+        });
+    </script>
 {% endblock %}
 
+{##}
+{#    <h1>Hello, {{ object.gender }}</h1>#}
+{#    <h2>Your user type is: {{ object.user.user_type }}</h2>#}
+{#    {% for key, value in object.items %}#}
+{#        <h2>Your user type is: {{ value }}</h2>#}
+{#    {% endfor %}#}
+{#    <h2>{{ object.interests }}</h2>#}

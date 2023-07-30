@@ -1,56 +1,41 @@
 from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import mixins as auth_mixins
 
-from charityapp.accounts.models import UserType
 from charityapp.user_profiles.forms import VolunteerForm, SponsorForm, MemberForm
 from charityapp.user_profiles.models import VolunteerProfile, SponsorProfile, MemberProfile
 
 UserModel = get_user_model()
 
 
-# class ProfileEditView(views.UpdateView):
-#     template_name = 'user_profiles/profile-edit-page.html'
+class ProfileEditView(views.UpdateView):
+    template_name = 'user_profiles/profile-edit-page.html'
+    success_url = reverse_lazy('profile-details-page')
 
-
-def profile_edit_view(request):
-    user_type = request.user.user_type
-    user = request.user
-
-    if request.method == 'POST':
+    def get_form_class(self):
+        user_type = self.request.user.user_type
         if user_type == 'VOLUNTEER':
-            form = VolunteerForm(request.POST, instance=user.volunteer_profile)
-            if form.is_valid():
-                form.save()
-                return redirect('home-page')
+            return VolunteerForm
         elif user_type == 'SPONSOR':
-            form = SponsorForm(request.POST, instance=user.sponsor_profile)
-            if form.is_valid():
-                form.save()
-                return redirect('home-page')
+            return SponsorForm
         elif user_type == 'MEMBER':
-            form = MemberForm(request.POST, instance=user.member_profile)
+            return MemberForm
 
-        if form.is_valid():
-            form.save()
-            return redirect('home-page')
+    def get_object(self, queryset=None):
+        user = self.request.user
+        if user.user_type == 'VOLUNTEER':
+            return user.volunteer_profile
+        elif user.user_type == 'SPONSOR':
+            return user.sponsor_profile
+        elif user.user_type == 'MEMBER':
+            return user.member_profile
 
-    elif request.method == 'GET':
-        if user_type == 'VOLUNTEER':
-            form = VolunteerForm(instance=user.volunteer_profile)
-        elif user_type == 'SPONSOR':
-            form = SponsorForm(instance=user.sponsor_profile)
-        elif user_type == 'MEMBER':
-            form = MemberForm(instance=user.member_profile)
-
-    context = {
-        'user': user,
-        'user_type': user_type,
-        'form': form,
-    }
-
-    return render(request, 'user_profiles/profile-edit-page.html', context)
+    def form_valid(self, form):
+        user_type = self.request.user.user_type
+        form.instance.user = self.request.user  # Задаване на текущия потребител
+        return super().form_valid(form)
 
 
 class ProfileDetailsView(views.DetailView):
@@ -65,34 +50,45 @@ class ProfileDetailsView(views.DetailView):
         elif user_type == 'MEMBER':
             return MemberProfile.objects.get(user=self.request.user)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user_object = self.get_object()
+        current_model = user_object._meta.model
+        excluded_fields = ["user", "first_name", "last_name", "company_name", "profile_picture", "logo",
+                           "charity_history", "donation_history"]
+        fields = [f.name for f in current_model._meta.get_fields() if f.name not in excluded_fields]
 
-class ProfileDeleteView(views.DeleteView):
-    template_name = 'user_profiles/profile-delete-page.html'
+        context['fields'] = fields
+        return context
+
+
+class ProfileDeleteView(auth_mixins.LoginRequiredMixin, views.DeleteView):
+    template_name = 'user_profiles/profile-edit-page.html'
+    success_url = reverse_lazy('home-page')
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def delete(self, request, *args, **kwargs):
+        self.get_object().delete()
+        return redirect(self.get_success_url())
+
+
+# NOT WORKING
+class ChangePhotoView(views.UpdateView):
+    model = UserModel
+    template_name = 'user_profiles/profile-edit-page.html'
+    fields = ['profile_photo', 'logo']
+    success_url = reverse_lazy('profile-edit-page')
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+
+class SecuritySettingsView(views.TemplateView):
+    template_name = 'user_profiles/security-settings-page.html'
 
 
 class VolunteerListView(auth_mixins.LoginRequiredMixin, views.ListView):
     model = UserModel
     template_name = 'user_profiles/volunteers-list-page.html'
-
-# DO I REALLY NEED THIS??? AND THIS TEMPLATES???
-# @login_required
-# def sponsor_profile(request, sponsor_id):
-#     context = {
-#         'sponsor': get_object_or_404(SponsorsProfiles, pk=sponsor_id),
-#     }
-#     return render(request, 'sponsor-profile-page.html', context)
-#
-#
-# @login_required
-# def benefactor_profile(request, benefactor_id):
-#     context = {
-#         'benefactor': get_object_or_404(BenefactorsProfiles, pk=benefactor_id)
-#     }
-#     return render(request, 'benefactor-profile-page.html', context)
-#
-# @login_required
-# def helper_profile(request, helper_id):
-#     context = {
-#         'helper': get_object_or_404(HelperProfiles, pk=helper_id)
-#     }
-#     return render(request, 'helper-profile-page.html', context)

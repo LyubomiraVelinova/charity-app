@@ -1,9 +1,9 @@
 from django.urls import path
 
-from charityapp.about.views import mission_and_values, history, WhoWeAreListView
+from charityapp.about.views import WhoWeAreListView, MissionAndValuesView, HistoryView
 
 urlpatterns = [
-    path('values/', mission_and_values, name='mission_and_values-page'),
     path('', WhoWeAreListView.as_view(), name='who-we-are-page'),
-    path('history/', history, name='history-page'),
+    path('values/', MissionAndValuesView.as_view(), name='mission-and-values-page'),
+    path('history/', HistoryView.as_view(), name='history-page'),
 ]

@@ -1,9 +1,9 @@
 from enum import Enum
 
-from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core import validators
 from django.db import models
+from django.utils import timezone
 
 from charityapp.accounts.models import AppUser
 from charityapp.common.mixins import ChoicesStringsMixin
@@ -59,25 +59,39 @@ class SponsorProfile(models.Model):
         max_length=MAX_LEN_NAME,
         null=False,
         blank=False,
+        verbose_name='Company name',
     )
 
-    logo = models.URLField(
+    logo = models.ImageField(
         null=True,
         blank=True,
     )
-    # logo = models.ImageField(upload_to='sponsor_logos')
 
-    website = models.URLField()
+    website = models.URLField(
+        verbose_name='Website',
+    )
 
     career_field = models.CharField(
         max_length=MAX_LEN_CAREER,
         null=True,
         blank=True,
+        verbose_name='Career field',
     )
-    donation_history = models.ManyToManyField(DonationCampaigns)
+    donation_history = models.ManyToManyField(
+        DonationCampaigns,
+        verbose_name='Donation history',
+    )
 
     def __str__(self):
         return self.company_name
+
+
+class CharityInterests(ChoicesStringsMixin, Enum):
+    ENVIRONMENTAL_CAUSES = "Environmental causes"
+    HUMANITARIAN_CAUSES = "Humanitarian causes"
+    DISASTERS_AND_ACCIDENTS_CAUSES = "Causes of disasters and accidents"
+    ANIMAL_CAUSES = "Animal causes"
+    OTHER = "Other"
 
 
 class VolunteerProfile(models.Model):
@@ -98,6 +112,7 @@ class VolunteerProfile(models.Model):
         ),
         null=False,
         blank=False,
+        verbose_name='First name',
     )
 
     last_name = models.CharField(
@@ -107,15 +122,17 @@ class VolunteerProfile(models.Model):
         ),
         null=False,
         blank=False,
+        verbose_name='Last name',
     )
 
     gender = models.CharField(
         max_length=MAX_LEN_NAME,
         choices=Gender.choices(),
         default=Gender.DO_NOT_SHOW,
+        verbose_name='Gender',
     )
 
-    profile_picture = models.URLField(
+    profile_picture = models.ImageField(
         null=True,
         blank=True,
     )
@@ -123,27 +140,33 @@ class VolunteerProfile(models.Model):
     phone_number = models.CharField(
         null=True,
         blank=True,
+        verbose_name='Phone number',
     )
+
     bio = models.TextField(
         null=True,
         blank=True,
+        verbose_name='About',
     )
-    interests = models.TextField()
 
-    charity_history = models.ManyToManyField(CharityCampaigns)
-    donation_history = models.ManyToManyField(DonationCampaigns)
+    interests = models.CharField(
+        max_length=CharityInterests.max_length(),
+        choices=CharityInterests.choices(),
+        verbose_name='Charity interests',
+    )
+
+    charity_history = models.ManyToManyField(
+        CharityCampaigns,
+        verbose_name='Charity history',
+    )
+    donation_history = models.ManyToManyField(
+        DonationCampaigns,
+        verbose_name='Donation history',
+    )
 
     @property
     def full_name(self):
         return f"{self.first_name} {self.last_name}"
-
-
-class CharityInterests(ChoicesStringsMixin, Enum):
-    ENVIRONMENTAL_CAUSES = "Environmental causes"
-    HUMANITARIAN_CAUSES = "Humanitarian causes"
-    DISASTERS_AND_ACCIDENTS_CAUSES = "Causes of disasters and accidents"
-    ANIMAL_CAUSES = "Animal causes"
-    OTHER = "Other"
 
 
 class RoleTypes(ChoicesStringsMixin, Enum):
@@ -177,6 +200,7 @@ class MemberProfile(models.Model):
         ),
         null=False,
         blank=False,
+        verbose_name='First name',
     )
 
     last_name = models.CharField(
@@ -186,15 +210,17 @@ class MemberProfile(models.Model):
         ),
         null=False,
         blank=False,
+        verbose_name='Last name',
     )
 
     gender = models.CharField(
         max_length=MAX_LEN_NAME,
         choices=Gender.choices(),
         default=Gender.DO_NOT_SHOW,
+        verbose_name='Gender',
     )
 
-    profile_picture = models.URLField(
+    profile_picture = models.ImageField(
         null=True,
         blank=True,
     )
@@ -202,24 +228,31 @@ class MemberProfile(models.Model):
     phone_number = models.CharField(
         null=True,
         blank=True,
+        verbose_name='Phone number',
     )
 
     strengths = models.TextField(
         null=True,
         blank=True,
+        verbose_name='Strengths',
     )
 
     interests = models.CharField(
         max_length=CharityInterests.max_length(),
         choices=CharityInterests.choices(),
+        verbose_name='Charity interests',
     )
 
     role = models.CharField(
         max_length=RoleTypes.max_length(),
         choices=RoleTypes.choices(),
+        verbose_name='Role in the club',
     )
 
-    contribution_history = models.ManyToManyField(CharityCampaigns)
+    charity_history = models.ManyToManyField(
+        CharityCampaigns,
+        verbose_name='Charity history',
+    )
 
     @property
     def full_name(self):

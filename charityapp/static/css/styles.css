@@ -1,9 +1,16 @@
-/*LOGIN-FORM-STYLE*/
 @import url('https://fonts.googleapis.com/css?family=Mukta');
+
+
+/*LOGIN-FORM-STYLE*/
+
 
 /*COMMON*/
 .custom-container {
     padding: 80px 0px 80px 0px;
+}
+
+.custom-section {
+    padding-top: 150px;
 }
 
 .custom-section:nth-child(odd) {
@@ -202,11 +209,12 @@ p.lead {
 /*LOGIN FORM STYLE*/
 .custom-text {
     --bs-text-opacity: 1;
-    color: rgba(var(--green),var(--bs-text-opacity));!important;
+    color: rgba(var(--green), var(--bs-text-opacity));
+!important;
 }
 
 /*PROFILE PAGE*/
-.badge-secondary{
+.badge-secondary {
     background-color: #6c757d;
 }
 

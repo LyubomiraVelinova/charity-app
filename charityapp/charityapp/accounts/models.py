@@ -3,6 +3,7 @@ from enum import Enum
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import models as auth_models
 from django.db import models
+from django.utils import timezone
 
 from charityapp.common.mixins import ChoicesStringsMixin
 
@@ -59,3 +60,13 @@ class AppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         null=False,
         blank=False,
     )
+    created_at = models.DateField(
+        null=True,
+        blank=True,
+    )
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            # This is a new instance, set the created_at field with the current date and time
+            self.created_at = timezone.now().date()
+        super().save(*args, **kwargs)

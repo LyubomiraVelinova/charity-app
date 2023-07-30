@@ -2,8 +2,6 @@ from django import forms
 from django.contrib.auth import forms as auth_forms, get_user_model
 from django.utils.translation import gettext_lazy as _
 
-from charityapp.accounts.models import UserType
-
 UserModel = get_user_model()
 
 

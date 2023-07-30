@@ -1,24 +1,15 @@
-from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import views as auth_views, login
+from django.contrib.auth import mixins as auth_mixins
 
 from charityapp.accounts.forms import RegisterUserForm, CustomAuthenticationForm
-from charityapp.user_profiles.forms import VolunteerForm, SponsorForm, MemberForm
-
-from django.shortcuts import redirect
-from django.urls import reverse_lazy
-from django.views import generic as views
-from django.contrib.auth import views as auth_views, login
-
-from charityapp.accounts.forms import RegisterUserForm, CustomAuthenticationForm
-from charityapp.accounts.models import UserType
 
 
 class RegisterUserView(views.CreateView):
     template_name = 'accounts/register-page.html'
     form_class = RegisterUserForm
-    success_url = reverse_lazy('home-page')
+    success_url = reverse_lazy('profile-edit-page')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -33,43 +24,19 @@ class RegisterUserView(views.CreateView):
         return result
 
 
-class AdditionalRegisterUserView(views.CreateView):
-    template_name = 'accounts/additional-register-page.html'
-    success_url = reverse_lazy('home-page')
-    form_class = None
-
-    def get_form_class(self):
-        user_type = self.kwargs['user_type']
-        if user_type == 'VOLUNTEER':
-            return VolunteerForm
-        elif user_type == 'SPONSOR':
-            return SponsorForm
-        elif user_type == 'MEMBER':
-            return MemberForm
-        else:
-            return None
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        user_type = self.kwargs.get('user_type')
-
-        context['user_type'] = user_type
-        context['form'] = self.get_form_class()
-        return context
-
-    def form_valid(self, form):
-        user_type = self.kwargs['user_type']
-        form.instance.user = self.request.user  # Задаване на текущия потребител
-        result = super().form_valid(form)
-        user = self.object
-        login(self.request, user)
-        return result
-
-
 class LoginUserView(auth_views.LoginView):
     template_name = 'accounts/login-page.html'
     form_class = CustomAuthenticationForm
 
 
-class LogoutView(auth_views.LogoutView):
+class LogoutView(auth_mixins.LoginRequiredMixin, auth_views.LogoutView):
     pass
+
+
+class CustomPasswordChangeView(auth_mixins.LoginRequiredMixin, auth_views.PasswordChangeView):
+    template_name = "accounts/password-change-page.html"
+    success_url = reverse_lazy("change-password-done-page")
+
+
+class CustomPasswordChangeDoneView(auth_mixins.LoginRequiredMixin, auth_views.PasswordChangeDoneView):
+    template_name = "accounts/"
