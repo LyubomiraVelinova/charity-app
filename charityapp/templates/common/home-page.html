@@ -211,181 +211,99 @@
             <div class="row">
                 <div class="col-md-12 sol-sm-12">
                     <div class="maintitle">
-                        <h3 class="section-title">Latest news <span class="wow bounceInRight">from us</span>
-                        </h3>
-                        <p class="lead">
-                            Today is {current day} and we are excited to share with you that
+                        <h2 class="wow bounceInDown  text-uppercase text-light" data-wow-duration="1s"
+                            data-wow-delay="0.1s"
+                            style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                            <strong><span class="lighter">Latest </span>news </strong> <span
+                                class="lighter">from us</span></h2>
+                        <p class="lead text-light lead text-center">
+                            Today is {% now "jS F Y" %} and we are excited to share with you
+                            that!
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4 col-sm-12">
-                    <div class="faq-block wow bounceInDown" data-wow-duration="1.5s" data-wow-delay="0s">
-                        <div class="panel-group">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                            The Fifth Children's Neonatal Ambulance
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseOne" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        The fifth children's neonatal ambulance is 95% ready. It will be donated
-                                        soon!
+
+            <div class="accordion" id="qnaAccordion">
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <div class="faq-block wow bounceInDown" data-wow-duration="1.5s" data-wow-delay="0.2s"
+                             style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: bounceInDown;">
+                            <div class="panel-group">
+                                {% for every_news in first_news %}
+                                    <div class="accordion-item panel panel-default">
+                                        <h3 class="accordion-header" id="{{ every_news.pk }}Heading">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#{{ every_news.pk }}Collapse" aria-expanded="false"
+                                                    aria-controls="{{ every_news.pk }}Collapse">
+                                                {{ every_news.title }}
+                                            </button>
+                                        </h3>
+                                        <div id="{{ every_news.pk }}Collapse" class="accordion-collapse collapse"
+                                             aria-labelledby="{{ every_news.pk }}Heading"
+                                             data-bs-parent="#qnaAccordion">
+                                            <div class="accordion-body">
+                                                <h6><strong>Date: {{ every_news.event_date }}</strong></h6>
+                                                <p>{{ every_news.description }}</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                            The second mountain off-road #ambulance
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseTwo" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        The second mountain off-road #ambulance of "Caps for the Future" is 99%
-                                        ready! Expect very soon!
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                                            Recent days many transported babies </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseThree" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        In recent days, the #CapsForFuture ambulance in Plovdiv has been
-                                        transporting babies in need to Plovdiv or Sofia literally every day! Thank
-                                        you!
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <div class="faq-block wow bounceInDown" data-wow-duration="1.5s" data-wow-delay="0.1s">
-                        <div class="panel-group">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-                                            Transported baby from Parvomai </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseFour" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        A baby was born on 28.07.2023 in Parvomai, but it turned out to have
-                                        respiratory problems. He had to be urgently transported to Plovdiv! From
-                                        there, they immediately sent the #CapsForFuture ambulance! It was necessary
-                                        to act very quickly!
+                    <div class="col-md-4 col-sm-12">
+                        <div class="faq-block wow bounceInDown" data-wow-duration="1.5s" data-wow-delay="0.2s"
+                             style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: bounceInDown;">
+                            <div class="panel-group">
+                                {% for every_news in second_news %}
+                                    <div class="accordion-item panel panel-default">
+                                        <h3 class="accordion-header" id="{{ every_news.pk }}Heading">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#{{ every_news.pk }}Collapse" aria-expanded="false"
+                                                    aria-controls="{{ every_news.pk }}Collapse">
+                                                {{ every_news.title }}
+                                            </button>
+                                        </h3>
+                                        <div id="{{ every_news.pk }}Collapse" class="accordion-collapse collapse"
+                                             aria-labelledby="{{ every_news.pk }}Heading"
+                                             data-bs-parent="#qnaAccordion">
+                                            <div class="accordion-body">
+                                                <h6><strong>Date: {{ every_news.event_date }}</strong></h6>
+                                                <p>{{ every_news.description }}</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
-                                            Donated transport incubator in Kyustendil </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseFive" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        With an oxygen module, with an air humidifier, with a heating system,
-                                        sensors for the temperature of the air and the baby's skin, a battery for
-                                        when there is no electricity nearby, a comfortable stroller ... Donated to
-                                        the hospital in Kyustendil by all the people who they help
-                                        #CapsForTheFuture.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
-                                            Baby from Velingrad </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseSix" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        On 03.07.2023, a SEVENTH (7) MONTH (!!!) woman in labor arrived at the
-                                        hospital in Velingrad with a detached placenta!! After an emergency
-                                        C-section, a little one appears in the world, however, in a critical
-                                        condition. The doctors had to drain nearly 200ml of blood from the baby's
-                                        stomach, after which the little hero was intubated and with the help of the
-                                        incubator donated by #CapsForFuture and the local Lion's Club, he was
-                                        successfully transported to the hospital in Pazardzhik! Mother and baby are
-                                        fine!
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <div class="faq-block wow bounceInDown" data-wow-duration="1.5s" data-wow-delay="0.2s">
-                        <div class="panel-group">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
-                                            Baby from Karlovo </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseSeven" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        A baby was born on 26.05.2023 in Karlovo with respiratory failure. The
-                                        #CapsForFuture ambulance from Plovdiv is leaving immediately! In it are Dr.
-                                        Koichev, senior nurse Ikimova and paramedic Ivan Lesov, who is one of the
-                                        people who most often travel with the ambulance. The medics took the baby,
-                                        breathed him all the way and successfully transported him to the neonatology
-                                        unit at St. George in Plovdiv. Another successful mission for the ambulance
-                                        and its team. Another life saved!
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseEight">
-                                            Donated monitors in Burgas </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseEight" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <div class="panel-body">
-                                            On 19.05.2023 we helped to the invasive cardiology department in Burgas to
-                                            monitor the condition of those treated there by new and advanced vital signs
-                                            monitors.
+                    <div class="col-md-4 col-sm-12">
+                        <div class="faq-block wow bounceInDown" data-wow-duration="1.5s" data-wow-delay="0.2s"
+                             style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: bounceInDown;">
+                            <div class="panel-group">
+                                {% for every_news in third_news %}
+                                    <div class="accordion-item panel panel-default">
+                                        <h3 class="accordion-header" id="{{ every_news.pk }}Heading">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#{{ every_news.pk }}Collapse" aria-expanded="false"
+                                                    aria-controls="{{ every_news.pk }}Collapse">
+                                                {{ every_news.title }}
+                                            </button>
+                                        </h3>
+                                        <div id="{{ every_news.pk }}Collapse" class="accordion-collapse collapse"
+                                             aria-labelledby="{{ every_news.pk }}Heading"
+                                             data-bs-parent="#qnaAccordion">
+                                            <div class="accordion-body">
+                                                <h6><strong>Date: {{ every_news.event_date }}</strong></h6>
+                                                <p>{{ every_news.description }}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseNine">
-                                                Transported twins from Velingrad </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseNine" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            On 15.05.2023 the transport incubator that #CapsForFuture donated to the
-                                            hospital in Velingrad, together with the local Lion's Club, carried out
-                                            another successful mission by transporting two newborn twins - each weighing
-                                            less than 2 kg - to the hospital in Pazardzhik ❤ So far, the incubator has
-                                            helped close to 60 children to safely pass the bends between Velingrad and
-                                            Pazardzhik.
-                                        </div>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -402,11 +320,14 @@
                 <div class="col-md-12">
                     <div class="item text-center">
                         <blockquote>
-                            <p class="lead">
-                                An active and adequate civil society is built by the efforts of many, many
-                                people over many, many years.
-                            </p>
-                            <small>Lazar Radkov, Founder</small>
+                            <h2 class="wow bounceInDown text-uppercase text-light" data-wow-duration="1s"
+                                data-wow-delay="0.1s"
+                                style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                                <span class="lighter">An</span> active <span class="lighter">and</span> adequate
+                                <span class="lighter"> civil society is built by the</span> efforts <span
+                                    class="lighter">of many, </span>many
+                                people <span class="lighter">over many,</span> many years. </h2>
+                            <small class="text-light">Lazar Radkov, Founder</small>
                         </blockquote>
                     </div>
                 </div>
@@ -414,9 +335,8 @@
         </div>
     </section>
 
-
     <!-- STORIES SECTION -->
-    <section class="custom-section">
+    <section class="custom-section stories-section">
         <div class="container custom-container">
             <div class="row">
                 <div class="col-md-12 sol-sm-12">
@@ -426,6 +346,12 @@
                         <p class="lead bottom0">
                             There’s never been a more important time to invest in our future, than now.
                         </p>
+                        <p>During our first Blood Donation campaign, a member of our club donates blood. The day after,
+                            it turns out that an acquaintance of his is in URGENT need of blood. They start looking for
+                            a person with a suitable blood type, the information goes to the person from our club whose
+                            blood type turns out to be suitable. He immediately diverted the blood he had already
+                            donated to the hospital where his acquaintance was admitted. The man has his blood
+                            transfused and everything ends well.</p>
                     </div>
                 </div>
             </div>

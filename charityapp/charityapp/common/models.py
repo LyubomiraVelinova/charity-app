@@ -2,6 +2,7 @@ from enum import Enum
 
 from django.core import validators
 from django.db import models
+from django.utils import timezone
 
 from charityapp.common.mixins import ChoicesStringsMixin
 from charityapp.common.validators import validate_card_verification_value, validate_card_number
@@ -188,6 +189,26 @@ class Impact(models.Model):
         null=False,
     )
     achievement_numbers = models.IntegerField(
+        blank=False,
+        null=False,
+    )
+
+
+class LatestNews(models.Model):
+    MAX_LENGTH_TITLE = 100
+
+    event_date = models.DateField(
+        blank=True,
+        null=True,
+    )
+
+    title = models.CharField(
+        max_length=MAX_LENGTH_TITLE,
+        blank=False,
+        null=False,
+    )
+
+    description = models.TextField(
         blank=False,
         null=False,
     )

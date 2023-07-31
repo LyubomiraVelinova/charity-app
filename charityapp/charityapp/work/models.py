@@ -44,19 +44,19 @@ class CharityCampaigns(models.Model):
         null=True,
         blank=True,
     )
-    start_date = models.DateTimeField(
+    start_datetime = models.DateTimeField(
         null=True,
         blank=True,
         default=timezone.now,
     )
-    end_date = models.DateTimeField(
+    end_datetime = models.DateTimeField(
         null=True,
         blank=True,
         default=timezone.now,
     )
 
     def duration(self):
-        return f'{self.start_date} - {self.end_date}'
+        return f'{self.start_datetime} - {self.end_datetime}'
 
     def __str__(self):
         return self.name

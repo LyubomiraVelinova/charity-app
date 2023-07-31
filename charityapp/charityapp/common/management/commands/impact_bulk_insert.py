@@ -1,7 +1,3 @@
-import os
-from shutil import copyfile
-
-from django.conf import settings
 from django.core.management import BaseCommand
 
 from charityapp.common.models import Impact

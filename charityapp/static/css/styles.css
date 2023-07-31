@@ -4,7 +4,7 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-h2{
+h2 {
     font-size: 42px;
 }
 
@@ -28,7 +28,8 @@ h2{
 
 .impact-section,
 .campaigns-section,
-.news-section{
+.news-section,
+.stories-section {
     background-color: var(--green);
     opacity: 0.8;
 }
@@ -96,7 +97,7 @@ a {
 
 /*MISSION*/
 
-.custom-more{
+.custom-more {
     color: var(--green);
 }
 
@@ -132,6 +133,45 @@ a {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 1rem;
+}
+
+/*LATEST NEWS*/
+#faq {
+    background-color: #F9FAFD;
+}
+
+.active-section {
+    top: 0px;
+}
+
+.wrapsection {
+    padding-top: 140px;
+    padding-bottom: 140px;
+    position: relative;
+}
+
+.faq-block {
+    margin: 0px;
+}
+
+.panel-group .panel {
+    border-radius: 0;
+}
+
+.panel-default {
+    border-color: #eee;
+}
+
+.panel {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}
+
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--green);
+
 }
 
 
