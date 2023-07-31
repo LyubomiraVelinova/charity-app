@@ -169,3 +169,25 @@ class Donation(models.Model):
     def save(self, *args, **kwargs):
         self.card_number = format_card_number(self.card_number.replace(' ', ''))
         super(Donation, self).save(*args, **kwargs)
+
+
+class Impact(models.Model):
+    MAX_LENGTH_TITLE = 100
+
+    title = models.CharField(
+        max_length=MAX_LENGTH_TITLE,
+        blank=False,
+        null=False,
+    )
+    resume = models.TextField(
+        blank=False,
+        null=False,
+    )
+    picture = models.ImageField(
+        blank=False,
+        null=False,
+    )
+    achievement_numbers = models.IntegerField(
+        blank=False,
+        null=False,
+    )

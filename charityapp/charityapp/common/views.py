@@ -6,13 +6,15 @@ from django.contrib.auth.decorators import user_passes_test
 from charityapp.work.models import CharityCampaigns
 from charityapp.common.forms import AboutUsInfoForm, DonationForm, ContactInfoForm, BillingInfoForm, PaymentMethodForm, \
     DonationValueForm
-from charityapp.common.models import AboutUsInfo
+from charityapp.common.models import AboutUsInfo, Impact
 
 
 def index(request):
     campaigns = CharityCampaigns.objects.all()
+    impacts = Impact.objects.all()
     context = {
-        'campaigns': campaigns
+        'campaigns': campaigns,
+        'impacts': impacts,
     }
     return render(request, 'common/home-page.html', context)
 
@@ -70,3 +72,9 @@ class DonationView(views.CreateView):
         # Send notification to the user (example) - TO DO
         # send_notification_email(self.request.user.email)
         return response
+
+
+# class ImpactView(views.ListView):
+#     template_name = 'common/home-page.html'
+#     model = Impact
+

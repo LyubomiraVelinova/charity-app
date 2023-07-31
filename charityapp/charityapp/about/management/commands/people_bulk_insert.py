@@ -80,4 +80,4 @@ class Command(BaseCommand):
         ]
 
         People.objects.bulk_create(people_data)
-        self.stdout.write(self.style.SUCCESS('Data inserted successfully.'))
+        self.stdout.write(self.style.SUCCESS('Data inserted successfully in table about_people.'))

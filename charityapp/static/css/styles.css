@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Mukta');
 
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+h2{
+    font-size: 42px;
+}
+
 
 /*LOGIN-FORM-STYLE*/
 
@@ -10,12 +18,19 @@
 }
 
 .custom-section {
-    padding-top: 150px;
+    padding: 50px 0px 50px 0px;
 }
 
-.custom-section:nth-child(odd) {
-    background-color: #68ccc0;
-    opacity: 0.9;
+/*.custom-section:nth-child(odd) {*/
+/*    background-color: #68ccc0;*/
+/*    opacity: 0.9;*/
+/*}*/
+
+.impact-section,
+.campaigns-section,
+.news-section{
+    background-color: var(--green);
+    opacity: 0.8;
 }
 
 /*PARALLAX*/
@@ -25,7 +40,7 @@
     width: 100%;
     top: 0;
     position: fixed;
-    background-image: url(http://unsplash.it/1600/600?random=1);
+    background-image: url(https://images.unsplash.com/photo-1533073526757-2c8ca1df9f1c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80);
     background-position: center center;
     background-repeat: no-repeat;
     -webkit-background-size: cover;
@@ -43,6 +58,46 @@
 
 #navbarNavDropdown > ul > li > a {
     text-transform: uppercase;
+}
+
+/*ABOUT*/
+.lighter {
+    font-weight: 100;
+}
+
+.btn-default, .label-default {
+    border-color: #FFF;
+    color: #fff;
+    background-color: transparent;
+    border-width: 2px;
+    padding: 10px 25px;
+}
+
+.btn {
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 16px;
+    letter-spacing: 3px;
+}
+
+.btn, .label {
+    -webkit-border-radius: 0px;
+    transition: all .2s;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    -moz-transition: all .2s;
+    -o-transition: all .2s;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+}
+
+/*MISSION*/
+
+.custom-more{
+    color: var(--green);
 }
 
 /*CAUSES*/
@@ -121,8 +176,7 @@ body {
 }
 
 .maintitle .lead {
-    max-width: 840px;
-    margin: 0px auto;
+    margin: 0 auto;
     margin-bottom: 40px;
     padding-left: 20px;
     padding-right: 20px;
@@ -131,6 +185,14 @@ body {
 p.lead {
     font-size: 24px;
     font-weight: 300;
+    text-align: justify;
+}
+
+p.custom-lead {
+    font-size: 18px;
+    font-weight: 300;
+    text-align: justify;
+    color: var(--white);
 }
 
 #contact label {
@@ -218,6 +280,15 @@ p.lead {
     background-color: #6c757d;
 }
 
+/*IMPACT SECTION*/
+.custom-col {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.text-justify {
+    text-align: justify;
+}
 
 
 

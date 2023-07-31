@@ -1,14 +1,21 @@
 {% extends 'base/base.html' %}
 {% load static %}
 
+{% block parallax_content %}
+    <div id="parallax"></div>
+{% endblock %}
+
 {% block main_content %}
     <!-- ABOUT US SECTION -->
     <section class="custom-section first-section">
         <div class="container custom-container">
             <div class="row">
                 <div class="col-lg-3">
-                    <h2>TOGETHER WE CAN DO MORE</h2>
-                    <p class="text-justify">
+                    <h2 class="wow bounceInDown text-uppercase text-light" data-wow-duration="1s" data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        Together <span class="lighter"> we can do more</span></h2>
+                    <p class="text-justify text-light lead wow zoomIn" data-wow-duration="2s" data-wow-delay="0.5s"
+                       style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: zoomIn;">
                         We gather active, proactive and constructive people to improve the environment in which we live.
                         We work so that tomorrow we can live better than today!
                     </p>
@@ -16,34 +23,46 @@
                 <div class="col-lg-9">
                     <div class="row">
                         <div class="col-lg-6">
-                            <a href='{% url 'who-we-are-page' %}'>Who We Are</a>
-                            <p>
-                                We are dedicated staff, scientists and members advancing effective, lasting conservation
-                                in more than 70 countries and territories.
+                            <a href="{% url 'who-we-are-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                               role="button"> Who We Are </a>
+                            <p class="custom-lead">
+                                We are children, teenagers, parents, women, men, grandparents, volunteers and dedicated
+                                people who want to live in wilder conditions and work hard to achieve it in the hole
+                                country Bulgaria. Club for the Future is created as a natural continuation of Caps for
+                                the Future, but concentrated locally.
                             </p>
                         </div>
                         <div class="col-lg-6">
-                            <a href="{% url 'what-we-do-page' %}">What We Do</a>
-                            <p>
-                                To make the highest possible impact on the climate and biodiversity crises between now
-                                and 2030, we’re developing breakthrough ideas, amplifying local leaders and influencing
-                                policy.
+                            <a href="{% url 'what-we-do-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                               role="button"> What We Do </a>
+                            <p class="custom-lead">
+                                We run a range of high-impact campaigns and events that support premature babies,
+                                mountain victims, public awareness of first aid and nature. We started from a single
+                                cap, and now we are a whole society that is united under one cause - to participate in
+                                the improvement of living conditions in the country.
                             </p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
-                            <a href="{% url 'how-to-help-page' %}">How To Help</a>
-                            <p>
-                                There are so many ways to make positive change for our planet. Volunteer with us. Learn
-                                how to reduce your carbon footprint. Donate to conservation work.
+                            <a href="{% url 'how-to-help-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                               role="button"> How To
+                                Involve </a>
+                            <p class="custom-lead">
+                                There are so many ways to make positive change for our country. Volunteer with us. Learn
+                                first aid. Don't forget to collect caps, jugs and plastic bottles. Donate blood. Make a
+                                donation to our organization.
                             </p>
                         </div>
                         <div class="col-lg-6">
-                            <a href="{% url 'where-we-work-page' %}">Where We Work</a>
-                            <p>
-                                Dense rainforests, remote coral reefs and the hearts of major cities. Our strategies are
-                                as diverse as the habitats and geographies in which we work.
+                            <a href="{% url 'where-we-work-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                               role="button"> Where We
+                                Work </a>
+                            <p class="custom-lead">
+                                The idea for Clubs for the Future comes from Lazar Radkov (the founder of "Caps for the
+                                Future") and the purpose of the clubs is to act locally in every city in the country
+                                where there is at least one person ready to start a club and work to improve the
+                                environment.
                             </p>
                         </div>
                     </div>
@@ -52,104 +71,67 @@
         </div>
     </section>
 
-    <!-- ACHIEVEMENTS SECTION -->
-    <section class="custom-section">
+    <!-- IMPACT SECTION -->
+    <section class="custom-section impact-section">
         <div class="container custom-container">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="maintitle">
-                        <h3 class="section-title text-uppercase">Our impact</h3>
-                        <p class="lead">
-                            Our main goal is to improve the living environment around us, we do it voluntarily and
-                            are guided by the motivation "Let tomorrow be better than today". Club for the Future is
-                            created as a natural continuation of Caps for the Future, but concentrated locally.
-                        </p>
-                    </div>
+                <div class="col-md-12 maintitle">
+                    <h2 class="wow bounceInDown text-uppercase text-light" data-wow-duration="1s"
+                        data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        <span class="lighter">Our </span>impact</h2>
+                    <p class="lead text-light">
+                        Our main goal is to improve the living environment around us, we do it voluntarily and
+                        are guided by the motivation "Let tomorrow be better than today". Our organization play a
+                        crucial role in addressing societal challenges, promoting positive
+                        change, and making a significant impact on the lives of countless people, animals, and the
+                        environment.
+                    </p>
                 </div>
 
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100">
-                        <h3><strong>{1.386+} Participants/Supporting us/</strong></h3>
-                        <p>
-                            People have taken part in our campaigns.
-                            Participation is everything! We are happy that the club is growing, and we are meeting
-                            more and more like-minded people!
-                        </p>
+                {% for impact in impacts %}
+                    <div class="col-sm-2 custom-col">
+                        <div class="card h-100 text-center">
+                            <img src="{{ impact.picture }}" alt="{{ impact.title }}">
+                            <h4 class="text-uppercase">
+                                <strong>{{ impact.achievement_numbers }}+ {{ impact.title }}</strong></h4>
+                            <p class="text-justify ">{{ impact.resume }}</p>
+                        </div>
+
+
                     </div>
-
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100">
-                        <h3>{1.386} Sponsors+</h3>
-                        <p>
-                            Our sponsors are an integral part of our achievements. We owe you so much!
-                        </p>
-                    </div>
-
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100">
-                        <h3>{5} Successful Campaigns</h3>
-                        <p>
-                            Оur campaigns are gaining more and more popularity and succeed in uniting so many
-                            people!
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100">
-                        <h3>{195} Donations</h3>
-                        <p>
-                            We have made hundreds of donations so far.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100">
-                        <h3>$5.768 Donated</h3>
-                        <p>
-                            Your money saves lives and improves the environment in which we live
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="card h-100">
-                        <h3>$5.768 Members</h3>
-                        <p>
-                            Together we are more powerful, we can do more...
-                        </p>
-                    </div>
-                </div>
-
+                {% endfor %}
             </div>
-            <button type="button" class="btn btn-info btn-md"><a class="custom-btn" href="#">Learn More</a></button>
         </div>
     </section>
 
     <!-- MISSION SECTION -->
-
-    <section class="custom-section">
+    <section class="custom-section mission-section">
         <div class="container custom-container">
             <div class="row">
                 <div class="col-md-12 sol-sm-12">
                     <div class="maintitle">
-                        <h3 class="section-title justtitle">OUR MISSION</h3>
-                        <p class="lead bottom0 wow bounceInUp">
-                            IMPROVING THE ENVIRONMENT ON WHICH OUR EXISTENCE DEPENDS!
+                        <h2 class="wow bounceInDown text-uppercase text-light" data-wow-duration="1s"
+                            data-wow-delay="0.1s"
+                            style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                            <span class="lighter">Our </span>mission</h2>
+                        <p class="text-center text-light lead">Improving the environment on which our existence
+                            depends!</p>
+                        <p class="text-light lead wow zoomIn" data-wow-duration="2s" data-wow-delay="0.5s"
+                           style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: zoomIn;">
+                            Through the clubs for the future, we are building a volunteer network in the country. Our
+                            goal is to direct all our efforts to improving the environment at the local level and fully
+                            support "Caps for the Future"
                             Every cap raised and every campaign we fight for starts with you. Your support helps us
                             provide the essentials for a more peaceful life!
+                            <a href="{% url 'mission-and-values-page' %}" class="custom-more">Learn
+                                more...</a>
                         </p>
                         <p>
-                            <!-- {# ADD IN HREF - path to causes #} -->
+
                             <a href="{% url 'campaigns-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
-                               role="button"> Find a
-                                Cause </a>
-                            <a href="#" methods="post"
+                               role="button"> Find a Cause </a>
+                            <a href="{% url 'donation-page' %}" methods="post"
                                class="btn btn-default btn-lg wow fadeInRight" role="button"> Make Donation </a>
                         </p>
                     </div>
@@ -159,15 +141,21 @@
     </section>
 
     <!-- CAMPAIGNS SECTION -->
-    <section class="custom-section" id="gallery">
+    <section class="custom-section campaigns-section" id="gallery">
         <div class="container custom-container">
             <div class="row">
                 <div class="col-md-12 sol-sm-12">
                     <div class="maintitle">
-                        <h3 class="section-title"><strong>FIND <span class="lighter">CAUSE</span></strong> to
-                            support </h3>
-                        <p class="lead wow flipInX">
-                            Have a look at our causes and find one you identify with
+                        <h2 class="wow bounceInDown  text-uppercase text-light" data-wow-duration="1s"
+                            data-wow-delay="0.1s"
+                            style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                            <strong>Find <span class="lighter">cause</span></strong> to
+                            support </h2>
+                        <p class="text-light lead wow zoomIn" data-wow-duration="2s" data-wow-delay="0.5s"
+                           style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: zoomIn;">
+                            There are so many ways you can get involved and do your part to support us and be part of
+                            the change. Have a look at our causes and find one you identify with!
+                            <a href="{% url 'campaigns-page' %}" class="text-light">Learn more...</a>
                         </p>
                     </div>
                 </div>
@@ -195,41 +183,20 @@
         </div>
     </section>
 
-    <!-- SOME WISDOM -->
-    <section id="slider" class="parallax section active-section"
-             style="background-image: url(https://images.unsplash.com/photo-1501770118606-b1d640526693?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80); background-position: 50% 384px;">
+    <!-- FIRST WISDOM -->
+    <section id="slider" class="parallax section active-section">
         <div class="container custom-container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="item text-center">
                         <blockquote>
-                            <p class="lead">
-                                A meaningful future is built by meaningful people who unite. And
-                                look hard.
-                                It's being built by us ❤
-                            </p>
-                            <small>Lazar Radkov, Founder</small>
-                        </blockquote>
-                    </div>
-
-                    <div class="item text-center">
-                        <blockquote>
-                            <p class="lead">
-                                An active and adequate civil society is built by the efforts of many, many
-                                people over many, many years.
-                            </p>
-                            <small>Lazar Radkov, Founder</small>
-                        </blockquote>
-                    </div>
-
-                    <div class="item text-center">
-                        <blockquote>
-                            <p class="lead">
-                                There is no exercise better for the heart than reaching down and lifting
-                                people
-                                up.
-                            </p>
-                            <small>John Holmes, Organizer</small>
+                            <h2 class="wow bounceInDown text-uppercase text-light" data-wow-duration="1s"
+                                data-wow-delay="0.1s"
+                                style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                                <span class="lighter">A meaningful</span> future <span
+                                    class="lighter">is built by</span> meaningful people<span class="lighter"> who unite. And look hard. </span>It's
+                                being built by us ❤</h2>
+                            <small class="text-light">Lazar Radkov, Founder</small>
                         </blockquote>
                     </div>
                 </div>
@@ -239,7 +206,7 @@
 
 
     <!-- LATEST NEWS SECTION -->
-    <section class="custom-section">
+    <section class="custom-section news-section">
         <div class="container custom-container">
             <div class="row">
                 <div class="col-md-12 sol-sm-12">
@@ -394,28 +361,29 @@
                                 </div>
                                 <div id="collapseEight" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                    <div class="panel-body">
-                                        On 19.05.2023 we helped to the invasive cardiology department in Burgas to
-                                        monitor the condition of those treated there by new and advanced vital signs
-                                        monitors.
+                                        <div class="panel-body">
+                                            On 19.05.2023 we helped to the invasive cardiology department in Burgas to
+                                            monitor the condition of those treated there by new and advanced vital signs
+                                            monitors.
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseNine">
-                                            Transported twins from Velingrad </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseNine" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        On 15.05.2023 the transport incubator that #CapsForFuture donated to the
-                                        hospital in Velingrad, together with the local Lion's Club, carried out
-                                        another successful mission by transporting two newborn twins - each weighing
-                                        less than 2 kg - to the hospital in Pazardzhik ❤ So far, the incubator has
-                                        helped close to 60 children to safely pass the bends between Velingrad and
-                                        Pazardzhik.
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseNine">
+                                                Transported twins from Velingrad </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseNine" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            On 15.05.2023 the transport incubator that #CapsForFuture donated to the
+                                            hospital in Velingrad, together with the local Lion's Club, carried out
+                                            another successful mission by transporting two newborn twins - each weighing
+                                            less than 2 kg - to the hospital in Pazardzhik ❤ So far, the incubator has
+                                            helped close to 60 children to safely pass the bends between Velingrad and
+                                            Pazardzhik.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -426,9 +394,29 @@
         </div>
     </section>
 
-    <!-- SOME SECTION -->
-    <section class="custom-section"
-             style="background-image: url(https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1174&q=80); background-position: 50% 454px;">
+
+    <!-- SECOND WISDOM -->
+    <section class="parallax section active-section">
+        <div class="container custom-container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="item text-center">
+                        <blockquote>
+                            <p class="lead">
+                                An active and adequate civil society is built by the efforts of many, many
+                                people over many, many years.
+                            </p>
+                            <small>Lazar Radkov, Founder</small>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- STORIES SECTION -->
+    <section class="custom-section">
         <div class="container custom-container">
             <div class="row">
                 <div class="col-md-12 sol-sm-12">
@@ -443,6 +431,27 @@
             </div>
         </div>
     </section>
+
+    <!-- THIRD WISDOM -->
+    <section class="parallax section active-section">
+        <div class="container custom-container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="item text-center">
+                        <blockquote>
+                            <p class="lead">
+                                There is no exercise better for the heart than reaching down and lifting
+                                people
+                                up.
+                            </p>
+                            <small>John Holmes, Organizer</small>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CONTACT SECTION -->
     <section id="contactarea" class="white custom-section">
         <div class="container custom-container">

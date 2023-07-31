@@ -32,7 +32,7 @@ class CharityCampaigns(models.Model):
         blank=False,
     )
     # NOT WORKING WITH IMAGEFIELD
-    image = models.URLField()
+    image = models.ImageField()
     description = models.TextField()
     motivation = models.TextField()
     type = models.CharField(
@@ -84,12 +84,5 @@ class DonationCampaigns(models.Model):
         default=False,
     )
 
-    # Many to many fields
-
     def __str__(self):
         return self.title
-
-# def validate_only_alphanumeric(value):
-#     for ch in value:
-#         if not ch.isalnum():
-#             raise ValidationError("Ensure this value contains only letters, numbers, and underscore.")
