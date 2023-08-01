@@ -1,0 +1,10 @@
+{% extends 'base/base.html' %}
+
+{% block main_content %}
+    <form action="{% url 'testimonial-submission-page' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Send</button>
+    </form>
+
+{% endblock %}

@@ -21,18 +21,21 @@ h2 {
     padding: 50px 0px 50px 0px;
 }
 
-/*.custom-section:nth-child(odd) {*/
-/*    background-color: #68ccc0;*/
-/*    opacity: 0.9;*/
-/*}*/
 
-.impact-section,
 .campaigns-section,
+.testimonials-section,
+.contact-section,
 .news-section,
-.stories-section {
+.impact-section {
     background-color: var(--green);
     opacity: 0.8;
 }
+
+/*.impact-section,*/
+/*.news-section {*/
+/*    background-color: var(--gray-white);*/
+/*    opacity: 0.7;*/
+/*}*/
 
 /*PARALLAX*/
 
@@ -41,7 +44,8 @@ h2 {
     width: 100%;
     top: 0;
     position: fixed;
-    background-image: url(https://images.unsplash.com/photo-1533073526757-2c8ca1df9f1c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80);
+    /*background-image: url(https://images.unsplash.com/photo-1533073526757-2c8ca1df9f1c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80);*/
+    background-image: url(https://images.unsplash.com/photo-1560093230-101306845069?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80);
     background-position: center center;
     background-repeat: no-repeat;
     -webkit-background-size: cover;
@@ -52,6 +56,7 @@ h2 {
 }
 
 /*NAVBAR*/
+
 
 .first-section {
     padding-top: 50px;
@@ -176,9 +181,6 @@ a {
 
 
 /* VOLUNTEERS PAGE */
-body {
-    padding-top: 50px;
-}
 
 .right-column img {
     max-width: 100%; /* Ensure the image resizes proportionally */
@@ -220,6 +222,7 @@ body {
     margin-bottom: 40px;
     padding-left: 20px;
     padding-right: 20px;
+    text-align: justify;
 }
 
 p.lead {
@@ -228,11 +231,18 @@ p.lead {
     text-align: justify;
 }
 
-p.custom-lead {
+.custom-lead-wh {
     font-size: 18px;
     font-weight: 300;
     text-align: justify;
     color: var(--white);
+}
+
+.custom-lead-bl {
+    font-size: 20px;
+    font-weight: 300;
+    text-align: justify;
+    color: var(--black);
 }
 
 #contact label {
@@ -331,5 +341,73 @@ p.custom-lead {
 }
 
 
+/*TESTIMONIALS*/
+
+/*MISSION AND VALUES*/
+/*       .carousel-caption h5 {*/
+/*            color: white;*/
+/*            margin-bottom: 350px;*/
+/*            border-radius: 5px;*/
+/*        }*/
 
 
+.carousel-caption h5 {
+    color: var(--white);
+    font-size: 60px;
+}
+
+/* Custom CSS to center the h5 element */
+.carousel-caption {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.carousel-inner {
+    max-height: 750px; /* Adjust the value as needed */
+}
+
+.carousel-item img {
+    max-height: 750px; /* Adjust the value as needed */
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+}
+hr {
+    margin: 1rem 0;
+}
+
+.hr-blurry {
+    clear: both;
+    border: 0;
+    height: 6px;
+    background-image: linear-gradient(to right, white, transparent, white),
+    linear-gradient(transparent, rgba(0, 0, 0, 0.55) 150%);
+    background-image: -moz-linear-gradient(to right, white, transparent, white),
+    -webkit-linear-gradient(transparent, rgba(0, 0, 0, 0.55) 150%);
+    background-image: -ms-linear-gradient(to right, white, transparent, white),
+    -webkit-linear-gradient(transparent, rgba(0, 0, 0, 0.55) 150%);
+}
+
+.mv-section {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 1rem;
+    border: none;
+
+}
+ul.custom-list {
+   list-style-type: square;
+    margin-left: 50px;
+}
+ol.custom-list {
+   list-style-type: decimal;
+    margin-left: 50px;
+}
+h2.custom-size{
+    font-size: 24px;
+}

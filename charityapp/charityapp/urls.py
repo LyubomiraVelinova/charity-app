@@ -25,4 +25,5 @@ urlpatterns = [
     path('', include('charityapp.common.urls')),
     path('about/', include('charityapp.about.urls')),
     path('get-involved/', include('charityapp.get_involve.urls')),
+    path('charity/', include('charityapp.charity.urls')),
 ]

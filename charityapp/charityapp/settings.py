@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'charityapp.common',
     'charityapp.about',
     'charityapp.get_involve',
+    'charityapp.charity',
     # 'charityapp.accounts.apps.AccountsConfig',
 ]
 
@@ -58,7 +59,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
 ]
-
 
 ROOT_URLCONF = 'charityapp.urls'
 

@@ -3,6 +3,7 @@ from django.views import generic as views
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import user_passes_test
 
+from charityapp.charity.models import Testimonial
 from charityapp.work.models import CharityCampaigns
 from charityapp.common.forms import AboutUsInfoForm, DonationForm, ContactInfoForm, BillingInfoForm, PaymentMethodForm, \
     DonationValueForm
@@ -15,7 +16,7 @@ def index(request):
     first_three_news = LatestNews.objects.order_by('pk')[:3]
     second_three_news = LatestNews.objects.order_by('pk')[3:6]
     third_three_news = LatestNews.objects.order_by('pk')[6:9]
-    # latest_news = LatestNews.objects.all()
+    testimonials = Testimonial.objects.filter(approved=True).order_by('-date')
 
     context = {
         'campaigns': campaigns,
@@ -23,6 +24,7 @@ def index(request):
         'first_news': first_three_news,
         'second_news': second_three_news,
         'third_news': third_three_news,
+        'testimonials': testimonials,
     }
     return render(request, 'common/home-page.html', context)
 

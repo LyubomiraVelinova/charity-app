@@ -6,473 +6,424 @@
 {% endblock %}
 
 {% block main_content %}
-    <!-- ABOUT US SECTION -->
-    <section class="custom-section first-section">
-        <div class="container custom-container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <h2 class="wow bounceInDown text-uppercase text-light" data-wow-duration="1s" data-wow-delay="0.1s"
-                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
-                        Together <span class="lighter"> we can do more</span></h2>
-                    <p class="text-justify text-light lead wow zoomIn" data-wow-duration="2s" data-wow-delay="0.5s"
-                       style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: zoomIn;">
-                        We gather active, proactive and constructive people to improve the environment in which we live.
-                        We work so that tomorrow we can live better than today!
-                    </p>
-                </div>
-                <div class="col-lg-9">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <a href="{% url 'who-we-are-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
-                               role="button"> Who We Are </a>
-                            <p class="custom-lead">
-                                We are children, teenagers, parents, women, men, grandparents, volunteers and dedicated
-                                people who want to live in wilder conditions and work hard to achieve it in the hole
-                                country Bulgaria. Club for the Future is created as a natural continuation of Caps for
-                                the Future, but concentrated locally.
-                            </p>
-                        </div>
-                        <div class="col-lg-6">
-                            <a href="{% url 'what-we-do-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
-                               role="button"> What We Do </a>
-                            <p class="custom-lead">
-                                We run a range of high-impact campaigns and events that support premature babies,
-                                mountain victims, public awareness of first aid and nature. We started from a single
-                                cap, and now we are a whole society that is united under one cause - to participate in
-                                the improvement of living conditions in the country.
-                            </p>
-                        </div>
+<!-- ABOUT US SECTION -->
+<section class="custom-section first-section">
+    <div class="container custom-container">
+        <div class="row">
+            <div class="col-lg-3">
+                <h2 class="wow bounceInDown text-uppercase text-light" data-wow-duration="1s" data-wow-delay="0.1s"
+                    style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                    Together <span class="lighter"> we can do more</span></h2>
+                <p class="text-justify text-light lead wow zoomIn" data-wow-duration="2s" data-wow-delay="0.5s"
+                   style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: zoomIn;">
+                    We gather active, proactive and constructive people to improve the environment in which we live.
+                    We work so that tomorrow we can live better than today!
+                </p>
+            </div>
+            <div class="col-lg-9">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <a href="{% url 'who-we-are-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                           role="button"> Who We Are </a>
+                        <p class="custom-lead-wh">
+                            We are children, teenagers, parents, women, men, grandparents, volunteers and dedicated
+                            people who want to live in wilder conditions and work hard to achieve it in the hole
+                            country Bulgaria. Club for the Future is created as a natural continuation of Caps for
+                            the Future, but concentrated locally.
+                        </p>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <a href="{% url 'how-to-help-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
-                               role="button"> How To
-                                Involve </a>
-                            <p class="custom-lead">
-                                There are so many ways to make positive change for our country. Volunteer with us. Learn
-                                first aid. Don't forget to collect caps, jugs and plastic bottles. Donate blood. Make a
-                                donation to our organization.
-                            </p>
-                        </div>
-                        <div class="col-lg-6">
-                            <a href="{% url 'where-we-work-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
-                               role="button"> Where We
-                                Work </a>
-                            <p class="custom-lead">
-                                The idea for Clubs for the Future comes from Lazar Radkov (the founder of "Caps for the
-                                Future") and the purpose of the clubs is to act locally in every city in the country
-                                where there is at least one person ready to start a club and work to improve the
-                                environment.
-                            </p>
-                        </div>
+                    <div class="col-lg-6">
+                        <a href="{% url 'what-we-do-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                           role="button"> What We Do </a>
+                        <p class="custom-lead-wh">
+                            We run a range of high-impact campaigns and events that support premature babies,
+                            mountain victims, public awareness of first aid and nature. We started from a single
+                            cap, and now we are a whole society that is united under one cause - to participate in
+                            the improvement of living conditions in the country.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <a href="{% url 'how-to-help-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                           role="button"> How To
+                            Involve </a>
+                        <p class="custom-lead-wh">
+                            There are so many ways to make positive change for our country. Volunteer with us. Learn
+                            first aid. Don't forget to collect caps, jugs and plastic bottles. Donate blood. Make a
+                            donation to our organization.
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <a href="{% url 'where-we-work-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                           role="button"> Where We
+                            Work </a>
+                        <p class="custom-lead-wh">
+                            The idea for Clubs for the Future comes from Lazar Radkov (the founder of "Caps for the
+                            Future") and the purpose of the clubs is to act locally in every city in the country
+                            where there is at least one person ready to start a club and work to improve the
+                            environment.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- IMPACT SECTION -->
-    <section class="custom-section impact-section">
-        <div class="container custom-container">
-            <div class="row">
-                <div class="col-md-12 maintitle">
+<!-- IMPACT SECTION -->
+<section class="custom-section impact-section">
+    <div class="container custom-container">
+        <div class="row">
+            <div class="col-md-12 maintitle">
+                <h2 class="wow bounceInDown text-uppercase text-light" data-wow-duration="1s"
+                    data-wow-delay="0.1s"
+                    style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                    <span class="lighter">Our </span>impact</h2>
+                <p class="lead text-light">
+                    Our main goal is to improve the living environment around us, we do it voluntarily and
+                    are guided by the motivation "Let tomorrow be better than today". Our organization play a
+                    crucial role in addressing societal challenges, promoting positive
+                    change, and making a significant impact on the lives of countless people, animals, and the
+                    environment.
+                </p>
+            </div>
+
+            {% for impact in impacts %}
+                <div class="col-sm-2 custom-col">
+                    <div class="card h-100 text-center">
+                        <img src="{{ impact.picture }}" alt="{{ impact.title }}">
+                        <h4 class="text-uppercase">
+                            <strong>{{ impact.achievement_numbers }}+ {{ impact.title }}</strong></h4>
+                        <p class="text-justify ">{{ impact.resume }}</p>
+                    </div>
+
+
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- MISSION SECTION -->
+<section class="custom-section mission-section">
+    <div class="container custom-container">
+        <div class="row">
+            <div class="col-md-12 sol-sm-12">
+                <div class="maintitle">
                     <h2 class="wow bounceInDown text-uppercase text-light" data-wow-duration="1s"
                         data-wow-delay="0.1s"
                         style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
-                        <span class="lighter">Our </span>impact</h2>
-                    <p class="lead text-light">
-                        Our main goal is to improve the living environment around us, we do it voluntarily and
-                        are guided by the motivation "Let tomorrow be better than today". Our organization play a
-                        crucial role in addressing societal challenges, promoting positive
-                        change, and making a significant impact on the lives of countless people, animals, and the
-                        environment.
+                        <span class="lighter">Our </span>mission</h2>
+                    <p class="text-center text-light lead">Improving the environment on which our existence
+                        depends!</p>
+                    <p class="text-light lead wow zoomIn" data-wow-duration="2s" data-wow-delay="0.5s"
+                       style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: zoomIn;">
+                        Through the clubs for the future, we are building a volunteer network in the country. Our
+                        goal is to direct all our efforts to improving the environment at the local level and fully
+                        support "Caps for the Future"
+                        Every cap raised and every campaign we fight for starts with you. Your support helps us
+                        provide the essentials for a more peaceful life!
+                        <a href="{% url 'mission-and-values-page' %}" class="custom-more">Learn
+                            more...</a>
+                    </p>
+                    <p>
+
+                        <a href="{% url 'campaigns-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                           role="button"> Find a Cause </a>
+                        <a href="{% url 'donation-page' %}" methods="post"
+                           class="btn btn-default btn-lg wow fadeInRight" role="button"> Make Donation </a>
                     </p>
                 </div>
-
-                {% for impact in impacts %}
-                    <div class="col-sm-2 custom-col">
-                        <div class="card h-100 text-center">
-                            <img src="{{ impact.picture }}" alt="{{ impact.title }}">
-                            <h4 class="text-uppercase">
-                                <strong>{{ impact.achievement_numbers }}+ {{ impact.title }}</strong></h4>
-                            <p class="text-justify ">{{ impact.resume }}</p>
-                        </div>
-
-
-                    </div>
-                {% endfor %}
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- MISSION SECTION -->
-    <section class="custom-section mission-section">
-        <div class="container custom-container">
+<!-- CAMPAIGNS SECTION -->
+<section class="custom-section campaigns-section" id="gallery">
+    <div class="container custom-container">
+        <div class="row">
+            <div class="col-md-12 sol-sm-12">
+                <div class="maintitle">
+                    <h2 class="wow bounceInDown  text-uppercase text-light" data-wow-duration="1s"
+                        data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        <strong>Find <span class="lighter">cause</span></strong> to
+                        support </h2>
+                    <p class="text-light lead wow zoomIn" data-wow-duration="2s" data-wow-delay="0.5s"
+                       style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: zoomIn;">
+                        There are so many ways you can get involved and do your part to support us and be part of
+                        the change. Have a look at our causes and find one you identify with!
+                        <a href="{% url 'campaigns-page' %}" class="text-light">Learn more...</a>
+                    </p>
+                </div>
+            </div>
+
+            {% for campaign in campaigns %}
+
+                <div class="col-sm-4 h-100">
+                    <div class="card custom-card h-100">
+                        <img class="card-img-top custom-card-img-top" src="{{ campaign.image }}"
+                             alt="{{ campaign.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title ">{{ campaign.name }}</h5>
+                            <h5 class="card-title ">{{ campaign.duration }}</h5>
+                            <p class="card-text">{{ campaign.resume }}</p>
+                            <p class="card-text">
+                                <a href="{% url 'campaign-details-page' campaign.pk %}">
+                                    <small class="text-muted">Learn more</small>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- FIRST WISDOM -->
+<section class="custom-section mission-section">
+    <div class="container custom-container">
+        <div class="row">
+            <div class="col-md-12 sol-sm-12">
+                <div class="maintitle">
+                    <h2 class="wow bounceInDown text-uppercase text-light" data-wow-duration="1s"
+                        data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        <span class="lighter">Our </span>history</h2>
+                    <p class="text-light lead wow zoomIn text-center">
+                        "A meaningful future is built by meaningful people who unite. And look hard. It's
+                        being built by us ❤"
+                        <small class="text-light">/Lazar Radkov, Founder/</small>
+                    </p>
+
+                    <p class="text-light lead wow zoomIn" data-wow-duration="2s" data-wow-delay="0.5s"
+                       style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: zoomIn;">
+                        Caps for the Future" was launched in October 2017. The original idea was to collect
+                        playground caps, but after polling people on social media, the campaign turned to incubators
+                        for premature babies. The main objective of the first campaign was of donating at least one
+                        CUVYOZ to a hospital in a less populated area. To everyone's surprise, we were able to
+                        donate the first one just FIVE weeks after our first campaign at the end of October.
+                        <a href="{% url 'history-page' %}" class="custom-more">Learn
+                            more...</a>
+                    </p>
+                    <p>
+
+
+                        <a href="{% url 'contact-us-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                           role="button"> Contact us </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- LATEST NEWS SECTION -->
+<section class="custom-section news-section">
+    <div class="container custom-container">
+        <div class="row">
+            <div class="col-md-12 sol-sm-12">
+                <div class="maintitle">
+                    <h2 class="wow bounceInDown  text-uppercase text-light" data-wow-duration="1s"
+                        data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        <strong><span class="lighter">Latest </span>news </strong> <span
+                            class="lighter">from us</span></h2>
+                    <p class="lead text-light lead text-center">
+                        Today is {% now "jS F Y" %} and we are excited to share with you
+                        that!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion" id="qnaAccordion">
             <div class="row">
-                <div class="col-md-12 sol-sm-12">
-                    <div class="maintitle">
+                <div class="col-md-4 col-sm-12">
+                    <div class="faq-block wow bounceInDown" data-wow-duration="1.5s" data-wow-delay="0.2s"
+                         style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: bounceInDown;">
+                        <div class="panel-group">
+                            {% for every_news in first_news %}
+                                <div class="accordion-item panel panel-default">
+                                    <h3 class="accordion-header" id="{{ every_news.pk }}Heading">
+                                        <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#{{ every_news.pk }}Collapse" aria-expanded="false"
+                                                aria-controls="{{ every_news.pk }}Collapse">
+                                            {{ every_news.title }}
+                                        </button>
+                                    </h3>
+                                    <div id="{{ every_news.pk }}Collapse" class="accordion-collapse collapse"
+                                         aria-labelledby="{{ every_news.pk }}Heading"
+                                         data-bs-parent="#qnaAccordion">
+                                        <div class="accordion-body">
+                                            <h6><strong>Date: {{ every_news.event_date }}</strong></h6>
+                                            <p>{{ every_news.description }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="faq-block wow bounceInDown" data-wow-duration="1.5s" data-wow-delay="0.2s"
+                         style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: bounceInDown;">
+                        <div class="panel-group">
+                            {% for every_news in second_news %}
+                                <div class="accordion-item panel panel-default">
+                                    <h3 class="accordion-header" id="{{ every_news.pk }}Heading">
+                                        <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#{{ every_news.pk }}Collapse" aria-expanded="false"
+                                                aria-controls="{{ every_news.pk }}Collapse">
+                                            {{ every_news.title }}
+                                        </button>
+                                    </h3>
+                                    <div id="{{ every_news.pk }}Collapse" class="accordion-collapse collapse"
+                                         aria-labelledby="{{ every_news.pk }}Heading"
+                                         data-bs-parent="#qnaAccordion">
+                                        <div class="accordion-body">
+                                            <h6><strong>Date: {{ every_news.event_date }}</strong></h6>
+                                            <p>{{ every_news.description }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="faq-block wow bounceInDown" data-wow-duration="1.5s" data-wow-delay="0.2s"
+                         style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: bounceInDown;">
+                        <div class="panel-group">
+                            {% for every_news in third_news %}
+                                <div class="accordion-item panel panel-default">
+                                    <h3 class="accordion-header" id="{{ every_news.pk }}Heading">
+                                        <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#{{ every_news.pk }}Collapse" aria-expanded="false"
+                                                aria-controls="{{ every_news.pk }}Collapse">
+                                            {{ every_news.title }}
+                                        </button>
+                                    </h3>
+                                    <div id="{{ every_news.pk }}Collapse" class="accordion-collapse collapse"
+                                         aria-labelledby="{{ every_news.pk }}Heading"
+                                         data-bs-parent="#qnaAccordion">
+                                        <div class="accordion-body">
+                                            <h6><strong>Date: {{ every_news.event_date }}</strong></h6>
+                                            <p>{{ every_news.description }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- SECOND WISDOM -->
+<section class="parallax section active-section">
+    <div class="container custom-container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="item text-center">
+                    <blockquote>
                         <h2 class="wow bounceInDown text-uppercase text-light" data-wow-duration="1s"
                             data-wow-delay="0.1s"
                             style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
-                            <span class="lighter">Our </span>mission</h2>
-                        <p class="text-center text-light lead">Improving the environment on which our existence
-                            depends!</p>
-                        <p class="text-light lead wow zoomIn" data-wow-duration="2s" data-wow-delay="0.5s"
-                           style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: zoomIn;">
-                            Through the clubs for the future, we are building a volunteer network in the country. Our
-                            goal is to direct all our efforts to improving the environment at the local level and fully
-                            support "Caps for the Future"
-                            Every cap raised and every campaign we fight for starts with you. Your support helps us
-                            provide the essentials for a more peaceful life!
-                            <a href="{% url 'mission-and-values-page' %}" class="custom-more">Learn
-                                more...</a>
-                        </p>
-                        <p>
-
-                            <a href="{% url 'campaigns-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
-                               role="button"> Find a Cause </a>
-                            <a href="{% url 'donation-page' %}" methods="post"
-                               class="btn btn-default btn-lg wow fadeInRight" role="button"> Make Donation </a>
-                        </p>
-                    </div>
+                            <span class="lighter">An</span> active <span class="lighter">and</span> adequate
+                            <span class="lighter"> civil society is built by the</span> efforts <span
+                                class="lighter">of many, </span>many
+                            people <span class="lighter">over many,</span> many years. </h2>
+                        <small class="text-light">Lazar Radkov, Founder</small>
+                    </blockquote>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- CAMPAIGNS SECTION -->
-    <section class="custom-section campaigns-section" id="gallery">
-        <div class="container custom-container">
-            <div class="row">
-                <div class="col-md-12 sol-sm-12">
-                    <div class="maintitle">
-                        <h2 class="wow bounceInDown  text-uppercase text-light" data-wow-duration="1s"
-                            data-wow-delay="0.1s"
-                            style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
-                            <strong>Find <span class="lighter">cause</span></strong> to
-                            support </h2>
-                        <p class="text-light lead wow zoomIn" data-wow-duration="2s" data-wow-delay="0.5s"
-                           style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: zoomIn;">
-                            There are so many ways you can get involved and do your part to support us and be part of
-                            the change. Have a look at our causes and find one you identify with!
-                            <a href="{% url 'campaigns-page' %}" class="text-light">Learn more...</a>
-                        </p>
-                    </div>
-                </div>
+<!-- TESTIMONIALS SECTION -->
 
-                {% for campaign in campaigns %}
-
-                    <div class="col-sm-4 h-100">
-                        <div class="card custom-card h-100">
-                            <img class="card-img-top custom-card-img-top" src="{{ campaign.image }}"
-                                 alt="{{ campaign.name }}">
-                            <div class="card-body">
-                                <h5 class="card-title ">{{ campaign.name }}</h5>
-                                <h5 class="card-title ">{{ campaign.duration }}</h5>
-                                <p class="card-text">{{ campaign.resume }}</p>
-                                <p class="card-text">
-                                    <a href="{% url 'campaign-details-page' campaign.pk %}">
-                                        <small class="text-muted">Learn more</small>
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
-
-    <!-- FIRST WISDOM -->
-    <section id="slider" class="parallax section active-section">
-        <div class="container custom-container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="item text-center">
-                        <blockquote>
-                            <h2 class="wow bounceInDown text-uppercase text-light" data-wow-duration="1s"
-                                data-wow-delay="0.1s"
-                                style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
-                                <span class="lighter">A meaningful</span> future <span
-                                    class="lighter">is built by</span> meaningful people<span class="lighter"> who unite. And look hard. </span>It's
-                                being built by us ❤</h2>
-                            <small class="text-light">Lazar Radkov, Founder</small>
-                        </blockquote>
-                    </div>
+<section class="custom-section testimonials-section">
+    <div class="container custom-container">
+        <div class="row">
+            <div class="col-md-12 sol-sm-12">
+                <div class="maintitle">
+                    <h2 class="wow bounceInDown  text-uppercase text-light" data-wow-duration="1s"
+                        data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        <strong><span class="lighter">Personal </span>Testimonials </strong></h2>
+                    <p class="lead text-light text-center">
+                        There’s never been a more important time to invest in our future, than now.
+                    </p>
                 </div>
             </div>
         </div>
-    </section>
 
-
-    <!-- LATEST NEWS SECTION -->
-    <section class="custom-section news-section">
-        <div class="container custom-container">
-            <div class="row">
-                <div class="col-md-12 sol-sm-12">
-                    <div class="maintitle">
-                        <h2 class="wow bounceInDown  text-uppercase text-light" data-wow-duration="1s"
-                            data-wow-delay="0.1s"
-                            style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
-                            <strong><span class="lighter">Latest </span>news </strong> <span
-                                class="lighter">from us</span></h2>
-                        <p class="lead text-light lead text-center">
-                            Today is {% now "jS F Y" %} and we are excited to share with you
-                            that!
-                        </p>
-                    </div>
+        <div class="row text-center">
+            {% for testimonial in testimonials %}
+            <div class="col-md-4 mb-0">
+                <div class="d-flex justify-content-center mb-4">
+                    {% if testimonial.author.volunteer_profile.profile_picture %}
+                        <img src="{{ testimonial.author.volunteer_profile.profile_picture.url }}"
+                             class="rounded-circle shadow-1-strong" width="150" height="150"/>
+                    {% elif testimonial.author.sponsor_profile.logo %}
+                        <img src="{{ testimonial.author.sponsor_profile.logo.url }}"
+                             class="rounded-circle shadow-1-strong" width="150" height="150"/>
+                    {% elif testimonial.author.member_profile.profile_picture %}
+                        <img src="{{ testimonial.author.member_profile.profile_picture.url }}"
+                             class="rounded-circle shadow-1-strong" width="150" height="150"/>
+                    {% else %}
+                        <img src="{% static 'images/anonymous_profile.jpg' %}"
+                             class="rounded-circle shadow-1-strong" width="150" height="150"/>
+                    {% endif %}
                 </div>
-            </div>
 
-            <div class="accordion" id="qnaAccordion">
-                <div class="row">
-                    <div class="col-md-4 col-sm-12">
-                        <div class="faq-block wow bounceInDown" data-wow-duration="1.5s" data-wow-delay="0.2s"
-                             style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: bounceInDown;">
-                            <div class="panel-group">
-                                {% for every_news in first_news %}
-                                    <div class="accordion-item panel panel-default">
-                                        <h3 class="accordion-header" id="{{ every_news.pk }}Heading">
-                                            <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#{{ every_news.pk }}Collapse" aria-expanded="false"
-                                                    aria-controls="{{ every_news.pk }}Collapse">
-                                                {{ every_news.title }}
-                                            </button>
-                                        </h3>
-                                        <div id="{{ every_news.pk }}Collapse" class="accordion-collapse collapse"
-                                             aria-labelledby="{{ every_news.pk }}Heading"
-                                             data-bs-parent="#qnaAccordion">
-                                            <div class="accordion-body">
-                                                <h6><strong>Date: {{ every_news.event_date }}</strong></h6>
-                                                <p>{{ every_news.description }}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-12">
-                        <div class="faq-block wow bounceInDown" data-wow-duration="1.5s" data-wow-delay="0.2s"
-                             style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: bounceInDown;">
-                            <div class="panel-group">
-                                {% for every_news in second_news %}
-                                    <div class="accordion-item panel panel-default">
-                                        <h3 class="accordion-header" id="{{ every_news.pk }}Heading">
-                                            <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#{{ every_news.pk }}Collapse" aria-expanded="false"
-                                                    aria-controls="{{ every_news.pk }}Collapse">
-                                                {{ every_news.title }}
-                                            </button>
-                                        </h3>
-                                        <div id="{{ every_news.pk }}Collapse" class="accordion-collapse collapse"
-                                             aria-labelledby="{{ every_news.pk }}Heading"
-                                             data-bs-parent="#qnaAccordion">
-                                            <div class="accordion-body">
-                                                <h6><strong>Date: {{ every_news.event_date }}</strong></h6>
-                                                <p>{{ every_news.description }}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-12">
-                        <div class="faq-block wow bounceInDown" data-wow-duration="1.5s" data-wow-delay="0.2s"
-                             style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: bounceInDown;">
-                            <div class="panel-group">
-                                {% for every_news in third_news %}
-                                    <div class="accordion-item panel panel-default">
-                                        <h3 class="accordion-header" id="{{ every_news.pk }}Heading">
-                                            <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#{{ every_news.pk }}Collapse" aria-expanded="false"
-                                                    aria-controls="{{ every_news.pk }}Collapse">
-                                                {{ every_news.title }}
-                                            </button>
-                                        </h3>
-                                        <div id="{{ every_news.pk }}Collapse" class="accordion-collapse collapse"
-                                             aria-labelledby="{{ every_news.pk }}Heading"
-                                             data-bs-parent="#qnaAccordion">
-                                            <div class="accordion-body">
-                                                <h6><strong>Date: {{ every_news.event_date }}</strong></h6>
-                                                <p>{{ every_news.description }}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% if testimonial.author.volunteer_profile %}
+                    <h5 class="mb-3">{{ testimonial.author.volunteer_profile.full_name }}</h5>
+                {% elif testimonial.author.sponsor_profile %}
+                    <h5 class="mb-3">{{ testimonial.author.sponsor_profile.company_name }}</h5>
+                {% elif testimonial.author.member_profile %}
+                    <h5 class="mb-3">{{ testimonial.author.member_profile.full_name }}</h5>
+                {% endif %}
+
+                <h6 class="text-primary mb-3">/{{ testimonial.author.user_type.capitalize }}/</h6>
+                <p class="px-xl-3">
+                    <i class="fas fa-quote-left pe-2"></i>{{ testimonial.quote }}<i
+                        class="fas fa-quote-left pe-2"></i>
+                </p>
+                <ul class="list-unstyled d-flex justify-content-center mb-0">
+                    <li>
+                        <i class="fas fa-star fa-sm text-warning"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star fa-sm text-warning"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star fa-sm text-warning"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star fa-sm text-warning"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star-half-alt fa-sm text-warning"></i>
+                    </li>
+                </ul>
             </div>
+            {% endfor %}
+
         </div>
-    </section>
-
-
-    <!-- SECOND WISDOM -->
-    <section class="parallax section active-section">
-        <div class="container custom-container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="item text-center">
-                        <blockquote>
-                            <h2 class="wow bounceInDown text-uppercase text-light" data-wow-duration="1s"
-                                data-wow-delay="0.1s"
-                                style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
-                                <span class="lighter">An</span> active <span class="lighter">and</span> adequate
-                                <span class="lighter"> civil society is built by the</span> efforts <span
-                                    class="lighter">of many, </span>many
-                                people <span class="lighter">over many,</span> many years. </h2>
-                            <small class="text-light">Lazar Radkov, Founder</small>
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- STORIES SECTION -->
-    <section class="custom-section stories-section">
-        <div class="container custom-container">
-            <div class="row">
-                <div class="col-md-12 sol-sm-12">
-                    <div class="text-center">
-                        <h3 class="section-title justtitle">Inspiring real <span class="wow flipInX">Charity</span>
-                            stories</h3>
-                        <p class="lead bottom0">
-                            There’s never been a more important time to invest in our future, than now.
-                        </p>
-                        <p>During our first Blood Donation campaign, a member of our club donates blood. The day after,
-                            it turns out that an acquaintance of his is in URGENT need of blood. They start looking for
-                            a person with a suitable blood type, the information goes to the person from our club whose
-                            blood type turns out to be suitable. He immediately diverted the blood he had already
-                            donated to the hospital where his acquaintance was admitted. The man has his blood
-                            transfused and everything ends well.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- THIRD WISDOM -->
-    <section class="parallax section active-section">
-        <div class="container custom-container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="item text-center">
-                        <blockquote>
-                            <p class="lead">
-                                There is no exercise better for the heart than reaching down and lifting
-                                people
-                                up.
-                            </p>
-                            <small>John Holmes, Organizer</small>
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contactarea" class="white custom-section">
-        <div class="container custom-container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="maintitle">
-                        <h3 class="section-title">Get in Touch</h3>
-                        <p class="lead">
-                            If you have any questions about our events, thoughts about our work or just want to contact
-                            us, don't hesitate!
-                        </p>
-                        <p class="lead">
-                            <a href="{% url 'contact-us-page' %}">Contact form</a>
-                        </p>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6 col-lg-3 my-5">
-                            <div class="card border-0">
-                                <div class="card-body text-center">
-                                    <i class="fa fa-phone fa-5x mb-3" aria-hidden="true"></i>
-                                    <h4 class="text-uppercase mb-5">call us</h4>
-                                    <p>+8801683615582,+8801750603409</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-3 my-5">
-                            <div class="card border-0">
-                                <div class="card-body text-center">
-                                    <i class="fa fa-map-marker fa-5x mb-3" aria-hidden="true"></i>
-                                    <h4 class="text-uppercase mb-5">office loaction</h4>
-                                    <address>Suite 02, Level 12, Sahera Tropical Center</address>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-3 my-5">
-                            <div class="card border-0">
-                                <div class="card-body text-center">
-                                    <i class="fa fa-map-marker fa-5x mb-3" aria-hidden="true"></i>
-                                    <h4 class="text-uppercase mb-5">office loaction</h4>
-                                    <address>Suite 02, Level 12, Sahera Tropical Center</address>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-3 my-5">
-                            <div class="card border-0">
-                                <div class="card-body text-center">
-                                    <i class="fa fa-globe fa-5x mb-3" aria-hidden="true"></i>
-                                    <h4 class="text-uppercase mb-5">email</h4>
-                                    <p>http://al.a.noman1416@gmail.com</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    {#                    <form id="contact" name="contact" method="post" class="text-left">#}
-                    {#                        <fieldset>#}
-                    {#                            <div class="row">#}
-                    {#                                <div class="col-md-12 wow fadeIn animated animated" data-wow-delay="0.1s"#}
-                    {#                                     data-wow-duration="2s" id="name">#}
-                    {#                                    <label for="name">Name<span class="required">*</span></label>#}
-                    {#                                    <input type="text" name="name" id="name" size="30" value="" required/>#}
-                    {#                                </div>#}
-                    {#                                <div class="col-md-6 wow fadeIn animated" data-wow-delay="0.3s" data-wow-duration="2s">#}
-                    {#                                    <label for="email">Email<span class="required">*</span></label>#}
-                    {#                                    <input type="text" name="email" id="email" size="30" value="" required/>#}
-                    {#                                </div>#}
-                    {#                                <div class="col-md-6 wow fadeIn animated" data-wow-delay="0.3s" data-wow-duration="2s">#}
-                    {#                                    <label for="phone">Phone</label>#}
-                    {#                                    <input type="text" name="phone" id="phone" size="30" value=""/>#}
-                    {#                                </div>#}
-                    {#                            </div>#}
-                    {#                            <div class="wow fadeIn animated" data-wow-delay="0.3s" data-wow-duration="1.5">#}
-                    {#                                <label for="message">Message<span class="required">*</span></label>#}
-                    {#                                <textarea name="message" id="message" required></textarea>#}
-                    {#                            </div>#}
-                    {#                            <div class="wow fadeIn animated" data-wow-delay="0.3" data-wow-duration="1.5s">#}
-                    {#                                <input id="submit" type="submit" name="submit" value="Send"/>#}
-                    {#                            </div>#}
-                    {#                        </fieldset>#}
-                    {#                    </form>#}
-                    <div id="success">
-                        <p class="contactalert">
-                            Your message was sent successfully! I will be in touch as soon as I can.
-                        </p>
-                    </div>
-                    <div id="error">
-                        <p class="contactalert">
-                            Something went wrong, try refreshing and submitting the form again.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
+</section>
 
 {% endblock %}
