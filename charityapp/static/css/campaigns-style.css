@@ -1,0 +1,15 @@
+.custom-accordion {
+    margin: 50px 0;
+}
+
+.custom-accordion .accordion-item {
+  margin: 0px 30px; /* Adjust the padding as desired */
+}
+
+.accordion-button {
+    font-size: calc(1.275rem + .3vw);
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--light-green);
+}

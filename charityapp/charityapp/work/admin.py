@@ -1,7 +1,6 @@
 from django.contrib import admin
-from django.contrib.auth import get_user_model
 
-from charityapp.work.models import CharityCampaigns, DonationCampaigns
+from charityapp.work.models import CharityCampaigns, DonationCampaigns, FAQCampaigns
 
 
 @admin.register(CharityCampaigns)
@@ -12,7 +11,7 @@ class CharityCampaignsAdmin(admin.ModelAdmin):
             'fields': ('name', 'resume', 'image')
         }),
         ('Learn more Info', {
-            'fields': ('description', 'motivation', 'start_date', 'end_date', 'type', 'website')
+            'fields': ('description', 'motivation', 'start_datetime', 'end_datetime', 'type', 'website')
         }),
     )
     # NOT WORKING???
@@ -25,3 +24,8 @@ class DonationCampaignsAdmin(admin.ModelAdmin):
     search_fields = ['title', 'succeeded']
     # NOT WORKING???
     verbose_name_plural = 'Donation campaigns lists'
+
+
+@admin.register(FAQCampaigns)
+class QAndAAboutCampaignsAdmin(admin.ModelAdmin):
+    pass

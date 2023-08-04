@@ -10,5 +10,6 @@ urlpatterns = [
     path('edit/', ProfileEditView.as_view(), name='profile-edit-page'),
     path('edit/change-photo/', ChangePhotoView.as_view(), name='change-photo-page'),
     path('delete/', ProfileDeleteView.as_view(), name='profile-delete-page'),
+    # path('volunteer-register/', VolunteerRegistrationView.as_view(), name='volunteer-register-page'),
 ]
 

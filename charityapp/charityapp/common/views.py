@@ -11,15 +11,15 @@ from charityapp.common.models import AboutUsInfo, Impact, LatestNews
 
 
 def index(request):
-    campaigns = CharityCampaigns.objects.all()
     impacts = Impact.objects.all()
     first_three_news = LatestNews.objects.order_by('pk')[:3]
     second_three_news = LatestNews.objects.order_by('pk')[3:6]
     third_three_news = LatestNews.objects.order_by('pk')[6:9]
+    first_six_campaigns = CharityCampaigns.objects.order_by('-start_datetime')[:6]
     testimonials = Testimonial.objects.filter(approved=True).order_by('-date')
 
     context = {
-        'campaigns': campaigns,
+        'campaigns': first_six_campaigns,
         'impacts': impacts,
         'first_news': first_three_news,
         'second_news': second_three_news,

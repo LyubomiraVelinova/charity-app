@@ -1,21 +1,73 @@
 {% extends 'base/base.html' %}
 {% block main_content %}
-    <h1>{{ campaign.name }}</h1>
-    <p>{{ campaign.resume }}</p>
-    <img src="{{ campaign.image }}" alt="Campaign Image">
-    <p>{{ campaign.description }}</p>
-    <p>{{ campaign.motivation }}</p>
-    <p>Type: {{ campaign.type }}</p>
-    <a href="{{ campaign.website }}">Visit Website</a>
-    <p>Duration: {{ campaign.start_date }} - {{ campaign.end_date }}</p>
-    {% if request.user.is_authenticated %}
-        <a href="{% url 'participate-campaign' campaign.id %}" class="participate-btn">Participate</a>
-    {% else %}
-        <a href="{% url 'login-page' %}" class="participate-btn">Login for participation</a>
-    {% endif %}
+    <!-- Carousel wrapper -->
+    <div class="carousel-inner">
+        <!-- Single item -->
+        <div class="carousel-item active">
+            <img src="{{ campaign.image }}"
+                 class="d-block w-100"
+                 alt="{{ campaign.name }} image"/>
+            {#            <div class="carousel-caption d-none d-md-block">#}
+            {#                <h3 class="text-uppercase">Our work</h3>#}
+            {#                <p class="text-uppercase custom-title">Campaigns</p>#}
+            {#            </div>#}
+        </div>
+    </div>
+    <!-- Carousel wrapper -->
+
+    <section class="mv-section">
+        <div class="container">
+            <div class="row">
+                <div class="maintitle">
+                    <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
+                        data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        <strong>{{ campaign.name }}</strong></h2>
+                    <hr class="hr hr-blurry"/>
+                </div>
+                <div class="lead">
+                    <p>{{ campaign.resume }}</p>
+                    <p>Description: {{ campaign.description }}</p>
+                    <p>Motivation: {{ campaign.motivation }}</p>
+                    <p>Type: {{ campaign.type }}</p>
+                    <a href="{{ campaign.website }}">Visit Website</a>
+                    <p>Duration: {{ campaign.duration }}</p>
+                    {% if campaign.place %}
+                        <p>Place: {{ campaign.place }}</p>
+                    {% endif %}
+                    {% if request.user.is_authenticated %}
+                        <a href="{% url 'participate-campaign' campaign.id %}" class="participate-btn">Participate</a>
+                    {% else %}
+                        <a href="{% url 'login-page' %}" class="participate-btn">Login for participation</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
 
 
+{#                   <div class="accordion custom-accordion">#}
+{#{#                    {% for q_and_a in textile_for_future_q_and_a %}#}
+{#{#                        <div class="accordion-item">#}
+{#{#                            <h4 class="accordion-header" id="{{ q_and_a.pk }}Heading">#}
+{#{#                                <button class="accordion-button collapsed" type="button"#}
+{#{#                                        data-bs-toggle="collapse"#}
+{#{#                                        data-bs-target="#{{ q_and_a.pk }}Collapse" aria-expanded="false"#}
+{#{#                                        aria-controls="{{ q_and_a.pk }}Collapse">#}
+{#{#                                    <strong>{{ q_and_a.question}}</strong>#}
+{#{#                                </button>#}
+{#{#                            </h4>#}
+{#{#                            <div id="{{ q_and_a.pk }}Collapse" class="accordion-collapse collapse"#}
+{#{#                                 aria-labelledby="{{ q_and_a.pk }}Heading"#}
+{#{#                                 data-bs-parent="#qnaAccordion">#}
+{#{#                                <div class="accordion-body ">#}
+{#{#                                    <p class="lead">{{ q_and_a.answer }}</p>#}
+{#{#                                </div>#}
+{#{#                            </div>#}
+{#{#                        </div>#}
+{#{#                    {% endfor %}#}
+{#{#                </div>#}
 
 
 

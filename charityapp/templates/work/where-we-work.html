@@ -1,16 +1,126 @@
 {% extends 'base/base.html' %}
+{% load static %}
 {% block main_content %}
-    <section class="first-section">
+    <!-- Carousel wrapper -->
+    <div class="carousel-inner">
+        <!-- Single item -->
+        <div class="carousel-item active">
+            <img src="https://images.unsplash.com/photo-1498354178607-a79df2916198?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1976&q=80"
+                 class="d-block w-100"
+                 alt="Sunset Over the City"/>
+            <div class="carousel-caption d-none d-md-block">
+                <h3 class="text-uppercase">Our work</h3>
+                <p class="text-uppercase custom-title">Where we work</p>
+            </div>
+        </div>
+    </div>
+    <!-- Carousel wrapper -->
+
+    <hr class="hr hr-blurry"/>
+
+    <section class="mv-section">
         <div class="container">
-            <p>
-                In 2022, when the idea of clubs for the future was born, 10 clubs were founded in different cities in
-                Bulgaria.
-                Each club works mainly on the territory of its city, but we stay connected with the other clubs and help
-                each
-                other all the time.
-            </p>
-            <h3>Clubs in different parts of the country:</h3>
+            <div class="row">
+                <div class="maintitle">
+                    <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
+                        data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        <span class="lighter">Starting from</span><strong> Sofia</strong></h2>
+                    <hr class="hr hr-blurry"/>
+                    <p class="lead">
+                        Caps for Future began its remarkable journey in Sofia, the heart of Bulgaria. It all started
+                        with a passionate group of individuals who believed in making a difference for premature babies
+                        and their families. The initial efforts in Sofia laid the foundation for the impactful campaign
+                        that would soon spread across the nation. From the very first collection of caps, we witnessed
+                        the power of unity and compassion, igniting a spark that continues to fuel our mission today.
+                        Throughout the years, our team in Sofia has worked tirelessly to improve neonatology departments
+                        and support premature babies in every possible way. The relentless dedication of our volunteers
+                        and donors has led to a significant positive change in the city, and we're proud to say that our
+                        efforts have touched countless lives.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
+
+    <hr class="hr hr-blurry"/>
+
+    <section class="mv-section">
+        <div class="container">
+            <div class="row">
+                <div class="maintitle">
+                    <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
+                        data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        <span class="lighter">Expanding to </span><strong>Plovdiv and Beyond</strong></h2>
+                    <hr class="hr hr-blurry"/>
+                    <p class="lead">
+                        As the impact of Caps for Future in Sofia grew, we knew it was time to share our mission with
+                        other cities in Bulgaria. Plovdiv became the next destination for our campaign, and the warm
+                        reception from the community was overwhelming. Plovdiv embraced our cause with open arms, and
+                        together, we continued our mission of providing hope and support to the littlest members of our
+                        society. Beyond Plovdiv, more cities across Bulgaria recognized the importance of our cause and
+                        joined our campaign. From bustling urban centers to serene towns, the movement for a brighter
+                        future spread like wildfire. Each new location brought fresh challenges and opportunities, but
+                        our unwavering commitment to our mission remained steadfast.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="hr hr-blurry"/>
+
+    <section class="mv-section">
+        <div class="container">
+            <div class="row">
+                <div class="maintitle">
+                    <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
+                        data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        <span class="lighter">'Clubs for Future' </span><strong>Across Bulgaria</strong>
+                    </h2>
+                    <hr class="hr hr-blurry"/>
+                    <p class="lead">
+                        In 2022, when the idea of clubs for the future was born, 10 clubs were founded in different
+                        cities in Bulgaria. Each club works mainly on the territory of its city, but we stay connected
+                        with the other clubs and help each other all the time. After that clubs have been established in
+                        more than 40 cities across Bulgaria. These clubs serve as beacons of hope and positive change,
+                        rallying communities together to support our noble cause. Each 'Club for Future' represents a
+                        hub of compassion, where like-minded individuals come together to create a lasting impact in
+                        their respective regions. Through these clubs, we've fostered a culture of giving and caring,
+                        inspiring countless volunteers to take part in various charitable initiatives. From supporting
+                        premature babies to championing causes related to nature and elderly care in the mountains, our
+                        clubs have become driving forces for change in their communities. As the 'Clubs for Future'
+                        network continues to grow, so does our collective ability to create a brighter future for
+                        Bulgaria. Each club's journey is unique, driven by local needs and aspirations, but all share
+                        the common goal of making a meaningful difference in the lives of those we touch. Together,
+                        through our campaigns and 'Clubs for Future,' we are weaving a tapestry of compassion and love,
+                        uniting hearts across Bulgaria for a better tomorrow. Our reach may be vast, but our impact is
+                        deeply personal, bringing smiles to the faces of children, families, and all those who benefit
+                        from the warmth of our care.
+                    </p>
+                    <p class="lead text-uppercase">Clubs in different parts of the country:</p>
+                </div>
+                <div class="row">
+                    <ul class="custom-list custom-lead-bl">
+                        <li class="fw-bold">Club for Future in Sofia</li>
+                        <li class="fw-bold">Club for Future in Plovdiv</li>
+                        <li class="fw-bold">Club for Future in Kyustendil</li>
+                        <li class="fw-bold">Club for Future in Blagoevgrad</li>
+                        <li class="fw-bold">Club for Future in Pernik</li>
+                        <li class="fw-bold">Club for Future in Stara Zagora</li>
+                        <li class="fw-bold">Club for Future in Burgas</li>
+                        <li class="fw-bold">Club for Future in Lqskovec</li>
+                        <li class="fw-bold">Club for Future in Shumen</li>
+                        <li class="fw-bold">Club for Future in Veliko Turnovo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
 {% endblock %}
 

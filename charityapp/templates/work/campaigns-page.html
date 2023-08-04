@@ -1,261 +1,279 @@
 {% extends 'base/base.html' %}
+{% load static %}
 {% block main_content %}
-    <section id="mission" class="section first-section">
-        <div class="container custom-container">
-            <div class="row">
-                <h2><span class="lighter">CAPS FOR FUTURE</span> CAMPAIGNS</h2>
-                <p class="lead text-justify">
-                    The values of Club for Future are its core. Without them, there is no way to successfully
-                    carry out the goals of the club. Get to know the values of "Club for the Future":
-                </p>
+    <!-- Carousel wrapper -->
+    <div class="carousel-inner">
+        <!-- Single item -->
+        <div class="carousel-item active">
+            <img src="{% static 'images/campaigns.jpg' %}"
+                 class="d-block w-100"
+                 alt="Sunset Over the City"/>
+            <div class="carousel-caption d-none d-md-block">
+                <h3 class="text-uppercase">Our work</h3>
+                <p class="text-uppercase custom-title">Campaigns</p>
+            </div>
+        </div>
+    </div>
+    <!-- Carousel wrapper -->
 
-                <div class="card-group">
-                    <div class="card">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This card has supporting text below as a natural lead-in to additional
-                                content.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This card has even longer content than the first to show that equal
-                                height action.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                    </div>
+    <hr class="hr hr-blurry"/>
+
+    <section class="mv-section">
+        <div class="container">
+            <div class="row">
+                <div class="maintitle">
+                    <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
+                        data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        <strong>Caps for Future </strong><span class="lighter">campaigns</span></h2>
+                    <hr class="hr hr-blurry"/>
+                    <p class="lead">
+                        "Caps for Future" campaigns are a powerful initiative that aims to collect plastic
+                        caps, rings, and handles of beverage bottles from all over Bulgaria. These plastic caps are then
+                        recycled into secondary raw materials, and with the funds generated, we purchase life-saving
+                        equipment like incubators for premature babies or children's neonatal ambulances. It's
+                        incredible to witness the impact of a small plastic cap in creating a big difference in the
+                        lives of our little ones.
+                    </p>
                 </div>
 
+                <div class="card-group">
+                    {% for campaign in caps_for_future_campaigns %}
+                        <div class="card">
+                            <img class="card-img-top" src="{{ campaign.image }}" alt="{{ campaign.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ campaign.name }}</h5>
+                                <p class="card-text">{{ campaign.resume }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Last updated 3 mins ago</small>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
 
-                <ul>
-                    <h2>What can we collect?</h2>
-                    <li>
-                        CAPS, RINGS AND HANDLES of beverage bottles:
-                        · Plastic bottles of mineral water
-                        · Plastic beer bottles
-                        · Plastic bottles of soft drinks
-                        · Plastic milk bottles
-                        · Plastic juice bottles
-                    </li>
-                    <li>CAPS AND DISPENSERS of plastic cartons of milk and juice</li>
-                    <li>LIDS (WHICH BEND) of jars suitable for food and drink storage
-                        They are collected separately from the caps, collected ONLY in Sofia and Kyustendil
-                    </li>
-                    <li>LIDS and/or BOXES of ice cream and other food products
-                        IF THEY ARE NUMBER 2 or 5
-                        They are collected separately from the caps, collected ONLY in Sofia and Kyustendil
-                    </li>
-                    <li> SPOONS (WHICH BEND) of infant formula</li>
-                    <li>CAPS of bottles of laundry, washing and cosmetic products:
-                        · Bottles of bath cosmetics
-                        · Bottles of detergents
-                        · Bottles of cleaning agents
-                        · Bottles with detergents
-                    </li>
-                    <li>BOTTLES of washing, washing and cosmetic products:
-                        · Bottles of bath cosmetics
-                        · Bottles of detergents
-                        · Bottles of cleaning agents
-                        · Bottles with detergents
-                    </li>
-                    <li>IF THEY ARE NUMBER 2 or 5
-                        They are collected separately from the caps, collected ONLY in Sofia and Kyustendil
-                        It is important to remove dispensers with metal parts!
-                        Metal parts damage the machines of the recyclers we work with!
-                    </li>
-                </ul>
-                <ul>
-                    <h2>What should we collect the caps in?</h2>
-                    <li>You can collect the caps in whatever you see fit.
-                        But during the campaigns, you would make it a lot easier for us if you carry your caps in thick
-                        garbage bags or burlap sacks. What do we do with them after that? Our volunteers reuse them when
-                        emptying the hearts of the Campaign.
-                        The use of cartons and paper bags creates problems as they tear easily and the caps are
-                        scattered in trucks and on job sites, especially when the weather is wet or raining. We also
-                        generate a lot of recyclable trash that we usually have nowhere to dispose of.
-                        Sending caps in thin plastic bags and bags also complicates the process, as they tear easily and
-                        the caps are scattered in trucks and on job sites.
-                        Most of you think that the easiest way to convey the caps is in large bottles. This is not a
-                        problem in most cases, but a large number of recyclers want clean raw material, which
-                        necessitates the cutting of bottles by campaign volunteers and pouring the caps into big bags.
-                        The problems that arise when the caps are collected in large bottles are:
-                        · during cutting, the caps are scattered on the work areas
-                        · a huge amount of plastic is collected, which we currently do not collect (except in Sofia and
-                        Plovdiv)
-                        · it is necessary to look for yellow bins for recycling
-                        · additional volunteers are needed to cut
-                        So we will be grateful if you make our work easier!
-                    </li>
-                </ul>
-                <ul>
-                    <h2>What do we not collect!</h2>
-                    <li> We have written a lot about this topic, but every campaign has surprises. Sometimes people are
-                        very creative and in their desire to help us make our work many times more difficult.
-                        It is easiest to collect only what is described above.
-                        Please do not collect together with the caps:
-                        · metal caps
-                        · batteries
-                        · any small and large plastic objects
-                        · dirty dishes from food
-                        · needles and syringes
-                        · food
-                        · and other
-                        This way you protect not only the machines of the recyclers, but also the health of the
-                        volunteers. This allows us to do the important stuff (like collecting and loading the caps)
-                        during the campaigns!
-                    </li>
-                </ul>
+                <div class="accordion custom-accordion">
+                    {% for faq in caps_for_future_faq %}
+                        <div class="accordion-item">
+                            <h4 class="accordion-header" id="heading{{ faq.pk }}c">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse{{ faq.pk }}c" aria-expanded="false"
+                                        aria-controls="collapse{{ faq.pk }}c">
+                                    {{ faq.question }}
+                                </button>
+                            </h4>
+                            <div id="collapse{{ faq.pk }}c" class="accordion-collapse collapse"
+                                 aria-labelledby="heading{{ faq.pk }}c"
+                                 data-bs-parent="#accordionExample{{ faq.pk }}c">
+                                <div class="accordion-body lead">
+                                    {{ faq.answer }}
+                                </div>
+                                {% if faq.important %}
+                                    <p><strong>***Important:</strong>{{ faq.important }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="maintitle">
+                    <p class="lead">
+                        Thank you for joining us in the "Caps for Future" campaign and making a positive impact on the
+                        environment and the well-being of our little ones!
+                    </p>
+                </div>
             </div>
         </div>
     </section>
-    <section id="mission" class="section first-section">
-        <div class="container custom-container">
-            <div class="row">
-                <h2><span class="lighter">RECYCLING FOR FUTURE</span> CAMPAIGNS</h2>
-                <p class="lead text-justify">
-                    The values of Club for Future are its core. Without them, there is no way to successfully
-                    carry out the goals of the club. Get to know the values of "Club for the Future":
-                </p>
 
-                <div class="card-deck">
-                    <div class="card">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">RECYCLING FOR FUTURE VOL.001</h5>
-                            <div><i>Date: 14-05-2023</i></div>
-                            <div><i>Hours: 10:000-14:00</i></div>
-                            <div><i>Place: Kaufland</i></div>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Comming up</small>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">RECYCLING FOR FUTURE VOL.001</h5>
-                            <p class="card-text">This card has supporting text below as a natural lead-in to additional
-                                content.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Finished</small>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">RECYCLING FOR FUTURE VOL.001</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This card has even longer content than the first to show that equal
-                                height action.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Finished</small>
-                        </div>
-                    </div>
+    <hr class="hr hr-blurry"/>
+
+    <section class="mv-section">
+        <div class="container">
+            <div class="row">
+                <div class="maintitle">
+                    <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
+                        data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        <strong>Recycling for Future </strong><span class="lighter">campaigns</span></h2>
+                    <hr class="hr hr-blurry"/>
+                    <p class="lead">
+                        At Club for Future, we are committed to making a positive impact on the environment while
+                        supporting our charitable causes. Our "Recycling for Future" campaigns are an integral part of
+                        our mission, aiming to promote responsible waste management and sustainability. Through these
+                        campaigns, we harness the power of recycling to not only protect our planet but also raise vital
+                        funds for our charitable initiatives.
+                    </p>
                 </div>
 
+                <div class="card-group">
+                    {% for campaign in recycling_for_future_campaigns %}
+                        <div class="card">
+                            <img class="card-img-top" src="{{ campaign.image }}" alt="{{ campaign.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ campaign.name }}</h5>
+                                <p class="card-text">{{ campaign.resume }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Last updated 3 mins ago</small>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
 
-                <ul>
-                    <h2>What can we collect?</h2>
-                    <li>
-                        CAPS, RINGS AND HANDLES of beverage bottles:
-                        · Plastic bottles of mineral water
-                        · Plastic beer bottles
-                        · Plastic bottles of soft drinks
-                        · Plastic milk bottles
-                        · Plastic juice bottles
-                    </li>
-                    <li>CAPS AND DISPENSERS of plastic cartons of milk and juice</li>
-                    <li>LIDS (WHICH BEND) of jars suitable for food and drink storage
-                        They are collected separately from the caps, collected ONLY in Sofia and Kyustendil
-                    </li>
-                    <li>LIDS and/or BOXES of ice cream and other food products
-                        IF THEY ARE NUMBER 2 or 5
-                        They are collected separately from the caps, collected ONLY in Sofia and Kyustendil
-                    </li>
-                    <li> SPOONS (WHICH BEND) of infant formula</li>
-                    <li>CAPS of bottles of laundry, washing and cosmetic products:
-                        · Bottles of bath cosmetics
-                        · Bottles of detergents
-                        · Bottles of cleaning agents
-                        · Bottles with detergents
-                    </li>
-                    <li>BOTTLES of washing, washing and cosmetic products:
-                        · Bottles of bath cosmetics
-                        · Bottles of detergents
-                        · Bottles of cleaning agents
-                        · Bottles with detergents
-                    </li>
-                    <li>IF THEY ARE NUMBER 2 or 5
-                        They are collected separately from the caps, collected ONLY in Sofia and Kyustendil
-                        It is important to remove dispensers with metal parts!
-                        Metal parts damage the machines of the recyclers we work with!
-                    </li>
-                </ul>
-                <ul>
-                    <h2>What should we collect the caps in?</h2>
-                    <li>You can collect the caps in whatever you see fit.
-                        But during the campaigns, you would make it a lot easier for us if you carry your caps in thick
-                        garbage bags or burlap sacks. What do we do with them after that? Our volunteers reuse them when
-                        emptying the hearts of the Campaign.
-                        The use of cartons and paper bags creates problems as they tear easily and the caps are
-                        scattered in trucks and on job sites, especially when the weather is wet or raining. We also
-                        generate a lot of recyclable trash that we usually have nowhere to dispose of.
-                        Sending caps in thin plastic bags and bags also complicates the process, as they tear easily and
-                        the caps are scattered in trucks and on job sites.
-                        Most of you think that the easiest way to convey the caps is in large bottles. This is not a
-                        problem in most cases, but a large number of recyclers want clean raw material, which
-                        necessitates the cutting of bottles by campaign volunteers and pouring the caps into big bags.
-                        The problems that arise when the caps are collected in large bottles are:
-                        · during cutting, the caps are scattered on the work areas
-                        · a huge amount of plastic is collected, which we currently do not collect (except in Sofia and
-                        Plovdiv)
-                        · it is necessary to look for yellow bins for recycling
-                        · additional volunteers are needed to cut
-                        So we will be grateful if you make our work easier!
-                    </li>
-                </ul>
-                <ul>
-                    <h2>What do we not collect!</h2>
-                    <li> We have written a lot about this topic, but every campaign has surprises. Sometimes people are
-                        very creative and in their desire to help us make our work many times more difficult.
-                        It is easiest to collect only what is described above.
-                        Please do not collect together with the caps:
-                        · metal caps
-                        · batteries
-                        · any small and large plastic objects
-                        · dirty dishes from food
-                        · needles and syringes
-                        · food
-                        · and other
-                        This way you protect not only the machines of the recyclers, but also the health of the
-                        volunteers. This allows us to do the important stuff (like collecting and loading the caps)
-                        during the campaigns!
-                    </li>
-                </ul>
+                <div class="accordion custom-accordion">
+                    {% for faq in recycling_for_future_faq %}
+                        <div class="accordion-item">
+                            <h4 class="accordion-header" id="heading{{ faq.pk }}r">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse{{ faq.pk }}r" aria-expanded="false"
+                                        aria-controls="collapse{{ faq.pk }}r">
+                                    {{ faq.question }}
+                                </button>
+                            </h4>
+                            <div id="collapse{{ faq.pk }}r" class="accordion-collapse collapse"
+                                 aria-labelledby="heading{{ faq.pk }}r"
+                                 data-bs-parent="#accordionExample{{ faq.pk }}r">
+                                <div class="accordion-body lead">
+                                    {{ faq.answer }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="hr hr-blurry"/>
+
+    <section class="mv-section">
+        <div class="container">
+            <div class="row">
+
+                <div class="maintitle">
+                    <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
+                        data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        <strong>Textile for Future </strong><span class="lighter">campaigns</span></h2>
+                    <hr class="hr hr-blurry"/>
+                    <p class="lead">
+                        Through our Recycling for Future Campaigns, we aim to create a sustainable future by collecting
+                        recycled garbage and giving it new life. With a strong commitment to environmental conservation,
+                        we collect various recyclable items such as glass jars, including children's purees and bottles,
+                        as well as cans of infant formula and dog/cat food. Additionally, we focus on PET bottles,
+                        specifically those from soft drinks and beer, marked with "ALU," mainly sourced from mineral
+                        water, non-alcoholic beverages, and beer. The collected recyclables are sent for responsible
+                        recycling and converted into valuable resources. By doing so, we not only contribute to reducing
+                        waste and pollution but also generate funds that enable us to make a tangible difference in our
+                        communities. With the earnings from the Recycling for Future Campaigns, we invest in purchasing
+                        bins for our cities. These bins play a vital role in promoting proper waste disposal and
+                        encouraging more individuals to participate in recycling efforts.
+                    </p>
+                </div>
+
+                <div class="card-group">
+                    {% for campaign in textile_for_future_campaigns %}
+                        <div class="card">
+                            <img class="card-img-top" src="{{ campaign.image }}" alt="{{ campaign.name }}">
+                            <div class="card-body">
+                                <a href="{% url 'campaign-details-page' pk=campaign.pk %}"><h5
+                                        class="card-title">{{ campaign.name }}</h5></a>
+                                <p class="card-text">{{ campaign.resume }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Last updated 3 mins ago</small>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="accordion custom-accordion">
+                    {% for faq in textile_for_future_faq %}
+                        <div class="accordion-item">
+                            <h4 class="accordion-header" id="heading{{ faq.pk }}t">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse{{ faq.pk }}t" aria-expanded="false"
+                                        aria-controls="collapse{{ faq.pk }}t">
+                                    {{ faq.question }}
+                                </button>
+                            </h4>
+                            <div id="collapse{{ faq.pk }}t" class="accordion-collapse collapse"
+                                 aria-labelledby="heading{{ faq.pk }}t"
+                                 data-bs-parent="#accordionExample{{ faq.pk }}t">
+                                <div class="accordion-body lead">
+                                    {{ faq.answer }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <hr class="hr hr-blurry"/>
+
+    <section class="mv-section">
+        <div class="container">
+            <div class="row">
+
+                <div class="maintitle">
+                    <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
+                        data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        <strong>Blood donation for Future </strong><span class="lighter">campaigns</span></h2>
+                    <hr class="hr hr-blurry"/>
+                    <p class="lead">
+                        This is a transformative initiative that strives to make a life-saving impact on our community!
+                        With boundless enthusiasm and unwavering dedication, we champion the noble cause of free blood
+                        donation, providing a beacon of hope for those in need.
+                    </p>
+                    <p class="lead">
+                        Our campaign extends its heartfelt invitation to all healthy individuals aged 18 to 60,
+                        empowering them to become heroes in their own right. By giving the gift of life through blood
+                        donation, you have the power to touch countless lives, offering a lifeline to patients battling
+                        acute blood loss, severe burns, and various life-threatening conditions.
+                    </p>
+                </div>
+
+                <div class="card-group">
+                    {% for campaign in blood_donation_for_future_campaigns %}
+                        <div class="card">
+                            <img class="card-img-top" src="{{ campaign.image }}" alt="{{ campaign.name }}">
+                            <div class="card-body">
+                                <a href="{% url 'campaign-details-page' pk=campaign.pk %}"><h5
+                                        class="card-title">{{ campaign.name }}</h5></a>
+                                <p class="card-text">{{ campaign.resume }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Last updated 3 mins ago</small>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="accordion custom-accordion">
+                    {% for faq in blood_donation_for_future_faq %}
+                        <div class="accordion-item">
+                            <h4 class="accordion-header" id="heading{{ faq.pk }}b">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse{{ faq.pk }}b" aria-expanded="false"
+                                        aria-controls="collapse{{ faq.pk }}b">
+                                    {{ faq.question }}
+                                </button>
+                            </h4>
+                            <div id="collapse{{ faq.pk }}b" class="accordion-collapse collapse"
+                                 aria-labelledby="heading{{ faq.pk }}b"
+                                 data-bs-parent="#accordionExample{{ faq.pk }}b">
+                                <div class="accordion-body lead">
+                                    {{ faq.answer }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
             </div>
         </div>
     </section>

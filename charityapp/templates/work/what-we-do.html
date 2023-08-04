@@ -1,84 +1,207 @@
 {% extends 'base/base.html' %}
+{% load static %}
 
 {% block main_content %}
-    <section id="mission" class="section custom-section">
+    <!-- Carousel wrapper -->
+    <div class="carousel-inner">
+        <!-- Single item -->
+        <div class="carousel-item active">
+            <img src="{% static 'images/what_we_do.jpg' %}"
+                 class="d-block w-100"
+                 alt="Sunset Over the City"/>
+            <div class="carousel-caption d-none d-md-block">
+                <h3 class="text-uppercase">Our work</h3>
+                <p class="text-uppercase custom-title">What we do</p>
+            </div>
+        </div>
+    </div>
+    <!-- Carousel wrapper -->
+    <hr class="hr hr-blurry"/>
+    <section class="mv-section">
         <div class="container">
             <div class="row">
-                <h2><span class="lighter">WE ARE LOOKING FOR WAYS TO MAKE/span> THE SYSTEM WORK</h2>
-                <p class="lead text-justify">
-                    TWe work for free and voluntarily, driven by the ambition to improve, if not the world, then at
-                    least the country in which we live.
-                    We have mandatory campaigns throughout the year, and the rest we come up with according to the needs
-                    of society.
-                    We are trying to fill those basic needs that have long been unmet in our society.
-                </p>
+                <div class="maintitle">
+                    <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
+                        data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        <span class="lighter">Looking for ways</span><strong> to make the system work</strong></h2>
+                    <hr class="hr hr-blurry"/>
+                    <p class="lead">We work for free and voluntarily, driven by the ambition to improve, if not the
+                        world, then at least the country in which we live. We have mandatory campaigns throughout the
+                        year, and the rest we come up with according to the needs of society. We are trying to fill
+                        those basic needs that have long been unmet in our society. Through dedicated efforts and a
+                        compassionate approach, we are committed to making a difference in the lives of those in need
+                        and contributing to a greener, more sustainable world. Our work is directed in several aspects.
+                        Here's an overview of our key initiatives:
+                    </p>
+                </div>
             </div>
         </div>
     </section>
 
-    <div class="row">
-        <p>
-            Our work is directed in several aspects
-        </p>
-        <ul class="goal-pillars">
-            <li>
-                <a href="/initiatives/climate">
-                    <img alt=""
-                         src="https://images.unsplash.com/photo-1560306580-9e204fe45f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80">
-                    <h4>Help for the little ones</h4>
-                    <p>The idea was born precisely to be useful to the little ones</p>
-                </a>
-            </li>
+    <hr class="hr hr-blurry"/>
 
-            <li>
-                <a href="/initiatives/food">
-                    <img alt=""
-                         src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1574&q=80">
-                    <h4>Nature</h4>
-                    <p>Double net food availability; freeze its footprint</p>
-                </a>
-            </li>
+    <section class="mv-section">
+        <div class="container">
+            <div class="row">
+                <div class="row text-center">
+                    <div class="d-flex justify-content-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1560306580-9e204fe45f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                             class="rounded-circle shadow-1-strong" width="200" height="200"/>
+                    </div>
+                    <h3 class="text-uppercase"><span class="lighter">Helping the </span><strong>Little Ones</strong>
+                    </h3>
+                    <p class="lead">
+                        Our organization recognizes the vulnerability of premature babies and the challenges faced by
+                        neonatology departments. We strive to make a difference by providing much-needed support to
+                        neonatology units. This includes donating crucial equipment, such as incubators and other
+                        specialized tools, to ensure that premature babies receive the best possible care.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <li class="goal-pillar goal-pillar--forests" data-track-event="Homepages Show|Goal Pillars Click|Forests"
-                style="min-height: 243px;">
-                <a href="/initiatives/forests">
-                    <img alt=""
-                         src="https://images.unsplash.com/photo-1621624558935-7795c77d2194?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1631&q=80">
-                    <h4>Help for the elderly in the mountains</h4>
-                    <p>Conserve the world's most important forests</p>
-                </a>
-            </li>
+    <hr class="hr hr-blurry"/>
 
-            <li class="goal-pillar goal-pillar--fresh-water"
-                data-track-event="Homepages Show|Goal Pillars Click|Fresh Water" style="min-height: 243px;">
-                <a href="/initiatives/freshwater">
-                    <img alt=""
-                         src="https://images.unsplash.com/photo-1622115297822-a3798fdbe1f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80">
-                    <h4>Training children in first aid</h4>
-                    <p>Secure water for people and nature</p>
-                </a>
-            </li>
+    <section class="mv-section">
+        <div class="container">
+            <div class="row">
+                <div class="row text-center">
+                    <div class="d-flex justify-content-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1574&q=80"
+                             class="rounded-circle shadow-1-strong" width="200" height="200"/>
+                    </div>
+                    <h3 class="text-uppercase">
+                        <strong>Protecting Nature</strong><span class="lighter"> - Our Shared Home</span>
+                    </h3>
+                    <p class="lead">
+                        Environmental preservation is a core pillar of our organization's mission. We actively champion
+                        initiatives to safeguard the environment, which is our collective responsibility. From tree
+                        planting campaigns to clean-up drives in local communities, we work tirelessly to protect and
+                        conserve nature for the benefit of future generations.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <li class="goal-pillar goal-pillar--oceans" data-track-event="Homepages Show|Goal Pillars Click|Oceans"
-                style="min-height: 243px;">
-                <a href="/initiatives/oceans">
-                    <img alt=""
-                         src="https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80">
-                    <h4>Separate waste collection</h4>
-                    <p>Safeguard healthy oceans and marine livelihoods</p>
-                </a>
-            </li>
+    <hr class="hr hr-blurry"/>
 
-            <li class="goal-pillar goal-pillar--wildlife" data-track-event="Homepages Show|Goal Pillars Click|Wildlife"
-                style="min-height: 243px;">
-                <a href="/initiatives/wildlife-conservation">
-                    <img alt=""
-                         src="/assets/content/goal-pillar-wildlife-d01129a1821cd69727fefe773724a92e6b57b5c1fc627fcef5f37442cd2b98d5.jpg">
-                    <h4>Wildlife</h4>
-                    <p>Conserve threatened wildlife and wild places to sustain life on Earth</p>
-                </a></li>
-        </ul>
-    </div>
+    <section class="mv-section">
+        <div class="container">
+            <div class="row">
+                <div class="row text-center">
+                    <div class="d-flex justify-content-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1621624558935-7795c77d2194?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1631&q=80"
+                             class="rounded-circle shadow-1-strong" width="200" height="200"/>
+                    </div>
+                    <h3 class="text-uppercase">
+                        <span class="lighter">Providing</span><strong> Mountain Off-Road Ambulances</strong>
+                    </h3>
+                    <p class="lead">
+                        We understand the unique challenges faced by communities in remote mountainous areas. Our
+                        organization is dedicated to ensuring swift and reliable emergency medical services by providing
+                        mountain off-road ambulances. These specialized ambulances are equipped to navigate difficult
+                        terrains, reaching those in need during critical situations.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="hr hr-blurry"/>
+
+    <section class="mv-section">
+        <div class="container">
+            <div class="row">
+                <div class="row text-center">
+                    <div class="d-flex justify-content-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1622115297822-a3798fdbe1f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
+                             class="rounded-circle shadow-1-strong" width="200" height="200"/>
+                    </div>
+                    <h3 class="text-uppercase">
+                        <span class="lighter">Empowering the Next Generation -</span><strong> First Aid Training for
+                        Children</strong>
+                    </h3>
+                    <p class="lead">
+                        We believe that empowering children with essential life skills is vital to their personal growth
+                        and community well-being. Our organization offers comprehensive first aid training programs
+                        designed specifically for young minds, preparing them to respond effectively in emergencies.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="hr hr-blurry"/>
+
+    <section class="mv-section">
+        <div class="container">
+            <div class="row">
+                <div class="row text-center">
+                    <div class="d-flex justify-content-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                             class="rounded-circle shadow-1-strong" width="200" height="200"/>
+                    </div>
+                    <h3 class="text-uppercase">
+                        <span class="lighter">Championing </span><strong>Separate Waste Collection</strong>
+                    </h3>
+                    <p class="lead">
+                        Responsible waste management is a cornerstone of a healthier environment. We actively advocate
+                        and implement separate waste collection systems, inspiring communities to embrace recycling and
+                        eco-friendly practices.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="hr hr-blurry"/>
+
+    <section class="mv-section">
+        <div class="container">
+            <div class="row">
+                <div class="row text-center">
+                    <div class="d-flex justify-content-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1607296393394-6e25d0fc15cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1718&q=80"
+                             class="rounded-circle shadow-1-strong" width="200" height="200"/>
+                    </div>
+                    <h3 class="text-uppercase">
+                        <strong>Supporting </strong><span class="lighter">Local Communities </span>
+                    </h3>
+                    <p class="lead">
+                        At Club for Future, we prioritize collaboration with local partners and residents to address
+                        specific community needs. By working closely with the communities we serve, we ensure that our
+                        efforts have a meaningful and sustainable impact.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="hr hr-blurry"/>
+
+    <section class="mv-section">
+        <div class="container">
+            <div class="row">
+                <div class="row text-center">
+                    <div class="d-flex justify-content-center mb-4">
+                        <img src="{% static 'images/volunteers.jpg' %}"
+                             class="rounded-circle shadow-1-strong" width="200" height="200"/>
+                    </div>
+                    <h3 class="text-uppercase">
+                        <span class="lighter">Inspiring </span><strong>Volunteerism</strong>
+                    </h3>
+                    <p class="lead">
+                        We believe in the power of collective action. Volunteerism is at the heart of our organization.
+                        Through engaging volunteer opportunities and community projects, we inspire individuals to
+                        actively participate in positive change.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
 {% endblock %}
 

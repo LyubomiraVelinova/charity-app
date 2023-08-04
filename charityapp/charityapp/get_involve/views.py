@@ -1,9 +1,13 @@
+from django import forms
 from django.conf import settings
+from django.contrib.auth import login
 from django.core.mail import send_mail
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic as views
 
+from charityapp.accounts.forms import RegisterUserForm
+from charityapp.accounts.models import AppUser, UserType
 from charityapp.get_involve.forms import ContactForm
 
 
@@ -12,7 +16,7 @@ def volunteers(request):
 
 
 def ways_to_help(request):
-    return render(request, 'get-involved/how-to-help-page.html')
+    return render(request, 'get-involved/../../templates/templ.html')
 
 
 class ContactThankYouView(views.TemplateView):
@@ -43,3 +47,6 @@ class ContactView(views.FormView):
             fail_silently=False,
         )
         return super().form_valid(form)
+
+
+

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import generic as views
 
-from charityapp.about.models import People
+from charityapp.about.models import People, Timeline
 
 
 class WhoWeAreListView(views.ListView):
@@ -13,5 +13,6 @@ class MissionAndValuesView(views.TemplateView):
     template_name = 'about/mission-and-values-page.html'
 
 
-class HistoryView(views.TemplateView):
+class HistoryView(views.ListView):
     template_name = 'about/history-page.html'
+    model = Timeline

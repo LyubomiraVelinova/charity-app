@@ -1,16 +1,13 @@
-// SEARCH
-// NOT WORKING
-function toggleSearchInput() {
-    let searchInput = document.getElementById('searchInput');
-    searchInput.classList.toggle('show');
-}
-
-function toggleAdditionalText() {
-    let additionalText = document.getElementById('additionalText');
-    let moreLabel = document.getElementById('moreLabel');
+function toggleAdditionalText(linkElement, event) {
+    event.preventDefault(); // Prevent the default behavior of the link
+    let cardBody = linkElement.parentNode; // Get the parent node of the link (card-body)
+    let shortText = cardBody.querySelector('.short-text');
+    let additionalText = cardBody.querySelector('.additional-text');
+    let moreLabel = cardBody.querySelector('.more-label');
 
     additionalText.classList.toggle('hidden');
-    moreLabel.textContent = additionalText.classList.contains('hidden') ? 'More' : 'Less';
+    shortText.classList.toggle('hidden');
+    moreLabel.textContent = additionalText.classList.contains('hidden') ? '...Learn More' : 'Less';
 }
 
-
+//HERE

@@ -13,7 +13,6 @@ class People(models.Model):
         validators=(
             validators.MinLengthValidator(MIN_LEN_NAME),
         ),
-        # Required field
         null=False,
         blank=False,
     )
@@ -32,8 +31,9 @@ class People(models.Model):
     )
 
     profile_picture = models.URLField(
-        null=True,
-        blank=True,
+        null=False,
+        blank=False,
+        default='static/images/anonymous_profile.jpg',
     )
 
     description = models.TextField(
@@ -45,15 +45,29 @@ class People(models.Model):
     def full_name(self):
         return f"{self.first_name} {self.last_name}"
 
-    def get_first_three_sentences(self):
-        sentences = self.description.split('.')
-        first_three = '.'.join(sentences[:3])
-        return first_three
+    def get_first_sentence(self):
+        sentences = self.description.split(' ')
+        first_thirty_words = ' '.join(sentences[:20])
+        return first_thirty_words
 
 
-class MissionAndValues(models.Model):
-    pass
+class Timeline(models.Model):
+    MAX_LEN_TITLE = 100
 
-
-class History(models.Model):
-    pass
+    event_date = models.DateField(
+        null=False,
+        blank=False,
+    )
+    event_title = models.CharField(
+        max_length=MAX_LEN_TITLE,
+        null=False,
+        blank=False,
+    )
+    event_summary = models.TextField(
+        null=False,
+        blank=False,
+    )
+    event_image = models.URLField(
+        null=True,
+        blank=True,
+    )

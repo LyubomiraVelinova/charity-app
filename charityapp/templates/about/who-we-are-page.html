@@ -1,39 +1,153 @@
 {% extends 'base/base.html' %}
+{% load static %}
 
 {% block main_content %}
-    <section id="people" class="section custom-section first-section">
+
+    <!-- Carousel wrapper -->
+    <div class="carousel-inner">
+        <!-- Single item -->
+        <div class="carousel-item active">
+            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80"
+                 class="d-block w-100"
+                 alt="Sunset Over the City"/>
+            <div class="carousel-caption d-none d-md-block">
+                <h3 class="text-uppercase">About us</h3>
+                <p class="text-uppercase custom-title">Who we are</p>
+            </div>
+        </div>
+    </div>
+    <!-- Carousel wrapper -->
+
+    <hr class="hr hr-blurry"/>
+
+    <section class="mv-section">
         <div class="container">
             <div class="row">
-                <h2 class="wow bounceInDown"><span
-                        class="lighter">OUR</span> PEOPLE</h2>
-                <p class="lead text-justify">
-                    At this stage, the Club has 15 members. Each of us tries to be useful and
-                    contribute something to develop and ennoble the environment surrounding us. We believe that in order
-                    to be truly strong, it is important to know each other's strengths, which is why we want to share
-                    them
-                    with you.
-                </p>
-                <p><a href="#" class="btn btn-default btn-lg wow fadeInLeft" role="button"> JOIN US </a></p>
-            </div>
+                <div class="maintitle">
+                    <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
+                        data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        <strong>Our people </strong><span class="lighter">qualities</span></h2>
+                    <hr class="hr hr-blurry"/>
+                    <p class="lead">
+                        We take immense pride in the dedication, commitment, and diversity of our members who are the
+                        driving force behind our charity organization. Their passion for making a positive impact in the
+                        community is truly inspiring and fuels our collective efforts to bring about meaningful change.
+                    </p>
+                </div>
 
+                <div class="row">
+                    <ul class="custom-list custom-lead-bl">
+                        <li>
+                            <div class="ms-2">
+                                <div class="fw-bold">Dedication:</div>
+                                Our members exemplify unwavering dedication to our mission. They selflessly devote their
+                                time, talents, and resources to support our initiatives, going above and beyond to make
+                                a difference in the lives of those we serve. Their commitment to the cause is evident in
+                                every project we undertake.
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ms-2">
+                                <div class="fw-bold">Commitment:</div>
+                                At the heart of our organization, you'll find individuals who are deeply committed to
+                                the well-being of our local community. They understand that lasting change requires
+                                perseverance and remain steadfast in their pursuit of a better future for all. Their
+                                commitment resonates in the long-term impact of our programs.
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ms-2">
+                                <div class="fw-bold">Passion:</div>
+                                The passion of our members is the driving force behind our work. Their genuine care for
+                                the cause and the people we serve fuels our collective determination to create a
+                                positive and lasting impact. Their enthusiasm is contagious and motivates others to join
+                                our efforts.
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ms-2">
+                                <div class="fw-bold">Collaboration:</div>
+                                Our members embrace collaboration and understand that collective action leads to greater
+                                results. They actively engage with community partners, volunteers, and donors to
+                                leverage resources, expertise, and support. Together, we build strong alliances to
+                                tackle challenges collaboratively.
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ms-2">
+                                <div class="fw-bold">Stories of Impact:</div>
+                                Each member has a unique story of the impact they have made. From transforming lives
+                                through education and healthcare to preserving nature and supporting vulnerable
+                                populations, our members' stories serve as powerful testimonials of the change we create
+                                together.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    {% if not user.is_authenticated %}
+        <hr class="hr hr-blurry"/>
+        <section class="mv-section">
+            <div class="container">
+                <div class="maintitle">
+                    <p class="lead">
+                        Everyday we celebrate the diverse, dedicated, and passionate individuals who form the backbone
+                        of our charity organization. Their unwavering commitment to improving the well-being of our
+                        community strengthens our resolve to continue striving for a brighter future for all. Join us in
+                        celebrating these remarkable individuals and their contributions to building a more
+                        compassionate and thriving world.
+                    </p>
+                    <div>
+                        <a class="nav-link" href="{% url 'register-page' %}">
+                            <button class="btn btn-block btn-secondary text-uppercase">Join us</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    <hr class="hr hr-blurry"/>
+
+    <section class="mv-section">
+        <div class="container">
+            <div class="row">
+                <div class="maintitle">
+                    <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
+                        data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        <strong>Meet us</strong></h2>
+                    <hr class="hr hr-blurry"/>
+                    <p class="lead">
+                        At this stage, the Club has 15 members. Each of us tries to be useful and contribute something
+                        to develop and ennoble the environment surrounding us. We believe that in order to be truly
+                        strong, it is important to know each other's strengths, which is why we want
+                        to share them with you.
+                    </p>
+                </div>
+            </div>
 
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 {% for person in people_list %}
                     <div class="col">
                         <div class="card h-100">
-                            <img src="{{ person.profile_picture }}" class="card-img-top"
-                                 alt="{{ person.full_name }} profile picture">
+                            <img src="{{ person.profile_picture }}" class="card-img-top img-fluid"
+                                 alt="{{ person.full_name }} profile picture"
+                                 style="height: 300px; overflow: hidden; object-fit: cover">
                             <div class="card-body">
-                                <h3 class="card-title">{{ person.full_name }}</h3>
-                                <h5 class="card-subtitle">{{ person.member_role }}</h5>
-                                {#                            NOT WORKING CORRECT - CANT HAVE EAQUALS IDS - CHANGE IT#}
-                                <p class="card-text">
-                                    {{ person.get_first_three_sentences }}
-                                    {% if person.description|length > person.get_first_three_sentences|length %}
-                                        <span id="additionalText"
-                                              class="additional-text hidden">{{ person.description }}</span>
-                                        <a href="#" onclick="toggleAdditionalText()" id="moreLink">...
-                                            <span id="moreLabel">More</span>
+                                <h3 class="card-title text-center">{{ person.full_name }}</h3>
+                                <h5 class="text-center"><i>{{ person.member_role }}</i></h5>
+                                <p class="card-text text-justify">
+                                    <span class="short-text">{{ person.get_first_sentence }}</span>
+                                    {% if person.description|length > person.get_first_sentence|length %}
+                                        <span class="additional-text hidden">{{ person.description }}</span>
+                                        <a href="#" onclick="toggleAdditionalText(this, event)" class="more-link">
+                                            <span class="more-label">...Learn More</span>
                                         </a>
                                     {% endif %}
                                 </p>
@@ -44,5 +158,8 @@
             </div>
         </div>
     </section>
-
 {% endblock %}
+
+
+
+

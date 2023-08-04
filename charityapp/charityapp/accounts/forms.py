@@ -15,7 +15,7 @@ class RegisterUserForm(auth_forms.UserCreationForm):
 
     class Meta:
         model = UserModel
-        fields = ('email', 'user_type')
+        fields = ('email', 'user_type', 'password1', 'password2')
 
 
 class CustomAuthenticationForm(auth_forms.AuthenticationForm):

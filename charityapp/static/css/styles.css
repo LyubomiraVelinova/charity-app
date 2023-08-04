@@ -174,10 +174,10 @@ a {
 }
 
 
-.accordion-button:not(.collapsed) {
-    background-color: var(--green);
+/*.accordion-button:not(.collapsed) {*/
+/*    background-color: var(--green);*/
 
-}
+/*}*/
 
 
 /* VOLUNTEERS PAGE */
@@ -226,7 +226,7 @@ a {
 }
 
 p.lead {
-    font-size: 24px;
+    /*font-size: 24px;*/
     font-weight: 300;
     text-align: justify;
 }
@@ -351,27 +351,29 @@ p.lead {
 /*        }*/
 
 
-.carousel-caption h5 {
-    color: var(--white);
+.carousel-caption p.custom-title {
+    /*color: var(--white);*/
     font-size: 60px;
 }
 
 /* Custom CSS to center the h5 element */
 .carousel-caption {
     position: absolute;
-    top: 65%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
 .carousel-inner {
-    max-height: 750px; /* Adjust the value as needed */
+    max-height: 750px;
 }
 
 .carousel-item img {
-    max-height: 750px; /* Adjust the value as needed */
-    object-fit: cover; /* Maintain aspect ratio and cover the container */
+    max-height: 750px;
+    object-fit: cover;
+    filter: brightness(70%);
 }
+
 hr {
     margin: 1rem 0;
 }
@@ -389,8 +391,8 @@ hr {
 }
 
 .mv-section {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .list-group-item {
@@ -400,14 +402,30 @@ hr {
     border: none;
 
 }
+
 ul.custom-list {
-   list-style-type: square;
+    list-style-type: square;
     margin-left: 50px;
 }
+
 ol.custom-list {
-   list-style-type: decimal;
+    list-style-type: decimal;
     margin-left: 50px;
 }
-h2.custom-size{
+
+h2.custom-size {
     font-size: 24px;
+}
+
+/*WHO ARE WE*/
+.hidden {
+    display: none;
+}
+
+
+/*Get involved*/
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
 }

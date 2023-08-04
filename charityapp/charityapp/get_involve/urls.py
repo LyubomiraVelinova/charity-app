@@ -9,5 +9,5 @@ urlpatterns = [
         path('', ContactView.as_view(), name='contact-us-page'),
         path('thank-you/', ContactThankYouView.as_view(), name='contact-thank-you-page'),
     ])
-         )
+         ),
 ]

@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import mixins as auth_mixins
 
+from charityapp.accounts.models import AppUser
 from charityapp.user_profiles.forms import VolunteerForm, SponsorForm, MemberForm
 from charityapp.user_profiles.models import VolunteerProfile, SponsorProfile, MemberProfile
 
