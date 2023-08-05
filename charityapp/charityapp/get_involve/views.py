@@ -1,18 +1,14 @@
-from django import forms
 from django.conf import settings
-from django.contrib.auth import login
 from django.core.mail import send_mail
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic as views
 
-from charityapp.accounts.forms import RegisterUserForm
-from charityapp.accounts.models import AppUser, UserType
 from charityapp.get_involve.forms import ContactForm
 
 
-def volunteers(request):
-    return render(request, 'get-involved/volunteers-page.html')
+class WaysToInvolve(views.TemplateView):
+    template_name = 'get-involved/ways-to-involve.html'
 
 
 def ways_to_help(request):
@@ -20,13 +16,13 @@ def ways_to_help(request):
 
 
 class ContactThankYouView(views.TemplateView):
-    template_name = 'get-involved/contact-thank-you-page.html'
+    template_name = 'confirmation/thanks/contact-thank-you-page.html'
 
 
 class ContactView(views.FormView):
     template_name = 'get-involved/contact-us-page.html'
     form_class = ContactForm
-    success_url = reverse_lazy('contact-thank-you-page')
+    success_url = reverse_lazy('contact-thank-you')
 
     def form_valid(self, form):
         # Get the form data

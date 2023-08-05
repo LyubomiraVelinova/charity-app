@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import views as auth_views, login
@@ -10,7 +11,7 @@ from charityapp.accounts.forms import RegisterUserForm, CustomAuthenticationForm
 class RegisterUserView(views.CreateView):
     template_name = 'accounts/register-page.html'
     form_class = RegisterUserForm
-    success_url = reverse_lazy('profile-edit-page')
+    success_url = reverse_lazy('profile-edit')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -36,7 +37,7 @@ class LogoutView(auth_mixins.LoginRequiredMixin, auth_views.LogoutView):
 
 class CustomPasswordChangeView(auth_mixins.LoginRequiredMixin, auth_views.PasswordChangeView):
     template_name = "accounts/password-change-page.html"
-    success_url = reverse_lazy("change-password-done-page")
+    success_url = reverse_lazy("change-password-done")
 
 
 class CustomPasswordChangeDoneView(auth_mixins.LoginRequiredMixin, auth_views.PasswordChangeDoneView):
@@ -46,7 +47,7 @@ class CustomPasswordChangeDoneView(auth_mixins.LoginRequiredMixin, auth_views.Pa
 class RegisterVolunteerView(views.CreateView):
     template_name = 'accounts/volunteer-register-page.html'
     form_class = RegisterUserForm
-    success_url = reverse_lazy('profile-edit-page')
+    success_url = reverse_lazy('profile-edit')
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
@@ -67,7 +68,7 @@ class RegisterVolunteerView(views.CreateView):
 class RegisterSponsorView(views.CreateView):
     template_name = 'accounts/sponsor-register-page.html'
     form_class = RegisterUserForm
-    success_url = reverse_lazy('profile-edit-page')
+    success_url = reverse_lazy('profile-edit')
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
@@ -86,7 +87,7 @@ class RegisterSponsorView(views.CreateView):
 class RegisterMemberView(views.CreateView):
     template_name = 'accounts/member-register-page.html'
     form_class = RegisterUserForm
-    success_url = reverse_lazy('profile-edit-page')
+    success_url = reverse_lazy('profile-edit')
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)

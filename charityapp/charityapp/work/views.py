@@ -1,22 +1,34 @@
+from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404, redirect
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 from django.views import generic as views
 
-from charityapp.work.models import CharityCampaigns
+from charityapp.settings import EMAIL_HOST_USER
+from charityapp.work.models import CharityCampaign, DonationCampaign
 
 UserModel = get_user_model()
 
 
-# Implement at least 10 web pages, where 5 of them should use class-based views.
+class WhatWeDoView(views.TemplateView):
+    template_name = 'work/what-we-do.html'
 
-class CampaignsView(views.TemplateView):
-    template_name = 'work/campaigns-page.html'
+
+class WhereWeWork(views.TemplateView):
+    template_name = 'work/where-we-work.html'
+
+
+class CharityCampaignsView(views.TemplateView):
+    template_name = 'work/charity-campaigns-page.html'
 
     def get_context_data(self, **kwargs):
-        caps_for_future_campaigns = CharityCampaigns.objects.filter(name__startswith='Caps for Future')
-        recycling_for_future_campaigns = CharityCampaigns.objects.filter(name__startswith='Recycling for Future')
-        textile_for_future_campaigns = CharityCampaigns.objects.filter(name__startswith='Textile for Future')
-        blood_donation_for_future_campaigns = CharityCampaigns.objects.filter(name__startswith='Blood donation for Future')
+        caps_for_future_campaigns = CharityCampaign.objects.filter(name__startswith='Caps for Future')
+        recycling_for_future_campaigns = CharityCampaign.objects.filter(name__startswith='Recycling for Future')
+        textile_for_future_campaigns = CharityCampaign.objects.filter(name__startswith='Textile for Future')
+        blood_donation_for_future_campaigns = CharityCampaign.objects.filter(
+            name__startswith='Blood donation for Future')
 
         caps_for_future_faq = self.get_unique_q_and_a(caps_for_future_campaigns)
         recycling_for_future_faq = self.get_unique_q_and_a(recycling_for_future_campaigns)
@@ -43,36 +55,77 @@ class CampaignsView(views.TemplateView):
         return unique_q_and_a
 
 
-class WhatWeDoView(views.TemplateView):
-    template_name = 'work/what-we-do.html'
-
-
-class WhereWeWork(views.TemplateView):
-    template_name = 'work/where-we-work.html'
-
-
-class CampaignDetailsView(views.TemplateView):
-    template_name = 'work/campaign-details-page.html'
+class CharityCampaignDetailsView(views.TemplateView):
+    template_name = 'work/charity-campaign-details-page.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         pk = self.kwargs.get('pk')
-        campaign = CharityCampaigns.objects.get(pk=pk)
+        campaign = CharityCampaign.objects.get(pk=pk)
         context['campaign'] = campaign
         return context
 
 
-# class DonationListView(views.ListView):
-#     template_name = 'charity/donations-page.html'
-#     model = DonationCampaigns
+class DonationCampaignsView(views.TemplateView):
+    template_name = 'work/donation-campaigns-page.html'
 
-def participate_campaign(request, campaign_id):
-    campaign = get_object_or_404(CharityCampaigns, id=campaign_id)
-    user = UserModel.objects.get(pk=request.user.pk)
-    if user.user_type == 'VOLUNTEER':
-        user.volunteer_profile.charity_history.add(campaign)
-    elif user.user_type == 'MEMBER':
-        user.member_profile.charity_history.add(campaign)
-    elif user.user_type == 'SPONSOR':
-        user.sponsor_profile.charity_history.add(campaign)
-    return redirect('profile')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        donation_campaigns = DonationCampaign.objects.all()
+        context['donation_campaigns'] = donation_campaigns
+        return context
+
+
+class DonationCampaignDetailsView(views.TemplateView):
+    template_name = 'work/donation-campaign-details-page.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs.get('pk')
+        campaign = DonationCampaign.objects.get(pk=pk)
+        context['campaign'] = campaign
+        return context
+
+
+class CharityCampaignParticipationView(views.TemplateView):
+    template_name = 'work/charity-campaign-details-page.html'  # Replace with your actual template name
+
+    def get(self, request, *args, **kwargs):
+        campaign_id = self.kwargs['campaign_id']
+        campaign = get_object_or_404(CharityCampaign, id=campaign_id)
+        user = UserModel.objects.get(pk=request.user.pk)
+        if user.user_type == 'VOLUNTEER':
+            user.volunteer_profile.charity_history.add(campaign)
+
+            # Send email to the user
+            subject = 'Participation Confirmation'
+            html_message = render_to_string('confirmation/emails/participating-email.html',
+                                            {'user': user, 'campaign': campaign})
+            plain_message = strip_tags(html_message)
+            from_email = settings.EMAIL_HOST_USER
+            recipient_list = [user.email]
+
+            send_mail(subject, plain_message, from_email, recipient_list, html_message=html_message)
+
+            return redirect('participation-thank-you')
+
+
+        # def participate_campaign(request, campaign_id):
+#     campaign = get_object_or_404(CharityCampaign, id=campaign_id)
+#     user = UserModel.objects.get(pk=request.user.pk)
+#     if user.user_type == 'VOLUNTEER':
+#         user.volunteer_profile.charity_history.add(campaign)
+#             subject = 'Participation Confirmation'
+#             html_message = render_to_string('confirmation/emails/participating-email.html',
+#                                             {'user': user, 'campaign': campaign})
+#             plain_message = strip_tags(html_message)
+#             from_email = EMAIL_HOST_USER
+#             recipient_list = [user.email]
+#
+#             send_mail(subject, plain_message, from_email, recipient_list, html_message=html_message)
+#
+#             return redirect('participation-thank-you-page')
+
+
+class ParticipationThankYouView(views.TemplateView):
+    template_name = 'confirmation/thanks/participation-thank-you-page.html'

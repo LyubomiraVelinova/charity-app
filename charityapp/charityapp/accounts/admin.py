@@ -22,7 +22,6 @@ class CustomUserAdmin(auth_admin.UserAdmin):
             ),
         }),
     ]
-
     form = RegisterUserForm
     list_display = ("email", "is_staff", "is_superuser",)
     list_filter = ("is_staff", "is_superuser", "groups")

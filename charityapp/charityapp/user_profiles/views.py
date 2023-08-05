@@ -13,7 +13,7 @@ UserModel = get_user_model()
 
 class ProfileEditView(views.UpdateView):
     template_name = 'user_profiles/profile-edit-page.html'
-    success_url = reverse_lazy('profile-details-page')
+    success_url = reverse_lazy('profile-details')
 
     def get_form_class(self):
         user_type = self.request.user.user_type
@@ -65,7 +65,7 @@ class ProfileDetailsView(views.DetailView):
 
 class ProfileDeleteView(auth_mixins.LoginRequiredMixin, views.DeleteView):
     template_name = 'user_profiles/profile-edit-page.html'
-    success_url = reverse_lazy('home-page')
+    success_url = reverse_lazy('homepage')
 
     def get_object(self, queryset=None):
         return self.request.user
@@ -80,7 +80,7 @@ class ChangePhotoView(views.UpdateView):
     model = UserModel
     template_name = 'user_profiles/profile-edit-page.html'
     fields = ['profile_photo', 'logo']
-    success_url = reverse_lazy('profile-edit-page')
+    success_url = reverse_lazy('profile-edit')
 
     def get_object(self, queryset=None):
         return self.request.user

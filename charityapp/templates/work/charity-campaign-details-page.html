@@ -38,14 +38,14 @@
 
                     {% if request.user.is_authenticated and user.user_type == 'VOLUNTEER' %}
                         {% if campaign.active %}
-                            <a href="{% url 'participate-campaign' campaign.id %}" class="participate-btn">
+                            <a href="{% url 'charity-campaign-participation' campaign.id %}" class="participate-btn">
                                 <button>Participate</button>
                             </a>
                         {% else %}
                             <button type="button" disabled>This campaign has expired!</button>
                         {% endif %}
                     {% else %}
-                        <a href="{% url 'login-page' %}" class="participate-btn">
+                        <a href="{% url 'login' %}" class="participate-btn">
                             <button>Login for participation</button>
                         </a>
                     {% endif %}

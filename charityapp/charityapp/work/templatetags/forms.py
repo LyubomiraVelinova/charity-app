@@ -10,9 +10,3 @@ def placeholder(field, token):
     return field
 
 
-# Adding custom class
-# @register.filter
-# def form_field_class(form_field, className):
-#     form_field.field.widget.attrs['class'] = className
-#
-#     return form_field

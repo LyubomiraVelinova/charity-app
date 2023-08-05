@@ -1,16 +1,19 @@
 {% extends 'base/base.html' %}
+
 {% load static %}
+{% load percentage %}
+
 {% block main_content %}
     <!-- Carousel wrapper -->
     <div class="carousel-inner">
         <!-- Single item -->
         <div class="carousel-item active">
-            <img src="{% static 'images/campaigns.jpg' %}"
+            <img src="https://images.unsplash.com/photo-1527788263495-3518a5c1c42d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1208&q=80"
                  class="d-block w-100"
                  alt="Sunset Over the City"/>
             <div class="carousel-caption d-none d-md-block">
                 <h3 class="text-uppercase">Our work</h3>
-                <p class="text-uppercase custom-title">Campaigns</p>
+                <p class="text-uppercase custom-title">Donation Campaigns</p>
             </div>
         </div>
     </div>
@@ -25,279 +28,96 @@
                     <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
                         data-wow-delay="0.1s"
                         style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
-                        <strong>Caps for Future </strong><span class="lighter">campaigns</span></h2>
+                        <span class="lighter">Let's create a world of <strong>hope</strong> and <strong>possibility together</strong>!</span>
+                    </h2>
                     <hr class="hr hr-blurry"/>
                     <p class="lead">
-                        "Caps for Future" campaigns are a powerful initiative that aims to collect plastic
-                        caps, rings, and handles of beverage bottles from all over Bulgaria. These plastic caps are then
-                        recycled into secondary raw materials, and with the funds generated, we purchase life-saving
-                        equipment like incubators for premature babies or children's neonatal ambulances. It's
-                        incredible to witness the impact of a small plastic cap in creating a big difference in the
-                        lives of our little ones.
+                        At Club for Future, we are dedicated to making a positive impact on the lives of those in
+                        need. Our donation campaigns are a testament to our commitment to supporting various causes
+                        and initiatives that matter the most. Through these campaigns, we strive to bring about real
+                        change and provide vital assistance to those who require it the most. Here, you will find a
+                        diverse range of donation campaigns, each tailored to address specific needs and make a
+                        meaningful difference. From supporting neonatal ambulances for our tiniest patients to
+                        providing life-saving aid in remote mountainous regions, our campaigns cover a wide spectrum
+                        of worthy causes. We firmly believe that collective efforts can lead to powerful outcomes.
+                        As you explore our campaigns, we invite you to join hands with us in creating a brighter and
+                        more sustainable future. Your contribution, big or small, can make an incredible impact and
+                        enable us to continue our mission of serving communities in need. Together, we can be the
+                        driving force behind positive change and lend a helping hand to those who need it most. Join
+                        us on this inspiring journey as we strive to make the world a better place through
+                        compassion, empathy, and generosity.
                     </p>
                 </div>
 
                 <div class="card-group">
-                    {% for campaign in caps_for_future_campaigns %}
+                    {% for campaign in donation_campaigns %}
                         <div class="card">
-                            <img class="card-img-top" src="{{ campaign.image }}" alt="{{ campaign.name }}">
+                            <img class="card-img-top" src="{{ campaign.image }}" alt="{{ campaign.title }}">
                             <div class="card-body">
-                                <a href="{% url 'campaign-details-page' campaign.pk %}"><h4
-                                        class="card-title text-uppercase">{{ campaign.name }}</h4></a>
-                                <p class="card-text">{{ campaign.resume }}</p>
+                                <a href="{% url 'donation-campaign-details' campaign.pk %}"><h4
+                                        class="card-title text-uppercase">{{ campaign.title }}</h4></a>
+                                <p class="card-text">{{ campaign.description }}</p>
+                            </div>
+
+                            <p>Amount Raised: {{ campaign.current_amount }} BGN</p>
+                            <p>Fundraising Goal: {{ campaign.goal_amount }} BGN</p>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar"
+                                     style="width: {{ campaign.current_amount|percentage_complete:campaign.goal_amount }}%;"
+                                     aria-valuenow="{{ campaign.current_amount|percentage_complete:campaign.goal_amount }}"
+                                     aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
 
                             {% if campaign.active %}
-                                <div class="card-footer" style="background-color: #8AD0C7">
-                                    <small class="text-muted">Active</small>
-                                </div>
-                            {% elif not campaign.active %}
-                                <div class="card-footer" style="background-color: #6c757d">
-                                    <small class="text-muted">Inactive</small>
-                                </div>
-                            {% endif %}
-
-                        </div>
-                    {% endfor %}
-                </div>
-
-                <div class="accordion custom-accordion">
-                    {% for faq in caps_for_future_faq %}
-                        <div class="accordion-item">
-                            <h4 class="accordion-header" id="heading{{ faq.pk }}c">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse{{ faq.pk }}c" aria-expanded="false"
-                                        aria-controls="collapse{{ faq.pk }}c">
-                                    {{ faq.question }}
-                                </button>
-                            </h4>
-                            <div id="collapse{{ faq.pk }}c" class="accordion-collapse collapse"
-                                 aria-labelledby="heading{{ faq.pk }}c"
-                                 data-bs-parent="#accordionExample{{ faq.pk }}c">
-                                <div class="accordion-body lead">
-                                    {{ faq.answer }}
-                                </div>
-                                {% if faq.important %}
-                                    <p><strong>***Important:</strong>{{ faq.important }}</p>
+                                {% if request.user.is_authenticated and user.user_type == 'SPONSOR' %}
+                                    <a href="{% url 'donation' %}">
+                                        <button>Donate Now</button>
+                                    </a>
                                 {% endif %}
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-                <div class="maintitle">
-                    <p class="lead">
-                        Thank you for joining us in the "Caps for Future" campaign and making a positive impact on the
-                        environment and the well-being of our little ones!
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <hr class="hr hr-blurry"/>
-
-    <section class="mv-section">
-        <div class="container">
-            <div class="row">
-                <div class="maintitle">
-                    <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
-                        data-wow-delay="0.1s"
-                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
-                        <strong>Recycling for Future </strong><span class="lighter">campaigns</span></h2>
-                    <hr class="hr hr-blurry"/>
-                    <p class="lead">
-                        At Club for Future, we are committed to making a positive impact on the environment while
-                        supporting our charitable causes. Our "Recycling for Future" campaigns are an integral part of
-                        our mission, aiming to promote responsible waste management and sustainability. Through these
-                        campaigns, we harness the power of recycling to not only protect our planet but also raise vital
-                        funds for our charitable initiatives.
-                    </p>
-                </div>
-
-                <div class="card-group">
-                    {% for campaign in recycling_for_future_campaigns %}
-                        <div class="card">
-                            <img class="card-img-top" src="{{ campaign.image }}" alt="{{ campaign.name }}">
-                            <div class="card-body">
-                                <a href="{% url 'campaign-details-page' campaign.pk %}"><h4
-                                        class="card-title text-uppercase">{{ campaign.name }}</h4></a>
-                                <p class="card-text">{{ campaign.resume }}</p>
-                            </div>
-                            {% if campaign.active %}
                                 <div class="card-footer" style="background-color: #8AD0C7">
                                     <small class="text-muted">Active</small>
                                 </div>
                             {% elif not campaign.active %}
                                 <div class="card-footer" style="background-color: #6c757d">
-                                    <small class="text-muted">Inactive</small>
+                                    <small class="text-muted">Succeeded</small>
                                 </div>
                             {% endif %}
                         </div>
                     {% endfor %}
                 </div>
 
-                <div class="accordion custom-accordion">
-                    {% for faq in recycling_for_future_faq %}
-                        <div class="accordion-item">
-                            <h4 class="accordion-header" id="heading{{ faq.pk }}r">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse{{ faq.pk }}r" aria-expanded="false"
-                                        aria-controls="collapse{{ faq.pk }}r">
-                                    {{ faq.question }}
-                                </button>
-                            </h4>
-                            <div id="collapse{{ faq.pk }}r" class="accordion-collapse collapse"
-                                 aria-labelledby="heading{{ faq.pk }}r"
-                                 data-bs-parent="#accordionExample{{ faq.pk }}r">
-                                <div class="accordion-body lead">
-                                    {{ faq.answer }}
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <hr class="hr hr-blurry"/>
-
-    <section class="mv-section">
-        <div class="container">
-            <div class="row">
-
+                {#                    <div class="accordion custom-accordion">#}
+                {#                        {% for faq in caps_for_future_faq %}#}
+                {#                            <div class="accordion-item">#}
+                {#                                <h4 class="accordion-header" id="heading{{ faq.pk }}c">#}
+                {#                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"#}
+                {#                                            data-bs-target="#collapse{{ faq.pk }}c" aria-expanded="false"#}
+                {#                                            aria-controls="collapse{{ faq.pk }}c">#}
+                {#                                        {{ faq.question }}#}
+                {#                                    </button>#}
+                {#                                </h4>#}
+                {#                                <div id="collapse{{ faq.pk }}c" class="accordion-collapse collapse"#}
+                {#                                     aria-labelledby="heading{{ faq.pk }}c"#}
+                {#                                     data-bs-parent="#accordionExample{{ faq.pk }}c">#}
+                {#                                    <div class="accordion-body lead">#}
+                {#                                        {{ faq.answer }}#}
+                {#                                    </div>#}
+                {#                                    {% if faq.important %}#}
+                {#                                        <p><strong>***Important:</strong>{{ faq.important }}</p>#}
+                {#                                    {% endif %}#}
+                {#                                </div>#}
+                {#                            </div>#}
+                {#                        {% endfor %}#}
+                {#                    </div>#}
                 <div class="maintitle">
-                    <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
-                        data-wow-delay="0.1s"
-                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
-                        <strong>Textile for Future </strong><span class="lighter">campaigns</span></h2>
-                    <hr class="hr hr-blurry"/>
                     <p class="lead">
-                        Through our Recycling for Future Campaigns, we aim to create a sustainable future by collecting
-                        recycled garbage and giving it new life. With a strong commitment to environmental conservation,
-                        we collect various recyclable items such as glass jars, including children's purees and bottles,
-                        as well as cans of infant formula and dog/cat food. Additionally, we focus on PET bottles,
-                        specifically those from soft drinks and beer, marked with "ALU," mainly sourced from mineral
-                        water, non-alcoholic beverages, and beer. The collected recyclables are sent for responsible
-                        recycling and converted into valuable resources. By doing so, we not only contribute to reducing
-                        waste and pollution but also generate funds that enable us to make a tangible difference in our
-                        communities. With the earnings from the Recycling for Future Campaigns, we invest in purchasing
-                        bins for our cities. These bins play a vital role in promoting proper waste disposal and
-                        encouraging more individuals to participate in recycling efforts.
+                        Thank you for considering to be a part of our donation campaigns. Your support means the
+                        world to us and those we seek to assist.
                     </p>
                 </div>
-
-                <div class="card-group">
-                    {% for campaign in textile_for_future_campaigns %}
-                        <div class="card">
-                            <img class="card-img-top" src="{{ campaign.image }}" alt="{{ campaign.name }}">
-                            <div class="card-body">
-                                <a href="{% url 'campaign-details-page' campaign.pk %}"><h4
-                                        class="card-title text-uppercase">{{ campaign.name }}</h4></a>
-                                <p class="card-text">{{ campaign.resume }}</p>
-                            </div>
-                            {% if campaign.active %}
-                                <div class="card-footer" style="background-color: #8AD0C7">
-                                    <small class="text-muted">Active</small>
-                                </div>
-                            {% elif not campaign.active %}
-                                <div class="card-footer" style="background-color: #6c757d">
-                                    <small class="text-muted">Inactive</small>
-                                </div>
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-                </div>
-
-                <div class="accordion custom-accordion">
-                    {% for faq in textile_for_future_faq %}
-                        <div class="accordion-item">
-                            <h4 class="accordion-header" id="heading{{ faq.pk }}t">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse{{ faq.pk }}t" aria-expanded="false"
-                                        aria-controls="collapse{{ faq.pk }}t">
-                                    {{ faq.question }}
-                                </button>
-                            </h4>
-                            <div id="collapse{{ faq.pk }}t" class="accordion-collapse collapse"
-                                 aria-labelledby="heading{{ faq.pk }}t"
-                                 data-bs-parent="#accordionExample{{ faq.pk }}t">
-                                <div class="accordion-body lead">
-                                    {{ faq.answer }}
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-
             </div>
         </div>
     </section>
-
     <hr class="hr hr-blurry"/>
-
-    <section class="mv-section">
-        <div class="container">
-            <div class="row">
-
-                <div class="maintitle">
-                    <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
-                        data-wow-delay="0.1s"
-                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
-                        <strong>Blood donation for Future </strong><span class="lighter">campaigns</span></h2>
-                    <hr class="hr hr-blurry"/>
-                    <p class="lead">
-                        This is a transformative initiative that strives to make a life-saving impact on our community!
-                        With boundless enthusiasm and unwavering dedication, we champion the noble cause of free blood
-                        donation, providing a beacon of hope for those in need.
-                    </p>
-                    <p class="lead">
-                        Our campaign extends its heartfelt invitation to all healthy individuals aged 18 to 60,
-                        empowering them to become heroes in their own right. By giving the gift of life through blood
-                        donation, you have the power to touch countless lives, offering a lifeline to patients battling
-                        acute blood loss, severe burns, and various life-threatening conditions.
-                    </p>
-                </div>
-
-                <div class="card-group">
-                    {% for campaign in blood_donation_for_future_campaigns %}
-                        <div class="card">
-                            <img class="card-img-top" src="{{ campaign.image }}" alt="{{ campaign.name }}">
-                            <div class="card-body">
-                                <a href="{% url 'campaign-details-page' campaign.pk %}"><h4
-                                        class="card-title text-uppercase">{{ campaign.name }}</h4></a>
-                                <p class="card-text">{{ campaign.resume }}</p>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-
-                <div class="accordion custom-accordion">
-                    {% for faq in blood_donation_for_future_faq %}
-                        <div class="accordion-item">
-                            <h4 class="accordion-header" id="heading{{ faq.pk }}b">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse{{ faq.pk }}b" aria-expanded="false"
-                                        aria-controls="collapse{{ faq.pk }}b">
-                                    {{ faq.question }}
-                                </button>
-                            </h4>
-                            <div id="collapse{{ faq.pk }}b" class="accordion-collapse collapse"
-                                 aria-labelledby="heading{{ faq.pk }}b"
-                                 data-bs-parent="#accordionExample{{ faq.pk }}b">
-                                <div class="accordion-body lead">
-                                    {{ faq.answer }}
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-
-            </div>
-        </div>
-    </section>
 
 {% endblock %}

@@ -20,7 +20,7 @@ class CharityType(ChoicesStringsMixin, Enum):
     OTHER = "Other"
 
 
-class CharityCampaigns(models.Model):
+class CharityCampaign(models.Model):
     MAX_LEN_NAME = 50
     MAX_LEN_TYPE = 50
     MAX_LEN_PLACE = 200
@@ -59,6 +59,10 @@ class CharityCampaigns(models.Model):
         null=True,
         blank=True,
     )
+
+    active = models.BooleanField(
+        default=True
+    )
     # Начини за участие и подкрепа: Предоставете информация за начините, по които хората могат да се включат в кампанията или да я подкрепят. Това може да бъде чрез дарение, участие в събитието, спонсорство и други.
     #
     # Истории за успех: Ако имате предишни успешни кампании или проекти, споделете истории за тях и как те са помогнали на общността или хората, които са били засегнати.
@@ -70,21 +74,25 @@ class CharityCampaigns(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'Charity Campaign'
+        verbose_name_plural = 'Charity Campaigns'
 
-class DonationCampaigns(models.Model):
+
+class DonationCampaign(models.Model):
     MAX_LEN_TITLE = 100
 
     title = models.CharField(
         max_length=MAX_LEN_TITLE,
     )
     description = models.TextField()
-    motivation = models.TextField()
+    purpose = models.TextField()
     goal_amount = models.DecimalField(
-        max_digits=6,
+        max_digits=8,
         decimal_places=2,
     )
     current_amount = models.DecimalField(
-        max_digits=6,
+        max_digits=8,
         decimal_places=2,
     )
     start_date = models.DateField()
@@ -96,11 +104,15 @@ class DonationCampaigns(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = 'Donation Campaign'
+        verbose_name_plural = 'Donation Campaigns'
 
-class FAQCampaigns(models.Model):
+
+class FAQ(models.Model):
     MAX_LEN_QUESTION = 200
 
-    campaigns = models.ManyToManyField(CharityCampaigns, related_name='q_and_a')
+    campaigns = models.ManyToManyField(CharityCampaign, related_name='q_and_a')
 
     question = models.CharField(
         max_length=200,
@@ -120,3 +132,7 @@ class FAQCampaigns(models.Model):
 
     def __str__(self):
         return f'{self.question}'
+
+    class Meta:
+        verbose_name = 'FAQ'
+        verbose_name_plural = 'FAQ'

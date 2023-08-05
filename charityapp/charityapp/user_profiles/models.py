@@ -7,7 +7,7 @@ from django.utils import timezone
 
 from charityapp.accounts.models import AppUser
 from charityapp.common.mixins import ChoicesStringsMixin
-from charityapp.work.models import DonationCampaigns, CharityCampaigns
+from charityapp.work.models import DonationCampaign, CharityCampaign
 
 
 class Gender(ChoicesStringsMixin, Enum):
@@ -78,12 +78,16 @@ class SponsorProfile(models.Model):
         verbose_name='Career field',
     )
     donation_history = models.ManyToManyField(
-        DonationCampaigns,
+        DonationCampaign,
         verbose_name='Donation history',
     )
 
     def __str__(self):
         return self.company_name
+
+    class Meta:
+        verbose_name = 'Sponsor Profile'
+        verbose_name_plural = 'Sponsors Profile'
 
 
 class CharityInterests(ChoicesStringsMixin, Enum):
@@ -156,17 +160,17 @@ class VolunteerProfile(models.Model):
     )
 
     charity_history = models.ManyToManyField(
-        CharityCampaigns,
+        CharityCampaign,
         verbose_name='Charity history',
-    )
-    donation_history = models.ManyToManyField(
-        DonationCampaigns,
-        verbose_name='Donation history',
     )
 
     @property
     def full_name(self):
         return f"{self.first_name} {self.last_name}"
+
+    class Meta:
+        verbose_name = 'Volunteer Profile'
+        verbose_name_plural = 'Volunteers Profile'
 
 
 class RoleTypes(ChoicesStringsMixin, Enum):
@@ -176,7 +180,7 @@ class RoleTypes(ChoicesStringsMixin, Enum):
     ADMINISTRATOR = "Administrator"
     MODERATOR = "Moderator"
     CASHIER = "Cashier"
-    PR = "Public Relations (PR)"
+    PR = "PR"
     OTHER = "Other"
 
 
@@ -250,10 +254,14 @@ class MemberProfile(models.Model):
     )
 
     charity_history = models.ManyToManyField(
-        CharityCampaigns,
+        CharityCampaign,
         verbose_name='Charity history',
     )
 
     @property
     def full_name(self):
         return f"{self.first_name} {self.last_name}"
+
+    class Meta:
+        verbose_name = 'Member Profile'
+        verbose_name_plural = 'Members Profile'

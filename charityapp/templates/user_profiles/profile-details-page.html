@@ -14,11 +14,11 @@
                                 <li class="nav-item"><a class="nav-link px-2 active" href="#"><i
                                         class="fa fa-fw fa-bar-chart mr-1"></i><span>Overview</span></a></li>
                                 <li class="nav-item"><a class="nav-link px-2"
-                                                        href="{% url 'testimonial-submission-page' %}"
+                                                        href="{% url 'testimonial-submission' %}"
                                                         target="__blank"><i
                                         class="fa fa-fw fa-th mr-1"></i><span>Testimonials</span></a></li>
                                 <li class="nav-item"><a class="nav-link px-2"
-                                                        href="{% url 'security-settings-page' %}"
+                                                        href="{% url 'security-settings' %}"
                                                         target="__blank"><i
                                         class="fa fa-fw fa-cog mr-1"></i><span>Settings</span></a></li>
                             </ul>
@@ -87,8 +87,8 @@
                                                                 <label><strong class="text-uppercase">My charity
                                                                     history:</strong></label>
                                                                 <ul>
-                                                                    {% for camapign in object.charity_history.all %}
-                                                                        <li>{{ campaign }}</li>
+                                                                    {% for campaign in object.charity_history.all %}
+                                                                        <a href="{% url 'charity-campaign-details' campaign.pk %}"><li>{{ campaign.name }}</li></a>
                                                                     {% endfor %}
                                                                 </ul>
                                                             {% elif object.donation_history.all %}
@@ -108,7 +108,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col d-flex justify-content-end ">
-                                                            <a href="{% url 'profile-edit-page' %}"
+                                                            <a href="{% url 'profile-edit' %}"
                                                                class="btn btn-block btn-secondary">
                                                                 <i class="fa-solid fa-pencil"></i>
                                                                 <span> Edit</span>
@@ -134,7 +134,7 @@
                 <div class="col-12 col-md-3 mb-3">
                     <div class="card mb-3">
                         <div class="card-body text-center">
-                            <a href="{% url 'logout-page' %}" class="btn btn-block btn-secondary">
+                            <a href="{% url 'logout' %}" class="btn btn-block btn-secondary">
                                 <i class="fa fa-sign-out"></i>
                                 <span>Logout</span>
                             </a>
@@ -149,7 +149,7 @@
         document.getElementById('delete-profile-btn').addEventListener('click', function () {
             if (confirm('Are you sure you want to delete your profile?')) {
                 // If the user confirms, make an AJAX request to delete the profile
-                fetch('{% url "profile-delete-page" %}', {
+                fetch('{% url "profile-delete" %}', {
                     method: 'POST',
                     headers: {
                         'X-CSRFToken': '{{ csrf_token }}', // Add CSRF token for security
@@ -159,7 +159,7 @@
                         if (response.ok) {
                             // Profile deleted successfully, redirect to home page
                             alert('Profile deleted successfully.');
-                            window.location.href = '{% url "home-page" %}';
+                            window.location.href = '{% url "homepage" %}';
                         } else if (response.status === 403) {
                             // User is not authorized to delete profile (error message from server)
                             return response.json().then(data => {

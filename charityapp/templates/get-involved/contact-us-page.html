@@ -51,7 +51,7 @@
                             <div class="card-body p-0">
                                 <div class="row custom-row no-gutters">
                                     <div class="col-lg-6">
-                                        <form action="{% url 'contact-us-page' %}" id="contact" name="contact" method="post" class="text-left">
+                                        <form action="{% url 'contact-us' %}" id="contact" name="contact" method="post" class="text-left">
                                             {% csrf_token %}
                                             {{ form.as_p }}
                                             <input id="submit" type="submit" name="submit" value="Send"/>
@@ -81,7 +81,7 @@
                             </div>
                         </div>
                         <p class="text-muted text-center mt-3 mb-0">Don't have an account? <a
-                                href="{% url 'register-page' %}"
+                                href="{% url 'register' %}"
                                 class="text-primary ml-1">register</a>
                         </p>
                     </div>

@@ -10,7 +10,7 @@
                  alt="Sunset Over the City"/>
             <div class="carousel-caption d-none d-md-block">
                 <h3 class="text-uppercase">Our work</h3>
-                <p class="text-uppercase custom-title">Campaigns</p>
+                <p class="text-uppercase custom-title">Charity Campaigns</p>
             </div>
         </div>
     </div>
@@ -42,7 +42,7 @@
                         <div class="card">
                             <img class="card-img-top" src="{{ campaign.image }}" alt="{{ campaign.name }}">
                             <div class="card-body">
-                                <a href="{% url 'campaign-details-page' campaign.pk %}"><h4
+                                <a href="{% url 'charity-campaign-details' campaign.pk %}"><h4
                                         class="card-title text-uppercase">{{ campaign.name }}</h4></a>
                                 <p class="card-text">{{ campaign.resume }}</p>
                             </div>
@@ -119,7 +119,7 @@
                         <div class="card">
                             <img class="card-img-top" src="{{ campaign.image }}" alt="{{ campaign.name }}">
                             <div class="card-body">
-                                <a href="{% url 'campaign-details-page' campaign.pk %}"><h4
+                                <a href="{% url 'charity-campaign-details' campaign.pk %}"><h4
                                         class="card-title text-uppercase">{{ campaign.name }}</h4></a>
                                 <p class="card-text">{{ campaign.resume }}</p>
                             </div>
@@ -192,7 +192,7 @@
                         <div class="card">
                             <img class="card-img-top" src="{{ campaign.image }}" alt="{{ campaign.name }}">
                             <div class="card-body">
-                                <a href="{% url 'campaign-details-page' campaign.pk %}"><h4
+                                <a href="{% url 'charity-campaign-details' campaign.pk %}"><h4
                                         class="card-title text-uppercase">{{ campaign.name }}</h4></a>
                                 <p class="card-text">{{ campaign.resume }}</p>
                             </div>
@@ -264,7 +264,7 @@
                         <div class="card">
                             <img class="card-img-top" src="{{ campaign.image }}" alt="{{ campaign.name }}">
                             <div class="card-body">
-                                <a href="{% url 'campaign-details-page' campaign.pk %}"><h4
+                                <a href="{% url 'charity-campaign-details' campaign.pk %}"><h4
                                         class="card-title text-uppercase">{{ campaign.name }}</h4></a>
                                 <p class="card-text">{{ campaign.resume }}</p>
                             </div>

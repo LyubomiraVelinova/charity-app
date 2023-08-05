@@ -18,7 +18,7 @@
                                                         target="__blank"><i
                                         class="fa fa-fw fa-th mr-1"></i><span>CRUD</span></a></li>
                                 <li class="nav-item"><a class="nav-link px-2"
-                                                        href="{% url 'security-settings-page' %}"
+                                                        href="{% url 'security-settings' %}"
                                                         target="__blank"><i
                                         class="fa fa-fw fa-cog mr-1"></i><span>Settings</span></a></li>
                             </ul>
@@ -32,7 +32,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="e-profile">
-                                        <form action="{% url 'profile-edit-page' %}"
+                                        <form action="{% url 'profile-edit' %}"
                                               method="post">
                                             {% csrf_token %}
                                             <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">

@@ -33,7 +33,7 @@
                         </p>
                     </div>
                     <div class="col-lg-6">
-                        <a href="{% url 'what-we-do-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                        <a href="{% url 'what-we-do' %}" class="btn btn-default btn-lg wow fadeInLeft"
                            role="button"> What We Do </a>
                         <p class="custom-lead-wh">
                             We run a range of high-impact campaigns and events that support premature babies,
@@ -45,7 +45,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <a href="{% url 'how-to-help-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                        <a href="{% url 'how-to-help' %}" class="btn btn-default btn-lg wow fadeInLeft"
                            role="button"> How To
                             Involve </a>
                         <p class="custom-lead-wh">
@@ -55,7 +55,7 @@
                         </p>
                     </div>
                     <div class="col-lg-6">
-                        <a href="{% url 'where-we-work-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                        <a href="{% url 'where-we-work' %}" class="btn btn-default btn-lg wow fadeInLeft"
                            role="button"> Where We
                             Work </a>
                         <p class="custom-lead-wh">
@@ -129,9 +129,9 @@
                     </p>
                     <p>
 
-                        <a href="{% url 'campaigns-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                        <a href="{% url 'charity-campaigns' %}" class="btn btn-default btn-lg wow fadeInLeft"
                            role="button"> Find a Cause </a>
-                        <a href="{% url 'donation-page' %}" methods="post"
+                        <a href="{% url 'donation' %}" methods="post"
                            class="btn btn-default btn-lg wow fadeInRight" role="button"> Make Donation </a>
                     </p>
                 </div>
@@ -155,7 +155,7 @@
                        style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: zoomIn;">
                         There are so many ways you can get involved and do your part to support us and be part of
                         the change. Have a look at our causes and find one you identify with!
-                        <a href="{% url 'campaigns-page' %}" class="text-light">Learn more...</a>
+                        <a href="{% url 'charity-campaigns' %}" class="text-light">Learn more...</a>
                     </p>
                 </div>
             </div>
@@ -171,7 +171,7 @@
                             <h5 class="card-title ">{{ campaign.duration }}</h5>
                             <p class="card-text">{{ campaign.resume }}</p>
                             <p class="card-text">
-                                <a href="{% url 'campaign-details-page' campaign.pk %}">
+                                <a href="{% url 'charity-campaign-details' campaign.pk %}">
                                     <small class="text-muted">Learn more</small>
                                 </a>
                             </p>
@@ -212,7 +212,7 @@
                     <p>
 
 
-                        <a href="{% url 'contact-us-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                        <a href="{% url 'contact-us' %}" class="btn btn-default btn-lg wow fadeInLeft"
                            role="button"> Contact us </a>
                     </p>
                 </div>

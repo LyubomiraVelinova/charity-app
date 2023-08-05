@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import user_passes_test
 
 from charityapp.charity.models import Testimonial
-from charityapp.work.models import CharityCampaigns
+from charityapp.work.models import CharityCampaign
 from charityapp.common.forms import AboutUsInfoForm, DonationForm, ContactInfoForm, BillingInfoForm, PaymentMethodForm, \
     DonationValueForm
 from charityapp.common.models import AboutUsInfo, Impact, LatestNews
@@ -15,7 +15,7 @@ def index(request):
     first_three_news = LatestNews.objects.order_by('pk')[:3]
     second_three_news = LatestNews.objects.order_by('pk')[3:6]
     third_three_news = LatestNews.objects.order_by('pk')[6:9]
-    first_six_campaigns = CharityCampaigns.objects.order_by('-start_datetime')[:6]
+    first_six_campaigns = CharityCampaign.objects.order_by('-start_datetime')[:6]
     testimonials = Testimonial.objects.filter(approved=True).order_by('-date')
 
     context = {
@@ -34,7 +34,7 @@ def our_work(request):
 
 
 class DonationThankYouView(views.TemplateView):
-    template_name = 'common/donation-thank-you-page.html'
+    template_name = 'confirmation/thanks/donation-thank-you-page.html'
 
 
 # Only admins can make changes in the form info-DECORATOR IS NOT WORKING
@@ -64,7 +64,7 @@ class AboutUsView(views.CreateView):
 class DonationView(views.CreateView):
     template_name = 'common/donation-page.html'
     form_class = DonationForm
-    success_url = reverse_lazy('donation-thank-you-page')
+    success_url = reverse_lazy('donation-thank-you')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

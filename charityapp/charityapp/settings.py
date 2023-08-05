@@ -141,11 +141,11 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Default URL to redirect to **after successful login
-LOGIN_REDIRECT_URL = reverse_lazy('home-page')
+LOGIN_REDIRECT_URL = reverse_lazy('homepage')
 # Default URL to redirect to for **login**
-LOGIN_URL = reverse_lazy('login-page')
+LOGIN_URL = reverse_lazy('login')
 
-LOGOUT_REDIRECT_URL = reverse_lazy('login-page')
+LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
 AUTH_USER_MODEL = 'accounts.AppUser'
 
@@ -160,6 +160,6 @@ EMAIL_USE_TLS = True  # Use TLS encryption for security
 # Email account credentials# Email account credentials
 EMAIL_HOST_USER = config("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
-# Email password 'qwer12345!'
+
 # Default email address to use for sending emails
 DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL")

@@ -1,13 +1,13 @@
 from django.urls import path, include
 
-from charityapp.get_involve.views import volunteers, ways_to_help, ContactView, ContactThankYouView
+from charityapp.get_involve.views import ways_to_help, ContactView, ContactThankYouView, WaysToInvolve
 
 urlpatterns = [
-    path('volunteers/', volunteers, name='volunteers-page'),
-    path('how-to-help/', ways_to_help, name='how-to-help-page'),
+    path('ways-to-involve/', WaysToInvolve.as_view(), name='ways-to-involve'),
+    path('how-to-help/', ways_to_help, name='how-to-help'),
     path('contact/', include([
-        path('', ContactView.as_view(), name='contact-us-page'),
-        path('thank-you/', ContactThankYouView.as_view(), name='contact-thank-you-page'),
+        path('', ContactView.as_view(), name='contact-us'),
+        path('thank-you/', ContactThankYouView.as_view(), name='contact-thank-you'),
     ])
          ),
 ]

@@ -68,6 +68,10 @@ class AboutUsInfo(models.Model):
         auto_now=True,
     )
 
+    class Meta:
+        verbose_name = 'Info About Us'
+        verbose_name_plural = 'Info About Us'
+
 
 class Donation(models.Model):
     MIN_LEN_NAME = 2
@@ -193,6 +197,10 @@ class Impact(models.Model):
         null=False,
     )
 
+    class Meta:
+        verbose_name = "Our Impact"
+        verbose_name_plural = "Our Impact"
+
 
 class LatestNews(models.Model):
     MAX_LENGTH_TITLE = 100
@@ -212,3 +220,6 @@ class LatestNews(models.Model):
         blank=False,
         null=False,
     )
+
+    class Meta:
+        verbose_name_plural = 'Latest News'

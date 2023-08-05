@@ -3,7 +3,7 @@ from django.db import models
 from django.core import validators
 
 
-class People(models.Model):
+class Person(models.Model):
     MIN_LEN_NAME = 2
     MAX_LEN_NAME = 30
     MAX_LEN_ROLE = 100
@@ -45,10 +45,14 @@ class People(models.Model):
     def full_name(self):
         return f"{self.first_name} {self.last_name}"
 
-    def get_first_sentence(self):
+    def get_first_twenty_words(self):
         sentences = self.description.split(' ')
         first_thirty_words = ' '.join(sentences[:20])
         return first_thirty_words
+
+    class Meta:
+        verbose_name = 'Person'
+        verbose_name_plural = 'Our People'
 
 
 class Timeline(models.Model):
@@ -71,3 +75,12 @@ class Timeline(models.Model):
         null=True,
         blank=True,
     )
+
+    def get_first_fifty_words(self):
+        words = self.event_summary.split(' ')
+        first_fifty_words = ' '.join(words[:50])
+        return first_fifty_words
+
+    class Meta:
+        verbose_name = 'Timeline Data'
+        verbose_name_plural = 'Timeline Data'

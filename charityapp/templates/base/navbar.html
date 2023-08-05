@@ -3,7 +3,7 @@
 <nav class="navbar navbar-expand-lg fixed-top bg-white">
     <div class="container">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home-page' %}">
+            <a class="navbar-brand" href="{% url 'homepage' %}">
                 <img src="{% static 'images/logo.jpg' %}" alt="Logo" width="40" height="40"
                      class="d-inline-block align-text-top">
                 Club for Future
@@ -19,9 +19,9 @@
                             About us
                         </a>
                         <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'who-we-are-page' %}">Who we are</a></li>
                             <li><a class="dropdown-item" href="{% url 'mission-and-values-page' %}">Mission and
                                 values</a></li>
-                            <li><a class="dropdown-item" href="{% url 'who-we-are-page' %}">Who we are</a></li>
                             <li><a class="dropdown-item" href="{% url 'history-page' %}">History</a></li>
                         </ul>
                     </li>
@@ -32,9 +32,10 @@
                             Our work
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'what-we-do-page' %}">What we do</a></li>
-                            <li><a class="dropdown-item" href="{% url 'campaigns-page' %}">Campaigns</a></li>
-                            <li><a class="dropdown-item" href="{% url 'where-we-work-page' %}">Where we work</a></li>
+                            <li><a class="dropdown-item" href="{% url 'what-we-do' %}">What we do</a></li>
+                            <li><a class="dropdown-item" href="{% url 'charity-campaigns' %}">Charity Campaigns</a></li>
+                            <li><a class="dropdown-item" href="{% url 'donation-campaigns' %}">Donation Campaigns</a></li>
+                            <li><a class="dropdown-item" href="{% url 'where-we-work' %}">Where we work</a></li>
                         </ul>
                     </li>
 
@@ -44,10 +45,9 @@
                             Get involved
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'volunteers-page' %}">How to involve</a></li>
+                            <li><a class="dropdown-item" href="{% url 'ways-to-involve' %}">Ways to involve</a></li>
                             {#                            <li><a class="dropdown-item" href="#">Educational resources/Blog</a></li>#}
-                            <li><a class="dropdown-item" href="{% url 'contact-us-page' %}">Report to us</a></li>
-                            <li><a class="dropdown-item" href="#">Contact us</a></li>
+                            <li><a class="dropdown-item" href="{% url 'contact-us' %}">Contact us</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -64,21 +64,23 @@
                                 {{ request.user }}
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{% url 'profile-details-page' %}">Profile</a></li>
-                                <li><a class="dropdown-item" href="{% url 'security-settings-page' %}">Settings</a></li>
-                                <li><a class="dropdown-item" href="{% url 'logout-page' %}">Logout</a></li>
+                                <li><a class="dropdown-item" href="{% url 'profile-details' %}">Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'testimonial-submission' %}">Submit Testimonial</a></li>
+                                <li><a class="dropdown-item" href="">Testimonials History</a></li>
+                                <li><a class="dropdown-item" href="{% url 'security-settings' %}">Settings</a></li>
+                                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
                             </ul>
                         </li>
                     {% endif %}
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login-page' %}"><i
+                        <a class="nav-link" href="{% url 'login' %}"><i
                                 class="fa-solid fa-arrow-right-to-bracket"></i>
                             Login</a>
                     </li>
                 {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'donation-page' %}">
+                    <a class="nav-link" href="{% url 'donation' %}">
                         <button class="btn btn-block btn-secondary text-uppercase">Donate</button>
                     </a>
                 </li>

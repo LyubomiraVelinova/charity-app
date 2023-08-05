@@ -1,24 +1,12 @@
 from django.core.management.base import BaseCommand
 
-from charityapp.work.models import DonationCampaign, CharityCampaign
+from charityapp.work.models import CharityCampaign
 
 
 class Command(BaseCommand):
     help = 'Bulk insert data into the database.'
 
     def handle(self, *args, **options):
-        donation_data = [
-            {
-                'title': 'Donation',
-                'description': 'This is a donation campaign',
-                'goal_amount': 3400.00,
-                'motivation': 'Lets work!',
-                'start_date': '2023-05-23',
-                'end_date': '2023-07-17',
-                'current_amount': 1800,
-            },
-        ]
-
         charity_data = [
             {
                 'name': 'Recycling for Future',
@@ -101,8 +89,6 @@ class Command(BaseCommand):
             },
         ]
 
-        donation_instances = [DonationCampaign(**data) for data in donation_data]
         charity_instances = [CharityCampaign(**data) for data in charity_data]
-        DonationCampaign.objects.bulk_create(donation_instances)
         CharityCampaign.objects.bulk_create(charity_instances)
-        self.stdout.write(self.style.SUCCESS('Data inserted successfully.'))
+        self.stdout.write(self.style.SUCCESS('Data inserted successfully in work_charitycampaigns table.'))
