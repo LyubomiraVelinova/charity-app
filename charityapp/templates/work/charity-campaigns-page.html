@@ -42,12 +42,21 @@
                         <div class="card">
                             <img class="card-img-top" src="{{ campaign.image }}" alt="{{ campaign.name }}">
                             <div class="card-body">
-                                <h5 class="card-title">{{ campaign.name }}</h5>
+                                <a href="{% url 'campaign-details-page' campaign.pk %}"><h4
+                                        class="card-title text-uppercase">{{ campaign.name }}</h4></a>
                                 <p class="card-text">{{ campaign.resume }}</p>
                             </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </div>
+
+                            {% if campaign.active %}
+                                <div class="card-footer" style="background-color: #8AD0C7">
+                                    <small class="text-muted">Active</small>
+                                </div>
+                            {% elif not campaign.active %}
+                                <div class="card-footer" style="background-color: #6c757d">
+                                    <small class="text-muted">Inactive</small>
+                                </div>
+                            {% endif %}
+
                         </div>
                     {% endfor %}
                 </div>
@@ -110,12 +119,19 @@
                         <div class="card">
                             <img class="card-img-top" src="{{ campaign.image }}" alt="{{ campaign.name }}">
                             <div class="card-body">
-                                <h5 class="card-title">{{ campaign.name }}</h5>
+                                <a href="{% url 'campaign-details-page' campaign.pk %}"><h4
+                                        class="card-title text-uppercase">{{ campaign.name }}</h4></a>
                                 <p class="card-text">{{ campaign.resume }}</p>
                             </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </div>
+                            {% if campaign.active %}
+                                <div class="card-footer" style="background-color: #8AD0C7">
+                                    <small class="text-muted">Active</small>
+                                </div>
+                            {% elif not campaign.active %}
+                                <div class="card-footer" style="background-color: #6c757d">
+                                    <small class="text-muted">Inactive</small>
+                                </div>
+                            {% endif %}
                         </div>
                     {% endfor %}
                 </div>
@@ -176,13 +192,19 @@
                         <div class="card">
                             <img class="card-img-top" src="{{ campaign.image }}" alt="{{ campaign.name }}">
                             <div class="card-body">
-                                <a href="{% url 'campaign-details-page' pk=campaign.pk %}"><h5
-                                        class="card-title">{{ campaign.name }}</h5></a>
+                                <a href="{% url 'campaign-details-page' campaign.pk %}"><h4
+                                        class="card-title text-uppercase">{{ campaign.name }}</h4></a>
                                 <p class="card-text">{{ campaign.resume }}</p>
                             </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </div>
+                            {% if campaign.active %}
+                                <div class="card-footer" style="background-color: #8AD0C7">
+                                    <small class="text-muted">Active</small>
+                                </div>
+                            {% elif not campaign.active %}
+                                <div class="card-footer" style="background-color: #6c757d">
+                                    <small class="text-muted">Inactive</small>
+                                </div>
+                            {% endif %}
                         </div>
                     {% endfor %}
                 </div>
@@ -242,8 +264,8 @@
                         <div class="card">
                             <img class="card-img-top" src="{{ campaign.image }}" alt="{{ campaign.name }}">
                             <div class="card-body">
-                                <a href="{% url 'campaign-details-page' pk=campaign.pk %}"><h5
-                                        class="card-title">{{ campaign.name }}</h5></a>
+                                <a href="{% url 'campaign-details-page' campaign.pk %}"><h4
+                                        class="card-title text-uppercase">{{ campaign.name }}</h4></a>
                                 <p class="card-text">{{ campaign.resume }}</p>
                             </div>
                             <div class="card-footer">

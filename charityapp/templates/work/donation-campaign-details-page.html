@@ -1,0 +1,60 @@
+{% extends 'base/base.html' %}
+{% block main_content %}
+    <!-- Carousel wrapper -->
+    <div class="carousel-inner">
+        <!-- Single item -->
+        <div class="carousel-item active">
+            <img src="{{ campaign.image }}"
+                 class="d-block w-100"
+                 alt="{{ campaign.name }} image"/>
+            {#            <div class="carousel-caption d-none d-md-block">#}
+            {#                <h3 class="text-uppercase">Our work</h3>#}
+            {#                <p class="text-uppercase custom-title">Campaigns</p>#}
+            {#            </div>#}
+        </div>
+    </div>
+    <!-- Carousel wrapper -->
+
+    <section class="mv-section">
+        <div class="container">
+            <div class="row">
+                <div class="maintitle">
+                    <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
+                        data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        <strong>{{ campaign.name }}</strong></h2>
+                    <hr class="hr hr-blurry"/>
+                </div>
+                <div class="lead">
+                    <p>{{ campaign.resume }}</p>
+                    <p>Description: {{ campaign.description }}</p>
+                    <p>Motivation: {{ campaign.motivation }}</p>
+                    <p>Type: {{ campaign.type }}</p>
+                    <a href="{{ campaign.website }}">Visit Website</a>
+                    <p>Duration: {{ campaign.duration }}</p>
+                    {% if campaign.place %}
+                        <p>Place: {{ campaign.place }}</p>
+                    {% endif %}
+
+                    {% if request.user.is_authenticated and user.user_type == 'VOLUNTEER' %}
+                        {% if campaign.active %}
+                            <a href="{% url 'participate-campaign' campaign.id %}" class="participate-btn">
+                                <button>Participate</button>
+                            </a>
+                        {% else %}
+                            <button type="button" disabled>This campaign has expired!</button>
+                        {% endif %}
+                    {% else %}
+                        <a href="{% url 'login-page' %}" class="participate-btn">
+                            <button>Login for participation</button>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+
+
+

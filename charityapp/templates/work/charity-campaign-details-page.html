@@ -35,10 +35,19 @@
                     {% if campaign.place %}
                         <p>Place: {{ campaign.place }}</p>
                     {% endif %}
-                    {% if request.user.is_authenticated %}
-                        <a href="{% url 'participate-campaign' campaign.id %}" class="participate-btn">Participate</a>
+
+                    {% if request.user.is_authenticated and user.user_type == 'VOLUNTEER' %}
+                        {% if campaign.active %}
+                            <a href="{% url 'participate-campaign' campaign.id %}" class="participate-btn">
+                                <button>Participate</button>
+                            </a>
+                        {% else %}
+                            <button type="button" disabled>This campaign has expired!</button>
+                        {% endif %}
                     {% else %}
-                        <a href="{% url 'login-page' %}" class="participate-btn">Login for participation</a>
+                        <a href="{% url 'login-page' %}" class="participate-btn">
+                            <button>Login for participation</button>
+                        </a>
                     {% endif %}
                 </div>
             </div>
@@ -46,28 +55,6 @@
     </section>
 {% endblock %}
 
-
-{#                   <div class="accordion custom-accordion">#}
-{#{#                    {% for q_and_a in textile_for_future_q_and_a %}#}
-{#{#                        <div class="accordion-item">#}
-{#{#                            <h4 class="accordion-header" id="{{ q_and_a.pk }}Heading">#}
-{#{#                                <button class="accordion-button collapsed" type="button"#}
-{#{#                                        data-bs-toggle="collapse"#}
-{#{#                                        data-bs-target="#{{ q_and_a.pk }}Collapse" aria-expanded="false"#}
-{#{#                                        aria-controls="{{ q_and_a.pk }}Collapse">#}
-{#{#                                    <strong>{{ q_and_a.question}}</strong>#}
-{#{#                                </button>#}
-{#{#                            </h4>#}
-{#{#                            <div id="{{ q_and_a.pk }}Collapse" class="accordion-collapse collapse"#}
-{#{#                                 aria-labelledby="{{ q_and_a.pk }}Heading"#}
-{#{#                                 data-bs-parent="#qnaAccordion">#}
-{#{#                                <div class="accordion-body ">#}
-{#{#                                    <p class="lead">{{ q_and_a.answer }}</p>#}
-{#{#                                </div>#}
-{#{#                            </div>#}
-{#{#                        </div>#}
-{#{#                    {% endfor %}#}
-{#{#                </div>#}
 
 
 

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+{#THIS IS NOT WORKING user.volunteer_profile.first_name#}
+<p>Dear, {{ user.user_type }},</p>
+<p>Thank you for participating in the "{{ campaign.name }}" campaign.</p>
+<p>Here are more important details about the campaign</p>
+<ul>
+    <li>Start Date and Time: {{ campaign.start_datetime }}</li>
+    <li>End Date and Time: {{ campaign.end_datetime }}</li>
+    <li>Place: {{ campaign.place }}</li>
+    <li>Short Resume: {{ campaign.resume }}</li>
+    <li>Campaign Motivation: {{ campaign.motivation }}</li>
+</ul>
+<p>We appreciate your support and dedication to our cause. And believe that with you, we are closer to the change.</p>
+<div></div>
+<p>Best Regards,</p>
+<p>Club for Future & Caps for Future</p>
+</body>
+</html>
