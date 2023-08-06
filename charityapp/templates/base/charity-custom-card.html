@@ -1,0 +1,28 @@
+<div class="custom-card">
+    <img class="card-img-top" src="{{ campaign.image }}" alt="{{ campaign.name }}"
+         height="200px">
+    <div class="card-body">
+        <a href="{% url 'charity-campaign-details' campaign.pk %}"><h4
+                class="card-title text-uppercase text-center">{{ campaign.name }}</h4></a>
+        <p class="card-text">{{ campaign.resume }}</p>
+        {% if campaign.active %}
+            {% if request.user.is_authenticated and user.user_type == "VOLUNTEER" %}
+                <a href="{% url 'charity-campaign-participation' campaign.id %}">
+                    <button>Volunteer</button>
+                </a>
+            {% endif %}
+        {% endif %}
+    </div>
+
+    {% if campaign.active %}
+        <div class="card-footer active-card-footer">
+            <small class="text-muted">Active</small>
+        </div>
+    {% elif not campaign.active %}
+        <div class="card-footer expired-card-footer">
+            <small class="text-muted">Expired</small>
+        </div>
+    {% endif %}
+</div>
+
+

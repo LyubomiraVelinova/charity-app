@@ -11,3 +11,7 @@ function toggleAdditionalText(linkElement, event) {
 }
 
 //HERE
+
+    $(document).ready(function() {
+        $('#testimonialCarousel').carousel();
+    });

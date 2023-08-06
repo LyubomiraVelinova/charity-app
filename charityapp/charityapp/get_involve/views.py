@@ -19,7 +19,7 @@ class ContactThankYouView(views.TemplateView):
     template_name = 'confirmation/thanks/contact-thank-you-page.html'
 
 
-class ContactView(views.FormView):
+class ContactUsView(views.FormView):
     template_name = 'get-involved/contact-us-page.html'
     form_class = ContactForm
     success_url = reverse_lazy('contact-thank-you')
@@ -45,4 +45,5 @@ class ContactView(views.FormView):
         return super().form_valid(form)
 
 
-
+class BlogView(views.TemplateView):
+    template_name = 'get-involved/blog-page.html'

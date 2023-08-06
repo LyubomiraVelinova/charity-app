@@ -1,0 +1,19 @@
+<div class="accordion-item">
+    <h4 class="accordion-header" id="heading{{ faq.pk }}c">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapse{{ faq.pk }}c" aria-expanded="false"
+                aria-controls="collapse{{ faq.pk }}c">
+            {{ faq.question }}
+        </button>
+    </h4>
+    <div id="collapse{{ faq.pk }}c" class="accordion-collapse collapse"
+         aria-labelledby="heading{{ faq.pk }}c"
+         data-bs-parent="#accordionExample{{ faq.pk }}c">
+        <div class="accordion-body lead">
+            {{ faq.answer }}
+        </div>
+        {% if faq.important %}
+            <p><strong>***Important:</strong>{{ faq.important }}</p>
+        {% endif %}
+    </div>
+</div>

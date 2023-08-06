@@ -1,3 +1,124 @@
-#contact .card:hover i,#contact .card:hover h4{
-	color: #68ccc0;
+#contact .card:hover i, #contact .card:hover h4 {
+    color: var(--light-green);
+}
+
+.custom-row {
+    padding: 2rem 2rem 0.5rem 2rem;
+    margin: 1.5rem 1.5rem 0 1.5rem;
+    background-color: var(--gray-white);
+}
+
+#contact input,
+#contact select,
+#contact textarea {
+    border-color: var(--light-gray);
+    border-style: solid;
+    border-width: thin;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    width: 100%;
+    color: rgb(37, 35, 35);
+    background-color: #fff;
+    height: 40px;
+}
+
+#contact input#submit {
+    width: auto;
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 0;
+    color: #fff;
+    padding: 0px 20px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+#contact input#submit:hover {
+    background-color: var(--light-green);
+}
+
+#contact label {
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-top: 15px;
+}
+
+#contact textarea {
+    height: 180px;
+}
+
+/* FORM */
+
+.white {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: hidden;
+    z-index: 1;
+    color: #fff;
+}
+
+#contactarea form {
+    max-width: 800px;
+    margin: 0px auto;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.maintitle {
+    text-align: center;
+}
+
+.section-title {
+    text-transform: uppercase;
+    font-size: 30px;
+    letter-spacing: 3px;
+}
+
+.maintitle .lead {
+    margin: 0 auto;
+    margin-bottom: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: justify;
+}
+
+p.lead {
+    /*font-size: 24px;*/
+    font-weight: 300;
+    text-align: justify;
+}
+
+.custom-lead-wh {
+    font-size: 18px;
+    font-weight: 300;
+    text-align: justify;
+    color: var(--white);
+}
+
+.custom-lead-bl {
+    font-size: 20px;
+    font-weight: 300;
+    text-align: justify;
+    color: var(--black);
+}
+
+
+
+
+
+@media (min-width: 768px) {
+    #name {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+}
+
+#success, #error {
+    display: none;
 }

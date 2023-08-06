@@ -1,20 +1,8 @@
 {% extends 'base/base.html' %}
 {% load percentage %}
 {% block main_content %}
-    <!-- Carousel wrapper -->
-    <div class="carousel-inner">
-        <!-- Single item -->
-        <div class="carousel-item active">
-            <img src="{{ campaign.image }}"
-                 class="d-block w-100"
-                 alt="{{ campaign.title }} image"/>
-            {#            <div class="carousel-caption d-none d-md-block">#}
-            {#                <h3 class="text-uppercase">Our work</h3>#}
-            {#                <p class="text-uppercase custom-title">Campaigns</p>#}
-            {#            </div>#}
-        </div>
-    </div>
-    <!-- Carousel wrapper -->
+
+    {% include 'base/carousel.html' with carousel_img=campaign.logo carousel_alt=campaign.title %}
 
     <section class="mv-section">
         <div class="container">
@@ -40,16 +28,16 @@
                     </div>
 
                     {% if request.user.is_authenticated and user.user_type == 'SPONSOR' %}
-                        {% if campaign.active %}
-                            <a href="{% url 'charity-campaign-participation' campaign.id %}" class="participate-btn">
-                                <button>Participate</button>
+                        {% if not campaign.succeeded %}
+                            <a href="{% url 'sponsor-donation' campaign.id %}" class="participate-btn">
+                                <button>Donate</button>
                             </a>
                         {% else %}
-                            <button type="button" disabled>This campaign has expired!</button>
+                            <button type="button" disabled>This campaign has expired and been succeeded!</button>
                         {% endif %}
                     {% else %}
                         <a href="{% url 'login' %}" class="participate-btn">
-                            <button>Login for participation</button>
+                            <button>Login for donation</button>
                         </a>
                     {% endif %}
                 </div>

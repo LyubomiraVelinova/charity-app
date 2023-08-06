@@ -1,9 +1,12 @@
 from enum import Enum
 
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils import timezone
 
 from charityapp.common.mixins import ChoicesStringsMixin
+
+UserModel = get_user_model()
 
 
 class CharityType(ChoicesStringsMixin, Enum):
@@ -63,6 +66,7 @@ class CharityCampaign(models.Model):
     active = models.BooleanField(
         default=True
     )
+
     # Начини за участие и подкрепа: Предоставете информация за начините, по които хората могат да се включат в кампанията или да я подкрепят. Това може да бъде чрез дарение, участие в събитието, спонсорство и други.
     #
     # Истории за успех: Ако имате предишни успешни кампании или проекти, споделете истории за тях и как те са помогнали на общността или хората, които са били засегнати.
@@ -85,6 +89,7 @@ class DonationCampaign(models.Model):
     title = models.CharField(
         max_length=MAX_LEN_TITLE,
     )
+    logo = models.ImageField()
     description = models.TextField()
     purpose = models.TextField()
     goal_amount = models.DecimalField(
@@ -100,6 +105,9 @@ class DonationCampaign(models.Model):
     succeeded = models.BooleanField(
         default=False,
     )
+
+    def duration(self):
+        return f'{self.start_date} - {self.end_date}'
 
     def __str__(self):
         return self.title
@@ -136,3 +144,13 @@ class FAQ(models.Model):
     class Meta:
         verbose_name = 'FAQ'
         verbose_name_plural = 'FAQ'
+
+
+class SponsorDonation(models.Model):
+    campaign = models.ForeignKey(DonationCampaign, on_delete=models.CASCADE)
+    donor = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    donation_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Donation of {self.amount} to {self.campaign}"

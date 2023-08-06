@@ -1,25 +1,11 @@
 {% extends 'base/base.html' %}
 
-{% load static %}
+
 {% load percentage %}
 
 {% block main_content %}
-    <!-- Carousel wrapper -->
-    <div class="carousel-inner">
-        <!-- Single item -->
-        <div class="carousel-item active">
-            <img src="https://images.unsplash.com/photo-1527788263495-3518a5c1c42d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1208&q=80"
-                 class="d-block w-100"
-                 alt="Sunset Over the City"/>
-            <div class="carousel-caption d-none d-md-block">
-                <h3 class="text-uppercase">Our work</h3>
-                <p class="text-uppercase custom-title">Donation Campaigns</p>
-            </div>
-        </div>
-    </div>
-    <!-- Carousel wrapper -->
 
-    <hr class="hr hr-blurry"/>
+    {% include 'base/carousel.html' with carousel_title="Our work" carousel_subtitle="Donation Campaigns" carousel_img="https://images.unsplash.com/photo-1527788263495-3518a5c1c42d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1208&q=80" carousel_alt="Donation campaigns cover" %}
 
     <section class="mv-section">
         <div class="container">
@@ -50,41 +36,37 @@
                 </div>
 
                 <div class="card-group">
-                    {% for campaign in donation_campaigns %}
-                        <div class="card">
-                            <img class="card-img-top" src="{{ campaign.image }}" alt="{{ campaign.title }}">
-                            <div class="card-body">
-                                <a href="{% url 'donation-campaign-details' campaign.pk %}"><h4
-                                        class="card-title text-uppercase">{{ campaign.title }}</h4></a>
-                                <p class="card-text">{{ campaign.description }}</p>
-                            </div>
-
-                            <p>Amount Raised: {{ campaign.current_amount }} BGN</p>
-                            <p>Fundraising Goal: {{ campaign.goal_amount }} BGN</p>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar"
-                                     style="width: {{ campaign.current_amount|percentage_complete:campaign.goal_amount }}%;"
-                                     aria-valuenow="{{ campaign.current_amount|percentage_complete:campaign.goal_amount }}"
-                                     aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-
-                            {% if campaign.active %}
-                                {% if request.user.is_authenticated and user.user_type == 'SPONSOR' %}
-                                    <a href="{% url 'donation' %}">
-                                        <button>Donate Now</button>
-                                    </a>
-                                {% endif %}
-                                <div class="card-footer" style="background-color: #8AD0C7">
-                                    <small class="text-muted">Active</small>
-                                </div>
-                            {% elif not campaign.active %}
-                                <div class="card-footer" style="background-color: #6c757d">
-                                    <small class="text-muted">Succeeded</small>
-                                </div>
-                            {% endif %}
-                        </div>
+                    {% for campaign in first_three_donation_campaigns %}
+                        {% include 'base/donation-custom-card.html' %}
                     {% endfor %}
                 </div>
+                <div class="card-group">
+                    {% for campaign in second_three_donation_campaigns %}
+                        {% include 'base/donation-custom-card.html' %}
+                    {% endfor %}
+                </div>
+
+                {#                {% for campaign in donation_campaigns %}#}
+                {#                    <div class="col-sm-4">#}
+                {#                        <div class="card custom-card h-100">#}
+                {#                            <img class="card-img-top custom-card-img-top" src="{{ campaign.logo }}"#}
+                {#                                 alt="{{ campaign.name }}" height="300px">#}
+                {#                            <div class="card-body">#}
+                {#                                <a href="{% url 'donation-campaign-details' campaign.pk %}">#}
+                {#                                    <h4 class="card-title text-uppercase">{{ campaign.title }}</h4>#}
+                {#                                </a>#}
+                {#                                {% if campaign.succeeded %}#}
+                {#                                    <h5 class="card-title ">Duration: {{ campaign.duration }}</h5>#}
+                {#                                {% else %}#}
+                {#                                    <h5 class="card-title ">{{ campaign.start_date }}</h5>#}
+                {#                                {% endif %}#}
+                {#                                <p class="card-text">{{ campaign.purpose }}</p>#}
+                {#                            #}
+                {##}
+                {#                            </div>#}
+                {#                        </div>#}
+                {#                    </div>#}
+                {#                {% endfor %}#}
 
                 {#                    <div class="accordion custom-accordion">#}
                 {#                        {% for faq in caps_for_future_faq %}#}

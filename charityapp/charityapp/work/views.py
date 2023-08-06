@@ -3,10 +3,12 @@ from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404, redirect
 from django.template.loader import render_to_string
+from django.urls import reverse
 from django.utils.html import strip_tags
 from django.views import generic as views
 
 from charityapp.settings import EMAIL_HOST_USER
+from charityapp.work.forms import SponsorDonationForm
 from charityapp.work.models import CharityCampaign, DonationCampaign
 
 UserModel = get_user_model()
@@ -24,11 +26,11 @@ class CharityCampaignsView(views.TemplateView):
     template_name = 'work/charity-campaigns-page.html'
 
     def get_context_data(self, **kwargs):
-        caps_for_future_campaigns = CharityCampaign.objects.filter(name__startswith='Caps for Future')
-        recycling_for_future_campaigns = CharityCampaign.objects.filter(name__startswith='Recycling for Future')
-        textile_for_future_campaigns = CharityCampaign.objects.filter(name__startswith='Textile for Future')
-        blood_donation_for_future_campaigns = CharityCampaign.objects.filter(
-            name__startswith='Blood donation for Future')
+        charity_campaigns = CharityCampaign.objects.all().order_by('active', 'start_datetime')
+        caps_for_future_campaigns = charity_campaigns.filter(name__startswith='Caps for Future')
+        recycling_for_future_campaigns = charity_campaigns.filter(name__startswith='Recycling for Future')
+        textile_for_future_campaigns = charity_campaigns.filter(name__startswith='Textile for Future')
+        blood_donation_for_future_campaigns = charity_campaigns.filter(name__startswith='Blood donation for Future')
 
         caps_for_future_faq = self.get_unique_q_and_a(caps_for_future_campaigns)
         recycling_for_future_faq = self.get_unique_q_and_a(recycling_for_future_campaigns)
@@ -71,8 +73,11 @@ class DonationCampaignsView(views.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        donation_campaigns = DonationCampaign.objects.all()
-        context['donation_campaigns'] = donation_campaigns
+        donation_campaigns = DonationCampaign.objects.all().order_by('succeeded', 'start_date')
+        first_three_campaigns = donation_campaigns[:3]
+        second_three_campaigns = donation_campaigns[3:6]
+        context['first_three_donation_campaigns'] = first_three_campaigns
+        context['second_three_donation_campaigns'] = second_three_campaigns
         return context
 
 
@@ -109,8 +114,9 @@ class CharityCampaignParticipationView(views.TemplateView):
 
             return redirect('participation-thank-you')
 
-
         # def participate_campaign(request, campaign_id):
+
+
 #     campaign = get_object_or_404(CharityCampaign, id=campaign_id)
 #     user = UserModel.objects.get(pk=request.user.pk)
 #     if user.user_type == 'VOLUNTEER':
@@ -129,3 +135,29 @@ class CharityCampaignParticipationView(views.TemplateView):
 
 class ParticipationThankYouView(views.TemplateView):
     template_name = 'confirmation/thanks/participation-thank-you-page.html'
+
+
+class SponsorDonationView(views.CreateView):
+    template_name = 'work/sponsor-donation.html'
+    form_class = SponsorDonationForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        campaign_id = self.kwargs['campaign_id']
+        campaign = get_object_or_404(DonationCampaign, id=campaign_id)
+        context['campaign'] = campaign
+        return context
+
+    def form_valid(self, form):
+        campaign_id = self.kwargs['campaign_id']
+        campaign = get_object_or_404(DonationCampaign, id=campaign_id)
+        donation = form.save(commit=False)
+        donation.campaign = campaign
+        donation.donor = self.request.user
+        donation.save()
+        campaign.current_amount += donation.amount
+        campaign.save()
+        return redirect('donation-thank-you')
+
+    def get_success_url(self):
+        return reverse('donation_thank_you_page')

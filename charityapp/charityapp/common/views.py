@@ -1,10 +1,9 @@
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import user_passes_test
 
 from charityapp.charity.models import Testimonial
-from charityapp.work.models import CharityCampaign
+from charityapp.work.models import CharityCampaign, DonationCampaign
 from charityapp.common.forms import AboutUsInfoForm, DonationForm, ContactInfoForm, BillingInfoForm, PaymentMethodForm, \
     DonationValueForm
 from charityapp.common.models import AboutUsInfo, Impact, LatestNews
@@ -15,11 +14,13 @@ def index(request):
     first_three_news = LatestNews.objects.order_by('pk')[:3]
     second_three_news = LatestNews.objects.order_by('pk')[3:6]
     third_three_news = LatestNews.objects.order_by('pk')[6:9]
-    first_six_campaigns = CharityCampaign.objects.order_by('-start_datetime')[:6]
+    first_three_charity_campaigns = CharityCampaign.objects.order_by('-start_datetime')[:3]
+    first_three_donation_campaigns = DonationCampaign.objects.order_by('-start_date')[:3]
     testimonials = Testimonial.objects.filter(approved=True).order_by('-date')
 
     context = {
-        'campaigns': first_six_campaigns,
+        'charity_campaigns': first_three_charity_campaigns,
+        'donation_campaigns': first_three_donation_campaigns,
         'impacts': impacts,
         'first_news': first_three_news,
         'second_news': second_three_news,

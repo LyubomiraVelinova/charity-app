@@ -73,7 +73,7 @@ class AboutUsInfo(models.Model):
         verbose_name_plural = 'Info About Us'
 
 
-class Donation(models.Model):
+class RandomUserDonation(models.Model):
     MIN_LEN_NAME = 2
     MAX_LEN_NAME = 30
     MAX_LEN_CITY = 100
@@ -173,7 +173,7 @@ class Donation(models.Model):
 
     def save(self, *args, **kwargs):
         self.card_number = format_card_number(self.card_number.replace(' ', ''))
-        super(Donation, self).save(*args, **kwargs)
+        super(RandomUserDonation, self).save(*args, **kwargs)
 
 
 class Impact(models.Model):

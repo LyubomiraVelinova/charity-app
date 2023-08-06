@@ -34,7 +34,8 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{% url 'what-we-do' %}">What we do</a></li>
                             <li><a class="dropdown-item" href="{% url 'charity-campaigns' %}">Charity Campaigns</a></li>
-                            <li><a class="dropdown-item" href="{% url 'donation-campaigns' %}">Donation Campaigns</a></li>
+                            <li><a class="dropdown-item" href="{% url 'donation-campaigns' %}">Donation Campaigns</a>
+                            </li>
                             <li><a class="dropdown-item" href="{% url 'where-we-work' %}">Where we work</a></li>
                         </ul>
                     </li>
@@ -46,7 +47,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{% url 'ways-to-involve' %}">Ways to involve</a></li>
-                            {#                            <li><a class="dropdown-item" href="#">Educational resources/Blog</a></li>#}
+                            <li><a class="dropdown-item" href="{% url 'blog-page' %}">Blog</a></li>
                             <li><a class="dropdown-item" href="{% url 'contact-us' %}">Contact us</a></li>
                         </ul>
                     </li>
@@ -65,7 +66,8 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{% url 'profile-details' %}">Profile</a></li>
-                                <li><a class="dropdown-item" href="{% url 'testimonial-submission' %}">Submit Testimonial</a></li>
+                                <li><a class="dropdown-item" href="{% url 'testimonial-submission' %}">Submit
+                                    Testimonial</a></li>
                                 <li><a class="dropdown-item" href="">Testimonials History</a></li>
                                 <li><a class="dropdown-item" href="{% url 'security-settings' %}">Settings</a></li>
                                 <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>

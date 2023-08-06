@@ -1,89 +1,103 @@
 {% extends 'base/base.html' %}
 
 {% block main_content %}
-    <section id="contact" class="first-section">
+    {% include 'base/carousel.html' with carousel_title="Get involved" carousel_subtitle="Contact us" carousel_img="https://images.unsplash.com/photo-1498230870289-7561110a6e69?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" carousel_alt="Contact us cover" %}
+
+    <section class="mv-section">
         <div class="container">
-            <h3 class="text-center text-uppercase">contact us</h3>
-            <p class="text-center w-75 m-auto">Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within a matter of hours to help you.</p>
             <div class="row">
-                <div class="col-sm-12 col-md-6 col-lg-3 my-5">
-                    <div class="card border-0">
-                        <div class="card-body text-center">
-                            <i class="fa fa-phone fa-5x mb-3" aria-hidden="true"></i>
-                            <h4 class="text-uppercase mb-5">call us</h4>
-                            <p>+8801683615582,+8801750603409</p>
-                        </div>
+                <div class="maintitle">
+                    <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
+                        data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        <strong>Contact <span class="lighter">details</span></strong>
+                    </h2>
+                    <hr class="hr hr-blurry"/>
+                </div>
+                <div class="card border-0">
+                    <div class="card-body text-center">
+                        <p class="text-justify lead">Do you have any questions? Or you have noticed an irregularity in
+                            your city? Do you have an idea for an initiative? Or you need assistance in the fight for a
+                            better environment around? Do you want to improve something together? Or you just want to
+                            tell us something?</p>
+                        <p class="text-center lead"> Please do not hesitate to contact us directly.</p>
+                        <p class="text-center lead">Our team will come back to you within a matter of hours to help
+                            you.</p>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-3 my-5">
-                    <div class="card border-0">
-                        <div class="card-body text-center">
-                            <i class="fa fa-map-marker fa-5x mb-3" aria-hidden="true"></i>
-                            <h4 class="text-uppercase mb-5">office loaction</h4>
-                            <address>Suite 02, Level 12, Sahera Tropical Center</address>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-3 my-5">
-                    <div class="card border-0">
-                        <div class="card-body text-center">
-                            <i class="fa fa-map-marker fa-5x mb-3" aria-hidden="true"></i>
-                            <h4 class="text-uppercase mb-5">office loaction</h4>
-                            <address>Suite 02, Level 12, Sahera Tropical Center</address>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-3 my-5">
-                    <div class="card border-0">
-                        <div class="card-body text-center">
-                            <i class="fa fa-globe fa-5x mb-3" aria-hidden="true"></i>
-                            <h4 class="text-uppercase mb-5">email</h4>
-                            <p>http://al.a.noman1416@gmail.com</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="main-wrapper" class="container">
                 <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <div class="card border-0">
-                            <div class="card-body p-0">
-                                <div class="row custom-row no-gutters">
-                                    <div class="col-lg-6">
-                                        <form action="{% url 'contact-us' %}" id="contact" name="contact" method="post" class="text-left">
-                                            {% csrf_token %}
-                                            {{ form.as_p }}
-                                            <input id="submit" type="submit" name="submit" value="Send"/>
-                                        </form>
-                                    </div>
+                    <div class="col-xl-8 custom-row">
+                        <form action="{% url 'contact-us' %}" id="contact" name="contact"
+                              method="post" class="text-left">
+                            {% csrf_token %}
+                            {% if request.user.is_authenticated %}
+                                <label for="">{{ form.name.label }}</label>
+                                {% if user.user_type == 'SPONSOR' %}
+                                    <input type="text" value="{{ user.sponsor_profile.company_name }}">
+                                {% elif  user.user_type == 'VOLUNTEER' %}
+                                    <input type="text" value="{{ user.volunteer_profile.company_name }}">
+                                {% elif user.user_type == 'MEMBER' %}
+                                    <input type="text" value="{{ user.member_profile.company_name }}">
+                                {% endif %}
+                                <label for="">{{ form.email.label }}</label>
+                                <input type="text" value="{{ user.email }}">
+                                <label for="">{{ form.subject.label }}</label>
+                                {{ form.subject }}
+                                <label for="">{{ form.message.label }}</label>
+                                {{ form.message }}
+                            {% else %}
+                                {{ form.as_p }}
+                            {% endif %}
 
-                                    <div class="col-lg-6 d-none d-lg-inline-block">
-                                        <div class="account-block rounded-right">
-                                            <div class="overlay rounded-right"></div>
-                                            <div class="account-testimonial">
-                                                <p class="lead text-white">
-                                                    If you have noticed an irregularity in your city!
-                                                    If you have an idea for an initiative!
-                                                    If you need assistance in the fight for a better environment around
-                                                    us!
-                                                    If you want to improve something together!
-                                                    Or just want to tell us something!
-                                                </p>
-                                                <h4 class="text-white mb-4">
-                                                    <p>DON`T HESITATE!</p>
-                                                    <p>SHARE WITH US!</p>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <input id="submit" type="submit" name="submit" value="Send"/>
+                        </form>
+                        {% if not user.is_authenticated %}
+                            <p class="text-muted text-center mt-3 mb-0">Don't have an account? <a
+                                    href="{% url 'register' %}"
+                                    class="text-primary ml-1">Register</a>
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="row" id="contact">
+                    <div class="col-md-3">
+                        <div class="card border-0">
+                            <div class="card-body text-center">
+                                <i class="fa fa-phone fa-5x mb-3" aria-hidden="true"></i>
+                                <h4 class="text-uppercase mb-2">Call us</h4>
+                                <p>+359 886 789 678</p>
                             </div>
                         </div>
-                        <p class="text-muted text-center mt-3 mb-0">Don't have an account? <a
-                                href="{% url 'register' %}"
-                                class="text-primary ml-1">register</a>
-                        </p>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card border-0">
+                            <div class="card-body text-center">
+                                <i class="fa fa-map-marker fa-5x mb-3" aria-hidden="true"></i>
+                                <h4 class="text-uppercase mb-2">Location</h4>
+                                <address>Bulgaria, 2500 Kyustendil, str.Gornobanka 11</address>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card border-0">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-envelope fa-5x mb-3" aria-hidden="true"></i>
+                                <h4 class="text-uppercase mb-2">Email</h4>
+                                <p>club.za.badeshte@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card border-0">
+                            <div class="card-body text-center">
+                                <i class="fa-brands fa-facebook fa-5x mb-3" aria-hidden="true"></i>
+                                <h4 class="text-uppercase mb-2">Social</h4>
+                                <a href="https://www.facebook.com/profile.php?id=100087549276760">
+                                    <p>Follow us</p>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

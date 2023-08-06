@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.utils.safestring import mark_safe
 
-from charityapp.common.models import AboutUsInfo, Donation, Impact, LatestNews
+from charityapp.common.models import AboutUsInfo, RandomUserDonation, Impact, LatestNews
 
 
 # from charityapp.common.models import AboutUsInfo
@@ -28,7 +28,7 @@ class AboutUsInfoAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(Donation)
+@admin.register(RandomUserDonation)
 class DonationAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Donation Value', {

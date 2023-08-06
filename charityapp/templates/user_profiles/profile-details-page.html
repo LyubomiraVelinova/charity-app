@@ -3,6 +3,9 @@
 {% load verbose_name %}
 
 {% block main_content %}
+
+    {% include 'base/carousel.html' with carousel_title="" carousel_subtitle="Profile page" carousel_img="http://unsplash.it/1600/600?random=1" carousel_alt="Profile cover" %}
+
     <section class="first-section">
         <div class="container">
             <div class="row flex-lg-nowrap">
@@ -88,7 +91,9 @@
                                                                     history:</strong></label>
                                                                 <ul>
                                                                     {% for campaign in object.charity_history.all %}
-                                                                        <a href="{% url 'charity-campaign-details' campaign.pk %}"><li>{{ campaign.name }}</li></a>
+                                                                        <a href="{% url 'charity-campaign-details' campaign.pk %}">
+                                                                            <li>{{ campaign.name }}</li>
+                                                                        </a>
                                                                     {% endfor %}
                                                                 </ul>
                                                             {% elif object.donation_history.all %}

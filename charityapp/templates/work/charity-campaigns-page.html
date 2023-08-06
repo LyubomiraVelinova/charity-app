@@ -1,22 +1,8 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block main_content %}
-    <!-- Carousel wrapper -->
-    <div class="carousel-inner">
-        <!-- Single item -->
-        <div class="carousel-item active">
-            <img src="{% static 'images/campaigns.jpg' %}"
-                 class="d-block w-100"
-                 alt="Sunset Over the City"/>
-            <div class="carousel-caption d-none d-md-block">
-                <h3 class="text-uppercase">Our work</h3>
-                <p class="text-uppercase custom-title">Charity Campaigns</p>
-            </div>
-        </div>
-    </div>
-    <!-- Carousel wrapper -->
 
-    <hr class="hr hr-blurry"/>
+    {% include 'base/carousel.html' with carousel_title="Our work" carousel_subtitle="Charity Campaigns" carousel_img="/static/images/campaigns.jpg" carousel_alt="Charity campaigns cover" %}
 
     <section class="mv-section">
         <div class="container">
@@ -39,51 +25,16 @@
 
                 <div class="card-group">
                     {% for campaign in caps_for_future_campaigns %}
-                        <div class="card">
-                            <img class="card-img-top" src="{{ campaign.image }}" alt="{{ campaign.name }}">
-                            <div class="card-body">
-                                <a href="{% url 'charity-campaign-details' campaign.pk %}"><h4
-                                        class="card-title text-uppercase">{{ campaign.name }}</h4></a>
-                                <p class="card-text">{{ campaign.resume }}</p>
-                            </div>
-
-                            {% if campaign.active %}
-                                <div class="card-footer" style="background-color: #8AD0C7">
-                                    <small class="text-muted">Active</small>
-                                </div>
-                            {% elif not campaign.active %}
-                                <div class="card-footer" style="background-color: #6c757d">
-                                    <small class="text-muted">Inactive</small>
-                                </div>
-                            {% endif %}
-
-                        </div>
+                        {% include 'base/charity-custom-card.html' %}
                     {% endfor %}
                 </div>
 
                 <div class="accordion custom-accordion">
                     {% for faq in caps_for_future_faq %}
-                        <div class="accordion-item">
-                            <h4 class="accordion-header" id="heading{{ faq.pk }}c">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse{{ faq.pk }}c" aria-expanded="false"
-                                        aria-controls="collapse{{ faq.pk }}c">
-                                    {{ faq.question }}
-                                </button>
-                            </h4>
-                            <div id="collapse{{ faq.pk }}c" class="accordion-collapse collapse"
-                                 aria-labelledby="heading{{ faq.pk }}c"
-                                 data-bs-parent="#accordionExample{{ faq.pk }}c">
-                                <div class="accordion-body lead">
-                                    {{ faq.answer }}
-                                </div>
-                                {% if faq.important %}
-                                    <p><strong>***Important:</strong>{{ faq.important }}</p>
-                                {% endif %}
-                            </div>
-                        </div>
+                        {% include 'base/faq-accordion.html' %}
                     {% endfor %}
                 </div>
+
                 <div class="maintitle">
                     <p class="lead">
                         Thank you for joining us in the "Caps for Future" campaign and making a positive impact on the
@@ -116,44 +67,13 @@
 
                 <div class="card-group">
                     {% for campaign in recycling_for_future_campaigns %}
-                        <div class="card">
-                            <img class="card-img-top" src="{{ campaign.image }}" alt="{{ campaign.name }}">
-                            <div class="card-body">
-                                <a href="{% url 'charity-campaign-details' campaign.pk %}"><h4
-                                        class="card-title text-uppercase">{{ campaign.name }}</h4></a>
-                                <p class="card-text">{{ campaign.resume }}</p>
-                            </div>
-                            {% if campaign.active %}
-                                <div class="card-footer" style="background-color: #8AD0C7">
-                                    <small class="text-muted">Active</small>
-                                </div>
-                            {% elif not campaign.active %}
-                                <div class="card-footer" style="background-color: #6c757d">
-                                    <small class="text-muted">Inactive</small>
-                                </div>
-                            {% endif %}
-                        </div>
+                        {% include 'base/charity-custom-card.html' %}
                     {% endfor %}
                 </div>
 
                 <div class="accordion custom-accordion">
                     {% for faq in recycling_for_future_faq %}
-                        <div class="accordion-item">
-                            <h4 class="accordion-header" id="heading{{ faq.pk }}r">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse{{ faq.pk }}r" aria-expanded="false"
-                                        aria-controls="collapse{{ faq.pk }}r">
-                                    {{ faq.question }}
-                                </button>
-                            </h4>
-                            <div id="collapse{{ faq.pk }}r" class="accordion-collapse collapse"
-                                 aria-labelledby="heading{{ faq.pk }}r"
-                                 data-bs-parent="#accordionExample{{ faq.pk }}r">
-                                <div class="accordion-body lead">
-                                    {{ faq.answer }}
-                                </div>
-                            </div>
-                        </div>
+                        {% include 'base/faq-accordion.html' %}
                     {% endfor %}
                 </div>
             </div>
@@ -189,44 +109,13 @@
 
                 <div class="card-group">
                     {% for campaign in textile_for_future_campaigns %}
-                        <div class="card">
-                            <img class="card-img-top" src="{{ campaign.image }}" alt="{{ campaign.name }}">
-                            <div class="card-body">
-                                <a href="{% url 'charity-campaign-details' campaign.pk %}"><h4
-                                        class="card-title text-uppercase">{{ campaign.name }}</h4></a>
-                                <p class="card-text">{{ campaign.resume }}</p>
-                            </div>
-                            {% if campaign.active %}
-                                <div class="card-footer" style="background-color: #8AD0C7">
-                                    <small class="text-muted">Active</small>
-                                </div>
-                            {% elif not campaign.active %}
-                                <div class="card-footer" style="background-color: #6c757d">
-                                    <small class="text-muted">Inactive</small>
-                                </div>
-                            {% endif %}
-                        </div>
+                        {% include 'base/charity-custom-card.html' %}
                     {% endfor %}
                 </div>
 
                 <div class="accordion custom-accordion">
                     {% for faq in textile_for_future_faq %}
-                        <div class="accordion-item">
-                            <h4 class="accordion-header" id="heading{{ faq.pk }}t">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse{{ faq.pk }}t" aria-expanded="false"
-                                        aria-controls="collapse{{ faq.pk }}t">
-                                    {{ faq.question }}
-                                </button>
-                            </h4>
-                            <div id="collapse{{ faq.pk }}t" class="accordion-collapse collapse"
-                                 aria-labelledby="heading{{ faq.pk }}t"
-                                 data-bs-parent="#accordionExample{{ faq.pk }}t">
-                                <div class="accordion-body lead">
-                                    {{ faq.answer }}
-                                </div>
-                            </div>
-                        </div>
+                        {% include 'base/faq-accordion.html' %}
                     {% endfor %}
                 </div>
 
@@ -261,38 +150,13 @@
 
                 <div class="card-group">
                     {% for campaign in blood_donation_for_future_campaigns %}
-                        <div class="card">
-                            <img class="card-img-top" src="{{ campaign.image }}" alt="{{ campaign.name }}">
-                            <div class="card-body">
-                                <a href="{% url 'charity-campaign-details' campaign.pk %}"><h4
-                                        class="card-title text-uppercase">{{ campaign.name }}</h4></a>
-                                <p class="card-text">{{ campaign.resume }}</p>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </div>
-                        </div>
+                        {% include 'base/charity-custom-card.html' %}
                     {% endfor %}
                 </div>
 
                 <div class="accordion custom-accordion">
                     {% for faq in blood_donation_for_future_faq %}
-                        <div class="accordion-item">
-                            <h4 class="accordion-header" id="heading{{ faq.pk }}b">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse{{ faq.pk }}b" aria-expanded="false"
-                                        aria-controls="collapse{{ faq.pk }}b">
-                                    {{ faq.question }}
-                                </button>
-                            </h4>
-                            <div id="collapse{{ faq.pk }}b" class="accordion-collapse collapse"
-                                 aria-labelledby="heading{{ faq.pk }}b"
-                                 data-bs-parent="#accordionExample{{ faq.pk }}b">
-                                <div class="accordion-body lead">
-                                    {{ faq.answer }}
-                                </div>
-                            </div>
-                        </div>
+                        {% include 'base/faq-accordion.html' %}
                     {% endfor %}
                 </div>
 

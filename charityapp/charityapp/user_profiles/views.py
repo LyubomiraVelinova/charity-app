@@ -89,7 +89,3 @@ class ChangePhotoView(views.UpdateView):
 class SecuritySettingsView(views.TemplateView):
     template_name = 'user_profiles/security-settings-page.html'
 
-
-class VolunteerListView(auth_mixins.LoginRequiredMixin, views.ListView):
-    model = UserModel
-    template_name = 'user_profiles/volunteers-list-page.html'
