@@ -19,11 +19,14 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('work/', include('charityapp.work.urls')),
+    path('', include('charityapp.common.urls')),
+    path('causes/', include('charityapp.causes.urls')),
+    path('blog/', include('charityapp.blog.urls')),
+    path('contact/', include('charityapp.contact.urls')),
     path('profile/', include('charityapp.user_profiles.urls')),
     path('accounts/', include('charityapp.accounts.urls')),
-    path('', include('charityapp.common.urls')),
     path('about/', include('charityapp.about.urls')),
-    path('get-involved/', include('charityapp.get_involve.urls')),
-    path('charity/', include('charityapp.charity.urls')),
+    path('get-involved/', include('charityapp.get_involved.urls')),
 ]
+
+handler404 = 'charityapp.common.views.handler404'

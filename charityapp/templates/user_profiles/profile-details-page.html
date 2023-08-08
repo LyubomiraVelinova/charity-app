@@ -4,26 +4,52 @@
 
 {% block main_content %}
 
-    {% include 'base/carousel.html' with carousel_title="" carousel_subtitle="Profile page" carousel_img="http://unsplash.it/1600/600?random=1" carousel_alt="Profile cover" %}
-
-    <section class="first-section">
+    <section class="profile-section">
         <div class="container">
             <div class="row flex-lg-nowrap">
 
-                <div class="col-12 col-lg-auto mb-3" style="width: 200px;">
+                <div class="col-12 col-lg-auto mb-3" style="width: 250px;">
                     <div class="card p-3">
-                        <div class="e-navlist e-navlist--active-bg">
+                        <div class="e-navlist e-navlist--active-bg text-nowrap">
                             <ul class="nav">
-                                <li class="nav-item"><a class="nav-link px-2 active" href="#"><i
-                                        class="fa fa-fw fa-bar-chart mr-1"></i><span>Overview</span></a></li>
-                                <li class="nav-item"><a class="nav-link px-2"
-                                                        href="{% url 'testimonial-submission' %}"
-                                                        target="__blank"><i
-                                        class="fa fa-fw fa-th mr-1"></i><span>Testimonials</span></a></li>
-                                <li class="nav-item"><a class="nav-link px-2"
-                                                        href="{% url 'security-settings' %}"
-                                                        target="__blank"><i
-                                        class="fa fa-fw fa-cog mr-1"></i><span>Settings</span></a></li>
+                                <li class="nav-item">
+                                    <a class="nav-link px-2 active" href="#"><i class="fa fa-fw fa-bar-chart mr-1">
+                                    </i><span>Overview</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="nav-link px-2">
+                                        <i class="fa fa-fw fa-th mr-1"></i>
+                                        <span>Testimonials</span>
+                                    </div>
+                                    <ul>
+                                        <a class="nav-link px-2" href="{% url 'testimonial-submission' %}">
+                                            <li>Submit new</li>
+                                        </a>
+                                        <a class="nav-link px-2" href="{% url 'testimonials-history-page' %}">
+                                            <li>History</li>
+                                        </a>
+                                    </ul>
+                                </li>
+
+                                <li class="nav-item">
+                                    <div class="nav-link px-2">
+                                        <i class="fa fa-fw fa-cog mr-1"></i>
+                                        <span>Settings</span>
+                                    </div>
+                                    <ul>
+                                        <a class="nav-link px-2" href="{% url 'password-change' %}">
+                                            <li>Change Password</li>
+                                        </a>
+                                        <a class="nav-link px-2" href="{% url 'change-email' %}">
+                                            <li>Change Email</li>
+                                        </a>
+                                    </ul>
+                                </li>
+                                <a href="{% url 'logout' %}" class="btn btn-block btn-secondary custom-margin">
+                                    <i class="fa fa-sign-out"></i>
+                                    <span>Logout</span>
+                                </a>
                             </ul>
                         </div>
                     </div>
@@ -39,20 +65,22 @@
                                             <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                                                 <div>
                                                     {% if object.user.user_type == 'SPONSOR' %}
-                                                        <img width="150px" height="150px" src="{{ object.logo }}"
+                                                        <img width="200px" height="200px" src="{{ object.logo }}"
+                                                             style="object-fit: cover"
                                                              alt="">
                                                     {% else %}
-                                                        <img width="150px" height="150px"
+                                                        <img width="200px" height="200px"
                                                              src="{{ object.profile_picture }}"
+                                                             style="object-fit: cover"
                                                              alt="">
                                                     {% endif %}
                                                 </div>
 
                                                 <div class="text-center text-sm-left mb-2 mb-sm-0">
                                                     {% if object.user.user_type == 'SPONSOR' %}
-                                                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap text-center">{{ object.company_name }}</h4>
+                                                        <h2 class="pt-sm-2 pb-1 mb-3 text-nowrap text-center text-uppercase">{{ object.company_name }}</h2>
                                                     {% else %}
-                                                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap text-center">{{ object.full_name }}</h4>
+                                                        <h3 class="pt-sm-2 pb-1 mb-3 text-nowrap text-center text-uppercase">{{ object.full_name }}</h3>
                                                     {% endif %}
                                                     <p class="mb-0">{{ object.user }}</p>
                                                     <p class="text-muted"><small>Last seen
@@ -60,9 +88,9 @@
                                                 </div>
 
                                                 <div class="text-center text-sm-right">
-                                                    {% if object.user.user_type == 'MEMBER' and object.user.is_staff %}
+                                                    {% if object.user.is_staff %}
                                                         <span class="badge badge-secondary">Administrator</span>
-                                                    {% elif object.user.user_type == 'MEMBER' and object.user.is_superuser %}
+                                                    {% elif object.user.is_superuser %}
                                                         <span class="badge badge-secondary">Superuser</span>
                                                     {% else %}
                                                         <span class="badge badge-secondary">{{ object.user.user_type }}</span>
@@ -85,29 +113,45 @@
                                                                 </div>
                                                             {% endfor %}
 
-                                                            {#                                                    NEED TO CORRECT THIS#}
                                                             {% if object.charity_history.all %}
-                                                                <label><strong class="text-uppercase">My charity
-                                                                    history:</strong></label>
+                                                                <label><strong>Charity history:</strong></label>
                                                                 <ul>
                                                                     {% for campaign in object.charity_history.all %}
-                                                                        <a href="{% url 'charity-campaign-details' campaign.pk %}">
+                                                                        <a href="{% url 'charity-cause-details' campaign.pk %}">
                                                                             <li>{{ campaign.name }}</li>
                                                                         </a>
                                                                     {% endfor %}
                                                                 </ul>
                                                             {% elif object.donation_history.all %}
-                                                                <label><strong class="text-uppercase">Our donation
-                                                                    history:</strong></label>
+                                                                <label><strong>Donation history:</strong></label>
                                                                 <ul>
-                                                                    {% for camapign in object.donation_history.all %}
-                                                                        <li>{{ campaign }}</li>
+                                                                    {% for campaign in object.donation_history.all %}
+                                                                        <a href="{% url 'donation-cause-details' campaign.pk %}">
+                                                                            <li>{{ campaign.title }}</li>
+                                                                        </a>
+                                                                    {% endfor %}
+                                                                </ul>
+                                                            {% elif user.articles.all %}
+                                                                <label><strong>Written articles:</strong></label>
+                                                                <ul>
+                                                                    {% for article in user.articles.all %}
+                                                                        <a href="{% url 'article-details' article.pk %}">
+                                                                            <li>{{ article.title }}- {{ article.subtitle }}</li>
+                                                                        </a>
                                                                     {% endfor %}
                                                                 </ul>
                                                             {% else %}
-                                                                <label><strong class="text-uppercase">My participation
-                                                                    history:</strong></label>
-                                                                <p>No history available.</p>
+                                                                {% if object.user.user_type == 'SPONSOR' %}
+                                                                    <label><strong>Donation
+                                                                        history:</strong></label>
+                                                                {% elif object.user.user_type == 'MEMBER' %}
+                                                                    <label><strong>Written articles
+                                                                        history:</strong></label>
+                                                                {% else %}
+                                                                    <label><strong>Participation
+                                                                        history:</strong></label>
+                                                                {% endif %}
+                                                                <p>No history available</p>
                                                             {% endif %}
                                                         </div>
                                                     </div>
@@ -131,18 +175,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-
-                    </div>
-                </div>
-                <div class="col-12 col-md-3 mb-3">
-                    <div class="card mb-3">
-                        <div class="card-body text-center">
-                            <a href="{% url 'logout' %}" class="btn btn-block btn-secondary">
-                                <i class="fa fa-sign-out"></i>
-                                <span>Logout</span>
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -180,13 +212,66 @@
                     });
             }
         });
-    </script>
-{% endblock %}
 
-{##}
-{#    <h1>Hello, {{ object.gender }}</h1>#}
-{#    <h2>Your user type is: {{ object.user.user_type }}</h2>#}
-{#    {% for key, value in object.items %}#}
-{#        <h2>Your user type is: {{ value }}</h2>#}
-{#    {% endfor %}#}
-{#    <h2>{{ object.interests }}</h2>#}
+    </script>
+
+    {#    <script>#}
+    {#        document.addEventListener('DOMContentLoaded', () => {#}
+    {#            const deleteButtons = document.querySelectorAll('.delete-btn');#}
+    {#            const confirmationDialog = document.getElementById('confirmation-dialog');#}
+    {#            const confirmDeleteBtn = confirmationDialog.querySelector('#confirm-delete-btn');#}
+    {#            const cancelDeleteBtn = confirmationDialog.querySelector('#cancel-delete-btn');#}
+    {##}
+    {#            function deleteTestimonial(testimonialId) {#}
+    {#                const deleteUrl = `/testimonial/delete/${testimonialId}/`;#}
+    {##}
+    {#                fetch(deleteUrl, {#}
+    {#                    method: 'POST',#}
+    {#                    headers: {#}
+    {#                        'X-CSRFToken': '{{ csrf_token }}',#}
+    {#                    },#}
+    {#                })#}
+    {#                    .then(response => {#}
+    {#                        if (response.ok) {#}
+    {#                            // Testimonial deleted successfully, reload the page#}
+    {#                            alert('Testimonial deleted successfully.');#}
+    {#                            window.location.reload();#}
+    {#                        } else if (response.status === 403) {#}
+    {#                            // User is not authorized to delete testimonial (error message from server)#}
+    {#                            return response.json().then(data => {#}
+    {#                                alert(data.message);#}
+    {#                            });#}
+    {#                        } else {#}
+    {#                            // Handle other errors, show a message, etc.#}
+    {#                            alert('Error deleting testimonial.');#}
+    {#                        }#}
+    {#                    })#}
+    {#                    .catch(error => {#}
+    {#                        console.error('Error:', error);#}
+    {#                    });#}
+    {#            }#}
+    {##}
+    {#            deleteButtons.forEach(deleteButton => {#}
+    {#                deleteButton.addEventListener('click', event => {#}
+    {#                    event.preventDefault(); // Prevent the default behavior of the button click#}
+    {##}
+    {#                    const testimonialId = deleteButton.getAttribute('data-testimonial-id');#}
+    {#                    const testimonialQuote = deleteButton.getAttribute('data-testimonial-quote');#}
+    {##}
+    {#                    // Show the confirmation dialog#}
+    {#                    confirmationDialog.classList.remove('hidden');#}
+    {##}
+    {#                    confirmDeleteBtn.addEventListener('click', () => {#}
+    {#                        deleteTestimonial(testimonialId);#}
+    {#                    });#}
+    {##}
+    {#                    cancelDeleteBtn.addEventListener('click', () => {#}
+    {#                        // Hide the confirmation dialog#}
+    {#                        confirmationDialog.classList.add('hidden');#}
+    {#                    });#}
+    {#                });#}
+    {#            });#}
+    {#        });#}
+    {#    </script>#}
+
+{% endblock %}

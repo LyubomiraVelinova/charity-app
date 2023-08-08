@@ -1,28 +1,11 @@
 {% extends 'base/base.html' %}
 
 {% block main_content %}
-
-    <!-- Carousel wrapper -->
-    <div class="carousel-inner">
-        <!-- Single item -->
-        <div class="carousel-item active">
-            <img src="https://images.unsplash.com/photo-1563906267088-b029e7101114?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                 class="d-block w-100"
-                 alt="Sunset Over the City"/>
-            <div class="carousel-caption d-none d-md-block">
-                <h3 class="text-uppercase">Get involved</h3>
-                <p class="text-uppercase custom-title">Ways to involve</p>
-            </div>
-        </div>
-    </div>
-    <!-- Carousel wrapper -->
-
-    <hr class="hr hr-blurry"/>
+    {% include 'base/carousel.html' with carousel_title='Get involved' carousel_subtitle='Ways to involve' carousel_img='https://images.unsplash.com/photo-1563906267088-b029e7101114?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80' carousel_alt='Ways to involve cover' %}
 
     <section class="mv-section">
         <div class="container">
             <div class="row">
-
                 <div class="maintitle">
                     <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
                         data-wow-delay="0.1s"
@@ -42,8 +25,7 @@
                     <h3 class="text-uppercase lighter">Benefits of Volunteering</h3>
                     <p>
                         Our volunteers are our salvation. They are tireless, hardworking and not afraid of
-                        carrying
-                        tons of caps or crushing thousands of bottles, jugs.
+                        carrying tons of caps or crushing thousands of bottles, jugs.
                     </p>
                     <ul>
                         <li>Make a meaningful impact on the lives of those in need.</li>
@@ -89,7 +71,7 @@
 
                 <div class="col-md-6 left-column">
                     <img src="https://images.unsplash.com/photo-1527525443983-6e60c75fff46?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=685&q=80"
-                         alt="Image" class="img-fluid">
+                         alt="Image" height="500px" width="450px">
                 </div>
 
                 <div class="col-md-6 right-column text-center lead d-flex flex-column justify-content-center">
@@ -144,7 +126,7 @@
                 <!-- Right Column - Image -->
                 <div class="col-md-6 right-column">
                     <img src="https://images.unsplash.com/photo-1548603702-546e446dd167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=770&q=80"
-                         alt="Image" class="img-fluid">
+                         alt="Image" height="500px" width="450px">
                 </div>
             </div>
         </div>

@@ -1,0 +1,59 @@
+{% extends 'base/base.html' %}
+
+
+{% load percentage %}
+
+{% block main_content %}
+
+    {% include 'base/carousel.html' with carousel_title="Our causes" carousel_subtitle="Donation Campaigns" carousel_img="https://images.unsplash.com/photo-1527788263495-3518a5c1c42d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1208&q=80" carousel_alt="Donation campaigns cover" %}
+
+    <section class="mv-section">
+        <div class="container">
+            <div class="row">
+                <div class="maintitle">
+                    <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
+                        data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        <span class="lighter">Let's create a world of <strong>hope</strong> and <strong>possibility together</strong>!</span>
+                    </h2>
+                    <hr class="hr hr-blurry"/>
+                    <p class="lead">
+                        At Club for Future, we are dedicated to making a positive impact on the lives of those in
+                        need. Our donation campaigns are a testament to our commitment to supporting various causes
+                        and initiatives that matter the most. Through these campaigns, we strive to bring about real
+                        change and provide vital assistance to those who require it the most. Here, you will find a
+                        diverse range of donation campaigns, each tailored to address specific needs and make a
+                        meaningful difference. From supporting neonatal ambulances for our tiniest patients to
+                        providing life-saving aid in remote mountainous regions, our campaigns cover a wide spectrum
+                        of worthy causes. We firmly believe that collective efforts can lead to powerful outcomes.
+                        As you explore our campaigns, we invite you to join hands with us in creating a brighter and
+                        more sustainable future. Your contribution, big or small, can make an incredible impact and
+                        enable us to continue our mission of serving communities in need. Together, we can be the
+                        driving force behind positive change and lend a helping hand to those who need it most. Join
+                        us on this inspiring journey as we strive to make the world a better place through
+                        compassion, empathy, and generosity.
+                    </p>
+                </div>
+
+                <div class="card-group">
+                    {% for campaign in first_three_donation_campaigns %}
+                        {% include 'base/donation-custom-card.html' %}
+                    {% endfor %}
+                </div>
+                <div class="card-group">
+                    {% for campaign in second_three_donation_campaigns %}
+                        {% include 'base/donation-custom-card.html' %}
+                    {% endfor %}
+                </div>
+                <div class="maintitle">
+                    <p class="lead">
+                        Thank you for considering to be a part of our donation campaigns. Your support means the
+                        world to us and those we seek to assist.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr class="hr hr-blurry"/>
+
+{% endblock %}

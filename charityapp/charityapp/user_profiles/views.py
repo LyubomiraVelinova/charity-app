@@ -1,12 +1,14 @@
+from django.contrib.auth import login
 from django.contrib.auth import get_user_model
-from django.shortcuts import render, redirect
+from django import forms
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import mixins as auth_mixins
 
-from charityapp.accounts.models import AppUser
-from charityapp.user_profiles.forms import VolunteerForm, SponsorForm, MemberForm
-from charityapp.user_profiles.models import VolunteerProfile, SponsorProfile, MemberProfile
+from charityapp.accounts.forms import RegisterUserForm
+from charityapp.user_profiles.forms import VolunteerForm, SponsorForm, MemberForm, TestimonialForm
+from charityapp.user_profiles.models import VolunteerProfile, SponsorProfile, MemberProfile, Testimonial
 
 UserModel = get_user_model()
 
@@ -86,6 +88,88 @@ class ChangePhotoView(views.UpdateView):
         return self.request.user
 
 
-class SecuritySettingsView(views.TemplateView):
-    template_name = 'user_profiles/security-settings-page.html'
+# CHECK THEM
+
+class RegisterVolunteerView(views.CreateView):
+    template_name = 'user_profiles/volunteer-register-page.html'
+    form_class = RegisterUserForm
+    success_url = reverse_lazy('profile-edit')
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        # Скриваме полето 'user_type', за да не се показва на потребителя
+        form.fields['user_type'].widget = forms.HiddenInput()
+        # Задаваме предварителна стойност 'VOLUNTEER' на полето 'user_type'
+        form.fields['user_type'].initial = 'VOLUNTEER'
+        return form
+
+    def form_valid(self, form):
+        form.instance.user_type = 'VOLUNTEER'  # Задаваме стойност 'VOLUNTEER' за user_type
+        result = super().form_valid(form)
+        user = self.object
+        login(self.request, user)
+        return result
+
+
+class RegisterSponsorView(views.CreateView):
+    template_name = 'user_profiles/sponsor-register-page.html'
+    form_class = RegisterUserForm
+    success_url = reverse_lazy('profile-edit')
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['user_type'].widget = forms.HiddenInput()
+        form.fields['user_type'].initial = 'SPONSOR'
+        return form
+
+    def form_valid(self, form):
+        form.instance.user_type = 'SPONSOR'
+        result = super().form_valid(form)
+        user = self.object
+        login(self.request, user)
+        return result
+
+
+class RegisterMemberView(views.CreateView):
+    template_name = 'user_profiles/member-register-page.html'
+    form_class = RegisterUserForm
+    success_url = reverse_lazy('profile-edit')
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['user_type'].widget = forms.HiddenInput()
+        form.fields['user_type'].initial = 'MEMBER'
+        return form
+
+    def form_valid(self, form):
+        form.instance.user_type = 'MEMBER'
+        result = super().form_valid(form)
+        user = self.object
+        login(self.request, user)
+        return result
+
+
+class TestimonialSubmissionView(auth_mixins.LoginRequiredMixin, views.CreateView):
+    template_name = 'user_profiles/testimonial-submission-page.html'
+    form_class = TestimonialForm
+    success_url = reverse_lazy('testimonials-history-page')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class TestimonialDeleteView(auth_mixins.LoginRequiredMixin, auth_mixins.UserPassesTestMixin, views.DeleteView):
+    template_name = 'user_profiles/testimonials-history-page.html'
+    success_url = reverse_lazy('testimonials-history-page')
+    model = Testimonial
+
+    def test_func(self):
+        # Check if the logged-in user is the author of the testimonial
+        testimonial = self.get_object()
+        return self.request.user == testimonial.author
+
+
+class TestimonialsHistoryPage(views.TemplateView):
+    template_name = 'user_profiles/testimonials-history-page.html'
 

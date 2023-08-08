@@ -3,11 +3,10 @@ from enum import Enum
 from django.contrib.auth import get_user_model
 from django.core import validators
 from django.db import models
-from django.utils import timezone
 
 from charityapp.accounts.models import AppUser
+from charityapp.causes.models import DonationCampaign, CharityCampaign
 from charityapp.common.mixins import ChoicesStringsMixin
-from charityapp.work.models import DonationCampaign, CharityCampaign
 
 
 class Gender(ChoicesStringsMixin, Enum):
@@ -227,6 +226,7 @@ class MemberProfile(models.Model):
     profile_picture = models.ImageField(
         null=True,
         blank=True,
+        default='/static/images/anonymous_profile.jpg'
     )
 
     phone_number = models.CharField(
@@ -253,11 +253,6 @@ class MemberProfile(models.Model):
         verbose_name='Role in the club',
     )
 
-    charity_history = models.ManyToManyField(
-        CharityCampaign,
-        verbose_name='Charity history',
-    )
-
     @property
     def full_name(self):
         return f"{self.first_name} {self.last_name}"
@@ -265,3 +260,18 @@ class MemberProfile(models.Model):
     class Meta:
         verbose_name = 'Member Profile'
         verbose_name_plural = 'Members Profile'
+
+
+class Testimonial(models.Model):
+    quote = models.TextField()
+    date = models.DateField(auto_now_add=True)
+    approved = models.BooleanField(
+        default=False
+    )
+    allow_posting = models.BooleanField(
+        default=False,
+        null=True,
+        blank=True,
+    )
+
+    author = models.ForeignKey(AppUser, on_delete=models.CASCADE, related_name='testimonials')

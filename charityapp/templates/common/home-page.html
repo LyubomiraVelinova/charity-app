@@ -34,7 +34,7 @@
                             </p>
                         </div>
                         <div class="col-lg-6">
-                            <a href="{% url 'what-we-do' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                            <a href="{% url 'what-we-do-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
                                role="button"> What We Do </a>
                             <p class="custom-lead-wh">
                                 We run a range of high-impact campaigns and events that support premature babies,
@@ -46,7 +46,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
-                            <a href="{% url 'how-to-help' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                            <a href="{% url 'ways-to-involve' %}" class="btn btn-default btn-lg wow fadeInLeft"
                                role="button"> How To
                                 Involve </a>
                             <p class="custom-lead-wh">
@@ -56,7 +56,7 @@
                             </p>
                         </div>
                         <div class="col-lg-6">
-                            <a href="{% url 'where-we-work' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                            <a href="{% url 'where-we-work-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
                                role="button"> Where We
                                 Work </a>
                             <p class="custom-lead-wh">
@@ -92,14 +92,12 @@
 
                 {% for impact in impacts %}
                     <div class="col-sm-2 custom-col">
-                        <div class="card h-100 text-center">
+                        <div class="card h-100 text-center p-2">
                             <img src="{{ impact.picture }}" alt="{{ impact.title }}">
                             <h4 class="text-uppercase">
                                 <strong>{{ impact.achievement_numbers }}+ {{ impact.title }}</strong></h4>
                             <p class="text-justify ">{{ impact.resume }}</p>
                         </div>
-
-
                     </div>
                 {% endfor %}
             </div>
@@ -130,7 +128,7 @@
                         </p>
                         <p>
 
-                            <a href="{% url 'charity-campaigns' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                            <a href="{% url 'charity-causes' %}" class="btn btn-default btn-lg wow fadeInLeft"
                                role="button"> Find a Cause </a>
                             <a href="{% url 'donation' %}" methods="post"
                                class="btn btn-default btn-lg wow fadeInRight" role="button"> Make Donation </a>
@@ -158,46 +156,37 @@
                     </p>
                 </div>
 
-
-                <h3 class="text-uppercase text-light text-center">
-                    <span class="lighter">Our <strong>Charity </strong>Campaigns</span></h3>
-
                 {% for charity_campaign in charity_campaigns %}
-                    <div class="col-sm-4">
+                    <div class="col-sm-3 p-1">
                         <div class="card custom-card h-100">
                             <img class="card-img-top custom-card-img-top" src="{{ charity_campaign.image }}"
                                  alt="{{ charity_campaign.name }}">
                             <div class="card-body">
-                                <a href="{% url 'charity-campaign-details' charity_campaign.pk %}">
-                                    <h4 class="card-title text-uppercase text-center">{{ charity_campaign.name }}</h4>
+                                <a href="{% url 'charity-cause-details' charity_campaign.pk %}">
+                                    <h5 class="card-title text-uppercase text-center">{{ charity_campaign.name }}</h5>
                                 </a>
-                                {#                                <p class="card-text">#}
-                                {#                                </p>#}
                             </div>
                         </div>
                     </div>
                 {% endfor %}
 
-                <div class="custom-div text-center">
-                    <a href="{% url 'charity-campaigns' %}">
-                        <button class="text-light btn">Find more charity campaigns</button>
+                <div class="text-center">
+                    <a href="{% url 'charity-causes' %}">
+                        <button class="btn btn-default btn-lg">Find more charity campaigns</button>
                     </a>
                     <a href="{% url 'volunteer-register' %}" class="text-light btn">
-                        <button class="text-light btn">Volunteer with us</button>
+                        <button class="btn btn-default btn-lg">Volunteer with us</button>
                     </a>
                 </div>
 
-                <h3 class="text-uppercase text-light text-center">
-                    <span class="lighter">Our <strong>Donation </strong>Campaigns</span></h3>
-
                 {% for donation_campaign in donation_campaigns %}
-                    <div class="col-sm-4">
+                    <div class="col-sm-3 p-1">
                         <div class="card custom-card h-100">
                             <img class="card-img-top custom-card-img-top" src="{{ donation_campaign.logo }}"
                                  alt="{{ donation_campaign.title }}">
                             <div class="card-body">
-                                <a href="{% url 'donation-campaign-details' donation_campaign.pk %}">
-                                    <h4 class="card-title text-uppercase text-center">{{ donation_campaign.title }}</h4>
+                                <a href="{% url 'donation-cause-details' donation_campaign.pk %}">
+                                    <h5 class="card-title text-uppercase text-center">{{ donation_campaign.title }}</h5>
                                 </a>
                             </div>
                             <div class="container">
@@ -223,12 +212,12 @@
 
                 {% endfor %}
 
-                <div class="custom-div text-center">
-                    <a href="{% url 'donation-campaigns' %}">
-                        <button class="text-light btn">Find more donation campaigns</button>
+                <div class="text-center">
+                    <a href="{% url 'donation-causes' %}">
+                        <button class="btn btn-default btn-lg">Find more donation campaigns</button>
                     </a>
                     <a href="{% url 'sponsor-register' %}" class="text-light btn">
-                        <button class="text-light btn">Be our sponsor</button>
+                        <button class="btn btn-default btn-lg">Be our sponsor</button>
                     </a>
                 </div>
             </div>
@@ -345,7 +334,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-4 col-sm-12 h-100">
                         <div class="faq-block wow bounceInDown" data-wow-duration="1.5s" data-wow-delay="0.2s"
                              style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: bounceInDown;">
                             <div class="panel-group">
@@ -423,7 +412,7 @@
                     {% for testimonial in testimonials %}
                         <div class="carousel-item {% if forloop.first %}active{% endif %}">
                             <div class="row text-center">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     {% if testimonial.author.volunteer_profile.profile_picture %}
                                         <img src="{{ testimonial.author.volunteer_profile.profile_picture.url }}"
                                              class="rounded-circle shadow-1-strong" width="150" height="150"/>
@@ -447,7 +436,7 @@
                                     {% endif %}
 
                                     <h6 class="text-primary mb-3">/{{ testimonial.author.user_type.capitalize }}/</h6>
-                                    <p class="px-xl-3">
+                                    <p class="px-xl-3 text-justify">
                                         <i class="fas fa-quote-left pe-2"></i>{{ testimonial.quote }}<i
                                             class="fas fa-quote-left pe-2"></i>
                                     </p>

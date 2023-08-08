@@ -2,23 +2,8 @@
 {% load static %}
 
 {% block main_content %}
+    {% include 'base/carousel.html' with carousel_title="About us" carousel_subtitle="Who we are" carousel_img="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" carousel_alt="Who we are cover" %}
 
-    <!-- Carousel wrapper -->
-    <div class="carousel-inner">
-        <!-- Single item -->
-        <div class="carousel-item active">
-            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80"
-                 class="d-block w-100"
-                 alt="Sunset Over the City"/>
-            <div class="carousel-caption d-none d-md-block">
-                <h3 class="text-uppercase">About us</h3>
-                <p class="text-uppercase custom-title">Who we are</p>
-            </div>
-        </div>
-    </div>
-    <!-- Carousel wrapper -->
-
-    <hr class="hr hr-blurry"/>
 
     <section class="mv-section">
         <div class="container">

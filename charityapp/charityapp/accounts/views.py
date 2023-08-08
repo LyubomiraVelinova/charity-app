@@ -1,11 +1,10 @@
-from django import forms
-from django.contrib import messages
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import views as auth_views, login
 from django.contrib.auth import mixins as auth_mixins
 
-from charityapp.accounts.forms import RegisterUserForm, CustomAuthenticationForm
+from charityapp.accounts.forms import RegisterUserForm, CustomAuthenticationForm, ChangeEmailForm
 
 
 class RegisterUserView(views.CreateView):
@@ -44,60 +43,21 @@ class CustomPasswordChangeDoneView(auth_mixins.LoginRequiredMixin, auth_views.Pa
     template_name = "accounts/"
 
 
-class RegisterVolunteerView(views.CreateView):
-    template_name = 'accounts/volunteer-register-page.html'
-    form_class = RegisterUserForm
-    success_url = reverse_lazy('profile-edit')
-
-    def get_form(self, form_class=None):
-        form = super().get_form(form_class)
-        # Скриваме полето 'user_type', за да не се показва на потребителя
-        form.fields['user_type'].widget = forms.HiddenInput()
-        # Задаваме предварителна стойност 'VOLUNTEER' на полето 'user_type'
-        form.fields['user_type'].initial = 'VOLUNTEER'
-        return form
+class ChangeEmailView(auth_mixins.LoginRequiredMixin, views.FormView):
+    template_name = 'accounts/change_email.html'
+    form_class = ChangeEmailForm
+    success_url = reverse_lazy('profile-details')  # Redirect to the user's profile page after successful email change
 
     def form_valid(self, form):
-        form.instance.user_type = 'VOLUNTEER'  # Задаваме стойност 'VOLUNTEER' за user_type
-        result = super().form_valid(form)
-        user = self.object
-        login(self.request, user)
-        return result
+        new_email = form.cleaned_data['new_email']
+        confirm_email = form.cleaned_data['confirm_email']
+        if new_email == confirm_email:
+            # Update the user's email address
+            self.request.user.email = new_email
+            self.request.user.save()
+            return redirect(self.get_success_url())
+        else:
+            form.add_error('confirm_email', 'Email addresses do not match.')
+            return self.form_invalid(form)
 
 
-class RegisterSponsorView(views.CreateView):
-    template_name = 'accounts/sponsor-register-page.html'
-    form_class = RegisterUserForm
-    success_url = reverse_lazy('profile-edit')
-
-    def get_form(self, form_class=None):
-        form = super().get_form(form_class)
-        form.fields['user_type'].widget = forms.HiddenInput()
-        form.fields['user_type'].initial = 'SPONSOR'
-        return form
-
-    def form_valid(self, form):
-        form.instance.user_type = 'SPONSOR'
-        result = super().form_valid(form)
-        user = self.object
-        login(self.request, user)
-        return result
-
-
-class RegisterMemberView(views.CreateView):
-    template_name = 'accounts/member-register-page.html'
-    form_class = RegisterUserForm
-    success_url = reverse_lazy('profile-edit')
-
-    def get_form(self, form_class=None):
-        form = super().get_form(form_class)
-        form.fields['user_type'].widget = forms.HiddenInput()
-        form.fields['user_type'].initial = 'MEMBER'
-        return form
-
-    def form_valid(self, form):
-        form.instance.user_type = 'MEMBER'
-        result = super().form_valid(form)
-        user = self.object
-        login(self.request, user)
-        return result

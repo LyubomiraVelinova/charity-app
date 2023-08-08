@@ -1,22 +1,9 @@
 {% extends 'base/base.html' %}
 
 {% block main_content %}
-    <!-- Carousel wrapper -->
-    <div class="carousel-inner">
-        <!-- Single item -->
-        <div class="carousel-item active">
-            <img src="https://images.unsplash.com/photo-1647616777717-9b20c7abd581?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80"
-                 class="d-block w-100"
-                 alt="Sunset Over the City"/>
-            <div class="carousel-caption d-none d-md-block">
-                <h3 class="text-uppercase">About us</h3>
-                <p class="text-uppercase custom-title">History</p>
-            </div>
-        </div>
-    </div>
 
+    {% include 'base/carousel.html' with carousel_title="About us" carousel_subtitle="History" carousel_img="https://images.unsplash.com/photo-1647616777717-9b20c7abd581?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80" carousel_alt="History cover" %}
 
-    <hr class="hr hr-blurry"/>
     <section class="mv-section">
         <div class="container">
             <div class="row">
@@ -102,46 +89,15 @@
                     <h2>Join us now.</h2>
                     </p>
                     <p>
-                        <a href="{% url 'campaigns-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
-                           role="button"> Upcoming Events </a>
-                        <a href="{% url 'register' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                        <a href="{% url 'member-register' %}" class="btn custom-btn-default btn-lg wow fadeInLeft"
+                           role="button"> Be part of us </a>
+                        <a href="{% url 'volunteer-register' %}" class="btn custom-btn-default btn-lg wow fadeInLeft"
                            role="button"> Volunteer with us </a>
-                        <a href="{% url 'donation' %}" methods="post"
-                           class="btn btn-default btn-lg wow fadeInRight " role="button"> Make Donation </a>
+                        <a href="{% url 'sponsor-register' %}" methods="post"
+                           class="btn custom-btn-default btn-lg wow fadeInRight " role="button"> Be our Sponsor </a>
                     </p>
                 </div>
             </div>
         </div>
     </section>
-    <hr class="hr hr-blurry"/>
-
 {% endblock %}
-
-
-{#<div class="row no-gutters justify-content-end justify-content-md-around align-items-start  timeline-nodes">#}
-{#    <div class="col-10 col-md-5 order-3 order-md-1 timeline-content">#}
-{#        <h3 class="text-uppercase">The beginning</h3>#}
-{#        <p>The first campaign was announced on October 28, 2017 on the page of#}
-{#            the sports club and was seen by over 400,000 people, and on the day itself in 3#}
-{#            hours 8 and#}
-{#            a half tons of caps were collected.</p>#}
-{#    </div>#}
-{#    <div class="col-2 col-sm-1 px-md-3 order-2 timeline-image text-md-center">#}
-{#        <div class="timeline-image-circle"#}
-{#             style="background-image: url('https://images.unsplash.com/photo-1637730177972-0bb1d3a05c43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');"></div>#}
-{#    </div>#}
-{#    <div class="col-10 col-md-5 order-1 order-md-3 py-3 timeline-date">#}
-{#        <time>28.10.2017</time>#}
-{#    </div>#}
-{#</div>#}
-
-Through the years, we have been blessed to witness heartwarming success stories - stories of lives transformed, communities uplifted, and dreams realized. Each milestone in our history is a testament to the power of unity and the strength of human compassion.
-
-Join us in this incredible journey of giving, as we continue to create a brighter and more promising future for all. Your support, no matter how small, has the potential to change lives and make a lasting impact.
-
-Together, we can build a world where hope prevails, and every child has a chance to thrive. Be a part of our history. Be a part of the change.
-
-[Call to Action]
-Support our cause by volunteering, donating, or participating in our upcoming events. Together, we can create a better tomorrow for those in need. Join us now.
-
-[Donate Button] [Volunteer Button] [Upcoming Events Button]

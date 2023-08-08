@@ -1,0 +1,97 @@
+{% extends 'base/base.html' %}
+
+{% block main_content %}
+
+    {% include 'base/carousel.html' with carousel_title="Get involved" carousel_subtitle="Blog" carousel_img="https://images.unsplash.com/photo-1472905981516-5ac09f35b7f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1174&q=80" carousel_alt="Blog cover" %}
+
+    <section class="mv-section">
+        <div class="container">
+            <div class="row">
+                <div class="maintitle">
+                    <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
+                        data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        <span class="lighter">Act </span><strong>green</strong><span
+                            class="lighter">.Live </span><strong>smart</strong>.</h2>
+                    <hr class="hr hr-blurry"/>
+                    <p class="lead">
+                        Welcome to our blog page dedicated to Friends of Nature! In this series of articles, we will be
+                        taking you on a journey to explore the breathtaking biodiversity found in our cherished national
+                        parks. Join us as we dive into the wonders of nature, learn about conservation efforts, and
+                        celebrate the beauty of our planet.
+                    </p>
+                </div>
+
+                <div class="row">
+                    {% for article in articles %}
+                        <div class="col-lg-4 col-md-6 mb-4 ">
+                            <div class="card h-100">
+                                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                                    <img src="{{ article.featured_image }}" class="card-img"/>
+                                    <a href="#!">
+                                        <div class="mask"
+                                             style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ article.title }}</h5>
+                                    <p class="card-text">
+                                        {{ article.short_resume }}
+                                    </p>
+                                    <a href="{% url 'article-details' article.pk %}" class="btn btn-primary">Read</a>
+                                    {% if request.user.is_authenticated %}
+                                        {% if user.user_type == "MEMBER" and article.author == user %}
+                                            <a href="{% url 'edit-article' article.pk %}"
+                                               class="btn btn-primary">Edit</a>
+                                            <a href="{% url 'delete-article' article.pk %}" class="btn btn-danger">Delete</a>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% if user.user_type == "MEMBER" %}
+                    <div>
+                        <a href="{% url 'create-article' %}" class="btn btn-block btn-secondary">
+                            <i class="fa-regular fa-plus" style="color: #ffffff;"></i>
+                            <span>Create New Article</span>
+                        </a>
+                    </div>
+                {% endif %}
+
+
+                <!-- Pagination -->
+                <nav class="my-4">
+                    <ul class="pagination pagination-circle justify-content-center">
+                        {% if articles.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ articles.previous_page_number }}"
+                                   tabindex="-1" aria-disabled="true">Previous</a>
+                            </li>
+                        {% endif %}
+
+                        {% for page_num in articles.paginator.page_range %}
+                            {% if page_num == articles.number %}
+                                <li class="page-item active" aria-current="page">
+                                    <a class="page-link" href="?page={{ page_num }}">{{ page_num }} <span
+                                            class="sr-only">(current)</span></a>
+                                </li>
+                            {% else %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if articles.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ articles.next_page_number }}">Next</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+{% endblock %}

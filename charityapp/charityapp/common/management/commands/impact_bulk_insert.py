@@ -46,7 +46,7 @@ class Command(BaseCommand):
             },
             {
                 'title': 'Members',
-                'resume': 'We collectively work together to advance the foundation\'s mission, address societal needs, and make a positive impact on the lives of those they aim to help. '
+                'resume': 'We collectively causes together to advance the foundation\'s mission, address societal needs, and make a positive impact on the lives of those they aim to help. '
                           'Together we are more powerful, we can do more...',
                 'picture': 'static/images/Members.png',
                 'achievement_numbers': 1200,

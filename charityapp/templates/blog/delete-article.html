@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+{% block main_content %}
+    <section class="profile-section">
+        <div class="container col-md-3">
+            <div class="card login-form card-body">
+                <h3 class="card-title text-center">Delete Article</h3>
+                <p>Are you sure you want to delete this article?</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Delete" class="btn btn-danger">
+                    <a href="{% url 'act-green-blog' %}" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+

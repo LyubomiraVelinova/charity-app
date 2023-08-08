@@ -198,127 +198,107 @@
 
 
 <footer class="text-center text-lg-start text-dark" style="background-color: #ECEFF1">
-    <!-- Section: Social media -->
-    <section class="mb-4">
-        <!-- Facebook -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="fab fa-facebook-f"></i
-        ></a>
+    <section class="p-1">
 
-        <!-- Twitter -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="fab fa-twitter"></i
-        ></a>
-
-        <!-- Google -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="fab fa-google"></i
-        ></a>
-
-        <!-- Instagram -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="fab fa-instagram"></i
-        ></a>
-
-        <!-- Linkedin -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="fab fa-linkedin-in"></i
-        ></a>
-
-        <!-- Github -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="fab fa-github"></i
-        ></a>
-    </section>
-    <!-- Section: Social media -->
-
-    <!-- Section: Links  -->
-    <section class="">
-        <div class="container text-center text-md-start mt-5">
-            <!-- Grid row -->
-            <div class="row mt-3">
-                <!-- Grid column -->
-                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                    <!-- Content -->
-                    <h6 class="text-uppercase fw-bold">Company name</h6>
-                    <hr
-                            class="mb-4 mt-0 d-inline-block mx-auto"
-                            style="width: 60px; background-color: #7c4dff; height: 2px"
-                    />
-                    <p>
-                        Here you can use rows and columns to organize your footer
-                        content. Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit.
-                    </p>
-                </div>
-                <!-- Grid column -->
-
-                <!-- Grid column -->
-                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+        <div class="container text-center text-md-start mt-3">
+            <div class="row mt-4">
+                <div class="col-md-3 col-xl-2 mx-auto mb-2">
                     <!-- Links -->
-                    <h6 class="text-uppercase fw-bold">Products</h6>
+                    <h6 class="text-uppercase fw-bold">About us</h6>
                     <hr
-                            class="mb-4 mt-0 d-inline-block mx-auto"
-                            style="width: 60px; background-color: #7c4dff; height: 2px"
+                            class="mb-2 mt-0 d-inline-block mx-auto"
+                            style="width: 80px; background-color: #7c4dff; height: 2px"
                     />
-                    <p>
-                        <a href="#!" class="text-dark">MDBootstrap</a>
+                    <p class="mb-2">
+                        <a href="{% url 'who-we-are-page' %}" class="text-dark">Who we are</a>
                     </p>
-                    <p>
-                        <a href="#!" class="text-dark">MDWordPress</a>
+                    <p class="mb-2">
+                        <a href="{% url 'what-we-do-page' %}" class="text-dark">What we do</a>
                     </p>
-                    <p>
-                        <a href="#!" class="text-dark">BrandFlow</a>
+                    <p class="mb-2">
+                        <a href="{% url 'where-we-work-page' %}" class="text-dark">Where we work</a>
                     </p>
-                    <p>
-                        <a href="#!" class="text-dark">Bootstrap Angular</a>
+                    <p class="mb-2">
+                        <a href="{% url 'mission-and-values-page' %}" class="text-dark">Mission and Values</a>
+                    </p>
+                    <p class="mb-2">
+                        <a href="{% url 'history-page' %}" class="text-dark">History</a>
                     </p>
                 </div>
-                <!-- Grid column -->
 
-                <!-- Grid column -->
-                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                <div class="col-md-3 col-xl-2 mx-auto mb-2">
+                    <h6 class="text-uppercase fw-bold">Our causes</h6>
+                    <hr
+                            class="mb-2 mt-0 d-inline-block mx-auto"
+                            style="width: 100px; background-color: #7c4dff; height: 2px"
+                    />
+                    <p class="mb-2">
+                        <a href="{% url 'charity-causes' %}" class="text-dark">Charity Causes</a>
+                    </p>
+                    <p class="mb-2">
+                        <a href="{% url 'donation-causes' %}" class="text-dark">Donation Causes</a>
+                    </p>
+                    <p class="mb-2">
+                        <a href="{% url 'act-green-blog' %}" class="text-dark">Act GREEN Blog</a>
+                    </p>
+                </div>
+
+                <div class="col-md-3 col-xl-2 mx-auto mb-2">
                     <!-- Links -->
-                    <h6 class="text-uppercase fw-bold">Useful links</h6>
+                    <h6 class="text-uppercase fw-bold">Get involved</h6>
                     <hr
-                            class="mb-4 mt-0 d-inline-block mx-auto"
-                            style="width: 60px; background-color: #7c4dff; height: 2px"
+                            class="mb-2 mt-0 d-inline-block mx-auto"
+                            style="width: 100px; background-color: #7c4dff; height: 2px"
                     />
-                    <p>
-                        <a href="#!" class="text-dark">Your Account</a>
+                    <p class="mb-2">
+                        <a href="{% url 'ways-to-involve' %}" class="text-dark">Ways to involve</a>
                     </p>
-                    <p>
-                        <a href="#!" class="text-dark">Become an Affiliate</a>
+                    <p class="mb-2">
+                        <a href="{% url 'donation' %}" class="text-dark">Donate</a>
                     </p>
-                    <p>
-                        <a href="#!" class="text-dark">Shipping Rates</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-dark">Help</a>
+                    <p class="mb-2">
+                        <a href="{% url 'contact-us' %}" class="text-dark">Contact us</a>
                     </p>
                 </div>
-                <!-- Grid column -->
 
-                <!-- Grid column -->
-                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-2">
                     <!-- Links -->
                     <h6 class="text-uppercase fw-bold"><a href="{% url 'contact-us' %}">Contact</a></h6>
-                    <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                    <hr class="mb-2 mt-0 d-inline-block mx-auto"
                         style="width: 60px; background-color: #7c4dff; height: 2px"/>
                     <p><i class="fas fa-home mr-3"></i> Bulgaria, 2500 Kyustendil, str.Gornobanka 11</p>
                     <p><i class="fas fa-envelope mr-3"></i> club.za.badeshte@gmail.com</p>
                     <p><i class="fas fa-phone mr-3"></i> +359 886 789 678</p>
                 </div>
-                <!-- Grid column -->
             </div>
-            <!-- Grid row -->
+
+        </div>
+        <div class="text-center">
+            <section class="mb-2">
+                <p class="mb-0">Follow us: </p>
+                <!-- Facebook -->
+                <a class="btn btn-outline-light btn-floating m-1"
+                   href="https://www.facebook.com/profile.php?id=100087549276760" role="button"
+                ><i class="fab fa-facebook-f"></i
+                ></a>
+
+                <!-- Linkedin -->
+                <a class="btn btn-outline-light btn-floating m-1" href="https://www.linkedin.com/in/lyubomira-velinova/"
+                   role="button"
+                ><i class="fab fa-linkedin-in"></i
+                ></a>
+
+                <!-- Github -->
+                <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/LyubomiraVelinova"
+                   role="button"
+                ><i class="fab fa-github"></i
+                ></a>
+            </section>
         </div>
     </section>
-    <!-- Section: Links  -->
-
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1)">
-        © 2020 Copyright:
-        <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+        &copy; 2023 Copyright: Club for Future is owned by Caps for Future foundation. All rights reserved.
     </div>
 </footer>
 

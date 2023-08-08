@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+{% block main_content %}
+    {% include 'base/carousel.html' with carousel_title=article.title carousel_subtitle=article.subtitle carousel_img=article.featured_image carousel_alt=article.title %}
+
+    <section class="mv-section">
+        <div class="container">
+            <div class="row">
+
+                <div class="lead">
+                    <form action="{% url 'edit-article' article.pk %}" method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            {% if field.label != 'Title'  and field.label != 'Subtitle' %}
+                                <h4>{{ field.label }}</h4>
+                                <p>{{ field }}</p>
+                            {% endif %}
+                        {% endfor %}
+                        <button type="submit">Save</button>
+                    </form>
+
+                    <a href="{% url 'article-details' article.pk %}" class="participate-btn">
+                        <button>Cancel</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

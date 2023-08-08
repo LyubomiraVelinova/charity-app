@@ -5,7 +5,7 @@
 {% block main_content %}
 
 
-    <section class="first-section">
+    <section class="profile-section">
         <div class="container">
             <div class="row flex-lg-nowrap">
 
@@ -13,16 +13,30 @@
                     <div class="card p-3">
                         <div class="e-navlist e-navlist--active-bg">
                             <ul class="nav">
-                                <li class="nav-item"><a class="nav-link px-2 active" href="#"><i
+                                <li class="nav-item"><a class="nav-link px-2 active" href="{% url 'profile-details' %}"><i
                                         class="fa fa-fw fa-bar-chart mr-1"></i><span>Overview</span></a></li>
                                 <li class="nav-item"><a class="nav-link px-2"
-                                                        href="https://www.bootdey.com/snippets/view/bs4-crud-users"
+                                                        href="{% url 'testimonial-submission' %}"
                                                         target="__blank"><i
-                                        class="fa fa-fw fa-th mr-1"></i><span>CRUD</span></a></li>
-                                <li class="nav-item"><a class="nav-link px-2"
-                                                        href="{% url 'security-settings' %}"
-                                                        target="__blank"><i
-                                        class="fa fa-fw fa-cog mr-1"></i><span>Settings</span></a></li>
+                                        class="fa fa-fw fa-th mr-1"></i><span>Submit Testimonial</span></a></li>
+                                <li class="nav-item">
+                                    <div class="nav-link px-2">
+                                        <i class="fa fa-fw fa-cog mr-1"></i>
+                                        <span>Settings</span>
+                                    </div>
+                                    <ul>
+                                        <a class="nav-link px-2" href="{% url 'password-change' %}">
+                                            <li>Change Password</li>
+                                        </a>
+                                        <a class="nav-link px-2" href="">
+                                            <li>Change Email</li>
+                                        </a>
+                                    </ul>
+                                </li>
+                                <a href="{% url 'logout' %}" class="btn btn-block btn-secondary custom-margin">
+                                    <i class="fa fa-sign-out"></i>
+                                    <span>Logout</span>
+                                </a>
                             </ul>
                         </div>
                     </div>
@@ -34,24 +48,55 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="e-profile">
-                                        <form action="{% url 'profile-edit' %}"
-                                              method="post">
+                                        <form action="{% url 'profile-edit' %}" method="post">
                                             {% csrf_token %}
                                             <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-                                                <div class="col-12 col-sm-auto mb-3">
-                                                    <div class="mx-auto" style="width: 140px;">
-                                                        <div class="d-flex justify-content-center align-items-center rounded"
-                                                             style="height: 140px; background-color: rgb(233, 236, 239);">
-
-                                                            <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">150x150</span>
+                                                {% if object.user.user_type == 'SPONSOR' and object.logo %}
+                                                    <div>
+                                                        <img width="200px" height="200px" src="{{ object.logo }}"
+                                                             style="object-fit: cover"
+                                                             alt="">
+                                                        <div class="mt-2">
+                                                            <button id="change-photo-btn" class="btn btn-primary"
+                                                                    type="button">
+                                                                <i class="fa fa-fw fa-camera"></i>
+                                                                <span>Change Photo</span>
+                                                            </button>
+                                                            <input type="file" id="photo-input" style="display: none;">
                                                         </div>
                                                     </div>
-                                                </div>
 
+                                                {% elif object.profile_picture %}
+                                                    <div>
+                                                        <img width="200px" height="200px"
+                                                             src="{{ object.profile_picture }}"
+                                                             style="object-fit: cover"
+                                                             alt="">
+                                                        <div class="mt-2">
+                                                            <button id="change-photo-btn" class="btn btn-primary"
+                                                                    type="button">
+                                                                <i class="fa fa-fw fa-camera"></i>
+                                                                <span>Change Photo</span>
+                                                            </button>
+                                                            <input type="file" id="photo-input" style="display: none;">
+                                                        </div>
+                                                    </div>
+
+                                                {% else %}
+                                                    <div class="col-12 col-sm-auto mb-3">
+                                                        <div class="mx-auto" style="width: 140px;">
+                                                            <div class="d-flex justify-content-center align-items-center rounded"
+                                                                 style="height: 140px; background-color: rgb(233, 236, 239);">
+                                                                <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">150x150</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
 
                                                 <div class="text-center text-sm-left mb-2 mb-sm-0">
                                                     {% for field in form %}
                                                         {% if object.user.user_type == 'SPONSOR' and field.name == 'company_name' %}
+                                                            <label>{{ field.label }}</label>
                                                             <input class="form-control {% if field.errors %}is-invalid{% endif %}"
                                                                    type="{{ field.field.widget.input_type }}"
                                                                    name="{{ field.html_name }}"
@@ -71,14 +116,6 @@
                                                         {% endif %}
                                                     {% endfor %}
                                                     <p class="mb-0">{{ object.user }}</p>
-                                                    <div class="mt-2">
-                                                        <button id="change-photo-btn" class="btn btn-primary"
-                                                                type="button">
-                                                            <i class="fa fa-fw fa-camera"></i>
-                                                            <span>Change Photo</span>
-                                                        </button>
-                                                        <input type="file" id="photo-input" style="display: none;">
-                                                    </div>
                                                 </div>
 
                                                 <div class="text-center text-sm-right">
@@ -102,7 +139,7 @@
                                                             <div class="form-group">
 
                                                                 {% for field in form %}
-                                                                    {% if field.name != 'profile_picture' and field.name != 'first_name' and field.name != 'last_name' %}
+                                                                    {% if field.name != 'profile_picture' and field.name != 'first_name' and field.name != 'last_name' and field.name != 'company_name' %}
                                                                         <label>{{ field.label }}</label>
                                                                         {% if field.name == 'bio' or field.name == 'strengths' %}
                                                                             <textarea

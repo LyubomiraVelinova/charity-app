@@ -1,0 +1,152 @@
+{% extends 'base/base.html' %}
+
+{% block main_content %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <section class="profile-section">
+        <div class="container">
+            <div class="row flex-lg-nowrap">
+
+                <div class="col-12 col-lg-auto mb-3" style="width: 250px;">
+                    <div class="card p-3">
+                        <div class="e-navlist e-navlist--active-bg text-nowrap">
+                            <ul class="nav">
+                                <li class="nav-item">
+                                    <a class="nav-link px-2 active" href="{% url 'profile-details' %}"><i
+                                            class="fa fa-fw fa-bar-chart mr-1">
+                                    </i><span>Overview</span>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <div class="nav-link px-2">
+                                        <i class="fa fa-fw fa-th mr-1"></i>
+                                        <span>Testimonials</span>
+                                    </div>
+                                    <ul>
+                                        <a class="nav-link px-2" href="{% url 'testimonial-submission' %}">
+                                            <li>Submit new</li>
+                                        </a>
+                                        <a class="nav-link px-2" href="{% url 'testimonials-history-page' %}">
+                                            <li>History</li>
+                                        </a>
+                                    </ul>
+                                </li>
+
+                                <li class="nav-item">
+                                    <div class="nav-link px-2">
+                                        <i class="fa fa-fw fa-cog mr-1"></i>
+                                        <span>Settings</span>
+                                    </div>
+                                    <ul>
+                                        <a class="nav-link px-2" href="{% url 'password-change' %}">
+                                            <li>Change Password</li>
+                                        </a>
+                                        <a class="nav-link px-2" href="{% url 'change-email' %}">
+                                            <li>Change Email</li>
+                                        </a>
+                                    </ul>
+                                </li>
+                                <a href="{% url 'logout' %}" class="btn btn-block btn-secondary custom-margin">
+                                    <i class="fa fa-sign-out"></i>
+                                    <span>Logout</span>
+                                </a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col mb-3">
+                    <div class="card card-body">
+                        <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                            <div class="tab-content pt-3">
+                                <div class="tab-pane active">
+                                    <form class="form" novalidate="">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label><strong>Testimonials:</strong></label>
+                                                {% if user.testimonials.all %}
+                                                    <ul>
+                                                        {% for testimonial in user.testimonials.all %}
+                                                            <li>
+                                                                <p>"{{ testimonial.quote }}"</p>
+                                                                <p>Date: {{ testimonial.date }}</p>
+                                                                <p>Allow
+                                                                    posting: {{ testimonial.allow_posting }}</p>
+                                                                <p>Approved for
+                                                                    sharing: {{ testimonial.approved }}</p>
+
+                                                                <div class="text-center">
+                                                                    <a href="" class="btn btn-danger"
+                                                                       data-toggle="modal"
+                                                                       data-target="#myModal{{ testimonial.pk }}">Delete</a>
+                                                                </div>
+                                                            </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                {% else %}
+                                                    <p>No testimonials available</p>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="text-center text-sm-right">
+                                {% if user.is_staff %}
+                                    <span class="badge badge-secondary">Administrator</span>
+                                {% elif user.is_superuser %}
+                                    <span class="badge badge-secondary">Superuser</span>
+                                {% else %}
+                                    <span class="badge badge-secondary">{{ user.user_type }}</span>
+                                {% endif %}
+                                <div class="text-muted">
+                                    <small>Joined {{ user.created_at }}</small></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% for testimonial in user.testimonials.all %}
+        <div id="myModal{{ testimonial.pk }}" class="modal fade">
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+                    <div class="modal-header flex-column">
+                        <div class="icon-box">
+                            <i class="material-icons">&#xE5CD;</i>
+                        </div>
+                        <h4 class="modal-title w-100">Are you sure?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Do you really want to delete these records? This process cannot be
+                            undone.</p>
+                    </div>
+
+                    <div class="modal-footer justify-content-center">
+                        <form action="{% url 'testimonial-delete' testimonial.pk %}" method="post">
+                            {% csrf_token %}
+                            <input type="submit" value="Confirm" class="btn btn-danger">
+                            <a href="{% url 'testimonials-history-page' %}">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    Cancel
+                                </button>
+                            </a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+{% endblock %}

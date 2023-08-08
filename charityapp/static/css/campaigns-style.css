@@ -11,5 +11,5 @@
 }
 
 .accordion-button:not(.collapsed) {
-    background-color: var(--light-green);
+    background-color: var(--gray-white-transparent);
 }

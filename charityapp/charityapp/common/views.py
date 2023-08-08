@@ -1,12 +1,14 @@
 from django.urls import reverse_lazy
 from django.views import generic as views
-from django.shortcuts import render, redirect
+from django.shortcuts import render
+from django.http import HttpResponseNotFound
 
-from charityapp.charity.models import Testimonial
-from charityapp.work.models import CharityCampaign, DonationCampaign
-from charityapp.common.forms import AboutUsInfoForm, DonationForm, ContactInfoForm, BillingInfoForm, PaymentMethodForm, \
+from charityapp.causes.models import CharityCampaign, DonationCampaign
+
+from charityapp.common.forms import DonationForm, ContactInfoForm, BillingInfoForm, PaymentMethodForm, \
     DonationValueForm
-from charityapp.common.models import AboutUsInfo, Impact, LatestNews
+from charityapp.common.models import Impact, LatestNews
+from charityapp.user_profiles.models import Testimonial
 
 
 def index(request):
@@ -14,13 +16,13 @@ def index(request):
     first_three_news = LatestNews.objects.order_by('pk')[:3]
     second_three_news = LatestNews.objects.order_by('pk')[3:6]
     third_three_news = LatestNews.objects.order_by('pk')[6:9]
-    first_three_charity_campaigns = CharityCampaign.objects.order_by('-start_datetime')[:3]
-    first_three_donation_campaigns = DonationCampaign.objects.order_by('-start_date')[:3]
+    first_four_charity_campaigns = CharityCampaign.objects.order_by('-start_datetime')[:4]
+    first_four_donation_campaigns = DonationCampaign.objects.order_by('-start_date')[:4]
     testimonials = Testimonial.objects.filter(approved=True).order_by('-date')
 
     context = {
-        'charity_campaigns': first_three_charity_campaigns,
-        'donation_campaigns': first_three_donation_campaigns,
+        'charity_campaigns': first_four_charity_campaigns,
+        'donation_campaigns': first_four_donation_campaigns,
         'impacts': impacts,
         'first_news': first_three_news,
         'second_news': second_three_news,
@@ -30,36 +32,8 @@ def index(request):
     return render(request, 'common/home-page.html', context)
 
 
-def our_work(request):
-    return render(request, 'work/what-we-do.html')
-
-
 class DonationThankYouView(views.TemplateView):
     template_name = 'confirmation/thanks/donation-thank-you-page.html'
-
-
-# Only admins can make changes in the form info-DECORATOR IS NOT WORKING
-# @user_passes_test(lambda u: u.is_superuser)
-class AboutUsView(views.CreateView):
-    template_name = 'common/about-us-page.html'
-    form_class = AboutUsInfoForm
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['info'] = AboutUsInfo.objects.first()
-        context['info'] = self.form_class(instance=context['info'])
-        return context
-
-    def post(self, request, *args, **kwargs):
-        info = AboutUsInfo.objects.first()
-        form = self.form_class(request.POST, instance=info)
-        if form.is_valid():
-            form.save()
-            return redirect('about-us-page')
-        else:
-            context = self.get_context_data()
-            context['form'] = form
-            return self.render_to_response(context)
 
 
 class DonationView(views.CreateView):
@@ -85,3 +59,5 @@ class DonationView(views.CreateView):
         return response
 
 
+def handler404(request, exception):
+    return render(request, '404.html', status=404)

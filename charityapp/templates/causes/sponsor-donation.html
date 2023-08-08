@@ -1,0 +1,67 @@
+{% extends 'base/base.html' %}
+{% block main_content %}
+
+    {% include 'base/carousel.html' with carousel_img="https://images.unsplash.com/photo-1502355984-b735cb2550ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" carousel_alt="Sponsor Donation cover" %}
+
+    <section class="mv-section">
+        <div class="container">
+            <div class="row">
+                <div class="maintitle">
+                    <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
+                        data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        <span class="lighter">Let's create <strong>brighter</strong> future <strong>together</strong>!</span>
+                    </h2>
+                    <hr class="hr hr-blurry"/>
+                    <p class="lead">
+                        Your contributions and support are invaluable to us, and we extend our sincerest
+                        gratitude for standing with us on our mission. With your generosity, we have been able to make a
+                        significant impact in various areas, from environmental conservation to education and
+                        humanitarian aid.
+                        We are immensely grateful for your belief in our vision and your continuous commitment to making
+                        a positive change. Your generosity empowers us to carry out our projects and initiatives,
+                        fostering positive transformations in the lives of many.
+                        As our cherished sponsors, you play a crucial role in driving our mission forward. Your
+                        partnership is not just a financial contribution, but a testament to the shared values we hold
+                        dear. Together, we are making the world a better place, one step at a time.
+                    </p>
+                    <p class="lead">
+                        Thank you for being an integral part of our journey, for being the driving force behind our
+                        successes, and for making a difference in the lives of countless individuals. Your support
+                        inspires us to reach greater heights, and we are honored to have you by our side.
+                        With deep appreciation and utmost gratitude, we thank you for being the difference and for
+                        believing in the impact we can make together. Your generosity brings hope and positive change to
+                        the lives of many, and we are profoundly thankful for your unwavering support.
+                        Together, we are a force for good, and with your continued partnership, we can achieve even
+                        greater things. Thank you for making a significant difference in the world and for being a
+                        beacon of hope to those in need.
+                        From the bottom of our hearts, we thank you for your continuous support and for being the
+                        driving
+                        force behind our mission. Your dedication to creating a better world is truly remarkable, and we
+                        are grateful for the difference you make every day.
+                    </p>
+                    <p class="lead">
+                        Thank you for being with us on this incredible journey, and we look forward to creating a
+                        brighter future together.
+                    </p>
+                </div>
+                <div class="container col-md-4">
+                    <div class=" card card-body text-center">
+                        <h3 class="card-title text-center">Donation amount</h3>
+                        <form action="{% url 'sponsor-donation' campaign.id %}" method="post">
+                            {% for field in form %}
+                                {{ field }}
+                            {% endfor %}
+                            <button class="btn btn-secondary">Submit</button>
+                            {% csrf_token %}
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}
+

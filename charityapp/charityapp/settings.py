@@ -39,13 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # My apps
-    'charityapp.work',
+    'charityapp.causes',
+    'charityapp.contact',
     'charityapp.user_profiles',
     'charityapp.accounts',
     'charityapp.common',
     'charityapp.about',
-    'charityapp.get_involve',
-    'charityapp.charity',
+    'charityapp.get_involved',
+    'charityapp.blog',
     # 'charityapp.accounts.apps.AccountsConfig',
 ]
 

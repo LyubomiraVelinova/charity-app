@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+{% block main_content %}
+    {% include 'base/carousel.html' with carousel_title=article.title carousel_subtitle=article.subtitle carousel_img=article.featured_image carousel_alt=article.title %}
+
+    <section class="mv-section">
+        <div class="container">
+            <div class="row">
+
+                <div class="lead">
+                    <p>{{ article.introduction }}</p>
+                    <p>{{ article.content }}</p>
+
+                    <p>Author: {{ article.author }}</p>
+                    <p>Data: {{ article.created_at }}</p>
+
+                    {% if request.user.is_authenticated and user == article.author %}
+                        <a href="{% url 'edit-article' article.pk %}"
+                           class="btn btn-block btn-secondary">
+                            <i class="fa-solid fa-pencil"></i>
+                            <span> Edit</span>
+                        </a>
+                        <a href="{% url 'delete-article' article.pk %}">
+                            <button id="delete-profile-btn" class="btn btn-danger">
+                                Delete
+                            </button>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+
+
+

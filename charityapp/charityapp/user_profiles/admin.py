@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from charityapp.accounts.models import AppUser
-from charityapp.user_profiles.models import SponsorProfile, VolunteerProfile, MemberProfile
+from charityapp.user_profiles.models import SponsorProfile, VolunteerProfile, MemberProfile, Testimonial
 
 
 # class AppUserAdmin(admin.TabularInline):
@@ -104,3 +104,15 @@ class MemberProfileAdmin(admin.ModelAdmin):
     def has_add_permission(self, request):
         # Disable the add permission for member profiles to prevent duplicate records
         return False
+
+
+@admin.register(Testimonial)
+class TestimonialAdmin(admin.ModelAdmin):
+    list_display = ['quote', 'date', 'author', 'approved']
+    list_filter = ('approved',)
+    actions = ['approve_selected']
+
+    def approve_selected(self, request, queryset):
+        queryset.update(approved=True)
+
+    approve_selected.short_description = 'Approve selected testimonials'

@@ -1,7 +1,5 @@
 from django import forms
 from django.contrib.auth import forms as auth_forms, get_user_model
-from django.core.exceptions import ValidationError
-from django.core.validators import validate_email
 from django.utils.translation import gettext_lazy as _
 
 UserModel = get_user_model()
@@ -35,3 +33,8 @@ class CustomAuthenticationForm(auth_forms.AuthenticationForm):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs['placeholder'] = 'EMAIL'
         self.fields['password'].widget.attrs['placeholder'] = 'PASSWORD'
+
+
+class ChangeEmailForm(forms.Form):
+    new_email = forms.EmailField(label='New Email Address')
+    confirm_email = forms.EmailField(label='Confirm New Email Address')

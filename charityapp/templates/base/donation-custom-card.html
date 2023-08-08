@@ -3,12 +3,12 @@
     <img class="card-img-top" src="{{ campaign.logo }}" alt="{{ campaign.name }}"
          height="200px">
     <div class="card-body">
-        <a href="{% url 'donation-campaign-details' campaign.pk %}"><h4
+        <a href="{% url 'donation-cause-details' campaign.pk %}"><h4
                 class="card-title text-uppercase text-center">{{ campaign.title }}</h4></a>
         <p class="card-text">{{ campaign.purpose }}</p>
-        {% if campaign.succeeded %}
+        {% if not campaign.succeeded %}
             {% if request.user.is_authenticated and user.user_type == "SPONSOR" %}
-                <a href="{% url 'charity-campaign-participation' campaign.id %}">
+                <a href="{% url 'sponsor-donation' campaign.id %}">
                     <button>Donate</button>
                 </a>
             {% endif %}

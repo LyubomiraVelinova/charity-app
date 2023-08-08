@@ -44,8 +44,8 @@ h2 {
 .contact-section,
 .news-section,
 .impact-section {
-    background-color: var(--green);
-    opacity: 0.8;
+    background-color: var(--gray-white-transparent);
+    opacity: 0.9;
 }
 
 /*.impact-section,*/
@@ -62,7 +62,7 @@ h2 {
     top: 0;
     position: fixed;
     /*background-image: url(https://images.unsplash.com/photo-1533073526757-2c8ca1df9f1c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80);*/
-    background-image: url(https://images.unsplash.com/photo-1560093230-101306845069?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80);
+    background-image: url(https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1174&q=80);
     background-position: center center;
     background-repeat: no-repeat;
     -webkit-background-size: cover;
@@ -195,11 +195,10 @@ a {
     -moz-box-shadow: none;
 }
 
-
-/*.accordion-button:not(.collapsed) {*/
-/*    background-color: var(--green);*/
-
-/*}*/
+.accordion-button {
+    height: 80px;
+    font-size: 20px;
+}
 
 
 /* VOLUNTEERS PAGE */
@@ -212,7 +211,7 @@ a {
 /*ACHIEVEMENTS SECTION*/
 
 .col-md-4 {
-    padding: 0.5rem;
+    padding: 0.25rem;
 }
 
 .card-group {
@@ -222,7 +221,6 @@ a {
 .card-body {
     text-align: justify;
     padding: 1.5rem;
-    padding-bottom: 0;
 }
 
 .active-card-footer {
@@ -257,8 +255,7 @@ a {
     background-color: var(--bs-card-bg);
     background-clip: border-box;
     border: var(--bs-card-border-width) solid var(--bs-card-border-color);
-    /*padding: 1rem;*/
-    margin: 1rem;
+    /*margin: 0.25rem;*/
     max-width: 430px;
 }
 
@@ -297,8 +294,8 @@ a {
 
 /*IMPACT SECTION*/
 .custom-col {
-    padding-right: 0.5rem;
-    padding-left: 0.5rem;
+    padding-right: 0.25rem;
+    padding-left: 0.25rem;
 }
 
 .text-justify {
@@ -410,7 +407,7 @@ h2.custom-size {
 }
 
 
-/*Blog*/
+/*Article*/
 #intro {
     margin-top: 58px;
 }
@@ -419,4 +416,35 @@ h2.custom-size {
     #intro {
         margin-top: 45px;
     }
+}
+
+.card-img {
+    height: 270px;
+    object-fit: cover;
+    max-width: 100%;
+}
+
+
+/*Profile Details*/
+
+.custom-margin {
+    margin-top: 30px;
+}
+
+.profile-section {
+    margin-top: 100px;
+}
+
+/*FOOTER*/
+.p-0{
+    margin-bottom: 0;
+}
+
+.btn-outline-light {
+     --bs-btn-color: var(--black);
+    --bs-btn-border-color: var(--black);
+}
+
+.card-body{
+    max-width: 800px;
 }

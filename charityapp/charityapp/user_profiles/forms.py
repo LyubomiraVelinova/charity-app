@@ -1,6 +1,6 @@
 from django import forms
 
-from charityapp.user_profiles.models import VolunteerProfile, MemberProfile, SponsorProfile
+from charityapp.user_profiles.models import VolunteerProfile, MemberProfile, SponsorProfile, Testimonial
 
 
 class VolunteerForm(forms.ModelForm):
@@ -29,3 +29,15 @@ class SponsorForm(forms.ModelForm):
     class Meta:
         model = SponsorProfile
         fields = ('company_name', 'logo', 'website', 'career_field')
+
+
+class TestimonialForm(forms.ModelForm):
+    class Meta:
+        model = Testimonial
+        fields = ['quote', 'allow_posting']
+
+    allow_posting = forms.BooleanField(
+        required=False,
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+        label='I allow "Club for Future" to publish my testimonial on this website.',
+    )
