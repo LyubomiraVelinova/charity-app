@@ -1,6 +1,6 @@
-from django.urls import path, include
+from django.urls import path
 
-from charityapp.accounts.views import RegisterUserView, LoginUserView, LogoutView, CustomPasswordChangeView, \
+from charityapp.user_accounts.views import RegisterUserView, LoginUserView, LogoutView, CustomPasswordChangeView, \
     CustomPasswordChangeDoneView, ChangeEmailView
 
 urlpatterns = [

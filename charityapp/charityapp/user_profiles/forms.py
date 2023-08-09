@@ -3,14 +3,13 @@ from django import forms
 from charityapp.user_profiles.models import VolunteerProfile, MemberProfile, SponsorProfile, Testimonial
 
 
-class VolunteerForm(forms.ModelForm):
-
+class VolunteerProfileForm(forms.ModelForm):
     class Meta:
         model = VolunteerProfile
         fields = ('first_name', 'last_name', 'gender', 'phone_number', 'bio', 'interests', 'profile_picture',)
 
 
-class MemberForm(forms.ModelForm):
+class MemberProfileForm(forms.ModelForm):
     class Meta:
         model = MemberProfile
         fields = (
@@ -25,7 +24,7 @@ class MemberForm(forms.ModelForm):
         )
 
 
-class SponsorForm(forms.ModelForm):
+class SponsorProfileForm(forms.ModelForm):
     class Meta:
         model = SponsorProfile
         fields = ('company_name', 'logo', 'website', 'career_field')

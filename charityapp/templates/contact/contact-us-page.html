@@ -24,7 +24,7 @@
 
                 <div class="row justify-content-center">
                     <div class="col-xl-8 custom-row">
-                        <form action="{% url 'contact-us' %}" id="contact" name="contact"
+                        <form action="{% url 'contact-us' %}" id="contact-form" name="contact"
                               method="post" class="text-left">
                             {% csrf_token %}
                             {% if request.user.is_authenticated %}
@@ -45,7 +45,6 @@
                             {% else %}
                                 {{ form.as_p }}
                             {% endif %}
-
                             <input id="submit" type="submit" name="submit" value="Send"/>
                         </form>
                         {% if not user.is_authenticated %}

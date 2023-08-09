@@ -6,25 +6,25 @@ from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import mixins as auth_mixins
 
-from charityapp.accounts.forms import RegisterUserForm
-from charityapp.user_profiles.forms import VolunteerForm, SponsorForm, MemberForm, TestimonialForm
+from charityapp.user_accounts.forms import RegisterUserForm
+from charityapp.user_profiles.forms import VolunteerProfileForm, SponsorProfileForm, MemberProfileForm, TestimonialForm
 from charityapp.user_profiles.models import VolunteerProfile, SponsorProfile, MemberProfile, Testimonial
 
 UserModel = get_user_model()
 
 
-class ProfileEditView(views.UpdateView):
+class ProfileEditView(auth_mixins.LoginRequiredMixin, views.UpdateView):
     template_name = 'user_profiles/profile-edit-page.html'
     success_url = reverse_lazy('profile-details')
 
     def get_form_class(self):
         user_type = self.request.user.user_type
         if user_type == 'VOLUNTEER':
-            return VolunteerForm
+            return VolunteerProfileForm
         elif user_type == 'SPONSOR':
-            return SponsorForm
+            return SponsorProfileForm
         elif user_type == 'MEMBER':
-            return MemberForm
+            return MemberProfileForm
 
     def get_object(self, queryset=None):
         user = self.request.user
@@ -41,7 +41,7 @@ class ProfileEditView(views.UpdateView):
         return super().form_valid(form)
 
 
-class ProfileDetailsView(views.DetailView):
+class ProfileDetailsView(auth_mixins.LoginRequiredMixin,views.DetailView):
     template_name = 'user_profiles/profile-details-page.html'
 
     def get_object(self, queryset=None):
@@ -75,17 +75,6 @@ class ProfileDeleteView(auth_mixins.LoginRequiredMixin, views.DeleteView):
     def delete(self, request, *args, **kwargs):
         self.get_object().delete()
         return redirect(self.get_success_url())
-
-
-# NOT WORKING
-class ChangePhotoView(views.UpdateView):
-    model = UserModel
-    template_name = 'user_profiles/profile-edit-page.html'
-    fields = ['profile_photo', 'logo']
-    success_url = reverse_lazy('profile-edit')
-
-    def get_object(self, queryset=None):
-        return self.request.user
 
 
 # CHECK THEM
@@ -172,4 +161,3 @@ class TestimonialDeleteView(auth_mixins.LoginRequiredMixin, auth_mixins.UserPass
 
 class TestimonialsHistoryPage(views.TemplateView):
     template_name = 'user_profiles/testimonials-history-page.html'
-

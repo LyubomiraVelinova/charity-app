@@ -31,28 +31,22 @@ h2 {
 
 /*COMMON*/
 .custom-container {
-    padding: 80px 0px 80px 0px;
+    padding: 40px 0px;
 }
 
 .custom-section {
-    padding: 50px 0px 50px 0px;
+    padding: 30px 0px 30px 0px;
 }
 
 
 .campaigns-section,
 .testimonials-section,
 .contact-section,
-.news-section,
 .impact-section {
     background-color: var(--gray-white-transparent);
     opacity: 0.9;
 }
 
-/*.impact-section,*/
-/*.news-section {*/
-/*    background-color: var(--gray-white);*/
-/*    opacity: 0.7;*/
-/*}*/
 
 /*PARALLAX*/
 
@@ -72,6 +66,17 @@ h2 {
     z-index: -100;
 }
 
+#parallax::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(183, 244, 216, 0.35); /* Adjust the alpha value to control darkness */
+    pointer-events: none;
+}
+
 /*NAVBAR*/
 
 
@@ -81,6 +86,14 @@ h2 {
 
 #navbarNavDropdown > ul > li > a {
     text-transform: uppercase;
+}
+
+.nav-link:hover {
+    color: var(--light-green);
+}
+
+.nav-gray{
+    background-color: var(--gray-white);
 }
 
 /*ABOUT*/
@@ -123,6 +136,10 @@ a {
     color: var(--green);
 }
 
+.first-container {
+    margin-top: 100px;
+}
+
 /*CAUSES*/
 .col-sm-4 {
     padding: 15px;
@@ -135,10 +152,6 @@ a {
 #gallery .custom-card-img-top {
     object-fit: cover;
     height: 200px;
-}
-
-.card-body {
-    margin: 5px;
 }
 
 #gallery img:hover {
@@ -220,7 +233,6 @@ a {
 
 .card-body {
     text-align: justify;
-    padding: 1.5rem;
 }
 
 .active-card-footer {
@@ -436,15 +448,51 @@ h2.custom-size {
 }
 
 /*FOOTER*/
-.p-0{
+.p-0 {
     margin-bottom: 0;
 }
 
 .btn-outline-light {
-     --bs-btn-color: var(--black);
+    --bs-btn-color: var(--black);
     --bs-btn-border-color: var(--black);
 }
 
-.card-body{
+.card-body {
     max-width: 800px;
+}
+
+.profile-card {
+    max-width: 800px;
+}
+
+/*DONATION CARDS*/
+.don-custom-card {
+    margin: 0.75rem;
+}
+
+.btn-outline-light-green {
+    --bs-btn-color: var(--white);
+    --bs-btn-border-color: var(--gray);
+    --bs-btn-hover-color: var(--white);
+    --bs-btn-hover-bg: var(--light-green);
+    --bs-btn-hover-border-color: var(--light-green);
+    --bs-btn-focus-shadow-rgb: 25, 135, 84;
+    --bs-btn-active-color: var(--gray);
+    --bs-btn-active-bg: var(--light-green);
+    --bs-btn-active-border-color: var(--light-gray);
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #198754;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: #198754;
+    --bs-gradient: none;
+}
+
+/*FOOTER*/
+footer p {
+    font-size: 14px;
+}
+
+.btn-white{
+    --bs-btn-hover-bg: var(--white);
+    --bs-btn-hover-color: var(--gray);
 }

@@ -9,7 +9,7 @@
 {% block main_content %}
     <!-- ABOUT US SECTION -->
     <section class="custom-section first-section">
-        <div class="container custom-container">
+        <div class="container custom-container first-container">
             <div class="row">
                 <div class="col-lg-3">
                     <h2 class="wow bounceInDown text-uppercase text-light" data-wow-duration="1s" data-wow-delay="0.1s"
@@ -46,13 +46,13 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
-                            <a href="{% url 'ways-to-involve' %}" class="btn btn-default btn-lg wow fadeInLeft"
-                               role="button"> How To
-                                Involve </a>
+                            <a href="{% url 'history-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                               role="button"> What`s Our History </a>
                             <p class="custom-lead-wh">
-                                There are so many ways to make positive change for our country. Volunteer with us. Learn
-                                first aid. Don't forget to collect caps, jugs and plastic bottles. Donate blood. Make a
-                                donation to our organization.
+                                Launched in October 2017, "Caps for the Future" aimed to donate CUVYOZ devices to
+                                hospitals in less populated areas. The first donation occurred just five
+                                weeks later, leading to the growth of the campaign. Soon after its creator-founded Clubs
+                                for the Future, which has made a lasting impact on the community.
                             </p>
                         </div>
                         <div class="col-lg-6">
@@ -81,6 +81,11 @@
                         data-wow-delay="0.1s"
                         style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
                         <span class="lighter">Our </span>impact</h2>
+                    <p class="text-light lead wow zoomIn text-center">
+                        "A meaningful future is built by meaningful people who unite. And look hard. It's
+                        being built by us ❤"
+                        <small class="text-light">/Lazar Radkov, Founder/</small>
+                    </p>
                     <p class="lead text-light">
                         Our main goal is to improve the living environment around us, we do it voluntarily and
                         are guided by the motivation "Let tomorrow be better than today". Our organization play a
@@ -128,10 +133,12 @@
                         </p>
                         <p>
 
-                            <a href="{% url 'charity-causes' %}" class="btn btn-default btn-lg wow fadeInLeft"
-                               role="button"> Find a Cause </a>
+                            <a href="{% url 'ways-to-involve' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                               role="button"> Get involved </a>
                             <a href="{% url 'donation' %}" methods="post"
                                class="btn btn-default btn-lg wow fadeInRight" role="button"> Make Donation </a>
+                            <a href="{% url 'contact-us' %}" methods="post"
+                               class="btn btn-default btn-lg wow fadeInRight" role="button"> Contact us </a>
                         </p>
                     </div>
                 </div>
@@ -149,6 +156,11 @@
                         style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
                         <strong>Find <span class="lighter">cause</span></strong> to
                         support </h2>
+                    <p class="text-light lead wow zoomIn text-center">
+                        "An active and adequate civil society is built by the efforts of many, many people over many,
+                        many years."
+                        <small class="text-light">/Lazar Radkov, Founder/</small>
+                    </p>
                     <p class="text-light lead wow zoomIn" data-wow-duration="2s" data-wow-delay="0.5s"
                        style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: zoomIn;">
                         There are so many ways you can get involved and do your part to support us and be part of
@@ -171,11 +183,11 @@
                 {% endfor %}
 
                 <div class="text-center">
-                    <a href="{% url 'charity-causes' %}">
-                        <button class="btn btn-default btn-lg">Find more charity campaigns</button>
+                    <a href="{% url 'charity-causes' %}" class="text-light btn">
+                        <button class="btn btn-default btn-lg btn-white">Find more charity campaigns</button>
                     </a>
                     <a href="{% url 'volunteer-register' %}" class="text-light btn">
-                        <button class="btn btn-default btn-lg">Volunteer with us</button>
+                        <button class="btn btn-default btn-lg btn-white">Volunteer with us</button>
                     </a>
                 </div>
 
@@ -213,53 +225,16 @@
                 {% endfor %}
 
                 <div class="text-center">
-                    <a href="{% url 'donation-causes' %}">
-                        <button class="btn btn-default btn-lg">Find more donation campaigns</button>
+                    <a href="{% url 'donation-causes' %}" class="text-light btn">
+                        <button class="btn btn-default btn-lg btn-white">Find more donation campaigns</button>
                     </a>
-                    <a href="{% url 'sponsor-register' %}" class="text-light btn">
-                        <button class="btn btn-default btn-lg">Be our sponsor</button>
+                    <a href="{% url 'sponsor-register' %}" class="text-light btn ">
+                        <button class="btn btn-default btn-lg btn-white">Be our sponsor</button>
                     </a>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- FIRST WISDOM -->
-    <section class="custom-section mission-section">
-        <div class="container custom-container">
-            <div class="row">
-                <div class="col-md-12 sol-sm-12">
-                    <div class="maintitle">
-                        <h2 class="wow bounceInDown text-uppercase text-light" data-wow-duration="1s"
-                            data-wow-delay="0.1s"
-                            style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
-                            <span class="lighter">Our </span>history</h2>
-                        <p class="text-light lead wow zoomIn text-center">
-                            "A meaningful future is built by meaningful people who unite. And look hard. It's
-                            being built by us ❤"
-                            <small class="text-light">/Lazar Radkov, Founder/</small>
-                        </p>
-
-                        <p class="text-light lead wow zoomIn" data-wow-duration="2s" data-wow-delay="0.5s"
-                           style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: zoomIn;">
-                            Caps for the Future" was launched in October 2017. The original idea was to collect
-                            playground caps, but after polling people on social media, the campaign turned to incubators
-                            for premature babies. The main objective of the first campaign was of donating at least one
-                            CUVYOZ to a hospital in a less populated area. To everyone's surprise, we were able to
-                            donate the first one just FIVE weeks after our first campaign at the end of October.
-                            <a href="{% url 'history-page' %}" class="custom-more">Learn
-                                more...</a>
-                        </p>
-                        <p>
-                            <a href="{% url 'contact-us' %}" class="btn btn-default btn-lg wow fadeInLeft"
-                               role="button"> Contact us </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
 
     <!-- LATEST NEWS SECTION -->
     <section class="custom-section news-section">
@@ -366,28 +341,6 @@
         </div>
     </section>
 
-
-    <!-- SECOND WISDOM -->
-    <section class="parallax section active-section">
-        <div class="container custom-container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="item text-center">
-                        <blockquote>
-                            <h2 class="wow bounceInDown text-uppercase text-light" data-wow-duration="1s"
-                                data-wow-delay="0.1s"
-                                style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
-                                <span class="lighter">An</span> active <span class="lighter">and</span> adequate
-                                <span class="lighter"> civil society is built by the</span> efforts <span
-                                    class="lighter">of many, </span>many
-                                people <span class="lighter">over many,</span> many years. </h2>
-                            <small class="text-light">Lazar Radkov, Founder</small>
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- TESTIMONIALS SECTION -->
 

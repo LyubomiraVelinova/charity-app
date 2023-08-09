@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from charityapp.work.models import CharityCampaign
+from charityapp.causes.models import CharityCampaign
 
 
 class Command(BaseCommand):

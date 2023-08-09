@@ -1,9 +1,10 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
+from django.db.models import Sum
 from django.shortcuts import get_object_or_404, redirect
 from django.template.loader import render_to_string
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.utils.html import strip_tags
 from django.views import generic as views
 
@@ -14,7 +15,7 @@ UserModel = get_user_model()
 
 
 class CharityCausesView(views.TemplateView):
-    template_name = 'causes/charity-campaigns-page.html'
+    template_name = 'causes/charity-causes-page.html'
 
     def get_context_data(self, **kwargs):
         charity_campaigns = CharityCampaign.objects.all().order_by('active', 'start_datetime')
@@ -49,7 +50,7 @@ class CharityCausesView(views.TemplateView):
 
 
 class CharityCauseDetailsView(views.TemplateView):
-    template_name = 'causes/charity-campaign-details-page.html'
+    template_name = 'causes/charity-cause-details-page.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -60,7 +61,7 @@ class CharityCauseDetailsView(views.TemplateView):
 
 
 class DonationCausesView(views.TemplateView):
-    template_name = 'causes/donation-campaigns-page.html'
+    template_name = 'causes/donation-cause-page.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -73,18 +74,21 @@ class DonationCausesView(views.TemplateView):
 
 
 class DonationCauseDetailsView(views.TemplateView):
-    template_name = 'causes/donation-campaign-details-page.html'
+    template_name = 'causes/donation-cause-details-page.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         pk = self.kwargs.get('pk')
         campaign = DonationCampaign.objects.get(pk=pk)
+        # total_donation_amount = UserModel.objects.filter(campaign=campaign).aggregate(Sum('amount'))[
+        #     'amount__sum']
         context['campaign'] = campaign
+        # context['total_donation_amount'] = total_donation_amount or 0
         return context
 
 
 class CharityCauseParticipationView(views.TemplateView):
-    template_name = 'causes/charity-campaign-details-page.html'  # Replace with your actual template name
+    template_name = 'causes/charity-cause-details-page.html'  # Replace with your actual template name
 
     def get(self, request, *args, **kwargs):
         campaign_id = self.kwargs['campaign_id']
@@ -111,8 +115,9 @@ class ParticipationThankYouView(views.TemplateView):
 
 
 class SponsorDonationView(views.CreateView):
-    template_name = 'causes/sponsor-donation.html'
+    template_name = 'causes/donation-cause-participation.html'
     form_class = SponsorDonationForm
+    success_url = reverse_lazy('donation_thank_you_page')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -128,9 +133,13 @@ class SponsorDonationView(views.CreateView):
         donation.campaign = campaign
         donation.donor = self.request.user
         donation.save()
+
+        user = UserModel.objects.get(pk=self.request.user.pk)
+        if user.user_type == "SPONSOR":
+            user.sponsor_profile.donation_history.add(campaign)
+
         campaign.current_amount += donation.amount
         campaign.save()
+
         return redirect('donation-thank-you')
 
-    def get_success_url(self):
-        return reverse('donation_thank_you_page')

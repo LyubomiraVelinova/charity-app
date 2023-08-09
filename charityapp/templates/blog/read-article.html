@@ -1,12 +1,19 @@
 {% extends 'base/base.html' %}
 {% block main_content %}
-    {% include 'base/carousel.html' with carousel_title=article.title carousel_subtitle=article.subtitle carousel_img=article.featured_image carousel_alt=article.title %}
+    {% include 'base/carousel.html' with carousel_img=article.featured_image carousel_alt=article.title %}
 
     <section class="mv-section">
         <div class="container">
             <div class="row">
-
+                <div class="maintitle">
+                    <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
+                        data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        <strong>{{ article.title }}</strong></h2>
+                    <hr class="hr hr-blurry"/>
+                </div>
                 <div class="lead">
+                    <h4 class="text-uppercase">Act green with these ideas</h4>
                     <p>{{ article.introduction }}</p>
                     <p>{{ article.content }}</p>
 

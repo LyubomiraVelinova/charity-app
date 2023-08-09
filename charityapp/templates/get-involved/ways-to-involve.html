@@ -3,6 +3,7 @@
 {% block main_content %}
     {% include 'base/carousel.html' with carousel_title='Get involved' carousel_subtitle='Ways to involve' carousel_img='https://images.unsplash.com/photo-1563906267088-b029e7101114?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80' carousel_alt='Ways to involve cover' %}
 
+
     <section class="mv-section">
         <div class="container">
             <div class="row">
@@ -10,7 +11,7 @@
                     <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
                         data-wow-delay="0.1s"
                         style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
-                        <strong>Volunteer </strong><span class="lighter">with us</span></h2>
+                        <strong>Volunteer</strong><span class="lighter"> with us</span></h2>
                     <hr class="hr hr-blurry"/>
                     <p class="lead">
                         Join our team of dedicated volunteers and become an essential part of our impactful campaigns.
@@ -18,40 +19,72 @@
                         closely with our team to make a positive difference in the community. Whether you're helping
                         with event logistics, spreading awareness, or lending a helping hand during campaigns, your
                         passion and commitment will play a vital role in our mission towards a better future.
+                    </p>>
+                    <p class="lead">
+                        There are so many ways to make positive change for our country. Volunteer with us. Learn
+                        first aid. Don't forget to collect caps, jugs and plastic bottles. Donate blood. Make a
+                        donation to our organization.
                     </p>
                 </div>
-
-                <div class="col-md-6 left-column text-center lead d-flex flex-column justify-content-center">
-                    <h3 class="text-uppercase lighter">Benefits of Volunteering</h3>
-                    <p>
-                        Our volunteers are our salvation. They are tireless, hardworking and not afraid of
-                        carrying tons of caps or crushing thousands of bottles, jugs.
-                    </p>
-                    <ul>
-                        <li>Make a meaningful impact on the lives of those in need.</li>
-                        <li>Gain valuable experience and skills in event management and social work.</li>
-                        <li>Connect with like-minded individuals who share your passion for giving back.</li>
-                        <li>Receive recognition and appreciation for your valuable contributions.</li>
+                <div class="col-md-6 gx-5 mb-4 text-justify">
+                    <h3 class="text-uppercase"><strong>Volunteer Benefits</strong></h3>
+                    <ul class="custom-list custom-lead-bl">
+                        <li>
+                            <div class="ms-2">
+                                Make a meaningful impact on the lives of those in need.
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ms-2">
+                                Gain valuable experience and skills in event management and social work.
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ms-2">
+                                Connect with like-minded individuals who share your passion for giving back.
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ms-2">
+                                Receive recognition and appreciation for your valuable contributions.
+                            </div>
+                        </li>
                     </ul>
-                    <h4>Help us during the campaigns - be it with a carry, a crush, a place or an audience with a good
-                        mood.
+                    <h4 class="lighter text-uppercase">
+                        Help us during the campaigns-with a carry, a crush, a place or with a good mood.
                     </h4>
-                    <button><a href="{% url 'volunteer-register' %}">Be Volunteer</a></button>
-
+                    {% if not user.is_authenticated %}
+                        <a href="{% url 'volunteer-register' %}">
+                            <button class="btn btn-block btn-secondary">Be Volunteer</button>
+                        </a>
+                    {% elif user.user_type == "VOLUNTEER" %}
+                        <p class="lighter text-uppercase">
+                            <strong>You are already volunteering with us. Your help is priceless! Thank you for being
+                                there!</strong>
+                        </p>
+                        <a href="{% url 'charity-causes' %}">
+                            <button class="btn btn-block btn-secondary">Go to charity causes</button>
+                        </a>
+                    {% endif %}
                 </div>
 
-                <!-- Right Column - Image -->
-                <div class="col-md-6 right-column">
-                    <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1174&q=80"
-                         alt="Image" class="img-fluid">
+                <div class="col-md-6 gx-5 mb-4">
+                    <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
+                        <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1174&q=80"
+                             class="img-fluid">
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                        </a>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
 
     <hr class="hr hr-blurry"/>
 
-    <section class="mv-section">
+    <section>
         <div class="container">
             <div class="row">
                 <div class="maintitle">
@@ -68,21 +101,55 @@
                         achieve more and create lasting positive changes in the lives of those we serve.
                     </p>
                 </div>
-
-                <div class="col-md-6 left-column">
-                    <img src="https://images.unsplash.com/photo-1527525443983-6e60c75fff46?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=685&q=80"
-                         alt="Image" height="500px" width="450px">
+                <div class="col-md-6 gx-5 mb-4">
+                    <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
+                        <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                             class="img-fluid">
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                        </a>
+                    </div>
                 </div>
 
-                <div class="col-md-6 right-column text-center lead d-flex flex-column justify-content-center">
-                    <h3 class="text-uppercase lighter">Membership Benefits</h3>
-                    <ul>
-                        <li>Participate in shaping the future of Club for Future's projects and campaigns.</li>
-                        <li>Access to members-only events, workshops, and networking opportunities.</li>
-                        <li>Stay informed about our latest initiatives and progress through regular updates.</li>
-                        <li>Collaborate with like-minded individuals dedicated to making a difference.</li>
+                <div class="col-md-6 gx-5 mb-4 text-justify">
+                    <h3 class="text-uppercase"><strong>Membership Benefits</strong></h3>
+                    <ul class="custom-list custom-lead-bl">
+                        <li>
+                            <div class="ms-2">
+                                Participate in shaping the future of Club for Future's projects and campaigns.
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ms-2">
+                                Access to members-only events, workshops, and networking opportunities.
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ms-2">
+                                Stay informed about our latest initiatives and progress through regular updates.
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ms-2">
+                                Collaborate with like-minded individuals dedicated to making a difference.
+                            </div>
+                        </li>
                     </ul>
-                    <button><a href="{% url 'member-register' %}">Be member</a></button>
+                    <h4 class="lighter text-uppercase">
+                        Together we can do more!
+                    </h4>
+                    {% if not user.is_authenticated %}
+                        <a href="{% url 'member-register' %}">
+                            <button class="btn btn-block btn-secondary">Be member</button>
+                        </a>
+                    {% elif user.user_type == "MEMBER" %}
+                        <p class="lighter text-uppercase">
+                            <strong>You are already member of us. You are priceless! Thank you for being there!</strong>
+                        </p>
+                        <a href="{% url 'act-green-blog' %}">
+                            <button class="btn btn-block btn-secondary">Go to 'Act GREEN' causes</button>
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -93,7 +160,6 @@
     <section class="mv-section">
         <div class="container">
             <div class="row">
-
                 <div class="maintitle">
                     <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
                         data-wow-delay="0.1s"
@@ -107,27 +173,58 @@
                         demonstrate a strong commitment to social responsibility, making a positive impression on both
                         customers and stakeholders.p>
                 </div>
-
-                <div class="col-md-6 left-column text-center lead d-flex flex-column justify-content-center">
-                    <h3 class="text-uppercase lighter">Sponsorship Benefits</h3>
-                    <ul>
-                        <li>Prominent brand exposure through our marketing and event materials.</li>
-                        <li>Showcase your commitment to social causes and community welfare.</li>
-                        <li>Networking opportunities with other socially responsible businesses.</li>
-                        <li>Positive brand association with a trusted and impactful charity organization.</li>
+                <div class="col-md-6 gx-5 mb-4 text-justify">
+                    <h3 class="text-uppercase"><strong>Sponsorship Benefits</strong></h3>
+                    <ul class="custom-list custom-lead-bl">
+                        <li>
+                            <div class="ms-2">
+                                Prominent brand exposure through our marketing and event materials.
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ms-2">
+                                Showcase your commitment to social causes and community welfare.ies.
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ms-2">
+                                Networking opportunities with other socially responsible businesses.
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ms-2">
+                                Positive brand association with a trusted and impactful charity organization.
+                            </div>
+                        </li>
                     </ul>
-                    <h4>
+                    <h4 class="lighter text-uppercase">
                         Support us, your contribution matters!
                     </h4>
-                    <button><a href="{% url 'sponsor-register' %}">Be Sponsor</a></button>
-
+                    {% if not user.is_authenticated %}
+                        <a href="{% url 'sponsor-register' %}">
+                            <button class="btn btn-block btn-secondary">Be Sponsor</button>
+                        </a>
+                    {% elif user.user_type == "SPONSOR" %}
+                        <p class="lighter text-uppercase">
+                            <strong>You are already our sponsor. Your support is priceless! Thank you for being
+                                there!</strong>
+                        </p>
+                        <a href="{% url 'donation-causes' %}">
+                            <button class="btn btn-block btn-secondary">Go to Donation causes</button>
+                        </a>
+                    {% endif %}
                 </div>
 
-                <!-- Right Column - Image -->
-                <div class="col-md-6 right-column">
-                    <img src="https://images.unsplash.com/photo-1548603702-546e446dd167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=770&q=80"
-                         alt="Image" height="500px" width="450px">
+                <div class="col-md-6 gx-5 mb-4">
+                    <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
+                        <img src="https://images.unsplash.com/photo-1435575653489-b0873ec954e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                             class="img-fluid">
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                        </a>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>

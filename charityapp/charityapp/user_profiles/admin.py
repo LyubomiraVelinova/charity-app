@@ -1,6 +1,5 @@
 from django.contrib import admin
 
-from charityapp.accounts.models import AppUser
 from charityapp.user_profiles.models import SponsorProfile, VolunteerProfile, MemberProfile, Testimonial
 
 

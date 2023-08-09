@@ -1,6 +1,6 @@
 from django.db import models
 
-from charityapp.accounts.models import AppUser
+from charityapp.user_accounts.models import AppUser
 
 
 class Article(models.Model):

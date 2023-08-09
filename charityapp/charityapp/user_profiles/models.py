@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.core import validators
 from django.db import models
 
-from charityapp.accounts.models import AppUser
+from charityapp.user_accounts.models import AppUser
 from charityapp.causes.models import DonationCampaign, CharityCampaign
 from charityapp.common.mixins import ChoicesStringsMixin
 
@@ -64,6 +64,7 @@ class SponsorProfile(models.Model):
     logo = models.ImageField(
         null=True,
         blank=True,
+        default='/static/images/anonymousbuilding.jpg'
     )
 
     website = models.URLField(
@@ -80,6 +81,9 @@ class SponsorProfile(models.Model):
         DonationCampaign,
         verbose_name='Donation history',
     )
+
+    def total_donation_amount(self):
+        return sum(self.donation_history.all().values_list('sponsordonation__amount', flat=True))
 
     def __str__(self):
         return self.company_name
@@ -138,6 +142,7 @@ class VolunteerProfile(models.Model):
     profile_picture = models.ImageField(
         null=True,
         blank=True,
+        default='/static/images/anonymous_profile.jpg'
     )
 
     phone_number = models.CharField(
@@ -226,7 +231,8 @@ class MemberProfile(models.Model):
     profile_picture = models.ImageField(
         null=True,
         blank=True,
-        default='/static/images/anonymous_profile.jpg'
+        default='/static/images/anonymous_profile.jpg',
+        upload_to='static/images/',
     )
 
     phone_number = models.CharField(

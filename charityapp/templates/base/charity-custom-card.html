@@ -5,14 +5,15 @@
         <a href="{% url 'charity-cause-details' campaign.pk %}"><h4
                 class="card-title text-uppercase text-center">{{ campaign.name }}</h4></a>
         <p class="card-text">{{ campaign.resume }}</p>
-        {% if campaign.active %}
-            {% if request.user.is_authenticated and user.user_type == "VOLUNTEER" %}
-                <a href="{% url 'charity-cause-participation' campaign.id %}">
-                    <button>Volunteer</button>
-                </a>
-            {% endif %}
-        {% endif %}
+
     </div>
+    {% if campaign.active %}
+        {% if request.user.is_authenticated and user.user_type == "VOLUNTEER" %}
+            <a href="{% url 'charity-cause-participation' campaign.id %}">
+                <button class="btn btn-secondary">Participate</button>
+            </a>
+        {% endif %}
+    {% endif %}
 
     {% if campaign.active %}
         <div class="card-footer active-card-footer">

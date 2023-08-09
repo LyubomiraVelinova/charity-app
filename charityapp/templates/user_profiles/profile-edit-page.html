@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% load static %}
 {% load user_profile %}
 {% load verbose_name %}
 
@@ -45,53 +46,47 @@
                 <div class="col">
                     <div class="row">
                         <div class="col mb-3">
-                            <div class="card">
+                            <div class="card profile-card">
                                 <div class="card-body">
                                     <div class="e-profile">
-                                        <form action="{% url 'profile-edit' %}" method="post">
+                                        <form action="{% url 'profile-edit' %}"  enctype="multipart/form-data" method="post">
                                             {% csrf_token %}
                                             <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-                                                {% if object.user.user_type == 'SPONSOR' and object.logo %}
-                                                    <div>
+                                                <div>
+                                                    {% if object.user.user_type == 'SPONSOR' %}
                                                         <img width="200px" height="200px" src="{{ object.logo }}"
                                                              style="object-fit: cover"
                                                              alt="">
-                                                        <div class="mt-2">
-                                                            <button id="change-photo-btn" class="btn btn-primary"
-                                                                    type="button">
-                                                                <i class="fa fa-fw fa-camera"></i>
-                                                                <span>Change Photo</span>
-                                                            </button>
-                                                            <input type="file" id="photo-input" style="display: none;">
-                                                        </div>
-                                                    </div>
-
-                                                {% elif object.profile_picture %}
-                                                    <div>
+                                                    {% elif object.user.user_type == 'MEMBER' or object.user.user_type == 'VOLUNTEER' %}
                                                         <img width="200px" height="200px"
                                                              src="{{ object.profile_picture }}"
                                                              style="object-fit: cover"
                                                              alt="">
-                                                        <div class="mt-2">
-                                                            <button id="change-photo-btn" class="btn btn-primary"
-                                                                    type="button">
-                                                                <i class="fa fa-fw fa-camera"></i>
-                                                                <span>Change Photo</span>
-                                                            </button>
-                                                            <input type="file" id="photo-input" style="display: none;">
-                                                        </div>
-                                                    </div>
+                                                    {% endif %}
+{#                                                    {% for field in form %}#}
+{#                                                        {% if field.name == "profile_picture" %}#}
+{#                                                            <div class="form-group">#}
+{#                                                                <label for="{{ field.id_for_label }}">{{ field.label }}</label>#}
+{#                                                                {{ field }}#}
+{#                                                            </div>#}
+{#                                                        {% elif field.name == "logo" %}#}
+{#                                                            <div class="form-group">#}
+{#                                                                <label for="{{ field.id_for_label }}">{{ field.label }}</label>#}
+{#                                                                {{ field }}#}
+{#                                                            </div>#}
+{#                                                        {% endif %}#}
+{#                                                    {% endfor %}#}
 
-                                                {% else %}
-                                                    <div class="col-12 col-sm-auto mb-3">
-                                                        <div class="mx-auto" style="width: 140px;">
-                                                            <div class="d-flex justify-content-center align-items-center rounded"
-                                                                 style="height: 140px; background-color: rgb(233, 236, 239);">
-                                                                <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">150x150</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                {% endif %}
+{#                                                    <div class="mt-2">#}
+                                                        {#                                                        <a href="{% url 'change-photo' object.pk %}">#}
+                                                        {#                                                            <button id="change-photo-btn" class="btn btn-primary"#}
+                                                        {#                                                                    type="button">#}
+                                                        {#                                                                <i class="fa fa-fw fa-camera"></i>#}
+                                                        {#                                                                <span>Change Photo</span>#}
+                                                        {#                                                            </button>#}
+                                                        {#                                                        </a>#}
+{#                                                    </div>#}
+                                                </div>
 
                                                 <div class="text-center text-sm-left mb-2 mb-sm-0">
                                                     {% for field in form %}
@@ -139,7 +134,7 @@
                                                             <div class="form-group">
 
                                                                 {% for field in form %}
-                                                                    {% if field.name != 'profile_picture' and field.name != 'first_name' and field.name != 'last_name' and field.name != 'company_name' %}
+                                                                    {% if field.name != 'profile_picture' and field.name != 'first_name' and field.name != 'last_name' and field.name != 'company_name' and field.name != 'logo'%}
                                                                         <label>{{ field.label }}</label>
                                                                         {% if field.name == 'bio' or field.name == 'strengths' %}
                                                                             <textarea
@@ -190,16 +185,5 @@
         </div>
     </section>
 
-    <script>
-        document.getElementById('change-photo-btn').addEventListener('click', function () {
-            document.getElementById('photo-input').click();
-        });
-
-        document.getElementById('photo-input').addEventListener('change', function () {
-            // Perform any additional actions, e.g., display the selected file name
-            var selectedFile = this.files[0];
-            console.log(selectedFile.name);
-        });
-    </script>
 {% endblock %}
 

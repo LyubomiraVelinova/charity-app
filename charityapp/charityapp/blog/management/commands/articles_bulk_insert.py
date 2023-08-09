@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from charityapp.accounts.models import AppUser
+from charityapp.user_accounts.models import AppUser
 from charityapp.blog.models import Article
 
 

@@ -2,55 +2,47 @@
 
 {% block main_content %}
 
-        <section class="custom-section first-section">
-            <div class="container custom-container">
-                <div class="row">
-                    <div class="col-md-12 col-md-offset-3">
-                        <div style="padding: 20px;" id="form-olvidado">
-                            <form action="{% url 'donation' %}" method="post">
-                                <h4 class="text-uppercase" style="border-bottom: 1px solid #c5c5c5;">Choose your donation</h4>
-                                <div class="form-row">
-                                    {% for field in value_form %}
-                                        <div class="col-md-4 mb-3">
-                                            <label for="validationDefault02">* {{ field.label }}</label>
-                                            {% if field.field.widget.input_type != 'select' %}
-                                                <input type="{{ field.field.widget.input_type }}"
-                                                       name="{{ field.html_name }}"
-                                                       id="id_{{ field.name }}"
-                                                       class="form-control {% if field.errors %}is-invalid{% endif %}"
-                                                       {% if field.value %}value="{{ field.value }}"{% endif %}
-                                                       {% if field.field.required %}required{% endif %}>
-                                            {% else %}
-                                                {{ field }}
-                                            {% endif %}
-                                        </div>
-                                    {% endfor %}
-                                </div>
+    {% include 'base/carousel.html' with carousel_img="https://images.unsplash.com/photo-1502355984-b735cb2550ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" carousel_alt="Donation cover" %}
 
-                                <h4 class="text-uppercase" style="border-bottom: 1px solid #c5c5c5;">Enter contact
-                                    information</h4>
-                                <div class="form-row">
-                                    {% for field in contact_form %}
-                                        <div class="col-md-4 mb-3">
-                                            <label for="validationDefault02">* {{ field.label }}</label>
-                                            {% if field.label == 'Email' %}
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="inputGroupPrepend2">@</span>
-                                                    </div>
-                                                    {% if field.field.widget.input_type != 'checkbox' and field.field.widget.input_type != 'radio' %}
-                                                        <input type="{{ field.field.widget.input_type }}"
-                                                               name="{{ field.html_name }}"
-                                                               id="id_{{ field.name }}"
-                                                               class="form-control {% if field.errors %}is-invalid{% endif %}"
-                                                               {% if field.value %}value="{{ field.value }}"{% endif %}
-                                                               {% if field.field.required %}required{% endif %}>
-                                                    {% else %}
-                                                        {{ field }}
-                                                    {% endif %}
+
+    <section class="custom-section first-section">
+        <div class="container custom-container">
+            <div class="row">
+                <div class="col-md-12 col-md-offset-3">
+                    <div style="padding: 20px;" id="form-olvidado">
+                        <form action="{% url 'donation' %}" method="post">
+                            <h4 class="text-uppercase" style="border-bottom: 1px solid #c5c5c5;">Choose your
+                                donation</h4>
+                            <div class="form-row">
+                                {% for field in value_form %}
+                                    <div class="col-md-4 mb-3">
+                                        <label for="validationDefault02">* {{ field.label }}</label>
+                                        {% if field.field.widget.input_type != 'select' %}
+                                            <input type="{{ field.field.widget.input_type }}"
+                                                   name="{{ field.html_name }}"
+                                                   id="id_{{ field.name }}"
+                                                   class="form-control {% if field.errors %}is-invalid{% endif %}"
+                                                   {% if field.value %}value="{{ field.value }}"{% endif %}
+                                                   {% if field.field.required %}required{% endif %}>
+                                        {% else %}
+                                            {{ field }}
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                            <h4 class="text-uppercase" style="border-bottom: 1px solid #c5c5c5;">Enter contact
+                                information</h4>
+                            <div class="form-row">
+                                {% for field in contact_form %}
+                                    <div class="col-md-4 mb-3">
+                                        <label for="validationDefault02">* {{ field.label }}</label>
+                                        {% if field.label == 'Email' %}
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="inputGroupPrepend2">@</span>
                                                 </div>
-                                            {% else %}
-                                                {% if field.field.widget.input_type != 'select' %}
+                                                {% if field.field.widget.input_type != 'checkbox' and field.field.widget.input_type != 'radio' %}
                                                     <input type="{{ field.field.widget.input_type }}"
                                                            name="{{ field.html_name }}"
                                                            id="id_{{ field.name }}"
@@ -60,17 +52,8 @@
                                                 {% else %}
                                                     {{ field }}
                                                 {% endif %}
-                                            {% endif %}
-                                        </div>
-                                    {% endfor %}
-                                </div>
-
-                                <h4 class="text-uppercase" style="border-bottom: 1px solid #c5c5c5;">Enter billing
-                                    information</h4>
-                                <div class="form-row">
-                                    {% for field in billing_form %}
-                                        <div class="col-md-4 mb-3">
-                                            <label for="validationDefault02">* {{ field.label }}</label>
+                                            </div>
+                                        {% else %}
                                             {% if field.field.widget.input_type != 'select' %}
                                                 <input type="{{ field.field.widget.input_type }}"
                                                        name="{{ field.html_name }}"
@@ -81,50 +64,71 @@
                                             {% else %}
                                                 {{ field }}
                                             {% endif %}
-                                        </div>
-                                    {% endfor %}
-                                </div>
-
-                                <h4 class="text-uppercase" style="border-bottom: 1px solid #c5c5c5;">Select payment
-                                    method</h4>
-                                <div class="form-row">
-                                    {% for field in payment_form %}
-                                        <div class="col-md-4 mb-3">
-                                            <label for="validationDefault02">* {{ field.label }}</label>
-                                            {% if field.field.widget.input_type != 'select' %}
-                                                <input type="{{ field.field.widget.input_type }}"
-                                                       name="{{ field.html_name }}"
-                                                       id="id_{{ field.name }}"
-                                                       class="form-control {% if field.errors %}is-invalid{% endif %}"
-                                                       {% if field.value %}value="{{ field.value }}"{% endif %}
-                                                       {% if field.field.required %}required{% endif %}>
-                                            {% else %}
-                                                {{ field }}
-                                            {% endif %}
-                                        </div>
-                                    {% endfor %}
-                                </div>
-
-
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                               id="invalidCheck2"
-                                               required>
-                                        <label class="form-check-label" for="invalidCheck2">
-                                            Agree to terms and conditions
-                                        </label>
+                                        {% endif %}
                                     </div>
+                                {% endfor %}
+                            </div>
+
+                            <h4 class="text-uppercase" style="border-bottom: 1px solid #c5c5c5;">Enter billing
+                                information</h4>
+                            <div class="form-row">
+                                {% for field in billing_form %}
+                                    <div class="col-md-4 mb-3">
+                                        <label for="validationDefault02">* {{ field.label }}</label>
+                                        {% if field.field.widget.input_type != 'select' %}
+                                            <input type="{{ field.field.widget.input_type }}"
+                                                   name="{{ field.html_name }}"
+                                                   id="id_{{ field.name }}"
+                                                   class="form-control {% if field.errors %}is-invalid{% endif %}"
+                                                   {% if field.value %}value="{{ field.value }}"{% endif %}
+                                                   {% if field.field.required %}required{% endif %}>
+                                        {% else %}
+                                            {{ field }}
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                            <h4 class="text-uppercase" style="border-bottom: 1px solid #c5c5c5;">Select payment
+                                method</h4>
+                            <div class="form-row">
+                                {% for field in payment_form %}
+                                    <div class="col-md-4 mb-3">
+                                        <label for="validationDefault02">* {{ field.label }}</label>
+                                        {% if field.field.widget.input_type != 'select' %}
+                                            <input type="{{ field.field.widget.input_type }}"
+                                                   name="{{ field.html_name }}"
+                                                   id="id_{{ field.name }}"
+                                                   class="form-control {% if field.errors %}is-invalid{% endif %}"
+                                                   {% if field.value %}value="{{ field.value }}"{% endif %}
+                                                   {% if field.field.required %}required{% endif %}>
+                                        {% else %}
+                                            {{ field }}
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value=""
+                                           id="invalidCheck2"
+                                           required>
+                                    <label class="form-check-label" for="invalidCheck2">
+                                        Agree to terms and conditions
+                                    </label>
                                 </div>
+                            </div>
 
-                                <button class="btn btn-primary" type="submit">Submit form</button>
+                            <button class="btn btn-primary" type="submit">Submit form</button>
 
-                                {% csrf_token %}
-                            </form>
-                        </div>
+                            {% csrf_token %}
+                        </form>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 {% endblock %}
 

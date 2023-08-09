@@ -15,29 +15,38 @@
                     <hr class="hr hr-blurry"/>
                 </div>
                 <div class="lead">
-                    <p>Description: {{ campaign.description }}</p>
-                    <p>Motivation: {{ campaign.purpose }}</p>
+                    <h4 class="text-uppercase">Description</h4>
+                    <p>{{ campaign.description }}</p>
+                    <h4 class="text-uppercase">Motivation</h4>
+                    <p>{{ campaign.purpose }}</p>
+                    <p>Started at: {{ campaign.start_date }}</p>
+                    <div class="row">
+                        <div class="col-md-6 text-center">
+                            <p>Amount Raised: {{ campaign.current_amount }} BGN</p>
+                        </div>
 
-                    <p>Amount Raised: {{ campaign.current_amount }} BGN</p>
-                    <p>Fundraising Goal: {{ campaign.goal_amount }} BGN</p>
+                        <div class="col-md-6 text-center">
+                            <p>Fundraising Goal: {{ campaign.goal_amount }} BGN</p>
+                        </div>
+                    </div>
                     <div class="progress">
                         <div class="progress-bar" role="progressbar"
                              style="width: {{ campaign.current_amount|percentage_complete:campaign.goal_amount }}%;"
                              aria-valuenow="{{ campaign.current_amount|percentage_complete:campaign.goal_amount }}"
                              aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-
+                    <br>
                     {% if request.user.is_authenticated and user.user_type == 'SPONSOR' %}
                         {% if not campaign.succeeded %}
                             <a href="{% url 'sponsor-donation' campaign.id %}" class="participate-btn">
-                                <button>Donate</button>
+                                <button class="btn btn-secondary">Donate</button>
                             </a>
                         {% else %}
                             <button type="button" disabled>This campaign has expired and been succeeded!</button>
                         {% endif %}
                     {% else %}
                         <a href="{% url 'login' %}" class="participate-btn">
-                            <button>Login for donation</button>
+                            <button class="btn btn-secondary">Login for donation</button>
                         </a>
                     {% endif %}
                 </div>

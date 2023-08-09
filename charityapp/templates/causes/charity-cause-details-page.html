@@ -2,7 +2,6 @@
 {% block main_content %}
     {% include 'base/carousel.html' with carousel_img=campaign.image carousel_alt=campaign.name %}
 
-    <hr class="hr hr-blurry"/>
     <section class="mv-section">
         <div class="container">
             <div class="row">
@@ -14,11 +13,13 @@
                     <hr class="hr hr-blurry"/>
                 </div>
                 <div class="lead">
-                    <p>{{ campaign.resume }}</p>
-                    <p>Description: {{ campaign.description }}</p>
-                    <p>Motivation: {{ campaign.motivation }}</p>
+                    <h4 class="text-uppercase">Motivation</h4>
+                    <p class="text-justify">{{ campaign.motivation }}</p>
+                    <h4 class="text-uppercase">Description</h4>
+                    <p class="text-justify">{{ campaign.description }}</p>
                     <p>Type: {{ campaign.type }}</p>
-                    <a href="{{ campaign.website }}">Visit Website</a>
+                    <p>Website: <a href="{{ campaign.website }}">Click Here</a></p>
+
                     <p>Duration: {{ campaign.duration }}</p>
                     {% if campaign.place %}
                         <p>Place: {{ campaign.place }}</p>
@@ -27,14 +28,14 @@
                     {% if request.user.is_authenticated and user.user_type == 'VOLUNTEER' %}
                         {% if campaign.active %}
                             <a href="{% url 'charity-cause-participation' campaign.id %}" class="participate-btn">
-                                <button>Participate</button>
+                                <button class="btn btn-secondary">Participate</button>
                             </a>
                         {% else %}
-                            <button type="button" disabled>This campaign has expired!</button>
+                            <button class="btn btn-disabled" type="button" disabled>This campaign has expired!</button>
                         {% endif %}
                     {% else %}
                         <a href="{% url 'login' %}" class="participate-btn">
-                            <button>Login for participation</button>
+                            <button class="btn btn-secondary">Login for participation</button>
                         </a>
                     {% endif %}
                 </div>

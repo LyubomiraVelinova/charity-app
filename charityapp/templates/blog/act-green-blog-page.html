@@ -12,7 +12,7 @@
                         data-wow-delay="0.1s"
                         style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
                         <span class="lighter">Act </span><strong>green</strong><span
-                            class="lighter">.Live </span><strong>smart</strong>.</h2>
+                            class="lighter">. Live </span><strong>smart</strong>.</h2>
                     <hr class="hr hr-blurry"/>
                     <p class="lead">
                         Welcome to our blog page dedicated to Friends of Nature! In this series of articles, we will be
@@ -42,7 +42,9 @@
                                     {% if request.user.is_authenticated %}
                                         {% if user.user_type == "MEMBER" and article.author == user %}
                                             <a href="{% url 'edit-article' article.pk %}"
-                                               class="btn btn-primary">Edit</a>
+                                               class="btn btn-secondary btn-block">
+                                                <i class="fa-solid fa-pencil"></i> Edit
+                                            </a>
                                             <a href="{% url 'delete-article' article.pk %}" class="btn btn-danger">Delete</a>
                                         {% endif %}
                                     {% endif %}

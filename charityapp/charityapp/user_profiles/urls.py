@@ -1,13 +1,13 @@
 from django.urls import path
 
-from charityapp.user_profiles.views import ProfileDetailsView, ProfileDeleteView, ProfileEditView, ChangePhotoView, \
+from charityapp.user_profiles.views import ProfileDetailsView, ProfileDeleteView, ProfileEditView, \
     RegisterVolunteerView, RegisterSponsorView, RegisterMemberView, TestimonialSubmissionView, TestimonialDeleteView, \
     TestimonialsHistoryPage
 
 urlpatterns = [
     path('', ProfileDetailsView.as_view(), name='profile-details'),
     path('edit/', ProfileEditView.as_view(), name='profile-edit'),
-    path('edit/change-photo/', ChangePhotoView.as_view(), name='change-photo'),
+    # path('edit/change-photo/<int:pk>', ChangePhotoView.as_view(), name='change-photo'),
     path('delete/', ProfileDeleteView.as_view(), name='profile-delete'),
     path('register/volunteer/', RegisterVolunteerView.as_view(), name='volunteer-register'),
     path('register/sponsor/', RegisterSponsorView.as_view(), name='sponsor-register'),

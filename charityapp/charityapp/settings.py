@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 from decouple import config
@@ -42,12 +42,14 @@ INSTALLED_APPS = [
     'charityapp.causes',
     'charityapp.contact',
     'charityapp.user_profiles',
-    'charityapp.accounts',
+    'charityapp.user_accounts',
     'charityapp.common',
     'charityapp.about',
     'charityapp.get_involved',
     'charityapp.blog',
-    # 'charityapp.accounts.apps.AccountsConfig',
+    # 'charityapp.user_accounts.apps.AccountsConfig',
+    # 'allauth',
+    # 'allauth.account',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +60,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
+    'charityapp.user_accounts.middleware.PreventLoginMiddleware',
+    'charityapp.user_accounts.middleware.PreventRegisterMiddleware',
 ]
 
 ROOT_URLCONF = 'charityapp.urls'
@@ -66,8 +69,7 @@ ROOT_URLCONF = 'charityapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -145,12 +147,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = reverse_lazy('homepage')
 # Default URL to redirect to for **login**
 LOGIN_URL = reverse_lazy('login')
-
 LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
-AUTH_USER_MODEL = 'accounts.AppUser'
-
-# Email configurations- Fill them in
+AUTH_USER_MODEL = 'user_accounts.AppUser'
 
 # Set the email backend to use SMTP for sending emails
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -164,3 +163,21 @@ EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
 
 # Default email address to use for sending emails
 DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL")
+
+# For photos to upload
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# AUTHENTICATION SETTINGS - not woking
+# AUTHENTICATION_BACKENDS = (
+#     'allauth.account.auth_backends.AuthenticationBackend',
+# )
+#
+# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+# ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7
+# ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = LOGIN_URL
+# ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = None
+# ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# ACCOUNT_USER_DISPLAY = 'email'
