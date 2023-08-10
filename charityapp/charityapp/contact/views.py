@@ -6,14 +6,10 @@ from django.views import generic as views
 from charityapp.contact.forms import ContactForm
 
 
-class ContactThankYouView(views.TemplateView):
-    template_name = 'contact/contact-thank-you-page.html'
-
-
-class ContactUsView(views.FormView):
-    template_name = 'contact/contact-us-page.html'
+class ContactView(views.FormView):
+    template_name = 'contact/contact-page.html'
     form_class = ContactForm
-    success_url = reverse_lazy('contact-thank-you')
+    success_url = reverse_lazy('contact-thank-you-page')
 
     def form_valid(self, form):
         # Get the form data
@@ -34,3 +30,7 @@ class ContactUsView(views.FormView):
             fail_silently=False,
         )
         return super().form_valid(form)
+
+
+class ContactThankYouView(views.TemplateView):
+    template_name = 'contact/contact-thank-you-page.html'

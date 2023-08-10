@@ -34,13 +34,13 @@
                             style="width: 100px; background-color: #7c4dff; height: 2px"
                     />
                     <p class="mb-0">
-                        <a href="{% url 'charity-causes' %}" class="text-dark">Charity Causes</a>
+                        <a href="{% url 'charity-causes-page' %}" class="text-dark">Charity Causes</a>
                     </p>
                     <p class="mb-0">
-                        <a href="{% url 'donation-causes' %}" class="text-dark">Donation Causes</a>
+                        <a href="{% url 'donation-causes-page' %}" class="text-dark">Donation Causes</a>
                     </p>
                     <p class="mb-0">
-                        <a href="{% url 'act-green-blog' %}" class="text-dark">Act GREEN Blog</a>
+                        <a href="{% url 'act-green-blog-page' %}" class="text-dark">Act GREEN Blog</a>
                     </p>
                 </div>
 
@@ -49,54 +49,57 @@
                     <h6 class="text-uppercase mb-0  fw-bold">Get involved</h6>
                     <hr
                             class="mb-2 mt-0 d-inline-block mx-auto"
-                            style="width: 100px; background-color: #7c4dff; height: 2px"
+                            style="width: 110px; background-color: #7c4dff; height: 2px"
                     />
                     <p class="mb-0">
-                        <a href="{% url 'ways-to-involve' %}" class="text-dark">Ways to involve</a>
+                        <a href="{% url 'get-involved-page' %}" class="text-dark">Ways to involve</a>
                     </p>
                     <p class="mb-0">
-                        <a href="{% url 'donation' %}" class="text-dark">Donate</a>
+                        <a href="{% url 'donation-page' %}" class="text-dark">Donate</a>
                     </p>
                     <p class="mb-0">
-                        <a href="{% url 'contact-us' %}" class="text-dark">Contact us</a>
+                        <a href="{% url 'contact-page' %}" class="text-dark">Contact us</a>
                     </p>
                 </div>
 
 
                 <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-0">
-                    <!-- Links -->
-                    <h6 class="text-uppercase mb-0 fw-bold"><a href="{% url 'contact-us' %}">Contact</a></h6>
-                    <hr class="mb-0 mt-0 d-inline-block mx-auto"
-                        style="width: 60px; background-color: #7c4dff; height: 2px"/>
+                    <h6 class="text-uppercase mb-0 fw-bold"><a href="{% url 'contact-page' %}">Contact</a></h6>
+                    <hr class="mb-2 mt-0 d-inline-block mx-auto"
+                        style="width: 80px; background-color: #7c4dff; height: 2px"/>
                     <p class="mb-0"><i class="fas fa-home mr-3"></i> Bulgaria, 2500 Kyustendil, str.Gornobanka 11</p>
                     <p class="mb-0"><i class="fas fa-envelope mr-3"></i> club.za.badeshte@gmail.com</p>
                     <p class="mb-0"><i class="fas fa-phone mr-3"></i> +359 886 789 678</p>
                 </div>
+
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-0">
+                    <h6 class="text-uppercase mb-0 fw-bold">Follow us</h6>
+                    <hr class="mb-2 mt-0 d-inline-block mx-auto"
+                        style="width: 90px; background-color: #7c4dff; height: 2px"/>
+                    <p>
+                        <a class="btn btn-outline-light btn-floating m-1"
+                           href="https://www.facebook.com/profile.php?id=100087549276760" role="button"
+                        ><i class="fab fa-facebook-f"></i
+                        ></a>
+
+                        <a class="btn btn-outline-light btn-floating m-1"
+                           href="https://www.linkedin.com/in/lyubomira-velinova/"
+                           role="button"
+                        ><i class="fab fa-linkedin-in"></i
+                        ></a>
+
+                        <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/LyubomiraVelinova"
+                           role="button"
+                        ><i class="fab fa-github"></i
+                        ></a>
+                    </p>
+
+                </div>
             </div>
 
-        </div>
-        <div class="text-center">
-            <section class="mb-0">
-                <p class="mb-0">Follow us: </p>
-                <!-- Facebook -->
-                <a class="btn btn-outline-light btn-floating m-1"
-                   href="https://www.facebook.com/profile.php?id=100087549276760" role="button"
-                ><i class="fab fa-facebook-f"></i
-                ></a>
 
-                <!-- Linkedin -->
-                <a class="btn btn-outline-light btn-floating m-1" href="https://www.linkedin.com/in/lyubomira-velinova/"
-                   role="button"
-                ><i class="fab fa-linkedin-in"></i
-                ></a>
-
-                <!-- Github -->
-                <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/LyubomiraVelinova"
-                   role="button"
-                ><i class="fab fa-github"></i
-                ></a>
-            </section>
         </div>
+
     </section>
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1)">
         &copy; 2023 Copyright: Club for Future is owned by Caps for Future foundation. All rights reserved.

@@ -1,71 +1,18 @@
 {% load percentage %}
-{##}
-{#<div class="col-lg-4 col-md-3 don-custom-card">#}
-{#    <div class="card h-100 mb-3 don-custom-card">#}
-{#        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">#}
-{#            <img src="{{ campaign.logo }}" alt="{{ campaign.name }}" class="card-img"/>#}
-{#            <a href="#!">#}
-{#                <div class="mask"#}
-{#                     style="background-color: rgba(251, 251, 251, 0.15);"></div>#}
-{#            </a>#}
-{#        </div>#}
-{#        <div class="card-body">#}
-{#            <h5 class="card-title">{{ campaign.title }}</h5>#}
-{#            <p class="card-text">#}
-{#                {{ campaign.purpose }}#}
-{#            </p>#}
-{#            <a href="{% url 'donation-cause-details' campaign.pk %}" class="btn btn-primary">Learn more</a>#}
-{#            {% if not campaign.succeeded %}#}
-{#                {% if request.user.is_authenticated and user.user_type == "SPONSOR" %}#}
-{#                    <a href="{% url 'sponsor-donation' campaign.id %}">#}
-{#                        <button>Donate</button>#}
-{#                    </a>#}
-{#                {% endif %}#}
-{#            {% endif %}#}
-{#            <div class="container">#}
-{#                <div class="row">#}
-{#                    <div class="col-md-6 left-column">#}
-{#                        <p>{{ campaign.current_amount }} BGN</p>#}
-{#                    </div>#}
-{#                    <div class="col-md-6 right-column">#}
-{#                        <p>{{ campaign.goal_amount }} BGN</p>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div class="progress">#}
-{#                <div class="progress-bar" role="progressbar"#}
-{#                     style="width: {{ campaign.current_amount|percentage_complete:campaign.goal_amount }}%;"#}
-{#                     aria-valuenow="{{ campaign.current_amount|percentage_complete:campaign.goal_amount }}"#}
-{#                     aria-valuemin="0" aria-valuemax="100">#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#        {% if not campaign.succeeded %}#}
-{#            <div class="card-footer active-card-footer">#}
-{#                <small class="text-muted">Active</small>#}
-{#            </div>#}
-{#        {% elif campaign.succeeded %}#}
-{#            <div class="card-footer expired-card-footer">#}
-{#                <small class="text-muted">Succeeded</small>#}
-{#            </div>#}
-{#        {% endif %}#}
-{#    </div>#}
-{#</div>#}
-
 
 <div class="custom-card don-custom-card mb-3">
     <img class="card-img-top" src="{{ campaign.logo }}" alt="{{ campaign.name }}"
          height="270px">
     <div class="card-body">
-        <a href="{% url 'donation-cause-details' campaign.pk %}"><h5
+        <a href="{% url 'donation-cause-details-page' campaign.pk %}"><h5
                 class="card-title text-uppercase text-center">{{ campaign.title }}</h5></a>
         <p class="card-text">{{ campaign.purpose }}</p>
     </div>
     <div class="text-center p-2">
         {% if not campaign.succeeded %}
             {% if request.user.is_authenticated and user.user_type == "SPONSOR" %}
-                <a href="{% url 'sponsor-donation' campaign.id %}">
-                    <button class="btn btn-block btn-secondary text-uppercase">Donate</button>
+                <a href="{% url 'donation-cause-participation' campaign.id %}">
+                    <button class="btn btn-secondary">Donate</button>
                 </a>
             {% endif %}
         {% endif %}

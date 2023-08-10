@@ -2,25 +2,7 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.utils.safestring import mark_safe
 
-from charityapp.common.models import AboutUsInfo, RandomUserDonation, Impact, LatestNews
-
-
-# from charityapp.common.models import AboutUsInfo
-# from charityapp.user_profiles.models import Sponsor, Volunteer, Member
-
-# UserModel = get_user_model()
-#
-#
-# @admin.register(AboutUsInfo)
-# class UserModelAdmin(admin.ModelAdmin):
-#     fieldsets = (
-#         ('Info', {
-#             'fields': ('header', 'description')
-#         }),
-#         ('Updated on', {
-#             'fields': ('last_updated',)
-#         }),
-#     )
+from charityapp.common.models import AboutUsInfo, Donation, Impact, LatestNews
 
 
 @admin.register(AboutUsInfo)
@@ -28,7 +10,7 @@ class AboutUsInfoAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(RandomUserDonation)
+@admin.register(Donation)
 class DonationAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Donation Value', {

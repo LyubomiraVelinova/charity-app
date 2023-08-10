@@ -48,7 +48,7 @@
                 <div class="container col-md-4">
                     <div class=" card card-body text-center">
                         <h3 class="card-title text-center">Donation amount</h3>
-                        <form action="{% url 'sponsor-donation' campaign.id %}" method="post">
+                        <form action="{% url 'donation-cause-participation' campaign.id %}" method="post">
                             {% for field in form %}
                                 {{ field }}
                             {% endfor %}

@@ -1,9 +1,9 @@
 from django import forms
 
-from charityapp.causes.models import SponsorDonation
+from charityapp.causes.models import ParticipationDonationCause
 
 
-class SponsorDonationForm(forms.ModelForm):
+class ParticipationDonationCauseForm(forms.ModelForm):
     class Meta:
-        model = SponsorDonation
+        model = ParticipationDonationCause
         fields = ['amount']

@@ -10,23 +10,14 @@
             <div class="row">
                 <div class="col-md-12 col-md-offset-3">
                     <div style="padding: 20px;" id="form-olvidado">
-                        <form action="{% url 'donation' %}" method="post">
+                        <form action="{% url 'donation-page' %}" method="post">
                             <h4 class="text-uppercase" style="border-bottom: 1px solid #c5c5c5;">Choose your
                                 donation</h4>
                             <div class="form-row">
                                 {% for field in value_form %}
                                     <div class="col-md-4 mb-3">
                                         <label for="validationDefault02">* {{ field.label }}</label>
-                                        {% if field.field.widget.input_type != 'select' %}
-                                            <input type="{{ field.field.widget.input_type }}"
-                                                   name="{{ field.html_name }}"
-                                                   id="id_{{ field.name }}"
-                                                   class="form-control {% if field.errors %}is-invalid{% endif %}"
-                                                   {% if field.value %}value="{{ field.value }}"{% endif %}
-                                                   {% if field.field.required %}required{% endif %}>
-                                        {% else %}
-                                            {{ field }}
-                                        {% endif %}
+                                        {{ field }}
                                     </div>
                                 {% endfor %}
                             </div>

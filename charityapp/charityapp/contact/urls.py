@@ -1,8 +1,8 @@
 from django.urls import path
 
-from charityapp.contact.views import ContactUsView, ContactThankYouView
+from charityapp.contact.views import ContactView, ContactThankYouView
 
 urlpatterns = [
-    path('', ContactUsView.as_view(), name='contact-us'),
-    path('thank-you/', ContactThankYouView.as_view(), name='contact-thank-you'),
+    path('', ContactView.as_view(), name='contact-page'),
+    path('thank-you/', ContactThankYouView.as_view(), name='contact-thank-you-page'),
 ]

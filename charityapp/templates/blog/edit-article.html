@@ -1,27 +1,72 @@
 {% extends 'base/base.html' %}
 {% block main_content %}
-    {% include 'base/carousel.html' with carousel_title=article.title carousel_subtitle=article.subtitle carousel_img=article.featured_image carousel_alt=article.title %}
+    {% include 'base/carousel.html' with carousel_img=article.featured_image carousel_alt=article.title %}
 
     <section class="mv-section">
         <div class="container">
             <div class="row">
+                <form action="{% url 'edit-article' article.pk %}" method="post">
+                    {% csrf_token %}
 
-                <div class="lead">
-                    <form action="{% url 'edit-article' article.pk %}" method="post">
-                        {% csrf_token %}
+                    <div class="maintitle">
+                        <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
+                            data-wow-delay="0.1s"
+                            style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                            {% for field in form %}
+                                {% if field.label == 'Title' %}
+                                    <span>{{ field }}</span>
+                                {% elif field.label == 'Subtitle' %}
+                                    <span>{{ field }}</span>
+                                {% endif %}
+                            {% endfor %}
+                        </h2>
+                    </div>
+                    <hr class="hr hr-blurry"/>
+                    <div class="lead">
                         {% for field in form %}
-                            {% if field.label != 'Title'  and field.label != 'Subtitle' %}
-                                <h4>{{ field.label }}</h4>
-                                <p>{{ field }}</p>
+                            {% if field.label == 'Short resume' %}
+                                <label>{{ field.label }}</label>
+                                <textarea
+                                        class="form-control lead {% if field.errors %}is-invalid{% endif %}"
+                                        name="{{ field.html_name }}"
+                                        {% if not field.value %}placeholder="Enter your {{ field.label.lower }}"{% endif %}
+                                        {% if field.field.required %}required{% endif %}
+                                        style="height: 50px">{{ field.value }}</textarea>
+                            {% elif field.label == 'Introduction' %}
+                                 <label>{{ field.label }}</label>
+                                <textarea
+                                        class="form-control lead {% if field.errors %}is-invalid{% endif %}"
+                                        name="{{ field.html_name }}"
+                                        {% if not field.value %}placeholder="Enter your {{ field.label.lower }}"{% endif %}
+                                        {% if field.field.required %}required{% endif %}
+                                        style="height: 100px">{{ field.value }}</textarea>
+                            {% elif field.label == 'Content' %}
+                                <label>{{ field.label }}</label>
+                                <textarea
+                                        class="form-control lead {% if field.errors %}is-invalid{% endif %}"
+                                        name="{{ field.html_name }}"
+                                        {% if not field.value %}placeholder="Enter your {{ field.label.lower }}"{% endif %}
+                                        {% if field.field.required %}required{% endif %}
+                                        style="height: 250px">{{ field.value }}</textarea>
+                            {% elif field.label == 'Featured image' %}
+                                <label>{{ field.label }}</label>
+                                <input class=" form-control lead {% if field.errors %}is-invalid{% endif %}"
+                                       type="{{ field.field.widget.input_type }}"
+                                       name="{{ field.html_name }}"
+                                       {% if not field.value %}placeholder="Enter your {{ field.label.lower }}"{% endif %}
+                                       {% if field.value %}value="{{ field.value }}"{% endif %}
+                                       {% if field.field.required %}required{% endif %}>
                             {% endif %}
                         {% endfor %}
-                        <button type="submit">Save</button>
-                    </form>
+                        <br>
+                        <button type="submit" class="btn btn-primary">Save</button>
 
-                    <a href="{% url 'article-details' article.pk %}" class="participate-btn">
-                        <button>Cancel</button>
-                    </a>
-                </div>
+
+                        <a href="{% url 'article-details' article.pk %}" class="participate-btn">
+                            <button class="btn btn-secondary">Cancel</button>
+                        </a>
+                    </div>
+                </form>
             </div>
         </div>
     </section>

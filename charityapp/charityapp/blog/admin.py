@@ -5,4 +5,4 @@ from charityapp.blog.models import Article
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    pass
+    list_display = ("title", "subtitle", "short_resume", "author", "created_at", "updated_at", "featured_image")

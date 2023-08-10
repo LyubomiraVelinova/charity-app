@@ -34,7 +34,7 @@
                                         </div>
                                     {% endif %}
 
-                                    <form action="{% url 'login' %}" method="post">
+                                    <form action="{% url 'login-page' %}" method="post">
                                         <p>Please login to your account</p>
                                         <div class="form-outline mb-4">
                                             {% for field in form %}
@@ -60,7 +60,7 @@
 
                                     <div class="d-flex align-items-center justify-content-center pb-4">
                                         <p class="mb-0 me-2">Don't have an account?</p>
-                                        <a href="{% url 'register' %}">
+                                        <a href="{% url 'register-page' %}">
                                             <button type="button" class="btn btn-outline-danger">Create new</button>
                                         </a>
                                     </div>

@@ -14,10 +14,10 @@
                     <div class="card p-3">
                         <div class="e-navlist e-navlist--active-bg">
                             <ul class="nav">
-                                <li class="nav-item"><a class="nav-link px-2 active" href="{% url 'profile-details' %}"><i
+                                <li class="nav-item"><a class="nav-link px-2 active" href="{% url 'profile-details-page' %}"><i
                                         class="fa fa-fw fa-bar-chart mr-1"></i><span>Overview</span></a></li>
                                 <li class="nav-item"><a class="nav-link px-2"
-                                                        href="{% url 'testimonial-submission' %}"
+                                                        href="{% url 'testimonial-submission-page' %}"
                                                         target="__blank"><i
                                         class="fa fa-fw fa-th mr-1"></i><span>Submit Testimonial</span></a></li>
                                 <li class="nav-item">
@@ -26,7 +26,7 @@
                                         <span>Settings</span>
                                     </div>
                                     <ul>
-                                        <a class="nav-link px-2" href="{% url 'password-change' %}">
+                                        <a class="nav-link px-2" href="{% url 'password-change-page' %}">
                                             <li>Change Password</li>
                                         </a>
                                         <a class="nav-link px-2" href="">
@@ -49,7 +49,7 @@
                             <div class="card profile-card">
                                 <div class="card-body">
                                     <div class="e-profile">
-                                        <form action="{% url 'profile-edit' %}"  enctype="multipart/form-data" method="post">
+                                        <form action="{% url 'profile-edit-page' %}" enctype="multipart/form-data" method="post">
                                             {% csrf_token %}
                                             <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                                                 <div>

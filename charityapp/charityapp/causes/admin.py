@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from charityapp.causes.models import CharityCampaign, DonationCampaign, FAQ
+from charityapp.causes.models import CharityCause, DonationCause, FAQ
 
 
-@admin.register(CharityCampaign)
-class CharityCampaignAdmin(admin.ModelAdmin):
+@admin.register(CharityCause)
+class CharityCauseAdmin(admin.ModelAdmin):
     list_display = ['name', 'resume', 'type', 'duration']
     fieldsets = (
         ('Home-page Info', {
@@ -16,8 +16,8 @@ class CharityCampaignAdmin(admin.ModelAdmin):
     )
 
 
-@admin.register(DonationCampaign)
-class DonationCampaignAdmin(admin.ModelAdmin):
+@admin.register(DonationCause)
+class DonationCauseAdmin(admin.ModelAdmin):
     list_display = ['title', 'current_amount', 'goal_amount', 'start_date', 'end_date', 'succeeded']
     search_fields = ['title', 'succeeded']
 

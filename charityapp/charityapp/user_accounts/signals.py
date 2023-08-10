@@ -11,7 +11,7 @@
 #
 # def send_successful_registration_email(user):
 #     html_message = render_to_string(
-#         'emails/email-greeting.html',
+#         'emails/registration-email-greeting.html',
 #         {'user': user},
 #     )
 #

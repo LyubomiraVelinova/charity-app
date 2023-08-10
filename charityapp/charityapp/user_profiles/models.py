@@ -5,8 +5,10 @@ from django.core import validators
 from django.db import models
 
 from charityapp.user_accounts.models import AppUser
-from charityapp.causes.models import DonationCampaign, CharityCampaign
+from charityapp.causes.models import DonationCause, CharityCause
 from charityapp.common.mixins import ChoicesStringsMixin
+
+from charityapp.user_profiles.validators import validate_phone
 
 
 class Gender(ChoicesStringsMixin, Enum):
@@ -78,7 +80,7 @@ class SponsorProfile(models.Model):
         verbose_name='Career field',
     )
     donation_history = models.ManyToManyField(
-        DonationCampaign,
+        DonationCause,
         verbose_name='Donation history',
     )
 
@@ -104,6 +106,7 @@ class CharityInterests(ChoicesStringsMixin, Enum):
 class VolunteerProfile(models.Model):
     MIN_LEN_NAME = 2
     MAX_LEN_NAME = 30
+    MAX_LEN_PHONE_NUMBER = 13
 
     user = models.OneToOneField(
         UserModel,
@@ -146,8 +149,8 @@ class VolunteerProfile(models.Model):
     )
 
     phone_number = models.CharField(
-        null=True,
-        blank=True,
+        max_length=MAX_LEN_PHONE_NUMBER,
+        validators=[validate_phone],
         verbose_name='Phone number',
     )
 
@@ -164,7 +167,7 @@ class VolunteerProfile(models.Model):
     )
 
     charity_history = models.ManyToManyField(
-        CharityCampaign,
+        CharityCause,
         verbose_name='Charity history',
     )
 
@@ -193,6 +196,7 @@ class MemberProfile(models.Model):
     MAX_LEN_NAME = 30
     MAX_LENGTH_INTERESTS = 50
     MAX_LENGTH_ROLE = 50
+    MAX_LEN_PHONE_NUMBER = 13
 
     user = models.OneToOneField(
         UserModel,
@@ -236,8 +240,8 @@ class MemberProfile(models.Model):
     )
 
     phone_number = models.CharField(
-        null=True,
-        blank=True,
+        max_length=MAX_LEN_PHONE_NUMBER,
+        validators=[validate_phone],
         verbose_name='Phone number',
     )
 

@@ -54,7 +54,7 @@
                         Help us during the campaigns-with a carry, a crush, a place or with a good mood.
                     </h4>
                     {% if not user.is_authenticated %}
-                        <a href="{% url 'volunteer-register' %}">
+                        <a href="{% url 'volunteer-register-page' %}">
                             <button class="btn btn-block btn-secondary">Be Volunteer</button>
                         </a>
                     {% elif user.user_type == "VOLUNTEER" %}
@@ -62,7 +62,7 @@
                             <strong>You are already volunteering with us. Your help is priceless! Thank you for being
                                 there!</strong>
                         </p>
-                        <a href="{% url 'charity-causes' %}">
+                        <a href="{% url 'charity-causes-page' %}">
                             <button class="btn btn-block btn-secondary">Go to charity causes</button>
                         </a>
                     {% endif %}
@@ -139,14 +139,14 @@
                         Together we can do more!
                     </h4>
                     {% if not user.is_authenticated %}
-                        <a href="{% url 'member-register' %}">
+                        <a href="{% url 'member-register-page' %}">
                             <button class="btn btn-block btn-secondary">Be member</button>
                         </a>
                     {% elif user.user_type == "MEMBER" %}
                         <p class="lighter text-uppercase">
                             <strong>You are already member of us. You are priceless! Thank you for being there!</strong>
                         </p>
-                        <a href="{% url 'act-green-blog' %}">
+                        <a href="{% url 'act-green-blog-page' %}">
                             <button class="btn btn-block btn-secondary">Go to 'Act GREEN' causes</button>
                         </a>
                     {% endif %}
@@ -201,7 +201,7 @@
                         Support us, your contribution matters!
                     </h4>
                     {% if not user.is_authenticated %}
-                        <a href="{% url 'sponsor-register' %}">
+                        <a href="{% url 'sponsor-register-page' %}">
                             <button class="btn btn-block btn-secondary">Be Sponsor</button>
                         </a>
                     {% elif user.user_type == "SPONSOR" %}
@@ -209,7 +209,7 @@
                             <strong>You are already our sponsor. Your support is priceless! Thank you for being
                                 there!</strong>
                         </p>
-                        <a href="{% url 'donation-causes' %}">
+                        <a href="{% url 'donation-causes-page' %}">
                             <button class="btn btn-block btn-secondary">Go to Donation causes</button>
                         </a>
                     {% endif %}

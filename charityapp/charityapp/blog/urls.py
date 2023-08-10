@@ -1,14 +1,16 @@
 from django.urls import path, include
 
-from charityapp.blog.views import ActGreenBlogView, ArticleDetailsView, EditArticleView, DeleteArticleView, \
-    CreateArticleView
+from charityapp.blog.views import ActGreenBlogView, ArticleReadView, ArticleEditView, ArticleDeleteView, \
+    ArticleCreateView
 
 urlpatterns = [
-    path('', ActGreenBlogView.as_view(), name='act-green-blog'),
-    path('article/<int:pk>/', include([
-        path('read/', ArticleDetailsView.as_view(), name='article-details'),
-        path('edit/', EditArticleView.as_view(), name='edit-article'),
-        path('delete/', DeleteArticleView.as_view(), name='delete-article'),
+    path('', ActGreenBlogView.as_view(), name='act-green-blog-page'),
+    path('article/', include([
+        path('create/', ArticleCreateView.as_view(), name='create-article'),
+        path('<int:pk>/', include([
+            path('read/', ArticleReadView.as_view(), name='article-details'),
+            path('edit/', ArticleEditView.as_view(), name='edit-article'),
+            path('delete/', ArticleDeleteView.as_view(), name='delete-article'),
+        ])),
     ])),
-    path('article/create/', CreateArticleView.as_view(), name='create-article'),
 ]

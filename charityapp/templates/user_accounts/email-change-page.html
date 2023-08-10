@@ -9,7 +9,7 @@
                         <div class="e-navlist e-navlist--active-bg text-nowrap">
                             <ul class="nav">
                                 <li class="nav-item">
-                                    <a class="nav-link px-2 active" href="{% url 'profile-details' %}"><i
+                                    <a class="nav-link px-2 active" href="{% url 'profile-details-page' %}"><i
                                             class="fa fa-fw fa-bar-chart mr-1">
                                     </i><span>Overview</span>
                                     </a>
@@ -21,7 +21,7 @@
                                         <span>Testimonials</span>
                                     </div>
                                     <ul>
-                                        <a class="nav-link px-2" href="{% url 'testimonial-submission' %}">
+                                        <a class="nav-link px-2" href="{% url 'testimonial-submission-page' %}">
                                             <li>Submit new</li>
                                         </a>
                                         <a class="nav-link px-2" href="{% url 'testimonials-history-page' %}">
@@ -36,10 +36,10 @@
                                         <span>Settings</span>
                                     </div>
                                     <ul>
-                                        <a class="nav-link px-2" href="{% url 'password-change' %}">
+                                        <a class="nav-link px-2" href="{% url 'password-change-page' %}">
                                             <li>Change Password</li>
                                         </a>
-                                        <a class="nav-link px-2" href="{% url 'change-email' %}">
+                                        <a class="nav-link px-2" href="{% url 'email-change-page' %}">
                                             <li>Change Email</li>
                                         </a>
                                     </ul>
@@ -58,7 +58,7 @@
                         <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                             <div class="login-form card-body">
                                 <h3 class="card-title text-center">Change email</h3>
-                                <form action="{% url 'change-email' %}" method="post">
+                                <form action="{% url 'email-change-page' %}" method="post">
                                     {% csrf_token %}
                                     {% for field in form %}
                                         {% if field.errors %}

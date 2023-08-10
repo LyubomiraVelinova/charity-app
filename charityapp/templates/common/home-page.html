@@ -24,7 +24,7 @@
                 <div class="col-lg-9">
                     <div class="row">
                         <div class="col-lg-6">
-                            <a href="{% url 'who-we-are-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                            <a href="{% url 'who-we-are-page' %}" class="btn btn-default btn-white wow fadeInLeft"
                                role="button"> Who We Are </a>
                             <p class="custom-lead-wh">
                                 We are children, teenagers, parents, women, men, grandparents, volunteers and dedicated
@@ -34,7 +34,7 @@
                             </p>
                         </div>
                         <div class="col-lg-6">
-                            <a href="{% url 'what-we-do-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                            <a href="{% url 'what-we-do-page' %}" class="btn btn-default btn-white wow fadeInLeft"
                                role="button"> What We Do </a>
                             <p class="custom-lead-wh">
                                 We run a range of high-impact campaigns and events that support premature babies,
@@ -46,7 +46,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
-                            <a href="{% url 'history-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                            <a href="{% url 'history-page' %}" class="btn btn-default btn-white wow fadeInLeft"
                                role="button"> What`s Our History </a>
                             <p class="custom-lead-wh">
                                 Launched in October 2017, "Caps for the Future" aimed to donate CUVYOZ devices to
@@ -56,7 +56,7 @@
                             </p>
                         </div>
                         <div class="col-lg-6">
-                            <a href="{% url 'where-we-work-page' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                            <a href="{% url 'where-we-work-page' %}" class="btn btn-default btn-white wow fadeInLeft"
                                role="button"> Where We
                                 Work </a>
                             <p class="custom-lead-wh">
@@ -133,12 +133,12 @@
                         </p>
                         <p>
 
-                            <a href="{% url 'ways-to-involve' %}" class="btn btn-default btn-lg wow fadeInLeft"
+                            <a href="{% url 'get-involved-page' %}" class="btn btn-default btn-white wow fadeInLeft"
                                role="button"> Get involved </a>
-                            <a href="{% url 'donation' %}" methods="post"
-                               class="btn btn-default btn-lg wow fadeInRight" role="button"> Make Donation </a>
-                            <a href="{% url 'contact-us' %}" methods="post"
-                               class="btn btn-default btn-lg wow fadeInRight" role="button"> Contact us </a>
+                            <a href="{% url 'donation-page' %}" methods="post"
+                               class="btn btn-default btn-white wow fadeInRight" role="button"> Make Donation </a>
+                            <a href="{% url 'contact-page' %}" methods="post"
+                               class="btn btn-default btn-white wow fadeInRight" role="button"> Contact us </a>
                         </p>
                     </div>
                 </div>
@@ -174,7 +174,7 @@
                             <img class="card-img-top custom-card-img-top" src="{{ charity_campaign.image }}"
                                  alt="{{ charity_campaign.name }}">
                             <div class="card-body">
-                                <a href="{% url 'charity-cause-details' charity_campaign.pk %}">
+                                <a href="{% url 'charity-cause-details-page' charity_campaign.pk %}">
                                     <h5 class="card-title text-uppercase text-center">{{ charity_campaign.name }}</h5>
                                 </a>
                             </div>
@@ -183,12 +183,14 @@
                 {% endfor %}
 
                 <div class="text-center">
-                    <a href="{% url 'charity-causes' %}" class="text-light btn">
+                    <a href="{% url 'charity-causes-page' %}" class="text-light btn">
                         <button class="btn btn-default btn-lg btn-white">Find more charity campaigns</button>
                     </a>
-                    <a href="{% url 'volunteer-register' %}" class="text-light btn">
-                        <button class="btn btn-default btn-lg btn-white">Volunteer with us</button>
-                    </a>
+                    {% if not user.is_authenticated %}
+                        <a href="{% url 'volunteer-register-page' %}" class="text-light btn">
+                            <button class="btn btn-default btn-lg btn-white">Volunteer with us</button>
+                        </a>
+                    {% endif %}
                 </div>
 
                 {% for donation_campaign in donation_campaigns %}
@@ -197,7 +199,7 @@
                             <img class="card-img-top custom-card-img-top" src="{{ donation_campaign.logo }}"
                                  alt="{{ donation_campaign.title }}">
                             <div class="card-body">
-                                <a href="{% url 'donation-cause-details' donation_campaign.pk %}">
+                                <a href="{% url 'donation-cause-details-page' donation_campaign.pk %}">
                                     <h5 class="card-title text-uppercase text-center">{{ donation_campaign.title }}</h5>
                                 </a>
                             </div>
@@ -207,7 +209,7 @@
                                         <p>{{ donation_campaign.current_amount }} BGN</p>
                                     </div>
                                     <div class="col-md-6 right-column">
-                                        <p>{{ donation_campaign.goal_amount }} BGN</p>
+                                        <p>{{ donation_campaign.target_amount }} BGN</p>
                                     </div>
                                 </div>
                             </div>
@@ -225,13 +227,43 @@
                 {% endfor %}
 
                 <div class="text-center">
-                    <a href="{% url 'donation-causes' %}" class="text-light btn">
+                    <a href="{% url 'donation-causes-page' %}" class="text-light btn">
                         <button class="btn btn-default btn-lg btn-white">Find more donation campaigns</button>
                     </a>
-                    <a href="{% url 'sponsor-register' %}" class="text-light btn ">
-                        <button class="btn btn-default btn-lg btn-white">Be our sponsor</button>
-                    </a>
+                    {% if not user.is_authenticated %}
+                        <a href="{% url 'sponsor-register-page' %}" class="text-light btn ">
+                            <button class="btn btn-default btn-lg btn-white">Be our sponsor</button>
+                        </a>
+                    {% endif %}
                 </div>
+
+                {% for article in act_green_blog %}
+                    <div class="col-sm-3 p-1">
+                        <div class="card custom-card h-100">
+                            <img class="card-img-top custom-card-img-top" src="{{ article.featured_image }}"
+                                 alt="{{ article.title }}">
+                            <div class="card-body">
+                                <a href="{% url 'article-details' article.pk %}">
+                                    <h5 class="card-title text-uppercase text-center">{{ article.title }}</h5>
+                                    <h6 class="card-title text-uppercase text-center">{{ article.subtitle }}</h6>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+
+                <div class="text-center">
+                    <a href="{% url 'act-green-blog-page' %}" class="text-light btn">
+                        <button class="btn btn-default btn-lg btn-white">Find more Act Green articles</button>
+                    </a>
+                    {% if not user.is_authenticated %}
+                        <a href="{% url 'member-register-page' %}" class="text-light btn">
+                            <button class="btn btn-default btn-lg btn-white">Be part of us</button>
+                        </a>
+                    {% endif %}
+                </div>
+
             </div>
         </div>
     </section>
@@ -363,56 +395,59 @@
             <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     {% for testimonial in testimonials %}
-                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                            <div class="row text-center">
-                                <div class="col-md-6">
-                                    {% if testimonial.author.volunteer_profile.profile_picture %}
-                                        <img src="{{ testimonial.author.volunteer_profile.profile_picture.url }}"
-                                             class="rounded-circle shadow-1-strong" width="150" height="150"/>
-                                    {% elif testimonial.author.sponsor_profile.logo %}
-                                        <img src="{{ testimonial.author.sponsor_profile.logo.url }}"
-                                             class="rounded-circle shadow-1-strong" width="150" height="150"/>
-                                    {% elif testimonial.author.member_profile.profile_picture %}
-                                        <img src="{{ testimonial.author.member_profile.profile_picture.url }}"
-                                             class="rounded-circle shadow-1-strong" width="150" height="150"/>
-                                    {% else %}
-                                        <img src="{% static 'images/anonymous_profile.jpg' %}"
-                                             class="rounded-circle shadow-1-strong" width="150" height="150"/>
-                                    {% endif %}
+                        {% if testimonial.approved and testimonial.allow_posting %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                <div class="row text-center d-flex justify-content-center align-items-center">
+                                    <div class="col-md-6">
+                                        {% if testimonial.author.volunteer_profile.profile_picture %}
+                                            <img src="{{ testimonial.author.volunteer_profile.profile_picture }}"
+                                                 class="rounded-circle shadow-1-strong" width="150" height="150"/>
+                                        {% elif testimonial.author.sponsor_profile.logo %}
+                                            <img src="{{ testimonial.author.sponsor_profile.logo }}"
+                                                 class="rounded-circle shadow-1-strong" width="150" height="150"/>
+                                        {% elif testimonial.author.member_profile.profile_picture %}
+                                            <img src="{{ testimonial.author.member_profile.profile_picture }}"
+                                                 class="rounded-circle shadow-1-strong" width="150" height="150"/>
+                                        {% else %}
+                                            <img src="{% static 'images/anonymous_profile.jpg' %}"
+                                                 class="rounded-circle shadow-1-strong" width="150" height="150"/>
+                                        {% endif %}
 
-                                    {% if testimonial.author.volunteer_profile %}
-                                        <h5 class="mb-3">{{ testimonial.author.volunteer_profile.full_name }}</h5>
-                                    {% elif testimonial.author.sponsor_profile %}
-                                        <h5 class="mb-3">{{ testimonial.author.sponsor_profile.company_name }}</h5>
-                                    {% elif testimonial.author.member_profile %}
-                                        <h5 class="mb-3">{{ testimonial.author.member_profile.full_name }}</h5>
-                                    {% endif %}
+                                        {% if testimonial.author.volunteer_profile %}
+                                            <h5 class="mb-3">{{ testimonial.author.volunteer_profile.full_name }}</h5>
+                                        {% elif testimonial.author.sponsor_profile %}
+                                            <h5 class="mb-3">{{ testimonial.author.sponsor_profile.company_name }}</h5>
+                                        {% elif testimonial.author.member_profile %}
+                                            <h5 class="mb-3">{{ testimonial.author.member_profile.full_name }}</h5>
+                                        {% endif %}
 
-                                    <h6 class="text-primary mb-3">/{{ testimonial.author.user_type.capitalize }}/</h6>
-                                    <p class="px-xl-3 text-justify">
-                                        <i class="fas fa-quote-left pe-2"></i>{{ testimonial.quote }}<i
-                                            class="fas fa-quote-left pe-2"></i>
-                                    </p>
-                                    <ul class="list-unstyled d-flex justify-content-center mb-0">
-                                        <li>
-                                            <i class="fas fa-star fa-sm text-warning"></i>
-                                        </li>
-                                        <li>
-                                            <i class="fas fa-star fa-sm text-warning"></i>
-                                        </li>
-                                        <li>
-                                            <i class="fas fa-star fa-sm text-warning"></i>
-                                        </li>
-                                        <li>
-                                            <i class="fas fa-star fa-sm text-warning"></i>
-                                        </li>
-                                        <li>
-                                            <i class="fas fa-star-half-alt fa-sm text-warning"></i>
-                                        </li>
-                                    </ul>
+                                        <h6 class="text-primary mb-3">
+                                            /{{ testimonial.author.user_type.capitalize }}/</h6>
+                                        <p class="px-xl-3 text-justify">
+                                            <i class="fas fa-quote-left pe-2"></i>{{ testimonial.quote }}<i
+                                                class="fas fa-quote-left pe-2"></i>
+                                        </p>
+                                        <ul class="list-unstyled d-flex justify-content-center mb-0">
+                                            <li>
+                                                <i class="fas fa-star fa-sm text-warning"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fas fa-star fa-sm text-warning"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fas fa-star fa-sm text-warning"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fas fa-star fa-sm text-warning"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fas fa-star-half-alt fa-sm text-warning"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        {% endif %}
                     {% endfor %}
                 </div>
 

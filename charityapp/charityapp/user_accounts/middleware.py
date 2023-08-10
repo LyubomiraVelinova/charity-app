@@ -7,8 +7,8 @@ class PreventLoginMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        if request.user.is_authenticated and request.path == reverse('login'):
-            return HttpResponseRedirect(reverse('profile-details'))
+        if request.user.is_authenticated and request.path == reverse('login-page'):
+            return HttpResponseRedirect(reverse('profile-details-page'))
         response = self.get_response(request)
         return response
 
@@ -18,7 +18,7 @@ class PreventRegisterMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        if request.user.is_authenticated and request.path == reverse('register'):
-            return HttpResponseRedirect(reverse('profile-details'))
+        if request.user.is_authenticated and request.path == reverse('register-page'):
+            return HttpResponseRedirect(reverse('profile-details-page'))
         response = self.get_response(request)
         return response

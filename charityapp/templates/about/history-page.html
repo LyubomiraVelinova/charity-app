@@ -81,21 +81,30 @@
                     <p class="lead">
                         Together, we can build a world where hope prevails, and every child has a chance to thrive. Be a
                         part of our history.
-                    <h2>Be a part of the change.</h2>
-                    </p>
-                    <p class="lead">
-                        Support our cause by volunteering, donating, or participating in our upcoming events. Together,
-                        we can create a better tomorrow for those in need.
-                    <h2>Join us now.</h2>
-                    </p>
-                    <p>
-                        <a href="{% url 'member-register' %}" class="btn btn-secondary"
-                           role="button"> Be part of us </a>
-                        <a href="{% url 'volunteer-register' %}" class="btn btn-secondary"
-                           role="button"> Volunteer with us </a>
-                        <a href="{% url 'sponsor-register' %}" methods="post"
-                           class="btn btn-secondary " role="button"> Be our Sponsor </a>
-                    </p>
+                        {% if user.is_authenticated %}
+                            <h2>You are already part of the change.</h2>
+                            </p>
+                            <p class="lead text-center">
+                                Thank you for being there for brighter future!
+                            </p>
+                        {% else %}
+                            <h2>Be a part of the change.</h2>
+
+                            <p class="lead">
+                                Support our cause by volunteering, donating, or participating in our upcoming events.
+                                Together,
+                                we can create a better tomorrow for those in need.
+                            </p>
+                            <h2>Join us now.</h2>
+                            <p>
+                                <a href="{% url 'member-register-page' %}" class="btn btn-secondary"
+                                   role="button"> Be part of us </a>
+                                <a href="{% url 'volunteer-register-page' %}" class="btn btn-secondary"
+                                   role="button"> Volunteer with us </a>
+                                <a href="{% url 'sponsor-register-page' %}" methods="post"
+                                   class="btn btn-secondary " role="button"> Be our Sponsor </a>
+                            </p>
+                        {% endif %}
                 </div>
             </div>
         </div>

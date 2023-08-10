@@ -1,6 +1,6 @@
 from django import forms
 
-from charityapp.common.models import AboutUsInfo, RandomUserDonation
+from charityapp.common.models import AboutUsInfo, Donation
 
 
 class AboutUsInfoForm(forms.ModelForm):
@@ -11,30 +11,30 @@ class AboutUsInfoForm(forms.ModelForm):
 
 class DonationForm(forms.ModelForm):
     class Meta:
-        model = RandomUserDonation
+        model = Donation
         fields = '__all__'
 
 
 class DonationValueForm(forms.ModelForm):
     class Meta:
-        model = RandomUserDonation
+        model = Donation
         fields = ('donation_amount',)
 
 
-class ContactInfoForm(forms.ModelForm):
+class DonationContactInfoForm(forms.ModelForm):
     class Meta:
-        model = RandomUserDonation
+        model = Donation
         fields = ('first_name', 'last_name', 'email', 'phone_number')
 
 
-class BillingInfoForm(forms.ModelForm):
+class DonationBillingInfoForm(forms.ModelForm):
     class Meta:
-        model = RandomUserDonation
+        model = Donation
         fields = ('country', 'city', 'postal_code', 'address')
 
 
-class PaymentMethodForm(forms.ModelForm):
+class DonationPaymentMethodForm(forms.ModelForm):
     class Meta:
-        model = RandomUserDonation
+        model = Donation
         fields = ('payment_method', 'holder_name', 'card_verification_value', 'card_number', 'card_expiration_month',
                   'card_expiration_year')

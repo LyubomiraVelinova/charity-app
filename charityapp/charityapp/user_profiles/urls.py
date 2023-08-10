@@ -1,18 +1,20 @@
-from django.urls import path
+from django.urls import path, include
 
 from charityapp.user_profiles.views import ProfileDetailsView, ProfileDeleteView, ProfileEditView, \
-    RegisterVolunteerView, RegisterSponsorView, RegisterMemberView, TestimonialSubmissionView, TestimonialDeleteView, \
-    TestimonialsHistoryPage
+    VolunteerRegisterView, SponsorRegisterView, MemberRegisterView, TestimonialSubmissionView, TestimonialDeleteView, \
+    TestimonialsHistoryView
 
 urlpatterns = [
-    path('', ProfileDetailsView.as_view(), name='profile-details'),
-    path('edit/', ProfileEditView.as_view(), name='profile-edit'),
-    # path('edit/change-photo/<int:pk>', ChangePhotoView.as_view(), name='change-photo'),
+    path('', ProfileDetailsView.as_view(), name='profile-details-page'),
+    path('edit/', ProfileEditView.as_view(), name='profile-edit-page'),
     path('delete/', ProfileDeleteView.as_view(), name='profile-delete'),
-    path('register/volunteer/', RegisterVolunteerView.as_view(), name='volunteer-register'),
-    path('register/sponsor/', RegisterSponsorView.as_view(), name='sponsor-register'),
-    path('register/member/', RegisterMemberView.as_view(), name='member-register'),
-    path('testimonial/submit/', TestimonialSubmissionView.as_view(), name='testimonial-submission'),
-    path('testimonials/history', TestimonialsHistoryPage.as_view(), name='testimonials-history-page'),
-    path('testimonial/<int:pk>/delete', TestimonialDeleteView.as_view(), name='testimonial-delete'),
+    path('volunteer/', VolunteerRegisterView.as_view(), name='volunteer-register-page'),
+    path('sponsor/', SponsorRegisterView.as_view(), name='sponsor-register-page'),
+    path('member/', MemberRegisterView.as_view(), name='member-register-page'),
+    path('testimonial/', include([
+        path('submit/', TestimonialSubmissionView.as_view(), name='testimonial-submission-page'),
+        path('delete/<int:pk>/', TestimonialDeleteView.as_view(), name='testimonial-delete'),
+    ])),
+    path('testimonials/history/', TestimonialsHistoryView.as_view(), name='testimonials-history-page'),
+
 ]

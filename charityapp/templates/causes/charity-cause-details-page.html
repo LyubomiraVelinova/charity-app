@@ -20,7 +20,14 @@
                     <p>Type: {{ campaign.type }}</p>
                     <p>Website: <a href="{{ campaign.website }}">Click Here</a></p>
 
-                    <p>Duration: {{ campaign.duration }}</p>
+                    {% if  campaign.start_datetime|date:"D d M Y" !=  campaign.end_datetime|date:"D d M Y" %}
+                        <p>Duration: from {{ campaign.start_datetime|date:"D d M Y" }}
+                            to {{ campaign.end_datetime|date:"D d M Y" }}</p>
+                    {% else %}
+                        <p>Date: {{ campaign.start_datetime|date:"D d M Y" }}</p>
+                    {% endif %}
+                    <p>Time: from {{ campaign.start_datetime|time:"H:i" }}
+                        to {{ campaign.end_datetime|time:"H:i" }} </p>
                     {% if campaign.place %}
                         <p>Place: {{ campaign.place }}</p>
                     {% endif %}
@@ -34,7 +41,7 @@
                             <button class="btn btn-disabled" type="button" disabled>This campaign has expired!</button>
                         {% endif %}
                     {% else %}
-                        <a href="{% url 'login' %}" class="participate-btn">
+                        <a href="{% url 'login-page' %}" class="participate-btn">
                             <button class="btn btn-secondary">Login for participation</button>
                         </a>
                     {% endif %}

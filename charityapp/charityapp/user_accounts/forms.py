@@ -5,23 +5,13 @@ from django.utils.translation import gettext_lazy as _
 UserModel = get_user_model()
 
 
-class RegisterUserForm(auth_forms.UserCreationForm):
+class UserRegisterForm(auth_forms.UserCreationForm):
     password2 = forms.CharField(
         label=_("Repeat password"),
         widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
         strip=False,
         help_text=_("Repeat password, please."),
     )
-
-    # def clean_email(self):
-    #     email = self.cleaned_data.get('email')
-    #     try:
-    #         validate_email(email)
-    #     except ValidationError:
-    #         raise forms.ValidationError('Please enter a valid email address.')
-    #     if UserModel.objects.filter(email=email).exists():
-    #         raise forms.ValidationError('This email is already in use.')
-    #     return email
 
     class Meta:
         model = UserModel

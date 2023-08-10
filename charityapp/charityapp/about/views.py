@@ -19,8 +19,8 @@ class HistoryView(views.ListView):
 
 
 class WhatWeDoView(views.TemplateView):
-    template_name = 'about/what-we-do.html'
+    template_name = 'about/what-we-do-page.html'
 
 
 class WhereWeWorkView(views.TemplateView):
-    template_name = 'about/where-we-work.html'
+    template_name = 'about/where-we-work-page.html'

@@ -16,7 +16,5 @@ urlpatterns = [
     path('get-involved/', include('charityapp.get_involved.urls')),
 ]
 
-handler404 = 'charityapp.common.views.handler404'
-
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -28,7 +28,7 @@
                                         <h4 class="text-uppercase mt-1 mb-5 pb-1">Club for Future & Caps for Future</h4>
                                     </div>
 
-                                    <form action="{% url 'member-register' %}" method="post">
+                                    <form action="{% url 'member-register-page' %}" method="post">
                                         <p>Please fill in your info</p>
                                         <div class="form-outline mb-4">
                                             {% for field in form %}
@@ -54,7 +54,7 @@
 
                                     <div class="d-flex align-items-center justify-content-center pb-4">
                                         <p class="mb-0 me-2">Already have an account?</p>
-                                        <a href="{% url 'login' %}">
+                                        <a href="{% url 'login-page' %}">
                                             <button type="button" class="btn btn-outline-danger">Login</button>
                                         </a>
                                     </div>

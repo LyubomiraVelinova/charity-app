@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from charityapp.causes.models import CharityCampaign
+from charityapp.causes.models import CharityCause
 
 
 class Command(BaseCommand):
@@ -89,6 +89,6 @@ class Command(BaseCommand):
             },
         ]
 
-        charity_instances = [CharityCampaign(**data) for data in charity_data]
-        CharityCampaign.objects.bulk_create(charity_instances)
+        charity_instances = [CharityCause(**data) for data in charity_data]
+        CharityCause.objects.bulk_create(charity_instances)
         self.stdout.write(self.style.SUCCESS('Data inserted successfully in work_charitycampaigns table.'))

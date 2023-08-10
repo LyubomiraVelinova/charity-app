@@ -23,7 +23,7 @@ class CharityType(ChoicesStringsMixin, Enum):
     OTHER = "Other"
 
 
-class CharityCampaign(models.Model):
+class CharityCause(models.Model):
     MAX_LEN_NAME = 50
     MAX_LEN_TYPE = 50
     MAX_LEN_PLACE = 200
@@ -83,7 +83,7 @@ class CharityCampaign(models.Model):
         verbose_name_plural = 'Charity Campaigns'
 
 
-class DonationCampaign(models.Model):
+class DonationCause(models.Model):
     MAX_LEN_TITLE = 100
 
     title = models.CharField(
@@ -120,7 +120,7 @@ class DonationCampaign(models.Model):
 class FAQ(models.Model):
     MAX_LEN_QUESTION = 200
 
-    campaigns = models.ManyToManyField(CharityCampaign, related_name='q_and_a')
+    campaigns = models.ManyToManyField(CharityCause, related_name='q_and_a')
 
     question = models.CharField(
         max_length=200,
@@ -146,8 +146,8 @@ class FAQ(models.Model):
         verbose_name_plural = 'FAQ'
 
 
-class SponsorDonation(models.Model):
-    campaign = models.ForeignKey(DonationCampaign, on_delete=models.CASCADE)
+class ParticipationDonationCause(models.Model):
+    campaign = models.ForeignKey(DonationCause, on_delete=models.CASCADE)
     donor = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     donation_date = models.DateTimeField(auto_now_add=True)

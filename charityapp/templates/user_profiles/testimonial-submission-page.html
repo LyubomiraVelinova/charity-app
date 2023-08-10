@@ -48,7 +48,7 @@
 
                 <div class="row justify-content-center">
                     <div class="col-xl-8 custom-row">
-                        <form action="{% url 'testimonial-submission' %}" id="contact" name="contact" method="post"
+                        <form action="{% url 'testimonial-submission-page' %}" id="contact" name="contact" method="post"
                               class="text-left">
                             {% csrf_token %}
                             {{ form.as_p }}

@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import mixins as auth_mixins
 
-from charityapp.user_accounts.forms import RegisterUserForm
+from charityapp.user_accounts.forms import UserRegisterForm
 from charityapp.user_profiles.forms import VolunteerProfileForm, SponsorProfileForm, MemberProfileForm, TestimonialForm
 from charityapp.user_profiles.models import VolunteerProfile, SponsorProfile, MemberProfile, Testimonial
 
@@ -15,7 +15,7 @@ UserModel = get_user_model()
 
 class ProfileEditView(auth_mixins.LoginRequiredMixin, views.UpdateView):
     template_name = 'user_profiles/profile-edit-page.html'
-    success_url = reverse_lazy('profile-details')
+    success_url = reverse_lazy('profile-details-page')
 
     def get_form_class(self):
         user_type = self.request.user.user_type
@@ -67,7 +67,7 @@ class ProfileDetailsView(auth_mixins.LoginRequiredMixin,views.DetailView):
 
 class ProfileDeleteView(auth_mixins.LoginRequiredMixin, views.DeleteView):
     template_name = 'user_profiles/profile-edit-page.html'
-    success_url = reverse_lazy('homepage')
+    success_url = reverse_lazy('home-page')
 
     def get_object(self, queryset=None):
         return self.request.user
@@ -79,10 +79,10 @@ class ProfileDeleteView(auth_mixins.LoginRequiredMixin, views.DeleteView):
 
 # CHECK THEM
 
-class RegisterVolunteerView(views.CreateView):
+class VolunteerRegisterView(views.CreateView):
     template_name = 'user_profiles/volunteer-register-page.html'
-    form_class = RegisterUserForm
-    success_url = reverse_lazy('profile-edit')
+    form_class = UserRegisterForm
+    success_url = reverse_lazy('profile-edit-page')
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
@@ -100,10 +100,10 @@ class RegisterVolunteerView(views.CreateView):
         return result
 
 
-class RegisterSponsorView(views.CreateView):
+class SponsorRegisterView(views.CreateView):
     template_name = 'user_profiles/sponsor-register-page.html'
-    form_class = RegisterUserForm
-    success_url = reverse_lazy('profile-edit')
+    form_class = UserRegisterForm
+    success_url = reverse_lazy('profile-edit-page')
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
@@ -119,10 +119,10 @@ class RegisterSponsorView(views.CreateView):
         return result
 
 
-class RegisterMemberView(views.CreateView):
+class MemberRegisterView(views.CreateView):
     template_name = 'user_profiles/member-register-page.html'
-    form_class = RegisterUserForm
-    success_url = reverse_lazy('profile-edit')
+    form_class = UserRegisterForm
+    success_url = reverse_lazy('profile-edit-page')
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
@@ -159,5 +159,5 @@ class TestimonialDeleteView(auth_mixins.LoginRequiredMixin, auth_mixins.UserPass
         return self.request.user == testimonial.author
 
 
-class TestimonialsHistoryPage(views.TemplateView):
+class TestimonialsHistoryView(views.TemplateView):
     template_name = 'user_profiles/testimonials-history-page.html'

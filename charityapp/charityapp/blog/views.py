@@ -24,19 +24,18 @@ class ActGreenBlogView(views.TemplateView):
         return context
 
 
-class CreateArticleView(views.CreateView):
+class ArticleCreateView(views.CreateView):
     model = Article
     fields = ['title', 'subtitle', 'short_resume', 'introduction', 'featured_image', 'content']
     template_name = 'blog/create_article.html'
-    success_url = reverse_lazy('act-green-blog')
+    success_url = reverse_lazy('act-green-blog-page')
 
     def form_valid(self, form):
-        # Вземете текущия автор (потребител)
         form.instance.author = self.request.user
         return super().form_valid(form)
 
 
-class ArticleDetailsView(views.DetailView):
+class ArticleReadView(views.DetailView):
     template_name = 'blog/read-article.html'
     model = Article
     context_object_name = 'article'
@@ -65,7 +64,7 @@ class ArticleDetailsView(views.DetailView):
         return context
 
 
-class EditArticleView(auth_mixins.LoginRequiredMixin, auth_mixins.UserPassesTestMixin, views.UpdateView):
+class ArticleEditView(auth_mixins.LoginRequiredMixin, auth_mixins.UserPassesTestMixin, views.UpdateView):
     template_name = 'blog/edit-article.html'
     model = Article
     fields = ['title', 'subtitle', 'short_resume', 'introduction', 'content', 'featured_image']
@@ -80,10 +79,10 @@ class EditArticleView(auth_mixins.LoginRequiredMixin, auth_mixins.UserPassesTest
         return self.request.user == article.author
 
 
-class DeleteArticleView(auth_mixins.LoginRequiredMixin, auth_mixins.UserPassesTestMixin, views.DeleteView):
+class ArticleDeleteView(auth_mixins.LoginRequiredMixin, auth_mixins.UserPassesTestMixin, views.DeleteView):
     template_name = 'blog/delete-article.html'
     model = Article
-    success_url = reverse_lazy('act-green-blog')
+    success_url = reverse_lazy('act-green-blog-page')
 
     def test_func(self):
         # Check if the logged-in user is the author of the article

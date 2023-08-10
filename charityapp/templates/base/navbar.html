@@ -3,7 +3,7 @@
 <nav class="navbar navbar-expand-lg fixed-top nav-gray">
     <div class="container">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'homepage' %}">
+            <a class="navbar-brand" href="{% url 'home-page' %}">
                 <img src="{% static 'images/logo.jpg' %}" alt="Logo" width="40" height="40"
                      class="d-inline-block align-text-top">
                 Club for Future
@@ -34,9 +34,9 @@
                             Our causes
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'charity-causes' %}">Charity Causes</a></li>
-                            <li><a class="dropdown-item" href="{% url 'donation-causes' %}">Donation Causes</a>
-                            <li><a class="dropdown-item" href="{% url 'act-green-blog' %}">Act GREEN Blog</a></li>
+                            <li><a class="dropdown-item" href="{% url 'charity-causes-page' %}">Charity Causes</a></li>
+                            <li><a class="dropdown-item" href="{% url 'donation-causes-page' %}">Donation Causes</a>
+                            <li><a class="dropdown-item" href="{% url 'act-green-blog-page' %}">Act GREEN Blog</a></li>
                     </li>
                 </ul>
                 </li>
@@ -47,9 +47,9 @@
                         Get involved
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'ways-to-involve' %}">Ways to involve</a></li>
-                        <li><a class="dropdown-item" href="{% url 'donation' %}">Donate</a></li>
-                        <li><a class="dropdown-item" href="{% url 'contact-us' %}">Contact us</a></li>
+                        <li><a class="dropdown-item" href="{% url 'get-involved-page' %}">Ways to involve</a></li>
+                        <li><a class="dropdown-item" href="{% url 'donation-page' %}">Donate</a></li>
+                        <li><a class="dropdown-item" href="{% url 'contact-page' %}">Contact us</a></li>
                     </ul>
                 </li>
                 </ul>
@@ -66,26 +66,26 @@
                                 {{ request.user }}
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{% url 'profile-details' %}">Profile</a></li>
-                                <li><a class="dropdown-item" href="{% url 'testimonial-submission' %}">Submit
+                                <li><a class="dropdown-item" href="{% url 'profile-details-page' %}">Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'testimonial-submission-page' %}">Submit
                                     Testimonial</a></li>
                                 <li><a class="dropdown-item" href="{% url 'testimonials-history-page' %}">Testimonials
                                     History</a></li>
-                                <li><a class="dropdown-item" href="{% url 'password-change' %}">Change Password</a></li>
-                                <li><a class="dropdown-item" href="{% url 'change-email' %}">Change Email</a></li>
+                                <li><a class="dropdown-item" href="{% url 'password-change-page' %}">Change Password</a></li>
+                                <li><a class="dropdown-item" href="{% url 'email-change-page' %}">Change Email</a></li>
                                 <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
                             </ul>
                         </li>
                     {% endif %}
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}"><i
+                        <a class="nav-link" href="{% url 'login-page' %}"><i
                                 class="fa-solid fa-arrow-right-to-bracket"></i>
                             Login</a>
                     </li>
                 {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'donation' %}">
+                    <a class="nav-link" href="{% url 'donation-page' %}">
                         <button class="btn btn-block btn-secondary text-uppercase">Donate</button>
                     </a>
                 </li>

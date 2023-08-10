@@ -1,11 +1,13 @@
+import decimal
 from enum import Enum
 
 from django.core import validators
 from django.db import models
-from django.utils import timezone
+from django.db.models import F
 
+from charityapp.causes.models import DonationCause
 from charityapp.common.mixins import ChoicesStringsMixin
-from charityapp.common.validators import validate_card_verification_value, validate_card_number
+from charityapp.common.validators import validate_card_verification_value, validate_card_number, validate_phone
 
 
 def format_card_number(value):
@@ -73,12 +75,13 @@ class AboutUsInfo(models.Model):
         verbose_name_plural = 'Info About Us'
 
 
-class RandomUserDonation(models.Model):
+class Donation(models.Model):
     MIN_LEN_NAME = 2
     MAX_LEN_NAME = 30
     MAX_LEN_CITY = 100
     MAX_LEN_CARD_NUMBER = 19
     MAX_LEN_CARD_VERIFICATION_VALUE = 3
+    MAX_LEN_PHONE_NUMBER = 15
 
     # DONATION VALUE
     donation_amount = models.CharField(
@@ -107,9 +110,11 @@ class RandomUserDonation(models.Model):
 
     email = models.EmailField()
 
-    phone_number = models.IntegerField(
-        null=False,
-        blank=False,
+    phone_number = models.CharField(
+        max_length=MAX_LEN_PHONE_NUMBER,
+        null=True,
+        blank=True,
+        validators=[validate_phone],
     )
 
     # BILLING INFORMATION
@@ -173,7 +178,23 @@ class RandomUserDonation(models.Model):
 
     def save(self, *args, **kwargs):
         self.card_number = format_card_number(self.card_number.replace(' ', ''))
-        super(RandomUserDonation, self).save(*args, **kwargs)
+        super(Donation, self).save(*args, **kwargs)
+
+    def distribute_amount_to_campaigns(self):
+        active_campaigns = DonationCause.objects.filter(goal_amount__gt=F('current_amount'))
+
+        numeric_amount = self.donation_amount.replace('BGN_', '')
+        total_amount = decimal.Decimal(float(numeric_amount))
+        total_campaigns = active_campaigns.count()
+
+        if total_campaigns > 0:
+            amount_per_campaign = total_amount / total_campaigns
+            for campaign in active_campaigns:
+                available_amount = campaign.goal_amount - campaign.current_amount
+                allocated_amount = min(amount_per_campaign, available_amount)
+                campaign.current_amount += allocated_amount
+                campaign.save()
+        self.save()
 
 
 class Impact(models.Model):
