@@ -34,9 +34,9 @@ UserModel = get_user_model()
 #             self.request,
 #             user,
 #             self.get_success_url(),
-#             None,  # Тук премахваме извикването на get_redirect_url
+#             None,
 #         )
-#         login(self.request, user)  # Извършваме логин на потребителя
+#         login(self.request, user)
 #         return response
 
 
@@ -51,12 +51,10 @@ class RegisterUserView(views.CreateView):
         return context
 
     def form_valid(self, form):
-        # This will create the user
         result = super().form_valid(form)
         user = self.object
         login(self.request, user)
 
-        # Send a greeting email to the user using the email template
         subject = 'Welcome'
         context = {'user': user}
         message = render_to_string('user_accounts/registration-email-greeting.html', context)
@@ -95,7 +93,6 @@ class EmailChangeUserView(auth_mixins.LoginRequiredMixin, views.FormView):
         new_email = form.cleaned_data['new_email']
         confirm_email = form.cleaned_data['confirm_email']
         if new_email == confirm_email:
-            # Update the user's email address
             self.request.user.email = new_email
             self.request.user.save()
             return redirect(self.get_success_url())

@@ -43,5 +43,4 @@ class AppUserAdmin(CustomUserAdmin):
         try:
             super().save_model(request, obj, form, change)
         except Exception as e:
-            # Изведете текста на грешката в конзолата
             print("An error occurred during save:", str(e))

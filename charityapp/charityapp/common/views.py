@@ -1,7 +1,6 @@
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.shortcuts import render
-from django.http import HttpResponseNotFound
 
 from charityapp.blog.models import Article
 from charityapp.causes.models import CharityCause, DonationCause
@@ -55,10 +54,6 @@ class DonationView(views.CreateView):
         return context
 
     def form_valid(self, form):
-        # Save the form data
         response = super().form_valid(form)
-        # Distribute the donated amount to active campaigns
         self.object.distribute_amount_to_campaigns()
-
-        # send_notification_email(self.request.user.email)
         return response

@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'charityapp.about',
     'charityapp.get_involved',
     'charityapp.blog',
-    # 'charityapp.user_accounts.apps.AccountsConfig',
     # 'allauth',
     # 'allauth.account',
 ]

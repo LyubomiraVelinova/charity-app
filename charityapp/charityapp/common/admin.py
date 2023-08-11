@@ -1,6 +1,4 @@
 from django.contrib import admin
-from django.contrib.auth import get_user_model
-from django.utils.safestring import mark_safe
 
 from charityapp.common.models import AboutUsInfo, Donation, Impact, LatestNews
 

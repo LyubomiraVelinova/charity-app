@@ -7,6 +7,5 @@ class UserProfilesConfig(AppConfig):
     verbose_name = "User Profile App"
 
     def ready(self):
-        import charityapp.user_profiles.signals
         result = super().ready()
         return result

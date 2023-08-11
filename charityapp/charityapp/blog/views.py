@@ -14,11 +14,8 @@ class ActGreenBlogView(views.TemplateView):
         context = super().get_context_data(**kwargs)
         articles = Article.objects.all()
 
-        # Get the current page number from the request's query parameters
         paginator = Paginator(articles, 6)
-        # Get the Page object for the current page number
         page = self.request.GET.get('page')
-        # Get the Page object for the current page number
         current_page = paginator.get_page(page)
 
         context['articles'] = current_page
@@ -43,7 +40,6 @@ class ArticleCreateView(views.CreateView):
         return response
 
 
-
 class ArticleReadView(views.DetailView):
     template_name = 'blog/read-article.html'
     model = Article
@@ -51,24 +47,9 @@ class ArticleReadView(views.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        article_instance = self.get_object()  # Use self.get_object() to get the Article instance
+        article_instance = self.get_object()
         sections = article_instance.content.split(':')
-
         context['sections'] = sections
-
-        # text = article_instance.content
-        #
-        # # Use regular expressions to split the text into sentences
-        # split_text = re.split(r'\. |(?<=:)', text)
-        #
-        # # Separate the title from the content and combine them into a list of tuples
-        # titles_and_contents = [(s.split(":")[0] + ":", s.split(":")[1].strip()) for s in split_text if ":" in s]
-        #
-        # # If there's content before the first title, add it as the first content
-        # if text.startswith(titles_and_contents[0][0]):
-        #     titles_and_contents.insert(0, (split_text[0], ""))
-        #
-        # context['titles_and_contents'] = titles_and_contents
 
         return context
 
@@ -79,11 +60,9 @@ class ArticleEditView(auth_mixins.LoginRequiredMixin, auth_mixins.UserPassesTest
     fields = ['title', 'subtitle', 'short_resume', 'introduction', 'content', 'featured_image']
 
     def get_success_url(self):
-        # Redirect to the detail view of the edited article
         return reverse('article-details', kwargs={'pk': self.object.pk})
 
     def test_func(self):
-        # Check if the logged-in user is the author of the article
         article = self.get_object()
         return self.request.user == article.author
 
@@ -94,6 +73,5 @@ class ArticleDeleteView(auth_mixins.LoginRequiredMixin, auth_mixins.UserPassesTe
     success_url = reverse_lazy('act-green-blog-page')
 
     def test_func(self):
-        # Check if the logged-in user is the author of the article
         article = self.get_object()
         return self.request.user == article.author

@@ -37,7 +37,7 @@ class ProfileEditView(auth_mixins.LoginRequiredMixin, views.UpdateView):
 
     def form_valid(self, form):
         user_type = self.request.user.user_type
-        form.instance.user = self.request.user  # Задаване на текущия потребител
+        form.instance.user = self.request.user
         return super().form_valid(form)
 
 
@@ -154,7 +154,6 @@ class TestimonialDeleteView(auth_mixins.LoginRequiredMixin, auth_mixins.UserPass
     model = Testimonial
 
     def test_func(self):
-        # Check if the logged-in user is the author of the testimonial
         testimonial = self.get_object()
         return self.request.user == testimonial.author
 

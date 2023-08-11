@@ -3,15 +3,9 @@ from django.contrib import admin
 from charityapp.user_profiles.models import SponsorProfile, VolunteerProfile, MemberProfile, Testimonial
 
 
-# class AppUserAdmin(admin.TabularInline):
-#     model = AppUser
-#     extra = 1
-
-
 @admin.register(SponsorProfile)
 class SponsorProfileAdmin(admin.ModelAdmin):
     list_display = ['company_name', 'website', 'career_field']
-    # inlines = ('AppUserAdmin',)
     search_fields = ('company_name', 'career_field')
     filter_horizontal = ('donation_history',)
 

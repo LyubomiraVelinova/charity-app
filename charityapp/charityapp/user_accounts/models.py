@@ -67,6 +67,5 @@ class AppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 
     def save(self, *args, **kwargs):
         if not self.pk:
-            # This is a new instance, set the created_at field with the current date and time
             self.created_at = timezone.now().date()
         super().save(*args, **kwargs)
