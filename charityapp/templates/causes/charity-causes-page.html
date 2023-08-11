@@ -2,7 +2,7 @@
 {% load static %}
 {% block main_content %}
 
-    {% include 'base/carousel.html' with carousel_title="Our causes" carousel_subtitle="Charity Causes" carousel_img="/static/images/campaigns.jpg" carousel_alt="Charity campaigns cover" %}
+    {% include 'base/partials/carousel_var.html' with carousel_title="Our causes" carousel_subtitle="Charity Causes" carousel_img="/static/images/campaigns.jpg" carousel_alt="Charity campaigns cover" %}
 
     <section class="mv-section">
         <div class="container">
@@ -25,7 +25,7 @@
 
                 <div class="card-group">
                     {% for campaign in caps_for_future_campaigns %}
-                        {% include 'base/charity-custom-card.html' %}
+                        {% include 'base/charity-card.html' %}
                     {% endfor %}
                 </div>
 
@@ -67,7 +67,7 @@
 
                 <div class="card-group">
                     {% for campaign in recycling_for_future_campaigns %}
-                        {% include 'base/charity-custom-card.html' %}
+                        {% include 'base/charity-card.html' %}
                     {% endfor %}
                 </div>
 
@@ -109,7 +109,7 @@
 
                 <div class="card-group">
                     {% for campaign in textile_for_future_campaigns %}
-                        {% include 'base/charity-custom-card.html' %}
+                        {% include 'base/charity-card.html' %}
                     {% endfor %}
                 </div>
 
@@ -150,7 +150,7 @@
 
                 <div class="card-group">
                     {% for campaign in blood_donation_for_future_campaigns %}
-                        {% include 'base/charity-custom-card.html' %}
+                        {% include 'base/charity-card.html' %}
                     {% endfor %}
                 </div>
 

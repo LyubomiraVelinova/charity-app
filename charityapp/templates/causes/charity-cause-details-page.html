@@ -1,6 +1,6 @@
 {% extends 'base/base.html' %}
 {% block main_content %}
-    {% include 'base/carousel.html' with carousel_img=campaign.image carousel_alt=campaign.name %}
+    {% include 'base/partials/carousel_var.html' with carousel_img=campaign.image carousel_alt=campaign.name %}
 
     <section class="mv-section">
         <div class="container">

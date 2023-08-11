@@ -136,7 +136,7 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Default URL to redirect to **after successful login
-LOGIN_REDIRECT_URL = reverse_lazy('home-page')
+LOGIN_REDIRECT_URL = reverse_lazy('profile-details-page')
 # Default URL to redirect to for **login**
 LOGIN_URL = reverse_lazy('login-page')
 LOGOUT_REDIRECT_URL = reverse_lazy('login-page')

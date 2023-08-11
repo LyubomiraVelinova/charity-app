@@ -5,7 +5,7 @@
 
 {% block main_content %}
 
-    {% include 'base/carousel.html' with carousel_title="Our causes" carousel_subtitle="Donation Causes" carousel_img="https://images.unsplash.com/photo-1527788263495-3518a5c1c42d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1208&q=80" carousel_alt="Donation campaigns cover" %}
+    {% include 'base/partials/carousel.html' with carousel_title="Our causes" carousel_subtitle="Donation Causes" carousel_img=STATIC_URL|add:"images/donations-cause.png" carousel_alt="Donation campaigns cover" %}
 
     <section class="mv-section">
         <div class="container">
@@ -37,12 +37,12 @@
 
                 <div class="card-group">
                     {% for campaign in first_three_donation_campaigns %}
-                        {% include 'base/donation-custom-card.html' %}
+                        {% include 'base/donation-card.html' %}
                     {% endfor %}
                 </div>
                 <div class="card-group">
                     {% for campaign in second_three_donation_campaigns %}
-                        {% include 'base/donation-custom-card.html' %}
+                        {% include 'base/donation-card.html' %}
                     {% endfor %}
                 </div>
                 <div class="maintitle">

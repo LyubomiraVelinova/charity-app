@@ -4,10 +4,12 @@ from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.views import generic as views
-from django.contrib.auth import views as auth_views, login, logout
+from django.contrib.auth import views as auth_views, login, logout, get_user_model
 from django.contrib.auth import mixins as auth_mixins
 
-from charityapp.user_accounts.forms import UserRegisterForm, CustomAuthenticationForm, ChangeEmailForm
+from charityapp.user_accounts.forms import RegisterUserForm, AuthenticationUserForm, ChangeEmailUserForm
+
+UserModel = get_user_model()
 
 
 # VERIFICATION
@@ -38,9 +40,9 @@ from charityapp.user_accounts.forms import UserRegisterForm, CustomAuthenticatio
 #         return response
 
 
-class UserRegisterView(views.CreateView):
+class RegisterUserView(views.CreateView):
     template_name = 'user_accounts/register-page.html'
-    form_class = UserRegisterForm
+    form_class = RegisterUserForm
     success_url = reverse_lazy('profile-edit-page')
 
     def get_context_data(self, **kwargs):
@@ -65,17 +67,17 @@ class UserRegisterView(views.CreateView):
         return result
 
 
-class CustomLoginView(auth_views.LoginView):
+class LoginUserView(auth_views.LoginView):
     template_name = 'user_accounts/login-page.html'
-    form_class = CustomAuthenticationForm
+    form_class = AuthenticationUserForm
 
 
-class CustomPasswordChangeView(auth_mixins.LoginRequiredMixin, auth_views.PasswordChangeView):
+class PasswordChangeUserView(auth_mixins.LoginRequiredMixin, auth_views.PasswordChangeView):
     template_name = "user_accounts/password-change-page.html"
-    success_url = reverse_lazy("password-change-done")
+    success_url = reverse_lazy("password-change-done-page")
 
 
-class CustomPasswordChangeDoneView(auth_mixins.LoginRequiredMixin, auth_views.PasswordChangeDoneView):
+class PasswordChangeDoneUserView(auth_mixins.LoginRequiredMixin, auth_views.PasswordChangeDoneView):
     template_name = "user_accounts/password-change-done.html"
 
     def get(self, request, *args, **kwargs):
@@ -84,10 +86,10 @@ class CustomPasswordChangeDoneView(auth_mixins.LoginRequiredMixin, auth_views.Pa
         return response
 
 
-class EmailChangeView(auth_mixins.LoginRequiredMixin, views.FormView):
+class EmailChangeUserView(auth_mixins.LoginRequiredMixin, views.FormView):
     template_name = 'user_accounts/email-change-page.html'
-    form_class = ChangeEmailForm
-    success_url = reverse_lazy('profile-details-page')
+    form_class = ChangeEmailUserForm
+    success_url = reverse_lazy('email-change-done-page')
 
     def form_valid(self, form):
         new_email = form.cleaned_data['new_email']
@@ -100,3 +102,12 @@ class EmailChangeView(auth_mixins.LoginRequiredMixin, views.FormView):
         else:
             form.add_error('confirm_email', 'Email addresses do not match.')
             return self.form_invalid(form)
+
+
+class EmailChangeDoneUserView(auth_mixins.LoginRequiredMixin, views.TemplateView):
+    template_name = "user_accounts/email-change-done.html"
+
+    def get(self, request, *args, **kwargs):
+        response = super().get(request, *args, **kwargs)
+        logout(self.request)
+        return response

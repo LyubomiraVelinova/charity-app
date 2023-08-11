@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.core.paginator import Paginator
 from django.urls import reverse, reverse_lazy
 from django.views import generic as views
@@ -32,7 +33,15 @@ class ArticleCreateView(views.CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        messages.success(self.request, 'Article created successfully!')
+        return response
+
+    def form_invalid(self, form):
+        response = super().form_invalid(form)
+        messages.error(self.request, 'Please correct the errors below.')
+        return response
+
 
 
 class ArticleReadView(views.DetailView):

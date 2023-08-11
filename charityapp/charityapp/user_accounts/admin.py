@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
 from django.contrib.auth import get_user_model
 
-from charityapp.user_accounts.forms import UserRegisterForm
+from charityapp.user_accounts.forms import RegisterUserForm
 
 UserModel = get_user_model()
 
@@ -22,7 +22,7 @@ class CustomUserAdmin(auth_admin.UserAdmin):
             ),
         }),
     ]
-    form = UserRegisterForm
+    form = RegisterUserForm
     list_display = ("email", "is_staff", "is_superuser",)
     list_filter = ("is_staff", "is_superuser", "groups")
     search_fields = ("email",)
@@ -31,7 +31,6 @@ class CustomUserAdmin(auth_admin.UserAdmin):
 
 @admin.register(UserModel)
 class AppUserAdmin(CustomUserAdmin):
-    # form = RegisterUserForm
     fieldsets = (
         (None, {'fields': ('email', 'password', 'user_type')}),
         ('Permissions', {'fields': ('is_staff', 'is_superuser', 'groups', 'user_permissions')}),

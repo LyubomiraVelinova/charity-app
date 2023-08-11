@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 
 {% block main_content %}
-    {% include 'base/carousel.html' with carousel_title='Get involved' carousel_subtitle='Ways to involve' carousel_img='https://images.unsplash.com/photo-1563906267088-b029e7101114?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80' carousel_alt='Ways to involve cover' %}
+    {% include 'base/partials/carousel.html' with carousel_title='Get involved' carousel_subtitle='Ways to involve' carousel_img=STATIC_URL|add:"images/get-involved.png" carousel_alt='Ways to involve cover' %}
 
 
     <section class="mv-section">

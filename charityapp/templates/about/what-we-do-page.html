@@ -2,21 +2,9 @@
 {% load static %}
 
 {% block main_content %}
-    <!-- Carousel wrapper -->
-    <div class="carousel-inner">
-        <!-- Single item -->
-        <div class="carousel-item active">
-            <img src="{% static 'images/what_we_do.jpg' %}"
-                 class="d-block w-100"
-                 alt="Sunset Over the City"/>
-            <div class="carousel-caption d-none d-md-block">
-                <h3 class="text-uppercase">Our work</h3>
-                <p class="text-uppercase custom-title">What we do</p>
-            </div>
-        </div>
-    </div>
-    <!-- Carousel wrapper -->
-    <hr class="hr hr-blurry"/>
+
+    {% include 'base/partials/carousel.html' with carousel_title="Our work" carousel_subtitle="What we do" carousel_img=STATIC_URL|add:'images/what_we_do.jpg'  carousel_alt="What we do cover" %}
+
     <section class="mv-section">
         <div class="container">
             <div class="row">

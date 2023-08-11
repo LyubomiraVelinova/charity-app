@@ -1,5 +1,78 @@
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Create Article</button>
-</form>
+{% extends 'base/base.html' %}
+{% block main_content %}
+    <section class="pt-80">
+        <div class="container">
+            <div class="row">
+                <hr class="hr hr-blurry"/>
+                <div class="maintitle">
+                    <h2 class="wow bounceInDown text-uppercase" data-wow-duration="1s"
+                        data-wow-delay="0.1s"
+                        style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: bounceInDown;">
+                        <span class="lighter">Creating</span><strong> Article</strong>
+                    </h2>
+                </div>
+                <hr class="hr hr-blurry"/>
+                <div class="lead">
+                    <form action="{% url 'create-article' %}" method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            {% if field.label == 'Title' or field.label == 'Subtitle' or field.label == 'Featured image' %}
+                                <label>{{ field.label }}</label>
+                                <input class=" form-control lead {% if field.errors %}is-invalid{% endif %}"
+                                       type="{{ field.field.widget.input_type }}"
+                                       name="{{ field.html_name }}"
+                                       {% if not field.value %}placeholder="Enter your {{ field.label.lower }}"{% endif %}
+                                       {% if field.value %}value="{{ field.value }}"{% endif %}
+                                       {% if field.field.required %}required{% endif %}>
+                            {% elif field.label == 'Short resume' %}
+                                <label>{{ field.label }}</label>
+                                <textarea
+                                        class="form-control lead {% if field.errors %}is-invalid{% endif %}"
+                                        name="{{ field.html_name }}"
+                                        {% if not field.value %}placeholder="Enter your {{ field.label.lower }}"{% endif %}
+                                        {% if field.field.required %}required{% endif %}
+                                        style="height: 50px">{{ field.value }}</textarea>
+                            {% elif field.label == 'Introduction' %}
+                                <label>{{ field.label }}</label>
+                                <textarea
+                                        class="form-control lead {% if field.errors %}is-invalid{% endif %}"
+                                        name="{{ field.html_name }}"
+                                        {% if not field.value %}placeholder="Enter your {{ field.label.lower }}"{% endif %}
+                                        {% if field.field.required %}required{% endif %}
+                                        style="height: 100px">{{ field.value }}</textarea>
+                            {% elif field.label == 'Content' %}
+                                <label>{{ field.label }}</label>
+                                <textarea
+                                        class="form-control lead {% if field.errors %}is-invalid{% endif %}"
+                                        name="{{ field.html_name }}"
+                                        {% if not field.value %}placeholder="Enter your {{ field.label.lower }}"{% endif %}
+                                        {% if field.field.required %}required{% endif %}
+                                        style="height: 250px">{{ field.value }}</textarea>
+                            {% endif %}
+                        {% endfor %}
+                        <br>
+                        <button type="submit" class="btn btn-primary">Save Article</button>
+                    </form>
+
+                    {% if form.errors %}
+                        <div class="error-message">
+                            <p>Please correct the following errors:</p>
+                            <ul>
+                                {% for field in form %}
+                                    {% if field.errors %}
+                                        <li>{{ field.label }}: {{ field.errors|join:", " }}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    <br>
+                    <a href="{% url 'act-green-blog-page' %}" class="participate-btn">
+                        <button class="btn btn-secondary">Cancel</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

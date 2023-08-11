@@ -2,7 +2,7 @@
 
 {% block main_content %}
 
-    {% include 'base/carousel.html' with carousel_title="About us" carousel_subtitle="History" carousel_img="https://images.unsplash.com/photo-1647616777717-9b20c7abd581?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80" carousel_alt="History cover" %}
+    {% include 'base/partials/carousel.html' with carousel_title="About us" carousel_subtitle="History" carousel_img=STATIC_URL|add:'images/history.png' carousel_alt="History cover" %}
 
     <section class="mv-section">
         <div class="container">

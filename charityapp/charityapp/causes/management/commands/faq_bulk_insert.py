@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from charityapp.work.models import FAQ, CharityCampaign
+from charityapp.causes.models import FAQ, CharityCause
 
 
 class Command(BaseCommand):
@@ -178,9 +178,9 @@ class Command(BaseCommand):
             # Add the related campaigns to the FAQ instance
             for campaign_name in data.get('campaigns', []):
                 try:
-                    campaign = CharityCampaign.objects.get(name=campaign_name)
+                    campaign = CharityCause.objects.get(name=campaign_name)
                     faq_instance.campaigns.add(campaign)
-                except CharityCampaign.DoesNotExist:
+                except CharityCause.DoesNotExist:
                     self.stdout.write(self.style.WARNING(f'Campaign "{campaign_name}" does not exist.'))
 
         self.stdout.write(self.style.SUCCESS('Data inserted successfully in table work_faq.'))

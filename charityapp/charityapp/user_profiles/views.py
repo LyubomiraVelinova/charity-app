@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import mixins as auth_mixins
 
-from charityapp.user_accounts.forms import UserRegisterForm
+from charityapp.user_accounts.forms import RegisterUserForm
 from charityapp.user_profiles.forms import VolunteerProfileForm, SponsorProfileForm, MemberProfileForm, TestimonialForm
 from charityapp.user_profiles.models import VolunteerProfile, SponsorProfile, MemberProfile, Testimonial
 
@@ -81,7 +81,7 @@ class ProfileDeleteView(auth_mixins.LoginRequiredMixin, views.DeleteView):
 
 class VolunteerRegisterView(views.CreateView):
     template_name = 'user_profiles/volunteer-register-page.html'
-    form_class = UserRegisterForm
+    form_class = RegisterUserForm
     success_url = reverse_lazy('profile-edit-page')
 
     def get_form(self, form_class=None):
@@ -102,7 +102,7 @@ class VolunteerRegisterView(views.CreateView):
 
 class SponsorRegisterView(views.CreateView):
     template_name = 'user_profiles/sponsor-register-page.html'
-    form_class = UserRegisterForm
+    form_class = RegisterUserForm
     success_url = reverse_lazy('profile-edit-page')
 
     def get_form(self, form_class=None):
@@ -121,7 +121,7 @@ class SponsorRegisterView(views.CreateView):
 
 class MemberRegisterView(views.CreateView):
     template_name = 'user_profiles/member-register-page.html'
-    form_class = UserRegisterForm
+    form_class = RegisterUserForm
     success_url = reverse_lazy('profile-edit-page')
 
     def get_form(self, form_class=None):

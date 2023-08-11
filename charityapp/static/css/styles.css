@@ -83,6 +83,9 @@ h2 {
 .first-section {
     padding-top: 50px;
 }
+.pt-80 {
+    padding-top: 100px;
+}
 
 #navbarNavDropdown > ul > li > a {
     text-transform: uppercase;
@@ -92,7 +95,7 @@ h2 {
     color: var(--light-green);
 }
 
-.nav-gray{
+.nav-gray {
     background-color: var(--gray-white);
 }
 
@@ -492,7 +495,25 @@ footer p {
     font-size: 14px;
 }
 
-.btn-white{
+.btn-white {
     --bs-btn-hover-bg: var(--white);
     --bs-btn-hover-color: var(--gray);
+}
+
+/*CAUSES*/
+
+/* Basic styling for the image */
+.custom-card-img-top {
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Scale up the image on hover */
+.custom-card-img-top:hover {
+    transform: scale(1.1); /* You can adjust the scale value as needed */
+    z-index: 1; /* Bring the hovered image to the front */
+}
+
+/* Add a subtle box shadow to create the pop-up effect */
+.custom-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

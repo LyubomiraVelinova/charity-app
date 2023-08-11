@@ -84,8 +84,9 @@ class SponsorProfile(models.Model):
         verbose_name='Donation history',
     )
 
+    @property
     def total_donation_amount(self):
-        return sum(self.donation_history.all().values_list('sponsordonation__amount', flat=True))
+        return sum(self.donation_history.all().values_list('participationdonationcause__amount', flat=True))
 
     def __str__(self):
         return self.company_name

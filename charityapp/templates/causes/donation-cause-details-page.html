@@ -2,7 +2,7 @@
 {% load percentage %}
 {% block main_content %}
 
-    {% include 'base/carousel.html' with carousel_img=campaign.logo carousel_alt=campaign.title %}
+    {% include 'base/partials/carousel_var.html' with carousel_img=campaign.logo carousel_alt=campaign.title %}
 
     <section class="mv-section">
         <div class="container">
@@ -26,13 +26,13 @@
                         </div>
 
                         <div class="col-md-6 text-center">
-                            <p>Fundraising Goal: {{ campaign.target_amount }} BGN</p>
+                            <p>Fundraising Goal: {{ campaign.goal_amount }} BGN</p>
                         </div>
                     </div>
                     <div class="progress">
                         <div class="progress-bar" role="progressbar"
-                             style="width: {{ campaign.current_amount|percentage_complete:campaign.target_amount }}%;"
-                             aria-valuenow="{{ campaign.current_amount|percentage_complete:campaign.target_amount }}"
+                             style="width: {{ campaign.current_amount|percentage_complete:campaign.goal_amount }}%;"
+                             aria-valuenow="{{ campaign.current_amount|percentage_complete:campaign.goal_amount }}"
                              aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <br>

@@ -1,0 +1,14 @@
+{% load static %}
+<div class="carousel-inner">
+    <div class="carousel-item active">
+        <img src="{% static carousel_img %}"
+             class="d-block w-100"
+             alt="{{ carousel_alt }}"/>
+        <div class="carousel-caption d-none d-md-block">
+            <h3 class="text-uppercase">{{ carousel_title }}</h3>
+            <p class="text-uppercase custom-title">{{ carousel_subtitle }}</p>
+        </div>
+    </div>
+</div>
+
+<hr class="hr hr-blurry"/>

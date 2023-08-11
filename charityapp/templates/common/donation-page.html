@@ -2,10 +2,10 @@
 
 {% block main_content %}
 
-    {% include 'base/carousel.html' with carousel_img="https://images.unsplash.com/photo-1502355984-b735cb2550ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" carousel_alt="Donation cover" %}
+    {% include 'base/partials/carousel.html' with carousel_img=STATIC_URL|add:"images/donation-cause-participation.png" carousel_alt="Donation cover" %}
 
 
-    <section class="custom-section first-section">
+    <section class="section">
         <div class="container custom-container">
             <div class="row">
                 <div class="col-md-12 col-md-offset-3">
@@ -111,7 +111,7 @@
                                     </label>
                                 </div>
                             </div>
-
+                            <br>
                             <button class="btn btn-primary" type="submit">Submit form</button>
 
                             {% csrf_token %}

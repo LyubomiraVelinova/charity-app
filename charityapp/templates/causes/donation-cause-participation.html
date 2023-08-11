@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 {% block main_content %}
 
-    {% include 'base/carousel.html' with carousel_img="https://images.unsplash.com/photo-1502355984-b735cb2550ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" carousel_alt="Donation cause participation cover" %}
+    {% include 'base/partials/carousel.html' with carousel_img=STATIC_URL|add:"images/donation-cause-participation.png" carousel_alt="Donation cause participation cover" %}
 
     <section class="mv-section">
         <div class="container">
@@ -49,11 +49,14 @@
                     <div class=" card card-body text-center">
                         <h3 class="card-title text-center">Donation amount</h3>
                         <form action="{% url 'donation-cause-participation' campaign.id %}" method="post">
+                            {% csrf_token %}
                             {% for field in form %}
                                 {{ field }}
+                                <div>
+                                    {{ field.errors }}
+                                </div>
                             {% endfor %}
                             <button class="btn btn-secondary">Submit</button>
-                            {% csrf_token %}
                         </form>
                     </div>
                 </div>

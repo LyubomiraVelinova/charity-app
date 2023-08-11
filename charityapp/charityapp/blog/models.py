@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 
 from charityapp.user_accounts.models import AppUser
@@ -30,6 +31,13 @@ class Article(models.Model):
         blank=True,
     )
 
-    def __str__(self):
-        return self.title
+    def clean(self):
+        if len(self.short_resume) > 150:
+            raise ValidationError({'short_resume': 'Short resume cannot exceed 150 characters.'})
 
+    def save(self, *args, **kwargs):
+        self.full_clean()  # Run model validation before saving
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f'{self.title} - {self.subtitle}'

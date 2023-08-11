@@ -40,9 +40,15 @@
                                                     {{ field }}
                                                 {% endif %}
                                                 <label class="form-label" for="form2Example11">{{ field.label }}</label>
+                                                {% if field.errors %}
+                                                      <div class="invalid-feedback">
+                                                {{ field.errors|join:', ' }}
+                                            </div>
+                                                {% endif %}
                                             {% endfor %}
                                             <div class="text-center pt-1 mb-5 pb-1">
-                                                <input type="submit" value="Submit" name="submit" class="btn btn-secondary">
+                                                <input type="submit" value="Submit" name="submit"
+                                                       class="btn btn-secondary">
                                             </div>
                                         </div>
                                         {% csrf_token %}
