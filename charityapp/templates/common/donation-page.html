@@ -57,6 +57,9 @@
                                             {% endif %}
                                         {% endif %}
                                     </div>
+                                    <div class="errors">
+                                        {{ field.errors }}
+                                    </div>
                                 {% endfor %}
                             </div>
 
@@ -77,6 +80,9 @@
                                             {{ field }}
                                         {% endif %}
                                     </div>
+                                    <div class="errors">
+                                        {{ field.errors }}
+                                    </div>
                                 {% endfor %}
                             </div>
 
@@ -96,6 +102,9 @@
                                         {% else %}
                                             {{ field }}
                                         {% endif %}
+                                    </div>
+                                    <div class="errors">
+                                        {{ field.errors }}
                                     </div>
                                 {% endfor %}
                             </div>

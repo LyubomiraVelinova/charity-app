@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% load static %}
 {% load user_profile %}
 {% load verbose_name %}
 
@@ -213,96 +214,6 @@
         </div>
     </section>
 
-    <script>
-        document.getElementById('delete-profile-btn').addEventListener('click', function () {
-            if (confirm('Are you sure you want to delete your profile?')) {
-                // If the user confirms, make an AJAX request to delete the profile
-                fetch('{% url "profile-delete" %}', {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRFToken': '{{ csrf_token }}', // Add CSRF token for security
-                    },
-                })
-                    .then(response => {
-                        if (response.ok) {
-                            // Profile deleted successfully, redirect to home page
-                            alert('Profile deleted successfully.');
-                            window.location.href = '{% url "home-page" %}';
-                        } else if (response.status === 403) {
-                            // User is not authorized to delete profile (error message from server)
-                            return response.json().then(data => {
-                                alert(data.message);
-                            });
-                        } else {
-                            // Handle other errors, show a message, etc.
-                            alert('Error deleting profile.');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-            }
-        });
-
-    </script>
-
-    {#    <script>#}
-    {#        document.addEventListener('DOMContentLoaded', () => {#}
-    {#            const deleteButtons = document.querySelectorAll('.delete-btn');#}
-    {#            const confirmationDialog = document.getElementById('confirmation-dialog');#}
-    {#            const confirmDeleteBtn = confirmationDialog.querySelector('#confirm-delete-btn');#}
-    {#            const cancelDeleteBtn = confirmationDialog.querySelector('#cancel-delete-btn');#}
-    {##}
-    {#            function deleteTestimonial(testimonialId) {#}
-    {#                const deleteUrl = `/testimonial/delete/${testimonialId}/`;#}
-    {##}
-    {#                fetch(deleteUrl, {#}
-    {#                    method: 'POST',#}
-    {#                    headers: {#}
-    {#                        'X-CSRFToken': '{{ csrf_token }}',#}
-    {#                    },#}
-    {#                })#}
-    {#                    .then(response => {#}
-    {#                        if (response.ok) {#}
-    {#                            // Testimonial deleted successfully, reload the page#}
-    {#                            alert('Testimonial deleted successfully.');#}
-    {#                            window.location.reload();#}
-    {#                        } else if (response.status === 403) {#}
-    {#                            // User is not authorized to delete testimonial (error message from server)#}
-    {#                            return response.json().then(data => {#}
-    {#                                alert(data.message);#}
-    {#                            });#}
-    {#                        } else {#}
-    {#                            // Handle other errors, show a message, etc.#}
-    {#                            alert('Error deleting testimonial.');#}
-    {#                        }#}
-    {#                    })#}
-    {#                    .catch(error => {#}
-    {#                        console.error('Error:', error);#}
-    {#                    });#}
-    {#            }#}
-    {##}
-    {#            deleteButtons.forEach(deleteButton => {#}
-    {#                deleteButton.addEventListener('click', event => {#}
-    {#                    event.preventDefault(); // Prevent the default behavior of the button click#}
-    {##}
-    {#                    const testimonialId = deleteButton.getAttribute('data-testimonial-id');#}
-    {#                    const testimonialQuote = deleteButton.getAttribute('data-testimonial-quote');#}
-    {##}
-    {#                    // Show the confirmation dialog#}
-    {#                    confirmationDialog.classList.remove('hidden');#}
-    {##}
-    {#                    confirmDeleteBtn.addEventListener('click', () => {#}
-    {#                        deleteTestimonial(testimonialId);#}
-    {#                    });#}
-    {##}
-    {#                    cancelDeleteBtn.addEventListener('click', () => {#}
-    {#                        // Hide the confirmation dialog#}
-    {#                        confirmationDialog.classList.add('hidden');#}
-    {#                    });#}
-    {#                });#}
-    {#            });#}
-    {#        });#}
-    {#    </script>#}
+    <script src="{% static 'js/deleteProfile.js' %}"></script>
 
 {% endblock %}

@@ -18,17 +18,26 @@ class ContactView(views.FormView):
         subject = form.cleaned_data['subject']
         message = form.cleaned_data['message']
 
-        # Prepare the email message
-        email_message = f"Name: {name}\nEmail: {email}\nSubject: {subject}\nMessage:\n {message}"
+        if not message:
+            form.add_error('message', 'Message is required.')
 
-        # Send the email
-        send_mail(
-            'Contact Form Submission',
-            email_message,
-            settings.DEFAULT_FROM_EMAIL,
-            ['charitty.app@gmail.com'],
-            fail_silently=False,
-        )
+        try:
+            # Prepare the email message
+            email_message = f"Name: {name}\nEmail: {email}\nSubject: {subject}\nMessage:\n {message}"
+
+            # Send the email
+            send_mail(
+                'Contact Form Submission',
+                email_message,
+                settings.DEFAULT_FROM_EMAIL,
+                ['charitty.app@gmail.com'],
+                fail_silently=False,
+            )
+        except Exception as e:
+            # Handle exceptions related to email sending
+            form.add_error(None, f"An error occurred while sending the email: {str(e)}")
+            return self.form_invalid(form)
+
         return super().form_valid(form)
 
 

@@ -20,7 +20,9 @@ class Amount(ChoicesStringsMixin, Enum):
     BGN_50 = '50 BGN'
     BGN_100 = '100 BGN'
     BGN_200 = '200 BGN'
-    BGN_OTHER = 'Other'
+    BGN_500 = '500 BGN'
+    BGN_1000 = '1000 BGN'
+    BGN_1500 = '1500 BGN'
 
 
 class Country(ChoicesStringsMixin, Enum):

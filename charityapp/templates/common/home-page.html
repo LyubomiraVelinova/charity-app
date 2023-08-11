@@ -221,7 +221,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                 {% endfor %}
@@ -244,8 +243,8 @@
                                  alt="{{ article.title }}">
                             <div class="card-body">
                                 <a href="{% url 'article-details' article.pk %}">
-                                    <h5 class="card-title text-uppercase text-center">{{ article.title }}</h5>
-                                    <h6 class="card-title text-uppercase text-center">{{ article.subtitle }}</h6>
+                                    <h5 class="card-title text-uppercase text-center">{{ article.title }}
+                                        - {{ article.subtitle }}</h5>
                                 </a>
                             </div>
                         </div>
@@ -292,7 +291,7 @@
                              style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: bounceInDown;">
                             <div class="panel-group">
                                 {% for every_news in first_news %}
-                                    <div class="accordion-item panel panel-default">
+                                    <div class="accordion-item panel panel-default bg-light">
                                         <h3 class="accordion-header" id="{{ every_news.pk }}Heading">
                                             <button class="accordion-button collapsed" type="button"
                                                     data-bs-toggle="collapse"
