@@ -8,6 +8,7 @@ from django.contrib.auth import views as auth_views, login, logout, get_user_mod
 from django.contrib.auth import mixins as auth_mixins
 
 from charityapp.user_accounts.forms import RegisterUserForm, AuthenticationUserForm, ChangeEmailUserForm
+from charityapp.user_profiles.models import SponsorProfile, MemberProfile, VolunteerProfile
 
 UserModel = get_user_model()
 
@@ -51,9 +52,18 @@ class RegisterUserView(views.CreateView):
         return context
 
     def form_valid(self, form):
-        result = super().form_valid(form)
+        response = super().form_valid(form)
         user = self.object
         login(self.request, user)
+
+        # Create related profile based on user_type
+        user_type = form.cleaned_data.get('user_type')
+        if user_type == "SPONSOR":
+            SponsorProfile.objects.create(user=user)
+        elif user_type == "MEMBER":
+            MemberProfile.objects.create(user=user)
+        elif user_type == "VOLUNTEER":
+            VolunteerProfile.objects.create(user=user)
 
         subject = 'Welcome'
         context = {'user': user}
@@ -62,7 +72,7 @@ class RegisterUserView(views.CreateView):
         recipient_list = [user.email]
         send_mail(subject, message, from_email, recipient_list, html_message=message)
 
-        return result
+        return response
 
 
 class LoginUserView(auth_views.LoginView):
