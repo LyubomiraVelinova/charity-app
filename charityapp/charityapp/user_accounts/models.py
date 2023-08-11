@@ -45,7 +45,9 @@ class AppUserManager(auth_models.BaseUserManager):
 
 class AppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
     USERNAME_FIELD = "email"
+
     objects = AppUserManager()
+
     email = models.EmailField(
         null=False,
         blank=False,

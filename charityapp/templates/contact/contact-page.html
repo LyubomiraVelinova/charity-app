@@ -27,24 +27,8 @@
                         <form action="{% url 'contact-page' %}" id="contact-form" name="contact"
                               method="post" class="text-left">
                             {% csrf_token %}
-                            {% if request.user.is_authenticated %}
-                                <label for="">{{ form.name.label }}</label>
-                                {% if user.user_type == 'SPONSOR' %}
-                                    <input type="text" value="{{ user.sponsor_profile.company_name }}">
-                                {% elif  user.user_type == 'VOLUNTEER' %}
-                                    <input type="text" value="{{ user.volunteer_profile.company_name }}">
-                                {% elif user.user_type == 'MEMBER' %}
-                                    <input type="text" value="{{ user.member_profile.company_name }}">
-                                {% endif %}
-                                <label for="">{{ form.email.label }}</label>
-                                <input type="text" value="{{ user.email }}">
-                                <label for="">{{ form.subject.label }}</label>
-                                {{ form.subject }}
-                                <label for="">{{ form.message.label }}</label>
-                                {{ form.message }}
-                            {% else %}
                                 {{ form.as_p }}
-                            {% endif %}
+                                {{ form.errors }}
                             <input id="submit" type="submit" name="submit" value="Send"/>
                         </form>
                         {% if not user.is_authenticated %}
