@@ -22,8 +22,8 @@ Project is created with:
 
 ## Setup
 * Clone the repository - HTTPS or SSH:
--- git clone https://github.com/LyubomiraVelinova/Charity_app.git
--- git clone git@github.com:LyubomiraVelinova/Charity_app.git
+** git clone https://github.com/LyubomiraVelinova/Charity_app.git
+** git clone git@github.com:LyubomiraVelinova/Charity_app.git
 
 * Install project dependencies:
 pip install -r requirements.txt
